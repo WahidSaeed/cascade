@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Cascade Workspace</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#0066cc; --primary-focus:#0071e3; --sky:#2997ff;
+    --ink:#1d1d1f; --muted-80:#333; --muted-48:#7a7a7a;
+    --hair:#e0e0e0; --divider:#f0f0f0; --canvas:#fff; --parch:#f5f5f7; --pearl:#fafafc;
+    --black:#000; --on-dark:#fff;
+    --ok:#1a8f3c; --warn:#b25000; --bad:#b00020;
+    --sans:"Inter",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    --r-sm:8px; --r-md:11px; --r-lg:18px; --r-pill:9999px;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;margin:0;}
+  body{font-family:var(--sans);background:var(--parch);color:var(--ink);
+    -webkit-font-smoothing:antialiased;font-size:17px;line-height:1.47;letter-spacing:-.011em;}
+  button{font-family:inherit;cursor:pointer;}
+  input,textarea,select{font-family:inherit;}
+
+  /* ---- top nav (black) ---- */
+  .nav{height:52px;background:var(--black);color:var(--on-dark);display:flex;align-items:center;
+    gap:28px;padding:0 20px;position:sticky;top:0;z-index:40;}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.02em;}
+  .brand b{color:var(--sky);}
+  .tabs{display:flex;gap:4px;}
+  .tab{background:none;border:none;color:#aeaeb2;font-size:13px;letter-spacing:-.01em;
+    padding:7px 14px;border-radius:var(--r-sm);transition:.15s;}
+  .tab:hover{color:#fff;}
+  .tab.active{color:#fff;background:rgba(255,255,255,.12);}
+  .status{margin-left:auto;display:flex;align-items:center;gap:9px;font-family:var(--mono);
+    font-size:11px;letter-spacing:.04em;color:#aeaeb2;}
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);}
+  .dot.bad{background:var(--bad);}
+
+  /* ---- layout ---- */
+  .wrap{max-width:1180px;margin:0 auto;padding:36px 24px 80px;}
+  .view{display:none;}
+  .view.active{display:block;}
+  .eyebrow{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--primary);margin:0 0 10px;}
+  h1{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.1;margin:0 0 6px;}
+  .sub{font-size:19px;color:var(--muted-48);letter-spacing:-.01em;margin:0 0 32px;}
+
+  /* ---- buttons ---- */
+  .btn{background:var(--primary);color:#fff;border:none;border-radius:var(--r-pill);
+    padding:11px 22px;font-size:15px;letter-spacing:-.01em;transition:transform .12s;}
+  .btn:active{transform:scale(.96);}
+  .btn.ghost{background:transparent;color:var(--primary);border:1px solid var(--primary);}
+  .btn.dark{background:var(--ink);color:#fff;border-radius:var(--r-sm);padding:8px 15px;font-size:14px;}
+  .btn.sm{padding:8px 16px;font-size:14px;}
+  .btn[disabled]{opacity:.4;cursor:default;}
+  .btn.danger{background:transparent;color:var(--bad);border:1px solid var(--hair);}
+
+  /* ---- console ---- */
+  .console{display:flex;flex-direction:column;height:calc(100vh - 52px - 160px);min-height:420px;}
+  .messages{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:18px;padding:4px 2px 20px;}
+  .msg{max-width:74%;}
+  .msg.user{align-self:flex-end;}
+  .bubble{padding:13px 18px;border-radius:var(--r-lg);font-size:16px;line-height:1.5;white-space:pre-wrap;}
+  .msg.user .bubble{background:var(--primary);color:#fff;border-bottom-right-radius:var(--r-sm);}
+  .msg.bot .bubble{background:var(--canvas);border:1px solid var(--hair);border-bottom-left-radius:var(--r-sm);}
+  .meta{display:flex;align-items:center;gap:10px;margin-top:7px;font-family:var(--mono);font-size:11px;
+    letter-spacing:.03em;color:var(--muted-48);}
+  .badge{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 9px;border-radius:var(--r-pill);}
+  .badge.cache{background:#eef0f2;color:var(--muted-80);}
+  .badge.fast_path{background:rgba(0,102,204,.1);color:var(--primary);}
+  .badge.heavy{background:#2a2a2c;color:#fff;}
+  .composer{display:flex;gap:10px;padding-top:16px;border-top:1px solid var(--hair);}
+  .composer input{flex:1;height:48px;border:1px solid var(--hair);border-radius:var(--r-pill);
+    padding:0 22px;font-size:16px;letter-spacing:-.01em;outline:none;background:var(--canvas);}
+  .composer input:focus{border-color:var(--primary-focus);box-shadow:0 0 0 1px var(--primary-focus);}
+
+  /* ---- cards / patterns ---- */
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:18px;}
+  .card{background:var(--canvas);border:1px solid var(--hair);border-radius:var(--r-lg);padding:22px;}
+  .card h3{margin:0;font-size:18px;font-weight:600;letter-spacing:-.02em;}
+  .card .desc{font-size:14px;color:var(--muted-48);margin:6px 0 16px;line-height:1.4;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;}
+  .chip{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+    padding:5px 11px;border-radius:var(--r-pill);border:1px solid var(--hair);color:var(--muted-80);}
+  .chip.status-approved{background:rgba(26,143,60,.1);color:var(--ok);border-color:transparent;}
+  .chip.status-draft{background:#f0f0f0;color:var(--muted-80);border-color:transparent;}
+  .chip.status-shadow{background:rgba(0,102,204,.1);color:var(--primary);border-color:transparent;}
+  .chip.status-rejected{background:#faeaea;color:var(--bad);border-color:transparent;}
+  .card .row{display:flex;justify-content:space-between;align-items:center;margin-top:16px;}
+  .score{font-family:var(--mono);font-size:13px;font-weight:700;}
+  .score.good{color:var(--ok);} .score.none{color:var(--muted-48);}
+
+  /* ---- detail drawer ---- */
+  .drawer-bg{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:50;display:none;}
+  .drawer-bg.open{display:block;}
+  .drawer{position:fixed;top:0;right:0;height:100%;width:min(640px,100%);background:var(--canvas);
+    z-index:51;transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.7,.2,1);
+    display:flex;flex-direction:column;}
+  .drawer.open{transform:translateX(0);}
+  .drawer header{padding:22px 26px;border-bottom:1px solid var(--hair);display:flex;align-items:center;gap:12px;}
+  .drawer header h2{font-size:22px;font-weight:600;letter-spacing:-.02em;margin:0;flex:1;}
+  .drawer .body{flex:1;overflow-y:auto;padding:24px 26px;}
+  .drawer .foot{padding:16px 26px;border-top:1px solid var(--hair);display:flex;gap:10px;flex-wrap:wrap;}
+  .x{width:36px;height:36px;border-radius:50%;border:none;background:#eef0f2;font-size:18px;color:var(--ink);}
+  label.fld{display:block;font-size:13px;font-weight:600;letter-spacing:-.01em;margin:18px 0 7px;}
+  label.fld:first-child{margin-top:0;}
+  textarea,input.txt,select.txt{width:100%;border:1px solid var(--hair);border-radius:var(--r-md);
+    padding:11px 14px;font-size:14px;letter-spacing:-.01em;outline:none;background:var(--pearl);}
+  textarea:focus,input.txt:focus,select.txt:focus{border-color:var(--primary-focus);}
+  textarea.code{font-family:var(--mono);font-size:13px;line-height:1.5;min-height:230px;white-space:pre;}
+  .hint{font-size:12px;color:var(--muted-48);margin-top:6px;}
+  .verify-out{margin-top:14px;font-family:var(--mono);font-size:12px;background:var(--parch);
+    border:1px solid var(--hair);border-radius:var(--r-md);padding:12px;white-space:pre-wrap;max-height:160px;overflow:auto;}
+
+  /* ---- config ---- */
+  .form{background:var(--canvas);border:1px solid var(--hair);border-radius:var(--r-lg);padding:28px;max-width:640px;}
+  .form .grp{margin-bottom:20px;}
+  .form .grp:last-child{margin-bottom:0;}
+
+  /* ---- metrics ---- */
+  .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-bottom:28px;}
+  .tile{background:var(--canvas);border:1px solid var(--hair);border-radius:var(--r-lg);padding:24px;}
+  .tile .fig{font-family:var(--mono);font-size:40px;font-weight:700;letter-spacing:-.02em;color:var(--primary);line-height:1;}
+  .tile .lab{font-size:14px;color:var(--muted-48);margin-top:12px;}
+  .bars .barrow{display:flex;align-items:center;gap:14px;margin:12px 0;}
+  .bars .k{font-family:var(--mono);font-size:12px;width:90px;color:var(--muted-80);text-transform:uppercase;letter-spacing:.06em;}
+  .bars .track{flex:1;height:12px;background:var(--divider);border-radius:var(--r-pill);overflow:hidden;}
+  .bars .fill{height:100%;border-radius:var(--r-pill);}
+  .bars .v{font-family:var(--mono);font-size:12px;width:70px;text-align:right;color:var(--muted-48);}
+  .empty{color:var(--muted-48);font-size:15px;padding:40px 0;text-align:center;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+    padding:12px 22px;border-radius:var(--r-pill);font-size:14px;z-index:60;opacity:0;transition:.3s;pointer-events:none;}
+  .toast.show{opacity:1;}
+  @media (max-width:640px){ h1{font-size:30px;} .tabs{gap:0;} .tab{padding:7px 10px;} .msg{max-width:88%;} }
+</style>
+</head>
+<body>
+<nav class="nav">
+  <span class="brand"><b>◆</b> Cascade</span>
+  <div class="tabs">
+    <button class="tab active" data-view="console">Console</button>
+    <button class="tab" data-view="patterns">Patterns</button>
+    <button class="tab" data-view="tools">Tools</button>
+    <button class="tab" data-view="metrics">Metrics</button>
+  </div>
+  <div class="status"><span class="dot" id="healthDot"></span><span id="healthText">connecting…</span></div>
+</nav>
+
+<div class="wrap">
+  <!-- CONSOLE -->
+  <section class="view active" id="view-console">
+    <div class="console">
+      <div class="messages" id="messages">
+        <div class="empty">Ask anything. Each answer is tagged with the path that served it — cache, fast path, or heavy model.</div>
+      </div>
+      <form class="composer" id="composer">
+        <input id="prompt" placeholder="Message Cascade…" autocomplete="off" />
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- PATTERNS -->
+  <section class="view" id="view-patterns">
+    <p class="eyebrow">Pattern library</p>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div><h1>Deterministic handlers</h1><p class="sub">Review generated code, verify it against the heavy model, then approve it into routing.</p></div>
+      <button class="btn" id="newPattern" style="margin-bottom:32px;">+ New pattern</button>
+    </div>
+    <div class="grid" id="patternGrid"></div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="view" id="view-tools">
+    <p class="eyebrow">Configuration</p>
+    <h1>Tools &amp; models</h1><p class="sub">The tunable pieces of the stack. Changes apply immediately to routing.</p>
+    <div class="form" id="configForm"></div>
+  </section>
+
+  <!-- METRICS -->
+  <section class="view" id="view-metrics">
+    <p class="eyebrow">Observability</p>
+    <h1>Routing &amp; savings</h1><p class="sub">Where traffic went, and how much took the cheap path.</p>
+    <div class="tiles" id="tiles"></div>
+    <div class="card bars" id="routeBars"></div>
+  </section>
+</div>
+
+<!-- pattern drawer -->
+<div class="drawer-bg" id="drawerBg"></div>
+<aside class="drawer" id="drawer">
+  <header><h2 id="dTitle">Pattern</h2><button class="x" id="dClose">×</button></header>
+  <div class="body" id="dBody"></div>
+  <div class="foot" id="dFoot"></div>
+</aside>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const API = location.origin;
+const $ = s => document.querySelector(s);
+const el = (t,c,h)=>{const e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;};
+async function api(path, opts){const r=await fetch(API+path,{headers:{'Content-Type':'application/json'},...opts});
+  if(!r.ok){let m=r.statusText;try{m=(await r.json()).detail||m;}catch(e){} throw new Error(m);} return r.json();}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2200);}
+
+/* ---- tabs ---- */
+document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active'); $('#view-'+t.dataset.view).classList.add('active');
+  if(t.dataset.view==='patterns')loadPatterns();
+  if(t.dataset.view==='tools')loadConfig();
+  if(t.dataset.view==='metrics')loadMetrics();
+});
+
+/* ---- health ---- */
+async function health(){try{const h=await api('/api/health');
+  $('#healthText').textContent=`${h.heavy} · ${h.store}`;$('#healthDot').classList.remove('bad');
+}catch(e){$('#healthText').textContent='offline';$('#healthDot').classList.add('bad');}}
+
+/* ---- console ---- */
+$('#composer').onsubmit=async e=>{
+  e.preventDefault();const inp=$('#prompt');const text=inp.value.trim();if(!text)return;
+  const box=$('#messages');if(box.querySelector('.empty'))box.innerHTML='';
+  const u=el('div','msg user');u.appendChild(el('div','bubble',escapeHtml(text)));box.appendChild(u);
+  inp.value='';box.scrollTop=box.scrollHeight;
+  try{const r=await api('/api/chat',{method:'POST',body:JSON.stringify({prompt:text})});
+    const b=el('div','msg bot');b.appendChild(el('div','bubble',escapeHtml(r.answer)));
+    const conf=r.confidence!=null?` · sim ${r.confidence}`:'';
+    const pat=r.pattern_name?` · ${escapeHtml(r.pattern_name)}`:'';
+    b.appendChild(el('div','meta',`<span class="badge ${r.route}">${r.route.replace('_',' ')}</span> ${r.latency_ms} ms${conf}${pat}`));
+    box.appendChild(b);box.scrollTop=box.scrollHeight;
+  }catch(err){toast('Error: '+err.message);}
+};
+function escapeHtml(s){return s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));}
+
+/* ---- patterns ---- */
+async function loadPatterns(){
+  const grid=$('#patternGrid');grid.innerHTML='';
+  const pats=await api('/api/patterns');
+  if(!pats.length){grid.innerHTML='<div class="empty">No patterns yet. Click “New pattern” to compile one.</div>';return;}
+  pats.forEach(p=>{
+    const c=el('div','card');
+    const score=p.verification_score!=null?`<span class="score good">${(p.verification_score*100).toFixed(0)}%</span>`
+      :`<span class="score none">not verified</span>`;
+    c.innerHTML=`<div class="chips"><h3 style="flex:1">${escapeHtml(p.name)}</h3>
+      <span class="chip status-${p.status}">${p.status}</span></div>
+      <div class="desc">${escapeHtml(p.description||'')}</div>
+      <div class="chips"><span class="chip">v${p.version}</span><span class="chip">${p.hits} hits</span></div>
+      <div class="row">${score}<button class="btn ghost sm">Review →</button></div>`;
+    c.querySelector('button').onclick=()=>openPattern(p.id);
+    grid.appendChild(c);
+  });
+}
+
+async function openPattern(id){
+  const p=await api('/api/patterns/'+id);
+  $('#dTitle').textContent=p.name;
+  $('#dBody').innerHTML=`
+    <label class="fld">Name</label><input class="txt" id="pName" value="${escapeAttr(p.name)}">
+    <label class="fld">Description</label><input class="txt" id="pDesc" value="${escapeAttr(p.description||'')}">
+    <label class="fld">Handler code <span class="hint">— must define handle(prompt) → str; return "__FALLBACK__" to defer</span></label>
+    <textarea class="code" id="pCode">${escapeHtml(p.handler_code)}</textarea>
+    <label class="fld">Verification samples <span class="hint">— one prompt per line; compared against the heavy model</span></label>
+    <textarea id="pSamples" style="min-height:90px">${defaultSamples()}</textarea>
+    <button class="btn ghost sm" id="pVerify" style="margin-top:12px">Run verification</button>
+    <div class="verify-out" id="pVerifyOut" style="display:none"></div>`;
+  const foot=$('#dFoot');
+  const canApprove=p.verification_score!=null && p.status!=='approved';
+  foot.innerHTML='';
+  const save=el('button','btn dark','Save changes');save.onclick=()=>savePattern(id);
+  const appr=el('button','btn'+(canApprove?'':' '),'Approve into routing');appr.disabled=!canApprove;appr.onclick=()=>approve(id);
+  const rej=el('button','btn danger','Reject');rej.onclick=()=>reject(id);
+  foot.append(save,appr,rej);
+  $('#pVerify').onclick=()=>verify(id);
+  showDrawer(true);
+}
+function defaultSamples(){return ['What is the sentiment of: I love this product',
+  'What is the sentiment of: this was a terrible experience',
+  'What is the sentiment of: the staff were excellent'].join('\n');}
+
+async function savePattern(id){
+  try{await api('/api/patterns/'+id,{method:'PUT',body:JSON.stringify({
+    name:$('#pName').value,description:$('#pDesc').value,handler_code:$('#pCode').value})});
+    toast('Saved — editing code reset it to draft, re-verify to approve.');openPattern(id);loadPatterns();
+  }catch(e){toast('Error: '+e.message);}
+}
+async function verify(id){
+  const samples=$('#pSamples').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const out=$('#pVerifyOut');out.style.display='block';out.textContent='Running…';
+  try{const r=await api('/api/patterns/'+id+'/verify',{method:'POST',body:JSON.stringify({samples})});
+    out.textContent=`score: ${(r.score*100).toFixed(1)}%  (${r.sample_size} scored)  →  ${r.passed?'PASSED ✓':'below threshold ✗'}\n`
+      +(r.disagreements.length?'\ndisagreements:\n'+r.disagreements.map(d=>`• ${d.prompt}\n    handler: ${d.handler}\n    heavy:   ${d.heavy}`).join('\n'):'no disagreements');
+    openPatternFootRefresh(id);loadPatterns();
+  }catch(e){out.textContent='Error: '+e.message;}
+}
+async function openPatternFootRefresh(id){const p=await api('/api/patterns/'+id);
+  const appr=$('#dFoot').children[1];if(appr){const ok=p.verification_score!=null&&p.status!=='approved';appr.disabled=!ok;}}
+async function approve(id){try{await api('/api/patterns/'+id+'/approve',{method:'POST'});
+  toast('Approved — now serving the fast path.');showDrawer(false);loadPatterns();}catch(e){toast('Error: '+e.message);}}
+async function reject(id){try{await api('/api/patterns/'+id+'/reject',{method:'POST'});
+  toast('Rejected.');showDrawer(false);loadPatterns();}catch(e){toast('Error: '+e.message);}}
+
+$('#newPattern').onclick=()=>{
+  $('#dTitle').textContent='New pattern';
+  $('#dBody').innerHTML=`
+    <label class="fld">Name</label><input class="txt" id="nName" placeholder="e.g. Sentiment classifier">
+    <label class="fld">Description <span class="hint">— the task the heavy model should compile into code</span></label>
+    <input class="txt" id="nDesc" placeholder="Classify the sentiment of a short message.">
+    <label class="fld">Example prompts <span class="hint">— one per line; defines the cluster</span></label>
+    <textarea id="nEx" style="min-height:140px" placeholder="What is the sentiment of: I love this\nWhat is the sentiment of: this is awful"></textarea>`;
+  const foot=$('#dFoot');foot.innerHTML='';
+  const c=el('button','btn','Compile handler');c.onclick=async()=>{
+    try{const p=await api('/api/patterns/compile',{method:'POST',body:JSON.stringify({
+      name:$('#nName').value||'Untitled',description:$('#nDesc').value,
+      examples:$('#nEx').value.split('\n').map(s=>s.trim()).filter(Boolean)})});
+      toast('Compiled a draft — review and verify.');openPattern(p.id);loadPatterns();
+    }catch(e){toast('Error: '+e.message);}};
+  foot.append(c);showDrawer(true);
+};
+
+function showDrawer(open){$('#drawer').classList.toggle('open',open);$('#drawerBg').classList.toggle('open',open);}
+$('#dClose').onclick=()=>showDrawer(false);$('#drawerBg').onclick=()=>showDrawer(false);
+function escapeAttr(s){return (s||'').replace(/"/g,'&quot;');}
+
+/* ---- config ---- */
+async function loadConfig(){
+  const cfg=await api('/api/config');const f=$('#configForm');
+  const sel=(id,val,opts)=>`<select class="txt" id="${id}">${opts.map(o=>`<option ${o===val?'selected':''}>${o}</option>`).join('')}</select>`;
+  f.innerHTML=`
+    <div class="grp"><label class="fld">Heavy model backend (System 2)</label>
+      ${sel('c_heavy',cfg.heavy_backend,['mock','bedrock'])}
+      <div class="hint">mock runs offline; bedrock calls Amazon Bedrock InvokeModel.</div></div>
+    <div class="grp"><label class="fld">Bedrock model ID</label>
+      <input class="txt" id="c_model" value="${escapeAttr(cfg.bedrock_model_id)}"></div>
+    <div class="grp"><label class="fld">Embeddings / router (System 1)</label>
+      ${sel('c_embed',cfg.embed_backend,['local','bedrock'])}
+      <div class="hint">A slot for a System One model (e.g. Jev) goes here later.</div></div>
+    <div class="grp"><label class="fld">Cache threshold — ${cfg.cache_threshold}</label>
+      <input class="txt" id="c_cache" type="number" step="0.01" min="0" max="1" value="${cfg.cache_threshold}"></div>
+    <div class="grp"><label class="fld">Pattern threshold — ${cfg.pattern_threshold}</label>
+      <input class="txt" id="c_pat" type="number" step="0.01" min="0" max="1" value="${cfg.pattern_threshold}"></div>
+    <div class="grp"><label class="fld">Handler runtime (fast-path sandbox)</label>
+      ${sel('c_rt',cfg.handler_runtime,['subprocess','lambda'])}
+      <div class="hint">subprocess = local dev only; lambda = isolated per-handler in AWS.</div></div>
+    <div class="grp"><label class="fld">Min verification score to approve — ${cfg.verify_min_score}</label>
+      <input class="txt" id="c_vmin" type="number" step="0.01" min="0" max="1" value="${cfg.verify_min_score}"></div>
+    <button class="btn" id="c_save">Save configuration</button>`;
+  $('#c_save').onclick=async()=>{
+    try{await api('/api/config',{method:'PUT',body:JSON.stringify({
+      heavy_backend:$('#c_heavy').value,bedrock_model_id:$('#c_model').value,embed_backend:$('#c_embed').value,
+      cache_threshold:parseFloat($('#c_cache').value),pattern_threshold:parseFloat($('#c_pat').value),
+      handler_runtime:$('#c_rt').value,verify_min_score:parseFloat($('#c_vmin').value)})});
+      toast('Configuration saved.');loadConfig();health();
+    }catch(e){toast('Error: '+e.message);}};
+}
+
+/* ---- metrics ---- */
+async function loadMetrics(){
+  const m=await api('/api/metrics');
+  $('#tiles').innerHTML=`
+    <div class="tile"><div class="fig">${m.total_requests}</div><div class="lab">Total requests</div></div>
+    <div class="tile"><div class="fig">${(m.cheap_share*100).toFixed(0)}%</div><div class="lab">Served by the cheap path</div></div>
+    <div class="tile"><div class="fig">${m.approved_patterns}</div><div class="lab">Approved patterns</div></div>
+    <div class="tile"><div class="fig">${m.draft_patterns}</div><div class="lab">Awaiting review</div></div>`;
+  const colors={cache:'#7a7a7a',fast_path:'#0066cc',heavy:'#2a2a2c'};
+  const total=m.total_requests||1;const bars=$('#routeBars');
+  bars.innerHTML='<h3 style="margin:0 0 18px;font-size:18px;letter-spacing:-.02em">Route breakdown</h3>';
+  ['cache','fast_path','heavy'].forEach(k=>{
+    const n=m.by_route[k]||0;const lat=m.avg_latency_ms[k];
+    const row=el('div','barrow',`<span class="k">${k.replace('_',' ')}</span>
+      <div class="track"><div class="fill" style="width:${(n/total*100).toFixed(1)}%;background:${colors[k]}"></div></div>
+      <span class="v">${n}${lat!=null?` · ${lat}ms`:''}</span>`);
+    bars.appendChild(row);
+  });
+}
+
+health();setInterval(health,10000);
+</script>
+</body>
+</html>

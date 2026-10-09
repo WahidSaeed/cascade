@@ -1,0 +1,21 @@
+# Local development — runs everything offline (no AWS, no credentials).
+#   docker compose up --build
+# Then open http://localhost:8080
+services:
+  cascade:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      CASCADE_STORE_BACKEND: sqlite
+      CASCADE_HEAVY_BACKEND: mock
+      CASCADE_EMBED_BACKEND: local
+      CASCADE_HANDLER_RUNTIME: subprocess
+      CASCADE_SQLITE_PATH: /data/cascade.db
+    volumes:
+      - cascade-data:/data
+
+volumes:
+  cascade-data:

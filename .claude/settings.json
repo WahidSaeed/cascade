@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make *)",
+      "Bash(uv *)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pytest *)",
+      "Bash(alembic *)",
+      "Bash(ruff *)",
+      "Bash(mypy *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(docker compose *)",
+      "Bash(docker ps *)",
+      "Bash(docker logs *)",
+      "Bash(terraform fmt *)",
+      "Bash(terraform init -backend=false *)",
+      "Bash(terraform validate *)",
+      "Bash(git init *)",
+      "Bash(git status *)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(curl http://localhost*)",
+      "Bash(curl http://127.0.0.1*)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Bash(terraform apply *)",
+      "Bash(terraform destroy *)",
+      "Bash(terraform import *)",
+      "Bash(aws *)",
+      "Bash(npm publish *)",
+      "Read(~/.aws/**)"
+    ]
+  }
+}

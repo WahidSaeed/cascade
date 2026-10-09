@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.env
+cascade.db
+.venv/
+venv/
+node_modules/
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.*
+infra/terraform/.terraform.lock.hcl
+*.png
