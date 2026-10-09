@@ -1,0 +1,1200 @@
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my jacket zip is stuck'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I have a question about sizing'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my jacket zip is stuck, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my jacket zip is stuck, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my jacket zip is stuck'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my boots haven't arrived, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my boots haven't arrived, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I have a question about sizing'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my boots haven't arrived, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my jacket zip is stuck, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my jacket zip is stuck'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the order is missing the headlamp'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I have a question about sizing'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the tent pole snapped, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the stove is leaking gas, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my boots haven't arrived, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and my boots haven't arrived'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the tent pole snapped'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my jacket zip is stuck, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the order is missing the headlamp, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I'd like to know the colour options'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the stove is leaking gas, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my jacket zip is stuck, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the tent pole snapped'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my boots haven't arrived'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the tent pole snapped, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my jacket zip is stuck, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I have a question about sizing, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I'd like to know the colour options'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and I have a question about sizing, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and I'd like to know the colour options, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the order is missing the headlamp, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the order is missing the headlamp, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and I have a question about sizing, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my jacket zip is stuck, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I'd like to know the colour options'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I have a question about sizing, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and my jacket zip is stuck, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and the stove is leaking gas, just curious'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is next week and the order is missing the headlamp, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, no rush at all'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and my boots haven't arrived'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and I'd like to know the colour options, just curious'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and I have a question about sizing, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the order is missing the headlamp'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and my jacket zip is stuck, no rush at all'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the order is missing the headlamp, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I have a question about sizing'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and the order is missing the headlamp, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and the stove is leaking gas, no rush at all'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the tent pole snapped'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and I have a question about sizing'", "label": "1"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my boots haven't arrived, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and the stove is leaking gas'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my jacket zip is stuck'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I have a question about sizing, please help ASAP'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my jacket zip is stuck'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options, please help ASAP'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I have a question about sizing'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and I have a question about sizing, just curious'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and my boots haven't arrived'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I placed an order and the order is missing the headlamp, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and the stove is leaking gas, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, please help ASAP'", "label": "5"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and I'd like to know the colour options'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I have a question about sizing, this is a safety issue'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I'd like to know the colour options, no rush at all'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the order is missing the headlamp, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and I'd like to know the colour options, this is a safety issue'", "label": "3"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and I have a question about sizing, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my jacket zip is stuck, please help ASAP'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and my boots haven't arrived, this is a safety issue'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and the stove is leaking gas'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and my boots haven't arrived, just curious'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the stove is leaking gas, please help ASAP'", "label": "5"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, this is a safety issue'", "label": "2"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and I'd like to know the colour options, please help ASAP'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'I placed an order and my jacket zip is stuck, this is a safety issue'", "label": "3"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the order is missing the headlamp'", "label": "3"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, just curious'", "label": "5"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the tent pole snapped, just curious'", "label": "4"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and my boots haven't arrived, no rush at all'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and I'd like to know the colour options, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the tent pole snapped, no rush at all'", "label": "2"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck, no rush at all'", "label": "1"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped, this is a safety issue'", "label": "4"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and the tent pole snapped, no rush at all'", "label": "4"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, this is a safety issue'", "label": "4"}

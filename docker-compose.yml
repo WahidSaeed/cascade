@@ -1,21 +1,75 @@
-# Local development — runs everything offline (no AWS, no credentials).
-#   docker compose up --build
-# Then open http://localhost:8080
+# Local stack — runs entirely offline (Demo LLM, local auth, no AWS credentials).
+#   make dev        (or: docker compose up --build)
+# Web: http://localhost:3000   API: http://localhost:8080   Postgres: localhost:5433
+x-backend: &backend
+  build:
+    context: .
+    dockerfile: backend/Dockerfile
+  environment: &backend-env
+    CASCADE_DATABASE_URL: postgresql+psycopg://cascade:cascade@postgres:5432/cascade
+    CASCADE_LLM: demo
+    CASCADE_AUTH: local
+    CASCADE_DEMO: "true"
+    CASCADE_ARTIFACT_RUNTIME: subprocess
+    CASCADE_CRM_URL: http://crm-mock:8090
+    CASCADE_DATA_DIR: /data
+    AWS_ACCESS_KEY_ID: testing
+    AWS_SECRET_ACCESS_KEY: testing
+    AWS_DEFAULT_REGION: us-east-1
+  volumes:
+    - cascade-data:/data
+  depends_on:
+    postgres:
+      condition: service_healthy
+
 services:
-  cascade:
-    build:
-      context: .
-      dockerfile: backend/Dockerfile
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: cascade
+      POSTGRES_PASSWORD: cascade
+      POSTGRES_DB: cascade
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cascade"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+
+  api:
+    <<: *backend
     ports:
       - "8080:8080"
-    environment:
-      CASCADE_STORE_BACKEND: sqlite
-      CASCADE_HEAVY_BACKEND: mock
-      CASCADE_EMBED_BACKEND: local
-      CASCADE_HANDLER_RUNTIME: subprocess
-      CASCADE_SQLITE_PATH: /data/cascade.db
-    volumes:
-      - cascade-data:/data
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+
+  agent-worker:
+    <<: *backend
+    command: ["python", "-m", "app.agent.worker"]
+
+  ingest-worker:
+    <<: *backend
+    command: ["python", "-m", "app.rag.worker"]
+
+  crm-mock:
+    <<: *backend
+    depends_on: []
+    ports:
+      - "8090:8090"
+    command: ["uvicorn", "app.crm_mock:app", "--host", "0.0.0.0", "--port", "8090"]
+
+  web:
+    build:
+      context: web
+      args:
+        NEXT_PUBLIC_API_BASE: http://localhost:8080
+    ports:
+      - "3000:3000"
+    depends_on:
+      - api
 
 volumes:
   cascade-data:
+  pg-data:

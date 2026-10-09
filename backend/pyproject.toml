@@ -1,0 +1,94 @@
+[project]
+name = "cascade"
+version = "0.2.0"
+description = "Cascade: compile recurring LLM traffic into verified deterministic artifacts and account for every token."
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi>=0.115",
+  "uvicorn[standard]>=0.32",
+  "pydantic>=2.10",
+  "pydantic-settings>=2.6",
+  "numpy>=2.0",
+  "boto3>=1.35",
+  "sqlalchemy>=2.0.36",
+  "psycopg[binary]>=3.2",
+  "alembic>=1.14",
+  "pgvector>=0.3.6",
+  "fastembed>=0.4",
+  "hnswlib>=0.8",
+  "scikit-learn>=1.5",
+  "skl2onnx>=1.17",
+  "onnxruntime>=1.19",
+  "pypdf>=5.1",
+  "python-docx>=1.1",
+  "beautifulsoup4>=4.12",
+  "rank-bm25>=0.2.2",
+  "python-multipart>=0.0.17",
+  "pyjwt[crypto]>=2.10",
+  "httpx>=0.28",
+  "sse-starlette>=2.1",
+]
+
+[dependency-groups]
+dev = [
+  "pytest>=8.3",
+  "pytest-cov>=6.0",
+  "pytest-socket>=0.7",
+  "pytest-benchmark>=5.1",
+  "hypothesis>=6.122",
+  "moto[lambda,s3,sqs,secretsmanager,sts,iam]>=5.0",
+  "time-machine>=2.16",
+  "ruff>=0.8",
+  "mypy>=1.13",
+  "bandit>=1.8",
+  "pip-audit>=2.7",
+  "locust>=2.32",
+  "reportlab>=4.2",
+]
+dl = [
+  "torch>=2.5",
+  "transformers>=4.46",
+]
+
+[tool.uv]
+default-groups = ["dev", "dl"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+  "acceptance(id): acceptance ID from BUILD.md covered by this test",
+  "aws: real AWS; runs only via make test-aws",
+  "integration: needs the docker-compose Postgres",
+  "eval: quality evaluation with thresholds",
+  "perf: performance targets",
+]
+addopts = "-q -p no:cacheprovider"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S"]
+ignore = ["S101", "S311", "S603", "S608", "B008", "E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S", "B"]
+"alembic/**" = ["E", "I"]
+"../scripts/**" = ["S314", "S607"]
+"../demo/**" = ["S"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = false
+
+[[tool.mypy.overrides]]
+module = ["app.light.*", "app.rag.*", "app.ledger", "app.engine", "app.verifier"]
+strict = true
+
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/compilers/dl_train_script.py"]

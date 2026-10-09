@@ -1,0 +1,140 @@
+{"prompt": "Extract the order number, email and amount: 'Payment of €386.25 for NP-39051 failed for ines@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer marco@example.com says order NP-87089 cost $171.25 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund £470.50 on order NP-83614 to tom@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'ines@example.com placed order NP-33231 and paid £420.90'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'sofia@example.com placed order NP-22414 and paid $271.25'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'sofia@example.com placed order NP-77097 and paid $175.25'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-26246 for maria@example.com was charged £574.00 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'tom@example.com placed order NP-35114 and paid £340.25'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-24372 for sofia@example.com was charged $114.90 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund £257.25 on order NP-85075 to lena@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund £190.90 on order NP-39253 to lena@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Payment of €556.99 for NP-54832 failed for ines@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'jane@example.com placed order NP-99599 and paid €64.50'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund €389.90 on order NP-52327 to piet@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer omar@example.com says order NP-74353 cost $74.00 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund €580.00 on order NP-55847 to maria@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-69931 for noah@example.com was charged £59.25 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of $463.99 for NP-10598 failed for li@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-49368 for li@example.com was charged £379.50 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Customer li@example.com says order NP-91637 cost €244.00 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'omar@example.com placed order NP-12545 and paid £215.50'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund $341.50 on order NP-45027 to piet@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-25989 for aisha@example.com was charged $87.00 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-75069 for sofia@example.com was charged €77.00 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'tom@example.com placed order NP-89970 and paid $469.90'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer marco@example.com says order NP-14632 cost £340.90 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund $106.25 on order NP-34713 to marco@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Customer ines@example.com says order NP-89300 cost $205.99 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund €261.00 on order NP-94337 to li@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer aisha@example.com says order NP-54252 cost €402.99 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-10140 for ines@example.com was charged £120.00 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-97945 for marco@example.com was charged £7.25 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Refund €185.25 on order NP-56546 to li@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund $511.00 on order NP-84700 to omar@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-92113 for noah@example.com was charged £29.90 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-88110 for li@example.com was charged £316.99 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'omar@example.com placed order NP-54754 and paid $330.90'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-65956 for piet@example.com was charged $107.99 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Payment of $226.90 for NP-75115 failed for jane@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-37428 for ines@example.com was charged $492.90 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Payment of $560.00 for NP-47092 failed for marco@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-50480 for maria@example.com was charged €560.90 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer maria@example.com says order NP-31118 cost $387.25 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'sofia@example.com placed order NP-94953 and paid $70.99'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer piet@example.com says order NP-14732 cost €590.90 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of €250.00 for NP-34562 failed for piet@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of €436.99 for NP-11811 failed for tom@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'omar@example.com placed order NP-69048 and paid $199.90'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'aisha@example.com placed order NP-84565 and paid £43.99'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'marco@example.com placed order NP-81769 and paid £469.99'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Order NP-13638 for noah@example.com was charged €141.90 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of $387.99 for NP-63809 failed for marco@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Customer aisha@example.com says order NP-68773 cost $439.99 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of $223.90 for NP-45918 failed for jane@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Customer piet@example.com says order NP-33569 cost £186.00 but the receipt is missing'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund $463.00 on order NP-74073 to jane@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Order NP-94946 for lena@example.com was charged $527.25 twice'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund €589.50 on order NP-99934 to sofia@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount: 'Refund €519.00 on order NP-55635 to aisha@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Extract the order number, email and amount from this message: 'Payment of €225.50 for NP-75318 failed for noah@example.com'", "pattern": "Order details extraction"}
+{"prompt": "Convert 12 feet to m please", "pattern": "Unit conversion"}
+{"prompt": "convert 25 miles into km", "pattern": "Unit conversion"}
+{"prompt": "Convert 50 lb to kg", "pattern": "Unit conversion"}
+{"prompt": "Convert 1 liters to gallons", "pattern": "Unit conversion"}
+{"prompt": "Convert 42 feet to m", "pattern": "Unit conversion"}
+{"prompt": "convert 100 km into miles", "pattern": "Unit conversion"}
+{"prompt": "convert 5 lb into kg", "pattern": "Unit conversion"}
+{"prompt": "How many m is 21 feet?", "pattern": "Unit conversion"}
+{"prompt": "Convert 12 miles to km please", "pattern": "Unit conversion"}
+{"prompt": "Convert 10 miles to km", "pattern": "Unit conversion"}
+{"prompt": "How many gallons is 20 liters?", "pattern": "Unit conversion"}
+{"prompt": "How many kg is 25 lb?", "pattern": "Unit conversion"}
+{"prompt": "Convert 21 liters to gallons please", "pattern": "Unit conversion"}
+{"prompt": "convert 42 kg into lb", "pattern": "Unit conversion"}
+{"prompt": "How many kg is 5 lb?", "pattern": "Unit conversion"}
+{"prompt": "convert 21 lb into kg", "pattern": "Unit conversion"}
+{"prompt": "Convert 21 kg to lb please", "pattern": "Unit conversion"}
+{"prompt": "Convert 21 m to feet", "pattern": "Unit conversion"}
+{"prompt": "convert 1 g into oz", "pattern": "Unit conversion"}
+{"prompt": "convert 50 kg into lb", "pattern": "Unit conversion"}
+{"prompt": "How many gallons is 8 liters?", "pattern": "Unit conversion"}
+{"prompt": "Convert 100 liters to gallons", "pattern": "Unit conversion"}
+{"prompt": "convert 5 lb into kg", "pattern": "Unit conversion"}
+{"prompt": "Convert 42 kg to lb", "pattern": "Unit conversion"}
+{"prompt": "convert 15 m into feet", "pattern": "Unit conversion"}
+{"prompt": "How many miles is 20 km?", "pattern": "Unit conversion"}
+{"prompt": "How many gallons is 8 liters?", "pattern": "Unit conversion"}
+{"prompt": "Convert 2 m to feet please", "pattern": "Unit conversion"}
+{"prompt": "Convert 5 lb to kg", "pattern": "Unit conversion"}
+{"prompt": "Convert 3 g to oz", "pattern": "Unit conversion"}
+{"prompt": "convert 50 m into feet", "pattern": "Unit conversion"}
+{"prompt": "Convert 3 kg to lb", "pattern": "Unit conversion"}
+{"prompt": "How many lb is 2 kg?", "pattern": "Unit conversion"}
+{"prompt": "How many oz is 25 g?", "pattern": "Unit conversion"}
+{"prompt": "convert 10 kg into lb", "pattern": "Unit conversion"}
+{"prompt": "How many feet is 21 m?", "pattern": "Unit conversion"}
+{"prompt": "Convert 25 miles to km please", "pattern": "Unit conversion"}
+{"prompt": "convert 21 miles into km", "pattern": "Unit conversion"}
+{"prompt": "Convert 8 kg to lb", "pattern": "Unit conversion"}
+{"prompt": "Convert 25 lb to kg", "pattern": "Unit conversion"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the stove is leaking gas, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the tent pole snapped'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I leave for the mountains today and my jacket zip is stuck'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I leave for the mountains today and my boots haven't arrived, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trip is in two months and the tent pole snapped'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the order is missing the headlamp'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and the stove is leaking gas'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and the order is missing the headlamp'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I placed an order and the stove is leaking gas, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and I'd like to know the colour options, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and the tent pole snapped'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'My trip is next week and I have a question about sizing, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the order is missing the headlamp, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I'm writing about my order and I have a question about sizing, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and the stove is leaking gas'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the order is missing the headlamp'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the order is missing the headlamp, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'We fly out tonight and the stove is leaking gas, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and my jacket zip is stuck, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and I'd like to know the colour options, this is a safety issue'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'My trek starts tomorrow and my boots haven't arrived, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'We fly out tonight and the stove is leaking gas, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'The race is this weekend and the stove is leaking gas'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'The race is this weekend and the stove is leaking gas, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trip is in two months and my jacket zip is stuck, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'I bought a jacket and my jacket zip is stuck, this is a safety issue'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and my boots haven't arrived, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'I bought a jacket and my jacket zip is stuck'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'I'm writing about my order and my boots haven't arrived, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and I'd like to know the colour options, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'The race is this weekend and the tent pole snapped, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'My trip is in two months and I'd like to know the colour options, no rush at all'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trek starts tomorrow and the tent pole snapped'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'We fly out tonight and the order is missing the headlamp, just curious'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'My trek starts tomorrow and I have a question about sizing, please help ASAP'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1–5: 'I leave for the mountains today and my boots haven't arrived'", "pattern": "Urgency scoring"}
+{"prompt": "Rate the urgency 1-5: 'My trip is next week and the tent pole snapped, this is a safety issue'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I'm writing about my order and the order is missing the headlamp'", "pattern": "Urgency scoring"}
+{"prompt": "On a scale of 1 to 5, how urgent is this: 'I bought a jacket and my boots haven't arrived, please help ASAP'", "pattern": "Urgency scoring"}

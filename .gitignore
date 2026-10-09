@@ -9,4 +9,13 @@ infra/terraform/.terraform/
 infra/terraform/*.tfstate
 infra/terraform/*.tfstate.*
 infra/terraform/.terraform.lock.hcl
-*.png
+.models/
+reports/
+web/.next/
+web/out/
+web/test-results/
+web/playwright-report/
+web/lib/api-types.ts.new
+backend/data/
+*.db-journal
+.DS_Store

@@ -1,37 +1,33 @@
-"""Seed a demo pattern + sample traffic so the workspace isn't empty on first run.
+"""Seed the demo starting state (BUILD.md §17.3).
 
-Run:  python -m app.seed
+  python -m app.seed --reset     migrate, wipe and seed the demo world
 """
 from __future__ import annotations
 
-from .engine import route
-from .patterns import compile_handler
+import argparse
+
+from . import db
+from .demo_world import ALL_USERS, PERSONAS
 from .store import store
 
-POSITIVE = ["I love this product", "this is great", "absolutely amazing experience",
-            "so happy with it", "excellent service"]
-NEGATIVE = ["I hate this", "terrible experience", "the worst", "really bad quality",
-            "awful and broken"]
+
+def seed_users() -> None:
+    persona_ids = {p["id"] for p in PERSONAS}
+    for u in ALL_USERS:
+        store().upsert_user(u["id"], u["name"], u["role"], u["is_admin"], u["id"] in persona_ids, u["groups"])
+
+
+def reset() -> None:
+    db.migrate()
+    seed_users()
 
 
 def main() -> None:
-    st = store()
-
-    # 1) compile a draft sentiment handler from example traffic
-    examples = [f"What is the sentiment of: {t}" for t in POSITIVE + NEGATIVE]
-    pat = compile_handler(
-        name="Sentiment classifier",
-        description="Classify the sentiment of a short message as positive or negative.",
-        examples=examples,
-    )
-    st.put_pattern(pat)
-    print(f"seeded draft pattern {pat.id} ({pat.name})")
-
-    # 2) generate some traffic so metrics have data
-    for t in POSITIVE + NEGATIVE + ["summarize the news", "write me a poem"]:
-        route(f"What is the sentiment of: {t}")
-
-    print("seeded sample traffic. Start the API and open the workspace to verify & approve.")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--reset", action="store_true")
+    ap.parse_args()
+    reset()
+    print("seeded")
 
 
 if __name__ == "__main__":

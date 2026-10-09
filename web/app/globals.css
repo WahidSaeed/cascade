@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   Cascade theme — matches the Cascade deck.
+   Fonts come from next/font in app/layout.tsx:
+     const inter = Inter({ subsets:["latin"], weight:["300","400","600","700"],
+                           variable:"--font-inter" });
+     const mono  = JetBrains_Mono({ subsets:["latin"], weight:["400","500","700"],
+                           variable:"--font-mono" });
+   Put `${inter.variable} ${mono.variable}` on <html>.
+   ========================================================================== */
+
+:root {
+  --primary: #0066cc;
+  --primary-focus: #0071e3;
+  --sky: #2997ff;
+  --ink: #1d1d1f;
+  --muted-80: #333333;
+  --muted-48: #7a7a7a;
+  --body-muted: #cccccc;
+  --hairline: #e0e0e0;
+  --divider: #f0f0f0;
+  --canvas: #ffffff;
+  --parchment: #f5f5f7;
+  --pearl: #fafafc;
+  --tile-1: #272729;
+  --tile-2: #2a2a2c;
+  --tile-3: #252527;
+  --ok: #1a8f3c;
+  --bad: #b00020;
+  --shadow-product: 0 5px 30px 3px rgba(0, 0, 0, 0.22);
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@layer base {
+  html { font-family: var(--font-inter), system-ui, -apple-system, sans-serif; }
+  body {
+    background: var(--parchment);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.47;
+    letter-spacing: -0.011em;
+    -webkit-font-smoothing: antialiased;
+  }
+  /* The deck ladder is 300/400/600/700 — never use font-weight 500. */
+  h1, h2, h3 { letter-spacing: -0.02em; font-weight: 600; }
+}
+
+@layer components {
+  /* mono uppercase tracked label — the deck's "eyebrow" */
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--primary);
+  }
+  .eyebrow-on-dark { color: var(--sky); }
+
+  /* buttons */
+  .btn {
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 9999px;
+    padding: 11px 22px;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    transition: transform 0.12s var(--ease);
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn:focus-visible { outline: 2px solid var(--primary-focus); outline-offset: 3px; }
+  .btn-ghost { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+  .btn-dark { background: var(--ink); color: #fff; border-radius: 8px; padding: 8px 15px; font-size: 14px; }
+  .btn-danger { background: transparent; color: var(--bad); border: 1px solid var(--hairline); }
+  .btn[disabled] { opacity: 0.4; cursor: default; }
+
+  /* hairline utility card (the Apple store-card grammar) */
+  .card {
+    background: var(--canvas);
+    border: 1px solid var(--hairline);
+    border-radius: 18px;
+    padding: 22px;
+  }
+
+  /* route badges for the console */
+  .badge {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 9999px;
+  }
+  .badge-cache { background: #eef0f2; color: var(--muted-80); }
+  .badge-fast { background: rgba(0, 102, 204, 0.1); color: var(--primary); }
+  .badge-heavy { background: #2a2a2c; color: #fff; }
+
+  /* mono metric figure (deck "payoff" style) */
+  .metric {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+  }
+
+  /* surface helpers — the deck's alternating tiles */
+  .surface-parchment { background: var(--parchment); color: var(--ink); }
+  .surface-dark { background: var(--tile-1); color: #fff; }
+  .surface-black { background: #000; color: #fff; }
+
+  /* the single product shadow — use on ONE focal element only */
+  .shadow-product { box-shadow: var(--shadow-product); }
+}

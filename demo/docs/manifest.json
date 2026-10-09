@@ -1,0 +1,35 @@
+{
+ "documents": [
+  {
+   "key": "handbook_v1",
+   "collection": "handbook",
+   "title": "Employee Handbook",
+   "file": "handbook_v1.docx"
+  },
+  {
+   "key": "product_faq",
+   "collection": "products",
+   "title": "Product FAQ",
+   "file": "product_faq.md"
+  },
+  {
+   "key": "returns_policy",
+   "collection": "products",
+   "title": "Returns Policy",
+   "file": "returns_policy.html"
+  },
+  {
+   "key": "escalation_guide",
+   "collection": "playbook",
+   "title": "Escalation Guide",
+   "file": "escalation_guide.pdf"
+  },
+  {
+   "key": "compensation_guide",
+   "collection": "compensation",
+   "title": "Compensation Guide",
+   "file": "compensation_guide.pdf"
+  }
+ ],
+ "handbook_v2": "handbook_v2.docx"
+}

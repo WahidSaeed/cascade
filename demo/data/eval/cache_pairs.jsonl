@@ -1,0 +1,13 @@
+{"first": "Convert 5 km to miles", "second": "Convert 50 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 12 km to miles", "second": "Convert 120 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 3 km to miles", "second": "Convert 30 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 10 km to miles", "second": "Convert 100 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 1 km to miles", "second": "Convert 2 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 8 km to miles", "second": "Convert 80 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "Convert 20 km to miles", "second": "Convert 25 km to miles", "should_hit": false, "reason": "slot mismatch"}
+{"first": "convert 5 USD to EUR", "second": "convert 50 USD to EUR", "should_hit": false, "reason": "slot mismatch"}
+{"first": "What's the status of today's shipments?", "second": "What's the status of today's shipments?", "should_hit": false, "reason": "time-sensitive"}
+{"first": "What is the latest price of the Ridgeline 2?", "second": "What is the latest price of the Ridgeline 2?", "should_hit": false, "reason": "time-sensitive"}
+{"first": "Draft a friendly reply to a customer whose tent pole broke", "second": "Draft a friendly reply to a customer whose tent pole broke", "should_hit": true, "reason": "exact repeat"}
+{"first": "Draft a friendly reply to a customer whose tent pole broke", "second": "draft a friendly reply to a customer whose tent pole broke!", "should_hit": true, "reason": "normalized repeat"}
+{"first": "Write a product description for the backpack", "second": "Write a product description for the headlamp", "should_hit": false, "reason": "different product"}

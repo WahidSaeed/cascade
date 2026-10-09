@@ -2,13 +2,13 @@
 
 Claude Code keeps this file current. Read it first when resuming.
 
-**Current step:** Step 0 — not started
-**Last `make verify`:** —
+**Current step:** Phase 1 — Foundations (in progress)
+**Last `make verify`:** 2026-10-09 19:46 — PASS (Step 0)
 
 | Step | Status | Acceptance IDs | Evidence (last lines of `make verify`) | Commit |
 |---|---|---|---|---|
-| Step 0 — Foundation | ☐ todo | — | | |
-| Phase 1 — Foundations | ☐ todo | P1-01 … P1-10 | | |
+| Step 0 — Foundation | ☑ done | — | lint pass · test-unit 29 passed · test-int 0 tests · contract pass · test-web 1 passed · test-e2e 0 tests · eval/perf/security pass · acceptance: missing 43 (no phase gated yet) · **Overall: PASS** 2026-10-09 19:46 | feat(step-0) |
+| Phase 1 — Foundations | ◐ in progress | P1-01 … P1-10 | | |
 | Phase 2 — Next.js workspace | ☐ todo | P2-01 … P2-04 | | |
 | Phase 3 — Knowledge base & RAG | ☐ todo | P3-01 … P3-08 | | |
 | Phase 4 — Pattern intelligence | ☐ todo | P4-01 … P4-03 | | |
@@ -37,4 +37,7 @@ Status values: ☐ todo · ◐ in progress · ☑ done · ⚠ blocked
 (none)
 
 ## Notes for the next session
-(none)
+- Step 0 reviewed (acceptance-reviewer instructions run via a general-purpose agent, since this session
+  was started outside cascade-workspace/). Fixed: frozen baseline migration, Makefile-wide AWS blanking,
+  aws-only xfail rule, Playwright --with-deps in CI.
+- Phase 1 WIP: backend/app/light/normalize.py written (not yet tested).
