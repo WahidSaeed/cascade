@@ -79,11 +79,19 @@ def lookup_reference(pattern: Pattern, category: str = "verify") -> ReferenceFn:
         blocks = [ContextBlock(n=i + 1, title=c.title, text=c.text, chunk_id=c.chunk_id, document_id=c.document_id,
                                page=c.page, collection_id=c.collection_id, version=c.doc_version)
                   for i, (c, _) in enumerate(chosen)]
+        slot = slots.get(prompt) or _slot_from(prompt, slots)
         res = heavy_model().complete(LLMRequest(question=prompt, context=blocks, knowledge=True,
-                                                purpose="lookup_extract", meta={"slot": slots.get(prompt, "")}))
+                                                purpose="lookup_extract", meta={"slot": slot}))
         record_llm_overhead(res, category, pattern.id, collection_id=collection_ids[0] if collection_ids else None)
         return Reference(res.text, res)
     return ref
+
+
+def _slot_from(prompt: str, slots: dict[str, str]) -> str:
+    """The slot value a (possibly unseen) prompt asks about: the longest known key it mentions."""
+    low = prompt.lower()
+    keys = sorted(set(slots.values()), key=len, reverse=True)
+    return next((k for k in keys if k.lower() in low), "")
 
 
 def build_lookup(name: str, document_ids: list[str], schema: str = "vacation days by country",

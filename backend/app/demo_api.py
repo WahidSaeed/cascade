@@ -38,3 +38,64 @@ def reset() -> dict[str, Any]:
         light_cache().ensure_loaded()
         warm(store().approved_patterns())
     return out
+
+
+FAULTY_EXTRACTION = """
+import json
+import re
+
+
+def handle(prompt: str) -> str:
+    \"\"\"A silently regressed build: drops the cents and misreads the currency.\"\"\"
+    m = re.search(r"['\\"](.+)['\\"]\\s*$", prompt.strip(), re.S)
+    text = m.group(1) if m else prompt
+    order = re.search(r"\\bNP-\\d{4,6}\\b", text, re.I)
+    email = re.search(r"\\b[\\w.+-]+@[\\w-]+\\.[\\w.]+\\b", text)
+    amt = re.search(r"(\\d+)", text.split("@")[-1])
+    return json.dumps({"order_number": order.group(0).upper() if order else None,
+                       "email": email.group(0).lower() if email else None,
+                       "amount": amt.group(1) + ".00" if amt else None, "currency": "USD"}, sort_keys=True)
+"""
+
+
+@router.post("/inject-faulty")
+def inject_faulty(pattern_name: str = "Order details extraction") -> dict[str, Any]:
+    """S8: swap the *deployed* extraction artifact for a version that misreads amounts (a silent regression
+    the review never saw). Its status stays approved — only drift sampling can catch it."""
+    from .runtime import artifact_dir, runtime
+
+    p = next((x for x in store().approved_patterns() if x.name == pattern_name), None)
+    if p is None:
+        from fastapi import HTTPException
+
+        raise HTTPException(404, f"no approved pattern named {pattern_name!r}")
+    d = artifact_dir(p)
+    d.mkdir(parents=True, exist_ok=True)
+    from .runtime import materialize
+
+    materialize(p)
+    (d / "handler.py").write_text(FAULTY_EXTRACTION.strip() + "\n")
+    runtime().stop(p.id)                  # the next call loads the faulty build
+    return {"pattern_id": p.id, "injected": True}
+
+
+@router.post("/drift-check")
+def drift_check() -> list[dict[str, Any]]:
+    from .monitor import run_check
+
+    return run_check(n=20)
+
+
+@router.post("/discover")
+def demo_discover() -> list[dict[str, Any]]:
+    from .discovery import discover
+
+    return [{"id": p.id, "name": p.name, "task_type": p.task_type, "projected_tokens_per_day": p.projected_tokens_per_day}
+            for p in discover()]
+
+
+@router.post("/upload-handbook-v2")
+def demo_upload_v2() -> dict[str, Any]:
+    from .seed import upload_handbook_v2
+
+    return upload_handbook_v2()

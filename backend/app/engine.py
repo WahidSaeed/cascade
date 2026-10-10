@@ -218,6 +218,10 @@ def _serve_artifact(ctx: Ctx, pattern: Pattern, res: ArtifactResult, prob: float
     tokens = TokenInfo(tokens_avoided=avoided_in + avoided_out, cost_avoided_usd=avoided_usd,
                        cost_actual_usd=entry.cost_actual_usd, estimate_method=method)
     pattern_hit(pattern.id)
+    from . import monitor
+
+    if monitor.should_sample():
+        monitor.sample_live(pattern, ctx.prompt, res.result or "", sync=ctx.simulated)
     if not pattern.kb_dependencies and not ctx.norm.context_dependent:
         # Remember the artifact's answer too (saves the next invocation). Never for document-backed
         # artifacts: their answers must follow document changes (rule 13).

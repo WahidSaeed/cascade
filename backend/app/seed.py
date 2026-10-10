@@ -26,7 +26,7 @@ from .models import OverheadRow
 from .state import reset_runtime_state
 from .store import store
 
-SEED_VERSION = "phase3-v1"
+SEED_VERSION = "phase4-v1"
 DAY = 86400
 
 
@@ -134,7 +134,11 @@ def build() -> dict[str, Any]:
     docs = seed_knowledge()
     ids = install_artifacts(week_start, docs)
     n = replay_week(week_start)
+    from .discovery import discover
+
+    recognized = [p.name for p in discover()]                # the nightly discovery run at the end of the week
     info = {"seed_version": SEED_VERSION, "built_at": time.time(), "requests": n, "patterns": ids, "documents": docs,
+            "recognized": recognized,
             "seconds": round(time.time() - t0, 1)}
     store().set_config("_seed", info)
     snapshot_save()

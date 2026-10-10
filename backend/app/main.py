@@ -49,6 +49,9 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
 
     light_cache().ensure_loaded()
     threading.Thread(target=warm, args=(store().approved_patterns(),), daemon=True).start()
+    from . import scheduler
+
+    scheduler.start()
     yield
     from .runtime import _reset
 
@@ -106,7 +109,14 @@ def chat(req: ChatRequest, ident: Identity = Depends(current_user)) -> ChatRespo
 
 @app.get("/api/light/metrics")
 def light_metrics_endpoint() -> dict[str, Any]:
-    return light_metrics().snapshot()
+    from .light.recognizer import ClassifierRecognizer, recognizer
+    from .monitor import false_hit_rate
+
+    snap = light_metrics().snapshot(false_hit_rate())
+    r = recognizer()
+    snap["recognizer"] = {"type": type(r).__name__,
+                          **(r.meta if isinstance(r, ClassifierRecognizer) else {})}
+    return snap
 
 
 # ------------------------------------------------------------------ patterns
@@ -146,6 +156,45 @@ def approve_pattern(pattern_id: str, ident: Identity = Depends(require_admin)) -
 @app.post("/api/patterns/{pattern_id}/reject", response_model=Pattern)
 def reject_pattern(pattern_id: str, _ident: Identity = Depends(require_admin)) -> Pattern:
     return pat.reject(pattern_id)
+
+
+@app.post("/api/patterns/discover", response_model=list[Pattern])
+def discover_patterns(window_days: float = 7.0) -> list[Pattern]:
+    from .discovery import discover
+
+    return discover(window_days)
+
+
+@app.get("/api/notifications")
+def notifications(ident: Identity = Depends(current_user), unread: bool = False) -> list[dict[str, Any]]:
+    from .discovery import notifications as list_notifications
+
+    return list_notifications(ident.user_id, unread)
+
+
+@app.post("/api/notifications/{notification_id}/read")
+def notification_read(notification_id: str) -> dict[str, str]:
+    from .discovery import mark_read
+
+    mark_read(notification_id)
+    return {"status": "read"}
+
+
+@app.post("/api/drift/run")
+def drift_run(pattern_id: str | None = None, n: int = 20) -> list[dict[str, Any]]:
+    from .monitor import run_check
+
+    return run_check(pattern_id, n)
+
+
+@app.get("/api/patterns/{pattern_id}/drift")
+def pattern_drift(pattern_id: str) -> dict[str, Any]:
+    from .monitor import agreement, recent_samples
+
+    p = get_pattern(pattern_id)
+    score, n = agreement(p.id, p.version)
+    return {"agreement": score, "samples": n, "min_agreement": settings.drift_min_agreement,
+            "recent": recent_samples(p.id)}
 
 
 # ------------------------------------------------------------------ ledger

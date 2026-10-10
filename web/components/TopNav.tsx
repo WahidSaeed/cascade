@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import { NotificationBell } from "@/components/NotificationBell";
 import type { Health } from "@/lib/types";
 import { useUser } from "@/lib/user";
 
@@ -49,6 +50,7 @@ export function TopNav() {
         {health?.llm === "demo" && (
           <span className="rounded-pill border border-white/25 px-2 py-0.5 text-white" data-testid="demo-llm-badge">Demo LLM</span>
         )}
+        <NotificationBell />
         <select aria-label="User" data-testid="user-switcher" value={userId}
           onChange={(e) => setUserId(e.target.value)}
           className="rounded-sm border border-white/20 bg-transparent px-2 py-1 text-white">

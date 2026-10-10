@@ -233,6 +233,20 @@ class KbEvent(Base):
     processed: Mapped[bool] = mapped_column(Boolean, default=False)
 
 
+# ----------------------------------------------------------------------------- drift (Phase 4)
+class DriftSample(Base):
+    __tablename__ = "drift_samples"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    pattern_id: Mapped[str] = mapped_column(String(64), index=True)
+    pattern_version: Mapped[int] = mapped_column(Integer)
+    ts: Mapped[float] = mapped_column(Float, index=True, default=now)
+    prompt: Mapped[str] = mapped_column(Text)
+    artifact: Mapped[str] = mapped_column(Text)
+    llm: Mapped[str] = mapped_column(Text)
+    agreement: Mapped[float] = mapped_column(Float)
+    source: Mapped[str] = mapped_column(String(16), default="live")
+
+
 # ----------------------------------------------------------------------------- notifications / alerts
 class Notification(Base):
     __tablename__ = "notifications"

@@ -13,6 +13,9 @@ from __future__ import annotations
 import threading
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
+from typing import Any
+
+import numpy as np
 
 from ..config import settings
 from ..schemas import Pattern
@@ -78,19 +81,126 @@ class CentroidRecognizer(Recognizer):
         return Recognition(None, prob, margin, "none", best_id)
 
 
+class ClassifierRecognizer(Recognizer):
+    """Trained light classifier (BUILD.md §10): logistic regression over the router embeddings, classes =
+    approved patterns + `none`, calibrated probabilities, exported to ONNX and run with onnxruntime.
+    Exact template matches still win; the centroid recognizer stays as the fallback."""
+
+    NONE = "__none__"
+
+    def __init__(self, onnx_bytes: bytes, classes: list[str], patterns: list[Pattern], meta: dict[str, Any]) -> None:
+        import onnxruntime as ort
+
+        so = ort.SessionOptions()
+        so.intra_op_num_threads = 1
+        self._sess = ort.InferenceSession(onnx_bytes, so, providers=["CPUExecutionProvider"])
+        self._input = self._sess.get_inputs()[0].name
+        self.classes = classes
+        self.meta = meta
+        self._templates = {k: p.id for p in patterns for k in p.template_keys}
+
+    def refresh(self, patterns: list[Pattern]) -> None:
+        self._templates = {k: p.id for p in patterns for k in p.template_keys}
+
+    def recognize(self, norm: Normalized, vector: list[float]) -> Recognition:
+        tmpl = self._templates.get(norm.template_key)
+        if tmpl is not None:
+            return Recognition(tmpl, TEMPLATE_MATCH_PROB, TEMPLATE_MATCH_PROB, "template", tmpl)
+        outs = self._sess.run(None, {self._input: np.asarray([vector], dtype=np.float32)})
+        probs = np.asarray(outs[1], dtype=np.float32)[0]
+        order = np.argsort(-probs)
+        best, second = int(order[0]), (int(order[1]) if len(order) > 1 else None)
+        p1 = float(probs[best])
+        margin = p1 - (float(probs[second]) if second is not None else 0.0)
+        label = self.classes[best]
+        if label == self.NONE:
+            return Recognition(None, 1.0 - p1, 0.0, "none", None)
+        if p1 >= settings.pattern_min_prob and margin >= settings.pattern_min_margin:
+            return Recognition(label, p1, margin, "classifier", label)
+        return Recognition(None, p1, margin, "none", label)
+
+
 _lock = threading.Lock()
 _recognizer: Recognizer | None = None
+
+
+def train_classifier(patterns: list[Pattern]) -> ClassifierRecognizer | None:
+    """Train on logged prompts labelled by which pattern served them (or would have: its examples), plus
+    `none` = LLM-route prompts that no pattern matched."""
+    from skl2onnx import to_onnx
+    from sklearn.linear_model import LogisticRegression
+    from sqlalchemy import select
+
+    from .. import db
+    from ..models import RequestLog
+
+    if len(patterns) < settings.recognizer_min_patterns:
+        return None
+    xs: list[list[float]] = []
+    ys: list[str] = []
+    with db.session() as s:
+        for p in patterns:
+            served = [e for (e,) in s.execute(select(RequestLog.embedding).where(RequestLog.pattern_id == p.id,
+                                                                                 RequestLog.embedding.is_not(None))
+                                              .order_by(RequestLog.ts.desc()).limit(300)) if e]
+            rows = served + list(p.exemplars)
+            xs += rows
+            ys += [p.id] * len(rows)
+        logged = s.execute(select(RequestLog.embedding, RequestLog.template_key, RequestLog.light)
+                           .where(RequestLog.route == "llm", RequestLog.embedding.is_not(None))
+                           .order_by(RequestLog.ts.desc()).limit(1500)).all()
+    # LLM-route traffic is labelled by the pattern that WOULD have served it (same template, or close to its
+    # centroid / exemplars) — e.g. the prompts discovery clustered before the pattern was approved — and
+    # only the rest is `none`. Otherwise the same embeddings would be taught as both classes.
+    by_template = {k: p.id for p in patterns for k in p.template_keys}
+    none_count = 0
+    for emb, tkey, light in logged:
+        if not emb or (light or {}).get("stage_hit") not in ("none", None):
+            continue
+        owner = by_template.get(tkey)
+        if owner is None:
+            best = max(((max([cosine(emb, p.centroid) if p.centroid else 0.0]
+                              + [cosine(emb, e) for e in p.exemplars[:12]]), p.id) for p in patterns), default=(0.0, ""))
+            owner = best[1] if best[0] >= settings.pattern_threshold else None
+        if owner is not None:
+            xs.append(emb)
+            ys.append(owner)
+        elif none_count < 800:
+            xs.append(emb)
+            ys.append(ClassifierRecognizer.NONE)
+            none_count += 1
+    if len(set(ys)) < 2:
+        return None
+    X = np.asarray(xs, dtype=np.float32)
+    clf = LogisticRegression(C=4.0, max_iter=2000, class_weight="balanced")
+    clf.fit(X, ys)
+    model = to_onnx(clf, X[:1], options={id(clf): {"zipmap": False}}, target_opset=17)
+    classes = [str(c) for c in clf.classes_]
+    meta = {"trained_at": __import__("time").time(), "samples": len(ys), "classes": len(classes),
+            "per_class": {c: ys.count(c) for c in classes}}
+    return ClassifierRecognizer(model.SerializeToString(), classes, patterns, meta)
+
+
+def build_recognizer() -> Recognizer:
+    from ..store import store
+
+    patterns = store().approved_patterns()
+    try:
+        trained = train_classifier(patterns)
+    except Exception:  # noqa: BLE001 - never lose routing over a training failure
+        trained = None
+    if trained is not None:
+        return trained
+    r = CentroidRecognizer()
+    r.refresh(patterns)
+    return r
 
 
 def recognizer() -> Recognizer:
     global _recognizer
     with _lock:
         if _recognizer is None:
-            from ..store import store
-
-            r = CentroidRecognizer()
-            r.refresh(store().approved_patterns())
-            _recognizer = r
+            _recognizer = build_recognizer()
         return _recognizer
 
 
@@ -101,9 +211,8 @@ def set_recognizer(r: Recognizer | None) -> None:
 
 
 def refresh_recognizer() -> None:
-    from ..store import store
-
-    recognizer().refresh(store().approved_patterns())
+    """Approve / demote / retire: rebuild (and retrain) the recognizer, then hot-swap it in."""
+    set_recognizer(build_recognizer())
 
 
 on_reset(lambda: set_recognizer(None))

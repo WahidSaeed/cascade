@@ -27,6 +27,7 @@ DEFAULT_PRICES: dict[str, dict[str, float]] = {
     "local-embedder": {"input": 0.0, "output": 0.0},
     "_lambda": {"gb_second": 0.0000166667, "request": 0.0000002},
     "_rerank": {"per_query": 0.0},
+    "_training": {"per_hour": 0.115},      # ml.m5.large on-demand (local runs are priced the same, as an estimate)
 }
 
 
@@ -115,10 +116,11 @@ class Settings(BaseSettings):
 
     # --- discovery / drift ---
     discovery_min: int = 25
-    discovery_similarity: float = 0.86
+    discovery_similarity: float = 0.80    # prompt-to-cluster-centroid cosine (bge-small)
     drift_sample_rate: float = 0.05
     drift_min_agreement: float = 0.85
     drift_window: int = 50
+    scheduler: bool = False                # in-process discovery/drift schedule (local stand-in for EventBridge)
 
     # --- agent ---
     agent_llm: str = "scripted"            # scripted (demo) | bedrock
@@ -127,6 +129,8 @@ class Settings(BaseSettings):
     agent_autostart: bool = False
     dl_trainer: str = "local"              # local | sagemaker
     dl_base_model: str = "prajjwal1/bert-tiny"
+    dl_training_image: str = ""            # ECR image with the training script (SageMaker)
+    dl_instance_type: str = "ml.m5.large"
     sagemaker_role_arn: str = ""
 
     # --- privacy ---

@@ -4,6 +4,10 @@ import { Button } from "@/components/Button";
 import { api } from "@/lib/api";
 import { fmtInt, fmtPct, fmtUsd } from "@/lib/format";
 import type { Pattern, VerifyResult } from "@/lib/types";
+import { useData } from "@/lib/useData";
+
+type Drift = { agreement: number | null; samples: number; min_agreement: number;
+  recent: { ts: number; prompt: string; artifact: string; llm: string; agreement: number; source: string }[] };
 
 const label = "font-mono text-[11px] uppercase tracking-[0.12em] text-muted-48";
 
@@ -13,6 +17,7 @@ export function PatternDrawer({ p, onClose, onChange }: { p: Pattern; onClose: (
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   const v = p.verification;
+  const drift = useData(() => api<Drift>(`/api/patterns/${p.id}/drift`), `drift-${p.id}-${p.updated_at}`);
 
   async function act(name: string, path: string, init: RequestInit & { json?: unknown } = { method: "POST" }) {
     setBusy(name); setMsg(null);
@@ -84,6 +89,19 @@ export function PatternDrawer({ p, onClose, onChange }: { p: Pattern; onClose: (
           <p className={`${label} mb-2`}>Verification</p>
           {v ? <VerifyView v={v} /> : <p className="text-[14px] text-muted-48">Not verified yet.</p>}
         </div>
+
+        {drift.data && drift.data.samples > 0 && (
+          <div className="mb-6" data-testid="drift">
+            <p className={`${label} mb-2`}>Drift (artifact vs LLM on live traffic)</p>
+            <p className="font-mono text-[14px]">
+              rolling agreement <span className={(drift.data.agreement ?? 1) < drift.data.min_agreement ? "text-bad" : "text-ok"}>
+                {fmtPct(drift.data.agreement ?? 0)}</span> over {drift.data.samples} samples (minimum {fmtPct(drift.data.min_agreement)})
+            </p>
+            {drift.data.recent.filter((d) => d.agreement < 1).slice(0, 3).map((d, i) => (
+              <p key={i} className="mt-1 font-mono text-[11px] text-muted-80">✗ {d.artifact} ≠ {d.llm}</p>
+            ))}
+          </div>
+        )}
 
         {(p.leak_warnings?.length ?? 0) > 0 && (
           <div className="mb-6" data-testid="leak-warnings">
