@@ -41,7 +41,7 @@ def test_run_api_end_to_end(triage, client, monkeypatch):
     run = client.post("/api/agent/runs", json={"pattern_id": triage.id, "dataset_ids": [ds["id"]],
                                                 "instructions": "go straight to ml", "start": True}, headers=hdr).json()
     for _ in range(200):
-        run = client.get(f"/api/agent/runs/{run['id']}").json()
+        run = client.get(f"/api/agent/runs/{run['id']}", headers=hdr).json()
         if run["status"] == "awaiting_feedback":
             break
         time.sleep(0.1)
@@ -51,7 +51,7 @@ def test_run_api_end_to_end(triage, client, monkeypatch):
     assert client.post(f"/api/agent/runs/{run['id']}/respond", json={"action": "bogus"}, headers=hdr).status_code == 422
     stopped = client.post(f"/api/agent/runs/{run['id']}/respond", json={"action": "stop"}, headers=hdr).json()
     assert stopped["status"] == "stopped"
-    body = client.get(f"/api/agent/runs/{run['id']}/events?after=0").text      # a finished run's stream ends
+    body = client.get(f"/api/agent/runs/{run['id']}/events?after=0", headers=hdr).text      # a finished run's stream ends
     steps = [json.loads(line[5:]) for line in body.splitlines() if line.startswith("data:") and '"kind"' in line]
     assert steps[0]["n"] == 1 and steps[-1]["kind"] == "stop" and "event: status" in body
     assert client.post(f"/api/agent/runs/{run['id']}/respond", json={"action": "stop"}, headers=hdr).status_code == 409

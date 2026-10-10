@@ -66,7 +66,7 @@ def test_discovery_notifies_and_intake_waits_for_start(triage, client):
                       headers={"X-User-Id": "ava"}).json()
     assert run["status"] == "awaiting_intake" and run["intake"]["instructions"] == "six classes"
     time.sleep(0.3)
-    run = client.get(f"/api/agent/runs/{run['id']}").json()
+    run = client.get(f"/api/agent/runs/{run['id']}", headers={"X-User-Id": "ava"}).json()
     assert run["status"] == "awaiting_intake" and run["candidates"] == {}            # nothing runs before Start
     assert _overhead(run["id"])[0] == 0
     assert store().get_pattern(triage.id).status == PatternStatus.awaiting_intake
