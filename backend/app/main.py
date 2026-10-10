@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from . import db, engine, reverify  # noqa: F401 - reverify registers the kb_event hook
 from . import patterns as pat
 from .auth import Identity, current_user, require_admin
+from .cognito import CognitoMiddleware
 from .config import EDITABLE, settings
 from .ledger import ledger
 from .light.metrics import light_metrics
@@ -58,9 +59,12 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
     _reset()
 
 
-app = FastAPI(title="Cascade", version="0.3.0", lifespan=lifespan)
-app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",")],
-                   allow_methods=["*"], allow_headers=["*"])
+app = FastAPI(title="Cascade", version="0.4.0", lifespan=lifespan)
+# Production: CORS only from the CloudFront origin of the static web export (CASCADE_CORS_ORIGINS).
+_origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+app.add_middleware(CognitoMiddleware)            # CASCADE_AUTH=cognito: 401 without a valid JWT (not /api/health)
+app.add_middleware(CORSMiddleware, allow_origins=_origins, allow_methods=["*"],
+                   allow_headers=["Authorization", "Content-Type", "X-User-Id"], allow_credentials="*" not in _origins)
 
 
 from .agent.api import router as agent_router  # noqa: E402
@@ -161,7 +165,7 @@ def reject_pattern(pattern_id: str, _ident: Identity = Depends(require_admin)) -
 
 
 @app.post("/api/patterns/discover", response_model=list[Pattern])
-def discover_patterns(window_days: float = 7.0) -> list[Pattern]:
+def discover_patterns(window_days: float = 7.0, _ident: Identity = Depends(require_admin)) -> list[Pattern]:
     from .discovery import discover
 
     return discover(window_days)
@@ -175,15 +179,17 @@ def notifications(ident: Identity = Depends(current_user), unread: bool = False)
 
 
 @app.post("/api/notifications/{notification_id}/read")
-def notification_read(notification_id: str) -> dict[str, str]:
+def notification_read(notification_id: str, ident: Identity = Depends(current_user)) -> dict[str, str]:
     from .discovery import mark_read
 
-    mark_read(notification_id)
+    if not mark_read(notification_id, ident.user_id):
+        raise HTTPException(404, "notification not found")
     return {"status": "read"}
 
 
 @app.post("/api/drift/run")
-def drift_run(pattern_id: str | None = None, n: int = 20) -> list[dict[str, Any]]:
+def drift_run(pattern_id: str | None = None, n: int = 20,
+              _ident: Identity = Depends(require_admin)) -> list[dict[str, Any]]:
     from .monitor import run_check
 
     return run_check(pattern_id, n)

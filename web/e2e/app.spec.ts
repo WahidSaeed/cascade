@@ -24,7 +24,7 @@ test("@P2-01 every view renders in the deck theme", async ({ page }) => {
   await expect(page.getByTestId("health-dot")).toHaveCSS("background-color", "rgb(26, 143, 60)");
 });
 
-test("@P2-02 switching users changes cache behaviour and per-user ledger numbers", async ({ page, request }) => {
+test("@P2-02 @P6-02 switching users changes cache behaviour and per-user ledger numbers", async ({ page, request }) => {
   const before = await (await request.get(`${API}/api/ledger/by-user`)).json();
   const rowsBefore = Object.fromEntries(before.map((r: { user_id: string; requests: number }) => [r.user_id, r.requests]));
   // contains PII (an email address), so its cache entry is private to the asking user
@@ -62,7 +62,7 @@ test("@P2-03 the Savings view reconciles with /api/ledger/summary", async ({ pag
   await expect(page.getByTestId("simulated-label")).toBeVisible();
 });
 
-test("@P2-04 the static export works", async ({ page }) => {
+test("@P2-04 @P6-03 the static export works", async ({ page }) => {
   const out = path.resolve(__dirname, "..", "out");
   for (const f of ["index.html", "savings/index.html", "patterns/index.html", "tools/index.html"]) {
     expect(existsSync(path.join(out, f)), f).toBeTruthy();

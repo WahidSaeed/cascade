@@ -181,11 +181,14 @@ def notifications(user_id: str | None = None, unread_only: bool = False) -> list
                  "created_at": n.created_at, "read": n.read} for n in rows]
 
 
-def mark_read(notification_id: str) -> None:
+def mark_read(notification_id: str, user_id: str) -> bool:
+    """Only the addressee (or anyone, for broadcast notifications) can mark a notification read."""
     with db.session() as s:
         n = s.get(Notification, notification_id)
-        if n is not None:
-            n.read = True
+        if n is None or n.user_id not in (None, user_id):
+            return False
+        n.read = True
+        return True
 
 
 __all__ = ["discover", "notifications", "mark_read", "centroid"]

@@ -121,7 +121,8 @@ def start(run_id: str, ident: Identity = Depends(current_user)) -> dict[str, Any
 
 
 @router.get("/agent/runs/{run_id}")
-def get_run(run_id: str) -> dict[str, Any]:
+def get_run(run_id: str, ident: Identity = Depends(current_user)) -> dict[str, Any]:
+    _own_run(run_id, ident)
     try:
         return _public(runner.load(run_id))
     except runner.RunError as exc:
@@ -165,8 +166,10 @@ def budget(run_id: str, body: BudgetIn, ident: Identity = Depends(current_user))
 
 
 @router.get("/agent/runs/{run_id}/events")
-async def events(run_id: str, request: Request, after: int = 0) -> EventSourceResponse:
+async def events(run_id: str, request: Request, after: int = 0,
+                 ident: Identity = Depends(current_user)) -> EventSourceResponse:
     """Server-Sent Events: the run's timeline as it happens (ends when the run finishes or the client leaves)."""
+    _own_run(run_id, ident)
     async def gen() -> AsyncIterator[dict[str, str]]:
         sent = after
         idle = 0

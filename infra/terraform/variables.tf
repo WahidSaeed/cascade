@@ -59,3 +59,17 @@ variable "skip_final_snapshot" {
   type    = bool
   default = false
 }
+
+variable "api_domain_name" {
+  description = "Domain of the API (ACM certificate, HTTPS listener). Required: the API is only served over HTTPS."
+  type        = string
+  validation {
+    condition     = length(var.api_domain_name) > 3
+    error_message = "Set api_domain_name: Cascade's API is only served over HTTPS."
+  }
+}
+
+variable "dataset_retention_days" {
+  type    = number
+  default = 90
+}

@@ -20,6 +20,10 @@ locals {
   image = var.container_image != "" ? var.container_image : "${aws_ecr_repository.api.repository_url}:latest"
   backend_env = [
     { name = "CASCADE_ENV", value = "prod" },
+    { name = "CASCADE_AUTH", value = "cognito" },
+    { name = "CASCADE_COGNITO_ISSUER", value = "https://cognito-idp.${var.region}.amazonaws.com/${aws_cognito_user_pool.main.id}" },
+    { name = "CASCADE_COGNITO_AUDIENCE", value = aws_cognito_user_pool_client.web.id },
+    { name = "CASCADE_CORS_ORIGINS", value = "https://${aws_cloudfront_distribution.web.domain_name}" },
     { name = "CASCADE_DEMO", value = "false" },
     { name = "CASCADE_LLM", value = "bedrock" },
     { name = "CASCADE_EMBED_BACKEND", value = "fastembed" },

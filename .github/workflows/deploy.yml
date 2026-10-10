@@ -1,0 +1,60 @@
+name: deploy
+# Build and ship on main: API image -> ECR -> ECS; runtime images -> ECR; web -> S3 + CloudFront invalidation.
+# Credentials come from GitHub's OIDC provider assuming AWS_DEPLOY_ROLE_ARN (no long-lived keys).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  verify:
+    uses: ./.github/workflows/verify.yml
+
+  deploy:
+    needs: verify
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: API image
+        run: |
+          IMAGE=${{ steps.ecr.outputs.registry }}/cascade-api:${{ github.sha }}
+          docker build -f backend/Dockerfile -t "$IMAGE" -t "${IMAGE%:*}:latest" .
+          docker push --all-tags "${IMAGE%:*}"
+      - name: Runtime images
+        run: |
+          for r in ml-runtime dl-runtime; do
+            IMAGE=${{ steps.ecr.outputs.registry }}/cascade-$r:${{ github.sha }}
+            docker build -f infra/runtime-images/$r.Dockerfile -t "$IMAGE" .
+            docker push "$IMAGE"
+          done
+      - name: Roll the ECS services
+        run: |
+          for s in cascade-api cascade-agent cascade-ingest; do
+            aws ecs update-service --cluster cascade --service "$s" --force-new-deployment >/dev/null
+          done
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Web (static export) -> S3 + CloudFront
+        env:
+          NEXT_PUBLIC_API_BASE: ${{ vars.API_BASE_URL }}                 # https://<api_domain_name>
+          NEXT_PUBLIC_AUTH: cognito
+          NEXT_PUBLIC_COGNITO_DOMAIN: ${{ vars.COGNITO_DOMAIN }}         # terraform output cognito_domain
+          NEXT_PUBLIC_COGNITO_CLIENT_ID: ${{ vars.COGNITO_CLIENT_ID }}   # terraform output cognito_client_id
+        run: |
+          cd web && npm ci --no-audit --no-fund && npx next build
+          aws s3 sync out/ "s3://${{ vars.WEB_BUCKET }}/" --delete
+          aws cloudfront create-invalidation --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*"

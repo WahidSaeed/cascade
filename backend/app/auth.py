@@ -37,6 +37,8 @@ def current_user(request: Request) -> Identity:
 
 
 def require_admin(request: Request) -> Identity:
+    """Admin actions (approve, edit, reject, configuration, discovery, drift runs). Enforced with Cognito; in
+    local development any persona may act, so demos and tests can drive every flow."""
     ident = current_user(request)
     if settings.auth == "cognito" and not ident.is_admin:
         raise HTTPException(403, "admin role required")

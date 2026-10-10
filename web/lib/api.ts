@@ -3,6 +3,53 @@
 import { currentUserId } from "./user";
 
 export const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8080";
+// CASCADE_AUTH=cognito: sign-in through the Cognito hosted UI with the authorization-code flow + PKCE
+// (a public client: no secret). The ID token is kept in sessionStorage and sent as a Bearer token.
+export const AUTH_MODE = process.env.NEXT_PUBLIC_AUTH || "local";
+const COGNITO_DOMAIN = process.env.NEXT_PUBLIC_COGNITO_DOMAIN || "";      // https://<prefix>.auth.<region>.amazoncognito.com
+const COGNITO_CLIENT_ID = process.env.NEXT_PUBLIC_COGNITO_CLIENT_ID || "";
+const TOKEN_KEY = "cascade.idToken";
+const VERIFIER_KEY = "cascade.pkce";
+
+export function idToken(): string | null {
+  if (typeof window === "undefined" || AUTH_MODE !== "cognito") return null;
+  try {
+    const t = window.sessionStorage.getItem(TOKEN_KEY);
+    if (!t) return null;
+    const exp = JSON.parse(atob(t.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).exp as number;
+    return exp * 1000 > Date.now() ? t : null;
+  } catch {
+    return null;
+  }
+}
+
+function b64url(bytes: ArrayBuffer | Uint8Array): string {
+  return btoa(String.fromCharCode(...new Uint8Array(bytes))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+const redirectUri = () => `${window.location.origin}/auth/callback/`;
+
+export async function signIn(): Promise<void> {
+  const verifier = b64url(crypto.getRandomValues(new Uint8Array(32)));
+  sessionStorage.setItem(VERIFIER_KEY, verifier);
+  const challenge = b64url(await crypto.subtle.digest("SHA-256", new TextEncoder().encode(verifier)));
+  const q = new URLSearchParams({ response_type: "code", client_id: COGNITO_CLIENT_ID, redirect_uri: redirectUri(),
+    scope: "openid email profile", code_challenge: challenge, code_challenge_method: "S256" });
+  // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- external Cognito hosted UI
+  window.location.href = `${COGNITO_DOMAIN}/oauth2/authorize?${q}`;
+}
+
+/** /auth/callback/: exchange the authorization code for tokens (PKCE). */
+export async function completeSignIn(code: string): Promise<void> {
+  const body = new URLSearchParams({ grant_type: "authorization_code", client_id: COGNITO_CLIENT_ID, code,
+    redirect_uri: redirectUri(), code_verifier: sessionStorage.getItem(VERIFIER_KEY) || "" });
+  const res = await fetch(`${COGNITO_DOMAIN}/oauth2/token`, { method: "POST", body,
+    headers: { "Content-Type": "application/x-www-form-urlencoded" } });
+  if (!res.ok) throw new Error(`sign-in failed (${res.status})`);
+  const tokens = (await res.json()) as { id_token: string };
+  sessionStorage.setItem(TOKEN_KEY, tokens.id_token);
+  sessionStorage.removeItem(VERIFIER_KEY);
+}
 
 export class ApiError extends Error {
   constructor(public status: number, message: string) {
@@ -10,8 +57,40 @@ export class ApiError extends Error {
   }
 }
 
+export function authHeaders(): Record<string, string> {
+  const token = idToken();
+  return token ? { Authorization: `Bearer ${token}` } : { "X-User-Id": currentUserId() };
+}
+
+/** Read a Server-Sent Events stream with the user's auth headers (EventSource can't send headers). */
+export async function streamEvents(path: string, onEvent: (event: string, data: string) => void,
+  signal: AbortSignal): Promise<void> {
+  const res = await fetch(`${API_BASE}${path}`, { headers: { ...authHeaders(), Accept: "text/event-stream" }, signal });
+  if (!res.ok || !res.body) throw new ApiError(res.status, res.statusText);
+  const reader = res.body.getReader();
+  const decoder = new TextDecoder();
+  let buf = "";
+  for (;;) {
+    const { value, done } = await reader.read();
+    if (done) return;
+    buf += decoder.decode(value, { stream: true });
+    let i;
+    while ((i = buf.search(/\r?\n\r?\n/)) >= 0) {
+      const block = buf.slice(0, i);
+      buf = buf.slice(i).replace(/^\r?\n\r?\n/, "");
+      let ev = "message";
+      const data: string[] = [];
+      for (const line of block.split(/\r?\n/)) {
+        if (line.startsWith("event:")) ev = line.slice(6).trim();
+        else if (line.startsWith("data:")) data.push(line.slice(5).trimStart());
+      }
+      if (data.length) onEvent(ev, data.join("\n"));
+    }
+  }
+}
+
 export async function api<T>(path: string, init: RequestInit & { json?: unknown } = {}): Promise<T> {
-  const headers: Record<string, string> = { "X-User-Id": currentUserId(), ...(init.headers as Record<string, string>) };
+  const headers: Record<string, string> = { ...authHeaders(), ...(init.headers as Record<string, string>) };
   let body = init.body;
   if (init.json !== undefined) {
     headers["Content-Type"] = "application/json";

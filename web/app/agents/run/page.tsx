@@ -9,10 +9,12 @@ import { api } from "@/lib/api";
 import { fmtUsd } from "@/lib/format";
 import type { AgentRun } from "@/lib/types";
 import { useData } from "@/lib/useData";
+import { useUser } from "@/lib/user";
 
 function RunView() {
   const id = useSearchParams().get("id") ?? "";
-  const run = useData(() => api<AgentRun>(`/api/agent/runs/${id}`), `run-${id}`, 3000);
+  const { userId } = useUser();
+  const run = useData(() => api<AgentRun>(`/api/agent/runs/${id}`), `run-${id}-${userId}`, 3000);
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
