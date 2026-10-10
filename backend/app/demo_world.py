@@ -562,7 +562,8 @@ def make_urgency_text(rng: random.Random) -> str:
     d = rng.choice(URG_DEADLINE)[0]
     pr = rng.choice(URG_PROBLEM)[0]
     tone = rng.choice(URG_TONE)[0]
-    lead = d if d else rng.choice(["I placed an order", "I bought a jacket", "I'm writing about my order"])
+    lead = d if d else rng.choice(["I placed an order for a {p}", "I bought a {p}", "I'm writing about my {p} order",
+                                   "My {p} order"]).format(p=rng.choice(PRODUCTS))
     text = f"{lead} {pr}".strip()
     if tone:
         text += f", {tone}"

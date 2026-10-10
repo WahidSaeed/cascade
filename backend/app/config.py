@@ -84,6 +84,8 @@ class Settings(BaseSettings):
     lambda_prefix: str = "cascade-artifact-"
     ml_runtime_image: str = ""             # ECR image URI of the ml-runtime Lambda image
     dl_runtime_image: str = ""             # ECR image URI of the dl-runtime Lambda image
+    artifact_subnet_ids: str = ""          # private subnets for artifact Lambdas (comma-separated)
+    artifact_integration_sg: str = ""      # egress-restricted security group for artifacts with integrations
     ml_min_samples: int = 200
     dl_min_samples: int = 1000
 
@@ -127,6 +129,7 @@ class Settings(BaseSettings):
     agent_max_iterations: int = 5
     agent_max_cost_usd: float = 5.0
     agent_autostart: bool = False
+    agent_executor: str = "inline"         # inline (thread in this process) | worker (the agent-worker task)
     dl_trainer: str = "local"              # local | sagemaker
     dl_base_model: str = "prajjwal1/bert-tiny"
     dl_training_image: str = ""            # ECR image with the training script (SageMaker)

@@ -19,6 +19,7 @@ from tests.unit.test_migrations import *  # noqa: F401,F403
 from tests.unit.test_phase1_acceptance import *  # noqa: F401,F403
 from tests.unit.test_phase3_acceptance import *  # noqa: F401,F403
 from tests.unit.test_phase4_acceptance import *  # noqa: F401,F403
+from tests.unit.test_phase5_acceptance import *  # noqa: F401,F403
 from tests.unit.test_rag_components import *  # noqa: F401,F403
 from tests.unit.test_review_regressions import *  # noqa: F401,F403
 from tests.unit.test_store import *  # noqa: F401,F403

@@ -99,3 +99,36 @@ def demo_upload_v2() -> dict[str, Any]:
     from .seed import upload_handbook_v2
 
     return upload_handbook_v2()
+
+
+@router.post("/rebuild-lookup")
+def rebuild_lookup() -> dict[str, Any]:
+    """S5: rebuild the vacation-days lookup from the CURRENT handbook — a real agent run (extract_table ->
+    lookup rule -> evaluate), the verification gate against the RAG pipeline, then Eli's approval."""
+    from . import patterns as pat
+    from .agent import runner
+    from .lookup import lookup_reference
+    from .seed import collection_id
+
+    p = next((x for x in store().list_patterns() if x.name == "Vacation days by country"), None)
+    if p is None:
+        from fastapi import HTTPException
+
+        raise HTTPException(404, "no vacation lookup pattern")
+    from .rag.ingest import list_documents
+
+    handbook = next(d for d in list_documents(collection_id("handbook")) if d["title"] == "Employee Handbook")
+    run = runner.create_run(p.id, "chen", {"document_ids": [handbook["id"]], "collection_ids": [collection_id("handbook")],
+                                           "instructions": "Rebuild from the current handbook"})
+    run = runner.start_run(run["id"], sync=True)
+    run = runner.respond(run["id"], "accept", "", "chen")
+    if run["status"] != "accepted":
+        return {"rebuilt": False, "status": run["status"], "message": run["events"][-1]["text"]}
+    fresh = store().get_pattern(p.id)
+    assert fresh is not None
+    result = pat.verify_pattern(p.id, fresh.examples, reference=lookup_reference(fresh))
+    if not result.passed:
+        return {"rebuilt": False, "status": "verification_failed", "score": result.score}
+    approved = pat.approve(p.id, "eli")
+    return {"rebuilt": True, "pattern_id": p.id, "version": approved.version,
+            "dependencies": [f"{d.title} v{d.version}" for d in approved.kb_dependencies]}

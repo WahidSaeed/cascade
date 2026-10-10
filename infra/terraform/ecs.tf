@@ -32,6 +32,8 @@ locals {
     { name = "CASCADE_PII_BACKEND", value = "comprehend" },
     { name = "CASCADE_INGEST_QUEUE_URL", value = aws_sqs_queue.ingest.url },
     { name = "CASCADE_BLOB_BUCKET", value = aws_s3_bucket.artifacts.bucket },
+    { name = "CASCADE_ARTIFACT_SUBNET_IDS", value = join(",", aws_subnet.private[*].id) },
+    { name = "CASCADE_ARTIFACT_INTEGRATION_SG", value = aws_security_group.artifact_integration.id },
   ]
   backend_secrets = [
     { name = "CASCADE_DATABASE_URL", valueFrom = "${aws_secretsmanager_secret.db.arn}:url::" },

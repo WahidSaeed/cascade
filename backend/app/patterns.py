@@ -162,6 +162,12 @@ def approve(pattern_id: str, approver: str) -> Pattern:
                                 "Verify first.")
     if p.status == PatternStatus.approved:
         return p
+    if p.integration_ids:
+        from .agent.integrations import get as get_integration
+
+        pending = [i for i in p.integration_ids if get_integration(i)["status"] != "approved"]
+        if pending:
+            raise PatternError(409, f"integrations {pending} are not approved (rule 11)")
     try:
         fn = deploy(p)
     except (DeployError, FileNotFoundError) as exc:

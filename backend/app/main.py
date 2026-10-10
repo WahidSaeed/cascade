@@ -63,9 +63,11 @@ app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.co
                    allow_methods=["*"], allow_headers=["*"])
 
 
+from .agent.api import router as agent_router  # noqa: E402
 from .rag.api import router as knowledge_router  # noqa: E402
 
 app.include_router(knowledge_router)
+app.include_router(agent_router)
 
 if settings.demo:
     from .demo_api import router as demo_router

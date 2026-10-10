@@ -86,6 +86,10 @@ ignore_missing_imports = true
 warn_unused_ignores = false
 
 [[tool.mypy.overrides]]
+module = ["app.compilers.dl_train_script"]
+ignore_errors = true
+
+[[tool.mypy.overrides]]
 module = ["app.light.*", "app.rag.*", "app.ledger", "app.engine", "app.verifier"]
 strict = true
 

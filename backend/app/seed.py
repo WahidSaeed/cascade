@@ -26,7 +26,7 @@ from .models import OverheadRow
 from .state import reset_runtime_state
 from .store import store
 
-SEED_VERSION = "phase4-v1"
+SEED_VERSION = "phase5-v2"
 DAY = 86400
 
 
@@ -96,6 +96,32 @@ def _install_rule(name: str, task_type: str, examples: list[str], at: float) -> 
     return p.id
 
 
+def install_urgency_dl(week_start: float) -> str:
+    """The urgency `dl` artifact (§17.3): trained once, locally, on a tiny transformer by a real agent run on the
+    generator's labelled urgency set, then verified and approved like any other artifact."""
+    from . import patterns as pat
+    from .agent import datasets, runner
+    from .schemas import Pattern, PatternStatus, TaskType
+
+    rng = random.Random(77)
+    examples = [w.make_urgency(rng) for _ in range(80)]
+    p = Pattern(name="Urgency scoring", description="Rate the urgency of a customer message 1-5",
+                task_type=TaskType.scoring, status=PatternStatus.recognized, owner_id="eli")
+    pat.shape_from_examples(p, examples)
+    store().put_pattern(p)
+    data = (Path(settings.demo_dir) / "data" / "urgency_train.jsonl").read_bytes()
+    ds = datasets.register("eli", "urgency_train.jsonl", {"input": "prompt", "label": "label"}, "both", data=data)
+    run = runner.create_run(p.id, "eli", {"dataset_ids": [ds["id"]], "instructions": "Fine-tune a small transformer"})
+    run = runner.start_run(run["id"], sync=True)
+    run = runner.respond(run["id"], "accept", "", "eli")
+    if run["status"] != "accepted":
+        raise RuntimeError(f"urgency dl artifact failed its gate: {run['events'][-1]['text']}")
+    pat.approve(p.id, "eli")
+    with db.session() as s:
+        s.execute(update(OverheadRow).where(OverheadRow.pattern_id == p.id).values(ts=week_start - 1800, simulated=True))
+    return p.id
+
+
 def install_artifacts(week_start: float, docs: dict[str, str] | None = None) -> dict[str, str]:
     rows = traffic()
     ex = [r["prompt"] for r in rows if r["task"] == "extraction"][:60]
@@ -104,6 +130,7 @@ def install_artifacts(week_start: float, docs: dict[str, str] | None = None) -> 
         "extraction": _install_rule("Order details extraction", "extraction", ex, week_start - 3600),
         "conversion": _install_rule("Unit conversion", "transform", conv, week_start - 3000),
     }
+    ids["urgency"] = install_urgency_dl(week_start)
     if docs and "handbook_v1" in docs:
         ids["vacation"] = install_vacation_lookup(docs["handbook_v1"])
         with db.session() as s:

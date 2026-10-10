@@ -98,14 +98,21 @@ def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
             if not image:
                 raise DeployError(f"no runtime image configured for {kind.value} artifacts")
             env = {"Variables": {"MODEL_URI": f"s3://{settings.artifact_bucket}/artifacts/{pattern.id}/v{pattern.version}/"}}
+            vpc: dict[str, Any] = {}
+            if pattern.integration_ids:          # rule 11: egress only to the declared target
+                if not (settings.artifact_subnet_ids and settings.artifact_integration_sg):
+                    raise DeployError("artifacts with integrations need CASCADE_ARTIFACT_SUBNET_IDS and "
+                                      "CASCADE_ARTIFACT_INTEGRATION_SG (egress-restricted)")
+                vpc = {"VpcConfig": {"SubnetIds": settings.artifact_subnet_ids.split(","),
+                                     "SecurityGroupIds": [settings.artifact_integration_sg]}}
             if exists:
                 client.update_function_code(FunctionName=name, ImageUri=image, Publish=True)
-                client.update_function_configuration(FunctionName=name, Environment=env)
+                client.update_function_configuration(FunctionName=name, Environment=env, **vpc)
             else:
                 client.create_function(FunctionName=name, PackageType="Image", Code={"ImageUri": image},
                                        Role=settings.artifact_role_arn, Timeout=LAMBDA_TIMEOUT_S * 2,
                                        MemorySize=1024 if kind == ArtifactKind.dl else 512, Environment=env,
-                                       Publish=True, Tags={"cascade:pattern": pattern.id})
+                                       Publish=True, Tags={"cascade:pattern": pattern.id}, **vpc)
     except DeployError:
         raise
     except Exception as exc:  # noqa: BLE001

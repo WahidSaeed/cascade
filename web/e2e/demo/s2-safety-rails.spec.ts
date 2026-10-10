@@ -29,4 +29,13 @@ test("S2 safety rails @demo", async ({ page }) => {
   await expect(fu.getByTestId("token-note")).toContainText("history");
   await fu.getByTestId("why-toggle").click();
   await expect(fu.getByTestId("why-panel")).toContainText("Follow-up");
+
+  // an ambiguous input gets low confidence from an artifact (the urgency dl model) and falls back to the LLM
+  await asUser(page, "ava");
+  const sure = await ask(page, "Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived'");
+  await expect(sure.getByTestId("route-badge")).toHaveAttribute("data-route", "artifact");
+  const vague = await ask(page, "Rate the urgency 1-5: 'hmm'");
+  await expect(vague.getByTestId("route-badge")).toHaveAttribute("data-route", "llm");
+  await vague.getByTestId("why-toggle").click();
+  await expect(vague.getByTestId("why-panel")).toContainText("fell back");
 });

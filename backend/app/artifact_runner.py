@@ -55,6 +55,37 @@ def _softmax(x: Any) -> Any:
     return e / e.sum(axis=-1, keepdims=True)
 
 
+_EMAIL = re.compile(r"\b[\w.+-]+@[\w-]+\.[\w.]+\b")
+
+
+def post_integration(meta: dict[str, Any], prompt: str, label: str) -> str:
+    """Optional feature-source step (an approved integration): e.g. look the customer's tier up in the CRM
+    and compose "<prefix><label>". Egress goes only to the declared URL; any failure defers to the LLM."""
+    spec = meta.get("integration")
+    if not spec:
+        return label
+    import urllib.parse
+    import urllib.request
+
+    m = _EMAIL.search(prompt)
+    if spec.get("param_from") == "email" and not m:
+        return FALLBACK
+    query = urllib.parse.urlencode({spec.get("param", "email"): m.group(0).lower() if m else ""})
+    url = spec["url"] + ("&" if "?" in spec["url"] else "?") + query
+    class NoRedirect(urllib.request.HTTPRedirectHandler):       # egress only to the declared URL
+        def redirect_request(self, *a: Any, **k: Any) -> None:
+            raise OSError("redirect refused")
+
+    try:
+        opener = urllib.request.build_opener(NoRedirect)
+        with opener.open(url, timeout=float(spec.get("timeout_s", 2.0))) as resp:
+            value = str(json.loads(resp.read().decode()).get(spec.get("field", "value"), ""))
+    except Exception:  # noqa: BLE001
+        return FALLBACK
+    prefix = spec.get("map", {}).get(value, spec.get("default", ""))
+    return str(spec.get("format", "{prefix}{label}")).format(prefix=prefix, label=label, value=value)
+
+
 class MlArtifact:
     """scikit-learn pipeline exported with skl2onnx (string tensor in, label + probabilities out)."""
 
@@ -80,7 +111,8 @@ class MlArtifact:
         probs = np.asarray(outs[1], dtype=np.float32)[0]
         classes = self.meta["classes"]
         i = int(np.argmax(probs))
-        return str(classes[i]), float(probs[i])
+        result = post_integration(self.meta, prompt, str(classes[i]))
+        return result, (float(probs[i]) if result != FALLBACK else 0.0)
 
 
 class DlArtifact:
@@ -150,10 +182,28 @@ def invoke(artifact: Any, prompt: str) -> dict[str, Any]:
 _LAMBDA_ARTIFACT: Any = None
 
 
+def fetch_model(model_uri: str, dest: str) -> str:
+    """ml/dl runtime images load their artifact from S3 at cold start (MODEL_URI=s3://bucket/prefix/)."""
+    import boto3
+
+    bucket, _, prefix = model_uri.removeprefix("s3://").partition("/")
+    s3 = boto3.client("s3")
+    os.makedirs(dest, exist_ok=True)
+    for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket, Prefix=prefix):
+        for obj in page.get("Contents", []):
+            name = obj["Key"][len(prefix):].lstrip("/")
+            if name and "/" not in name:
+                s3.download_file(bucket, obj["Key"], os.path.join(dest, name))
+    return dest
+
+
 def lambda_handler(event: dict[str, Any], context: Any) -> dict[str, Any]:  # pragma: no cover - runs inside Lambda
     global _LAMBDA_ARTIFACT
     if _LAMBDA_ARTIFACT is None:
-        _LAMBDA_ARTIFACT = load(os.environ.get("ARTIFACT_DIR", os.path.dirname(os.path.abspath(__file__))))
+        path = os.environ.get("ARTIFACT_DIR", os.path.dirname(os.path.abspath(__file__)))
+        if os.environ.get("MODEL_URI"):
+            path = fetch_model(os.environ["MODEL_URI"], "/tmp/model")  # noqa: S108 - Lambda's only writable dir
+        _LAMBDA_ARTIFACT = load(path)
     return invoke(_LAMBDA_ARTIFACT, event.get("prompt", ""))
 
 

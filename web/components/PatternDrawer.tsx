@@ -112,6 +112,9 @@ export function PatternDrawer({ p, onClose, onChange }: { p: Pattern; onClose: (
 
         {msg && <p className="mb-4 text-[14px] text-bad" data-testid="drawer-error">{msg}</p>}
         <div className="flex flex-wrap gap-3">
+          {["recognized", "awaiting_intake", "awaiting_feedback", "stopped"].includes(p.status) && !editing && (
+            <a href={`/patterns/intake/?id=${p.id}`} className="btn" data-testid="open-intake">Open intake</a>
+          )}
           {editing ? (
             <>
               <Button disabled={!!busy} onClick={() => act("save", `/api/patterns/${p.id}`, { method: "PUT", json: { handler_code: code } })}>Save</Button>

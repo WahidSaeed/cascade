@@ -25,6 +25,7 @@ export function PatternCard({ p, onOpen }: { p: Pattern; onOpen: () => void }) {
         {(p.projected_monthly_savings_usd ?? 0) > 0 && <span>~{fmtUsd(p.projected_monthly_savings_usd, 2)}/mo</span>}
       </div>
       {p.alert && <p className="text-[13px] text-warn" data-testid="pattern-alert">⚠ {p.alert}</p>}
+      {p.not_fully_deterministic && <p className="text-[13px] text-warn" data-testid="not-deterministic">not fully deterministic</p>}
       {(p.leak_warnings?.length ?? 0) > 0 && <p className="text-[13px] text-bad">{(p.leak_warnings ?? []).length} leak warning(s)</p>}
     </button>
   );

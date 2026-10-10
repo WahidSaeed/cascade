@@ -13,6 +13,7 @@ x-backend: &backend
     CASCADE_ARTIFACT_RUNTIME: subprocess
     CASCADE_CRM_URL: http://crm-mock:8090
     CASCADE_DATA_DIR: /data
+    CASCADE_AGENT_EXECUTOR: worker
     AWS_ACCESS_KEY_ID: testing
     AWS_SECRET_ACCESS_KEY: testing
     AWS_DEFAULT_REGION: us-east-1
@@ -50,6 +51,11 @@ services:
 
   agent-worker:
     <<: *backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+      args:
+        WITH_DL: "1"           # torch + transformers for the local dl trainer
     command: ["python", "-m", "app.agent.worker"]
 
   ingest-worker:

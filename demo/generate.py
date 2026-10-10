@@ -182,24 +182,30 @@ def gen_traffic(rng: random.Random, n: int = 2400) -> list[dict]:
 
 
 def gen_labelled_tickets(rng: random.Random, n: int = 300) -> list[tuple[str, str]]:
-    out = []
+    out: list[tuple[str, str]] = []
+    seen: set[str] = set()
     classes = w.TRIAGE_CLASSES
-    for i in range(n):
+    i = 0
+    while len(out) < n:                      # distinct tickets: a labelled file has no duplicate rows
         cls = classes[i % len(classes)]
-        out.append((w.make_ticket(rng, cls), cls))
+        t = w.make_ticket(rng, cls)
+        if t.lower() not in seen:
+            seen.add(t.lower())
+            out.append((t, cls))
+            i += 1
     rng.shuffle(out)
     return out
 
 
-def gen_urgency_train(rng: random.Random, n: int = 1200) -> list[dict]:
+def gen_urgency_train(rng: random.Random, n: int = 1400) -> list[dict]:
     seen: set[str] = set()
     out = []
-    while len(out) < n:
+    while len(out) < n:                      # distinct messages (datasets are de-duplicated on their payload)
         t = w.make_urgency_text(rng)
         prompt = rng.choice(w.URGENCY_PROMPTS).format(t=t)
-        if prompt in seen and rng.random() < 0.7:
+        if t.lower() in seen:
             continue
-        seen.add(prompt)
+        seen.add(t.lower())
         out.append({"prompt": prompt, "label": str(w.urgency_score(t))})
     return out
 

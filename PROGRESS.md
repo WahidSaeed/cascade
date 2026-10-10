@@ -49,4 +49,12 @@ Status values: ☐ todo · ◐ in progress · ☑ done · ⚠ blocked
   recomputed inside the swap, Bedrock KB relevance, context budget on rendered blocks, delete serialized with ingest.
 - Phase 4 reviewed; fixed: classifier `none` class no longer contains a pattern's own earlier LLM traffic,
   lookup artifacts drift-sampled, lookup-proposal discovery test.
-- Phase 5 WIP: backend/app/compilers/{ml,dl,dl_train_script}.py (bert-tiny via tokenizers + legacy ONNX export works).
+- Phase 5 (2026-10-10, usage limit reached mid-step): agent, compilers, datasets, integrations, UI, Terraform,
+  seed (urgency dl) all written; the last full E2E run passed all 18 browser tests incl. S6/S7/S9/S5-rebuild. The
+  Phase 5 acceptance review's 10 gaps are FIXED with regression tests (tests/unit/test_phase5_review.py), and the
+  Phase 5 unit suites pass. NOT YET DONE: a final green `make verify` with the acceptance gate at P5
+  (scripts/acceptance_gate.txt already says P1..P5), then mark Phase 5 done + commit `feat(phase-5)`. The demo data
+  changed (distinct labelled tickets / urgency messages), so the seed version is phase5-v2 and the E2E snapshot rebuilds.
+- Next after Phase 5: Phase 6 (Cognito/JWT auth, HTTPS, CloudFront static export, retention job, CI/CD, DEPLOY.md),
+  Phase 7 (pgvector cache, rollups, NAT-less artifact subnets, make perf), Step D (/demo page, demo/SCRIPT.md,
+  demo-record, whole-build review).

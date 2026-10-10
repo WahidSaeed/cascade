@@ -53,6 +53,7 @@ export default function ToolsPage() {
   return (
     <section>
       <PageHeader eyebrow="Tools" title="Configuration." sub="Every backend and threshold, switchable without a deploy." />
+      <p className="mb-6"><a href="/tools/integrations/" className="text-primary" data-testid="integrations-link">Integration approvals →</a></p>
       <div className="grid gap-4 md:grid-cols-2">
         {GROUPS.map(([title, keys]) => (
           <div key={title} className="card">

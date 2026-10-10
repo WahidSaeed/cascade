@@ -39,4 +39,15 @@ test("S5 documents change, answers stay correct @demo", async ({ page, request }
   const card = page.getByTestId("pattern-card").filter({ hasText: "Vacation days by country" });
   await expect(card.getByTestId("pattern-status")).toHaveText("shadow");
   await expect(card.getByTestId("pattern-alert")).toContainText("re-verification");
+
+  // it stays demoted until rebuilt from v2: one click on the /demo page (here: its endpoint)
+  const rebuilt = await (await request.post(`${API}/api/demo/rebuild-lookup`)).json();
+  expect(rebuilt.rebuilt).toBeTruthy();
+  expect(rebuilt.dependencies[0]).toContain("v2");
+  await page.goto("/");
+  await asUser(page, "dana");
+  await page.getByTestId("pick-all").click();
+  const pt = await ask(page, "How many vacation days do employees in Portugal get?");
+  await expect(pt.getByTestId("route-badge")).toHaveAttribute("data-route", "artifact");
+  await expect(pt.getByTestId("answer")).toContainText("22");
 });

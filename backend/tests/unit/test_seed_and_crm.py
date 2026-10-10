@@ -27,7 +27,7 @@ def test_seed_build_snapshot_and_reset(fresh_db, monkeypatch):
     rows = seed.traffic()[:120]
     monkeypatch.setattr(seed, "traffic", lambda: rows)
     info = seed.build()
-    assert info["requests"] == 120 and set(info["patterns"]) == {"extraction", "conversion", "vacation"}
+    assert info["requests"] == 120 and set(info["patterns"]) == {"extraction", "conversion", "urgency", "vacation"}
     from app.ledger import ledger
 
     before = ledger().summary()
@@ -39,4 +39,4 @@ def test_seed_build_snapshot_and_reset(fresh_db, monkeypatch):
     out = seed.reset()                                             # back to the starting state
     assert out["restored"] is True and out["seconds"] < 30
     assert ledger().summary()["requests"] == 120
-    assert len(store().approved_patterns()) == 3
+    assert len(store().approved_patterns()) == 4

@@ -104,3 +104,22 @@ resource "aws_iam_role_policy_attachment" "artifact_basic" {
   role       = aws_iam_role.artifact.name
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
+
+# Artifacts placed in the VPC (those with integrations) need ENI management; ml/dl images read their model.
+resource "aws_iam_role_policy_attachment" "artifact_vpc" {
+  role       = aws_iam_role.artifact.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+}
+
+data "aws_iam_policy_document" "artifact_models" {
+  statement {
+    actions   = ["s3:GetObject", "s3:ListBucket"]
+    resources = [aws_s3_bucket.artifacts.arn, "${aws_s3_bucket.artifacts.arn}/artifacts/*"]
+  }
+}
+
+resource "aws_iam_role_policy" "artifact_models" {
+  name   = "${local.name}-artifact-models"
+  role   = aws_iam_role.artifact.id
+  policy = data.aws_iam_policy_document.artifact_models.json
+}

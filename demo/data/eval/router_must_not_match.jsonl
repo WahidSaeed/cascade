@@ -1,8 +1,3 @@
-{"prompt": "Summarize this customer review: 'The backpack was great on the trail but a bit heavy'", "reason": "generation"}
-{"prompt": "Brainstorm three names for a lightweight Ridgeline 2 tent", "reason": "generation"}
-{"prompt": "Draft a friendly reply to a customer whose tent pole broke", "reason": "generation"}
-{"prompt": "Draft an apology email for a delayed order of Summit boots", "reason": "generation"}
-{"prompt": "Draft an apology email for a delayed order of hiking boots", "reason": "generation"}
 {"prompt": "Brainstorm three names for a lightweight camp stove", "reason": "generation"}
 {"prompt": "Brainstorm three names for a lightweight Summit boots", "reason": "generation"}
 {"prompt": "Draft an apology email for a delayed order of Ridgeline 2 tent", "reason": "generation"}
@@ -38,6 +33,11 @@
 {"prompt": "Write a product description for the headlamp", "reason": "generation"}
 {"prompt": "Write a two-line welcome message for new Northpeak Club members", "reason": "generation"}
 {"prompt": "Draft a friendly reply to a customer whose rain shell arrived late", "reason": "generation"}
+{"prompt": "Write a short Instagram caption for our new down jacket", "reason": "generation"}
+{"prompt": "Draft a friendly reply to a customer whose tent pole broke", "reason": "generation"}
+{"prompt": "Summarize this customer review: 'The backpack was great on the trail but a bit heavy'", "reason": "generation"}
+{"prompt": "Write a short Instagram caption for our new down jacket", "reason": "generation"}
+{"prompt": "Draft a friendly reply to a customer whose tent pole broke", "reason": "generation"}
 {"prompt": "How many weeks of parental leave do we offer?", "reason": "free-form knowledge question"}
 {"prompt": "How much parental leave do new parents get?", "reason": "free-form knowledge question"}
 {"prompt": "What is the daily meal allowance on business trips?", "reason": "free-form knowledge question"}

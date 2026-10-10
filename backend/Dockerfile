@@ -9,8 +9,10 @@ COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /usr/local/bin/uv
 
 WORKDIR /app
 COPY backend/pyproject.toml backend/uv.lock ./
-# The dl group (torch) is only needed by the agent worker's local trainer.
-RUN uv sync --frozen --no-dev --no-group dl --no-install-project
+# The dl group (torch) is only needed by the agent worker's local trainer (build with WITH_DL=1).
+ARG WITH_DL=0
+RUN if [ "$WITH_DL" = "1" ]; then uv sync --frozen --no-dev --no-install-project; \
+    else uv sync --frozen --no-dev --no-group dl --no-install-project; fi
 
 COPY backend/app ./app
 COPY backend/alembic ./alembic

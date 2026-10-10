@@ -24,7 +24,7 @@ export AWS_SHARED_CREDENTIALS_FILE := /dev/null
 unexport AWS_PROFILE
 SAFE_AWS :=
 TEST_ENV := $(SAFE_AWS) CASCADE_LLM=demo CASCADE_DEMO_LATENCY_MS=0 CASCADE_DRIFT_SAMPLE_RATE=0 CASCADE_MODELS_DIR=$(ROOT)/.models \
-	HF_HUB_OFFLINE=$${HF_HUB_OFFLINE:-0} TOKENIZERS_PARALLELISM=false
+	HF_HUB_OFFLINE=$${HF_HUB_OFFLINE:-1} TOKENIZERS_PARALLELISM=false
 UV := cd $(BACKEND) && $(TEST_ENV) uv run
 # pytest exit code 5 = "no tests collected": a suite with no tests yet reports 0 tests, not a failure.
 NOTESTS_OK := ; rc=$$?; if [ $$rc -eq 5 ]; then echo "0 tests"; exit 0; fi; exit $$rc
@@ -45,7 +45,7 @@ setup: ## install backend (uv) + web (npm) deps, Playwright browser, local model
 	$(MAKE) models demo-data
 
 models: ## download the light-layer embedder, reranker and tiny DL base model into .models/
-	$(UV) python -m app.models_download
+	$(UV) env HF_HUB_OFFLINE=0 python -m app.models_download
 
 demo-data: ## generate the fictional Northpeak demo world, labelled sets and documents
 	$(UV) python $(ROOT)/demo/generate.py
