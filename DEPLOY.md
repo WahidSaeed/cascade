@@ -104,17 +104,35 @@ approve artifacts, approve integrations, run discovery and drift checks, and cha
 
 ## 7. Integrations (rule 11)
 
-Artifacts with an approved integration run in private subnets with the `cascade-artifact-integration`
-security group, which allows no egress by default. For each approved integration add exactly one egress
-rule to its target, e.g.:
+Artifacts with an approved integration run in the private subnets (no NAT gateway) with the
+`cascade-artifact-integration` security group, which allows nothing but S3 by default. The target must be
+reachable inside the VPC — an interface endpoint (PrivateLink) for an AWS or SaaS API, or a peered VPC — and
+each approved integration gets exactly one egress rule to it, e.g.:
 ```bash
 aws ec2 authorize-security-group-egress --group-id <sg id> --ip-permissions \
-  'IpProtocol=tcp,FromPort=443,ToPort=443,IpRanges=[{CidrIp=<target ip>/32,Description="CRM tier lookup"}]'
+  'IpProtocol=tcp,FromPort=443,ToPort=443,IpRanges=[{CidrIp=<endpoint private ip>/32,Description="CRM tier lookup"}]'
 ```
 Store integration credentials only through the intake form (they go to Secrets Manager
 `cascade/integrations/<id>`).
 
-## 8. Smoke checks
+## 8. Scale (Phase 7)
+
+- **Several API tasks, one index.** On Aurora the semantic cache and the pattern kNN live in pgvector
+  (`cache_entries` HNSW index, `pattern_vectors`), so `cascade-api` can run any number of tasks:
+  `aws ecs update-service --cluster cascade --service cascade-api --desired-count 3`. Each task notices pattern
+  changes made by another within `CASCADE_RECOGNIZER_REFRESH_S` (2 s); a rejected or demoted artifact never
+  serves, because its status is read from the database on every artifact request.
+- **Read replica.** `aws_rds_cluster_instance.reader` serves the dashboard's aggregates through
+  `CASCADE_DATABASE_READ_URL` (the `read_url` key of the `cascade/db` secret). The dashboard reads the hourly
+  ledger rollups, so it stays fast at any request volume.
+- **No outbound network for artifacts.** Every artifact Lambda runs in the private subnets (no NAT gateway;
+  `CASCADE_ARTIFACT_SG` allows only HTTPS to the S3 gateway endpoint, for model downloads). An integration
+  target must be reachable inside the VPC (PrivateLink or peering) — see section 7.
+- **Load.** `make perf` runs 60 s at 50 requests/s against three API processes on Postgres; repeat it against
+  the ALB with `locust -f backend/tests/perf/locustfile.py --host https://<api domain>` (add a bearer token
+  header when Cognito is on).
+
+## 9. Smoke checks
 
 ```bash
 API=https://api.cascade.example.com
@@ -127,7 +145,7 @@ curl -s -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
 Then open the CloudFront URL, sign in, ask a question twice (the second is a cache hit), and check that
 **Savings** shows both requests.
 
-## 9. Real-AWS tests: `make test-aws`
+## 10. Real-AWS tests: `make test-aws`
 
 Against a sandbox account only:
 ```bash
@@ -137,7 +155,7 @@ These are the manual checks for the `aws-only` acceptance items in `reports/acce
 - **P1-10** — non-matching prompts get real Bedrock answers with real usage (`test_real_bedrock_answers_with_usage`).
 Cascade's own logic for each aws-only item is also covered by moto/Stubber tests in `make verify`.
 
-## 10. Real numbers: `make demo-measure`
+## 11. Real numbers: `make demo-measure`
 
 ```bash
 make demo-measure MAX_USD=5     # replays a 200-prompt sample against real Bedrock

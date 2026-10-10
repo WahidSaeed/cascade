@@ -30,6 +30,8 @@ os.environ.setdefault("HF_HUB_OFFLINE", "1")
 os.environ["CASCADE_ENV"] = "test"
 os.environ.setdefault("CASCADE_DRIFT_SAMPLE_RATE", "0")    # drift tests turn sampling on explicitly
 os.environ.setdefault("CASCADE_AGENT_EXECUTOR", "worker")  # no background agent threads outliving a test
+os.environ.setdefault("CASCADE_CONFIG_REFRESH_S", "0")      # tests patch settings directly: no config polling
+os.environ.setdefault("CASCADE_RECOGNIZER_REFRESH_S", "0")  # single process: no cross-task polling thread
 if not _REAL_AWS:
     os.environ["CASCADE_LLM"] = "demo"
     os.environ.pop("AWS_PROFILE", None)

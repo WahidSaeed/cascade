@@ -5,6 +5,10 @@ from it at startup. Scope: per user by default; `global` entries are shared and 
 for prompts that pass PII screening (rule 6). Knowledge-scoped entries carry the context
 fingerprint, and a hit requires the same fingerprint (rule 13).
 
+Phase 7: on Postgres the semantic lookup queries pgvector (HNSW on `cache_entries.embedding`, see
+light/pgindex.py), so every API task shares one index; the in-memory hnswlib index and the in-process
+exact-key set stay the SQLite / quick-start path.
+
 A semantic hit also requires equal slots (rule 12): "convert 5 km" never returns the answer
 cached for "convert 50 km". (The template *text* may differ, otherwise a reworded prompt could
 never hit; see docs/decisions.md.)
@@ -13,7 +17,7 @@ from __future__ import annotations
 
 import threading
 import time
-from dataclasses import dataclass, field
+from dataclasses import asdict, dataclass, field
 from typing import Any
 
 from sqlalchemy import delete, or_, select
@@ -22,6 +26,8 @@ from .. import db
 from ..config import settings
 from ..models import CacheEntry
 from ..state import on_reset
+from . import pgindex
+from .hotcache import hot_cache
 from .index import VectorIndex
 from .normalize import Normalized
 
@@ -70,9 +76,17 @@ class LightCache:
             self._indexes[name] = VectorIndex(dim=settings.embed_dim)
         return self._indexes[name]
 
+    @staticmethod
+    def shared_index() -> bool:
+        """True when lookups go to the database's pgvector index instead of this process's memory."""
+        return settings.pgvector_index and db.dialect_name() == "postgresql"
+
     def ensure_loaded(self) -> None:
         with self._lock:
             if self._loaded:
+                return
+            if self.shared_index():
+                self._loaded = True
                 return
             now = time.time()
             with db.session() as s:
@@ -88,6 +102,9 @@ class LightCache:
             self._loaded = True
 
     def reset(self) -> None:
+        hot = hot_cache()
+        if hot is not None:
+            hot.flush()
         with self._lock:
             self._indexes = {}
             self._exact = {}
@@ -98,11 +115,19 @@ class LightCache:
     def lookup_exact(self, norm: Normalized, user_id: str, fingerprint: str | None) -> CachedAnswer | None:
         self.ensure_loaded()
         now = time.time()
-        keys = {k for k in (norm.scoped_key(f"user:{user_id}", fingerprint), norm.scoped_key(GLOBAL, fingerprint))
-                if self._exact.get(k, 0.0) > now}
+        keys = {norm.scoped_key(f"user:{user_id}", fingerprint), norm.scoped_key(GLOBAL, fingerprint)}
+        if not self.shared_index():     # another API task may have written the key: only skip the DB locally
+            keys = {k for k in keys if self._exact.get(k, 0.0) > now}
         if not keys:
             return None
-        with db.session() as s:
+        hot = hot_cache()
+        ordered = sorted(keys, key=lambda k: k != norm.scoped_key(f"user:{user_id}", fingerprint))  # own first
+        if hot is not None:
+            for entry in hot.get_many(ordered):
+                if entry and entry["expires_at"] > now and entry["context_fingerprint"] == fingerprint \
+                        and (entry["scope"] == GLOBAL or entry["user_id"] == user_id):
+                    return CachedAnswer(**{k: v for k, v in entry.items() if k != "expires_at"})
+        with db.lookup() as s:
             rows = s.scalars(select(CacheEntry).where(
                 CacheEntry.exact_key.in_(keys), CacheEntry.expires_at > now,
                 or_(CacheEntry.scope == GLOBAL, CacheEntry.user_id == user_id))).all()
@@ -110,17 +135,30 @@ class LightCache:
             if not rows:
                 return None
             row = sorted(rows, key=lambda r: (r.scope == GLOBAL, -r.created_at))[0]
-            return _to_answer(row)
+            answer = _to_answer(row)
+            if hot is not None:
+                hot.put(row.exact_key, {**asdict(answer), "expires_at": row.expires_at}, row.expires_at)
+            return answer
 
     def lookup_semantic(self, norm: Normalized, vector: list[float], user_id: str,
                         fingerprint: str | None) -> CachedAnswer | None:
         self.ensure_loaded()
         threshold = settings.cache_threshold
+        if self.shared_index():
+            # equal slots are filtered in SQL, so entries for other values never crowd out the right one
+            for c in pgindex.semantic_candidates(vector, user_id, fingerprint, threshold, slots=norm.slots):
+                if not _slots_equal(c["slots"], norm.slots) or _reordered(c["template"], norm.template):
+                    continue
+                return CachedAnswer(id=c["id"], scope=c["scope"], user_id=c["user_id"], answer=c["answer"],
+                                    prompt=c["prompt"], slots=c["slots"], usage=dict(c["usage"] or {}),
+                                    model_id=c["model_id"], context_fingerprint=c["context_fingerprint"],
+                                    sources=list(c["sources"] or []), similarity=c["sim"])
+            return None
         candidates: list[tuple[str, float]] = []
         for name in (f"user:{user_id}", GLOBAL):
             idx = self._indexes.get(name)
             if idx is not None:
-                candidates += [(k, sim) for k, sim in idx.search(vector, k=8) if sim >= threshold]
+                candidates += [(k, sim) for k, sim in idx.search(vector, k=32) if sim >= threshold]
         if not candidates:
             return None
         candidates.sort(key=lambda c: -c[1])
@@ -165,6 +203,8 @@ class LightCache:
             s.flush()
             entry_id = entry.id
         self.ensure_loaded()
+        if self.shared_index():
+            return entry_id
         with self._lock:
             self._exact[entry.exact_key] = max(entry.expires_at, self._exact.get(entry.exact_key, 0.0))
             self._meta[entry_id] = (scope, user_id, fingerprint, dict(norm.slots), entry.expires_at, norm.template)
@@ -179,6 +219,9 @@ class LightCache:
             rows = s.execute(select(CacheEntry.id, CacheEntry.scope, CacheEntry.user_id, CacheEntry.exact_key)
                              .where(CacheEntry.pattern_id == pattern_id)).all()
             s.execute(delete(CacheEntry).where(CacheEntry.pattern_id == pattern_id))
+        hot = hot_cache()
+        if hot is not None:
+            hot.delete(sorted({key for _, _, _, key in rows}))
         with self._lock:
             for entry_id, scope, user_id, key in rows:
                 self._meta.pop(entry_id, None)

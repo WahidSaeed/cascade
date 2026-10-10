@@ -16,6 +16,11 @@ from .schemas import Pattern, PatternStatus
 
 
 class SqlStore:
+    def __init__(self) -> None:
+        # parsed patterns keyed by id -> (updated_at, Pattern): the request path re-reads only `updated_at`
+        # (always fresh across API tasks) and skips re-parsing the large JSON (centroid, exemplars, code)
+        self._parsed: dict[str, tuple[float, Pattern]] = {}
+
     # ------------------------------------------------------------------ patterns
     def list_patterns(self, status: str | None = None) -> list[Pattern]:
         with db.session() as s:
@@ -31,11 +36,29 @@ class SqlStore:
             row = s.get(PatternRow, pattern_id)
             return Pattern.model_validate(row.data) if row else None
 
+    def serving_pattern(self, pattern_id: str) -> Pattern | None:
+        """The request path's read: always the current version (one indexed `updated_at` read, fresh across API
+        tasks), parsed once per version. The returned object is shared — callers must not mutate it."""
+        with db.lookup() as s:
+            updated = s.scalar(select(PatternRow.updated_at).where(PatternRow.id == pattern_id))
+            if updated is None:
+                return None
+            hit = self._parsed.get(pattern_id)
+            if hit is not None and hit[0] == updated:
+                return hit[1]
+            row = s.get(PatternRow, pattern_id)
+            if row is None:
+                return None
+            p = Pattern.model_validate(row.data)
+        self._parsed[pattern_id] = (row.updated_at, p)
+        return p
+
     def put_pattern(self, pattern: Pattern) -> Pattern:
-        pattern.updated_at = time.time()
-        data = pattern.model_dump(mode="json")
         with db.session() as s:
             row = s.get(PatternRow, pattern.id)
+            # strictly increasing: `updated_at` is the version every API task's caches compare against
+            pattern.updated_at = max(time.time(), (row.updated_at + 1e-6) if row is not None else 0.0)
+            data = pattern.model_dump(mode="json")
             if row is None:
                 row = PatternRow(id=pattern.id, created_at=pattern.created_at)
                 s.add(row)

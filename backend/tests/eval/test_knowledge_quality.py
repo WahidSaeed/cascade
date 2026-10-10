@@ -37,11 +37,14 @@ def recall_at_5(rows) -> float:
 
 @pytest.mark.acceptance("P7-05")
 def test_retrieval_recall_at_5(kb):
+    """>= 0.9 (§14.4) and never below the Phase 3 baseline (demo/data/eval/recall_baseline.json). The integration
+    suite runs this same test on pgvector with the HNSW index."""
+    baseline = json.loads((EVAL / "recall_baseline.json").read_text())["recall_at_5"]
     rows = [json.loads(x) for x in (EVAL / "retrieval_qa.jsonl").read_text().splitlines() if x.strip()]
     recall = recall_at_5(rows)
-    print(f"retrieval recall@5 = {recall:.3f} over {len(rows)} questions")
+    print(f"retrieval recall@5 = {recall:.3f} over {len(rows)} questions (Phase 3 baseline {baseline:.3f})")
     assert recall >= 0.9
-    Path(settings.data_dir, "recall_baseline.json").write_text(json.dumps({"recall_at_5": recall}))
+    assert recall >= baseline
 
 
 def test_answers_with_context_cite_and_never_leak(kb):

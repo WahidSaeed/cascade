@@ -5,7 +5,7 @@ import time
 import uuid
 from typing import Any
 
-from sqlalchemy import JSON, Boolean, Float, ForeignKey, Index, Integer, String, Text
+from sqlalchemy import JSON, BigInteger, Boolean, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from .db import Base, StrList, Vector
@@ -171,6 +171,64 @@ class OverheadRow(Base):
     user_id: Mapped[str | None] = mapped_column(String(64), nullable=True)
     note: Mapped[str] = mapped_column(Text, default="")
     simulated: Mapped[bool] = mapped_column(Boolean, default=False)
+
+
+class LedgerRollup(Base):
+    """Hourly ledger aggregates (Phase 7), maintained in the same transaction as each ledger row (app/rollups.py).
+    `pattern_id` is '' for requests without a pattern, so it can be part of the key."""
+
+    __tablename__ = "ledger_rollup"
+    bucket: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    user_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    pattern_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    route: Mapped[str] = mapped_column(String(16), primary_key=True)
+    requests: Mapped[int] = mapped_column(Integer, default=0)
+    input_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    output_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    embed_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    tokens_avoided_in: Mapped[int] = mapped_column(BigInteger, default=0)
+    tokens_avoided_out: Mapped[int] = mapped_column(BigInteger, default=0)
+    context_avoided_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    prompt_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    context_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    history_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    system_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    cache_read_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    cache_write_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    cost_actual_usd: Mapped[float] = mapped_column(Float, default=0.0)
+    cost_avoided_usd: Mapped[float] = mapped_column(Float, default=0.0)
+    runtime_cost_usd: Mapped[float] = mapped_column(Float, default=0.0)
+    embed_cost_usd: Mapped[float] = mapped_column(Float, default=0.0)
+    heuristic_avoided_usd: Mapped[float] = mapped_column(Float, default=0.0)
+    uncited: Mapped[int] = mapped_column(Integer, default=0)
+    simulated: Mapped[int] = mapped_column(Integer, default=0)
+    n_cache_exact: Mapped[int] = mapped_column(Integer, default=0)
+    n_pattern_measured: Mapped[int] = mapped_column(Integer, default=0)
+    n_heuristic: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class OverheadRollup(Base):
+    __tablename__ = "overhead_rollup"
+    bucket: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    user_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    pattern_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    collection_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    category: Mapped[str] = mapped_column(String(32), primary_key=True)
+    entries: Mapped[int] = mapped_column(Integer, default=0)
+    input_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    output_tokens: Mapped[int] = mapped_column(BigInteger, default=0)
+    cost_usd: Mapped[float] = mapped_column(Float, default=0.0)
+
+
+class PatternVector(Base):
+    """Phase 7, Postgres only (migration 0006): approved patterns' centroids and exemplars for the shared pgvector
+    kNN (light/pgindex.py, raw SQL). SQLite keeps the in-memory recognizer and has no such table."""
+
+    __tablename__ = "pattern_vectors"
+    id: Mapped[int] = mapped_column(BigInteger, primary_key=True)
+    pattern_id: Mapped[str] = mapped_column(String(64), index=True)
+    kind: Mapped[str] = mapped_column(String(16))           # centroid | exemplar
+    embedding: Mapped[list[float]] = mapped_column(Vector(384))
 
 
 # ----------------------------------------------------------------------------- knowledge (Phase 3)

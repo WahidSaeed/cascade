@@ -73,3 +73,9 @@ variable "dataset_retention_days" {
   type    = number
   default = 90
 }
+
+variable "exact_cache_max_gb" {
+  type        = number
+  default     = 1
+  description = "Storage cap for the hot exact cache (ElastiCache Serverless)."
+}

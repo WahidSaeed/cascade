@@ -96,7 +96,12 @@ export async function api<T>(path: string, init: RequestInit & { json?: unknown 
     headers["Content-Type"] = "application/json";
     body = JSON.stringify(init.json);
   }
-  const res = await fetch(`${API_BASE}${path}`, { ...init, headers, body });
+  let res = await fetch(`${API_BASE}${path}`, { ...init, headers, body });
+  if (res.status === 503 && res.headers.get("Retry-After")) {
+    // a database connection was reset (e.g. failover): the request did not commit, retry it once
+    await new Promise((r) => setTimeout(r, 500));
+    res = await fetch(`${API_BASE}${path}`, { ...init, headers, body });
+  }
   if (!res.ok) {
     let detail = res.statusText;
     try {

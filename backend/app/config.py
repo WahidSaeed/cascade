@@ -31,6 +31,14 @@ DEFAULT_PRICES: dict[str, dict[str, float]] = {
 }
 
 
+def _cpus(cap: int) -> int:
+    import os
+
+    affinity = getattr(os, "sched_getaffinity", None)   # Linux / Fargate: the CPUs this task may use
+    n = len(affinity(0)) if affinity else (os.cpu_count() or 1)
+    return max(1, min(cap, n))
+
+
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="CASCADE_", env_file=".env", extra="ignore",
                                       validate_assignment=True)
@@ -46,6 +54,13 @@ class Settings(BaseSettings):
 
     # --- database (one SqlStore; SQLite for quick start/unit tests, Postgres elsewhere) ---
     database_url: str = ""                 # empty -> sqlite file under data_dir
+    database_read_url: str = ""            # Phase 7: Aurora reader endpoint for dashboard reads (empty -> primary)
+    pgvector_index: bool = True            # Phase 7: on Postgres, semantic cache + pattern kNN query pgvector
+    hnsw_ef_search: int = 64
+    exact_cache_url: str = ""              # Phase 7: rediss://… (ElastiCache) hot exact cache; empty -> database only
+    exact_cache_ttl_s: int = 300           # hot copies live at most this long (never past the entry's expiry)
+    config_refresh_s: float = 2.0          # how often an API task picks up config edits made by another (<=0: never)
+    recognizer_refresh_s: float = 2.0      # how often an API task checks whether another task changed the patterns (<=0: never)
     db_echo: bool = False
 
     # --- heavy model (System 2) ---
@@ -63,7 +78,7 @@ class Settings(BaseSettings):
     embed_backend: str = "fastembed"       # fastembed | multilingual-e5-small | bedrock-titan | hashing
     embed_model: str = "BAAI/bge-small-en-v1.5"
     embed_dim: int = 384
-    embed_threads: int = 2                 # ONNX intra-op threads for the local embedder
+    embed_threads: int = Field(default_factory=lambda: _cpus(4))  # ONNX intra-op threads: available CPUs, max 4
     titan_embed_model_id: str = "amazon.titan-embed-text-v2:0"
     cache_threshold: float = 0.95
     pattern_threshold: float = 0.80
@@ -86,6 +101,7 @@ class Settings(BaseSettings):
     dl_runtime_image: str = ""             # ECR image URI of the dl-runtime Lambda image
     artifact_subnet_ids: str = ""          # private subnets for artifact Lambdas (comma-separated)
     artifact_integration_sg: str = ""      # egress-restricted security group for artifacts with integrations
+    artifact_sg: str = ""                  # Phase 7: security group for every other artifact (S3 endpoint only)
     ml_min_samples: int = 200
     dl_min_samples: int = 1000
 

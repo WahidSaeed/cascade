@@ -15,6 +15,7 @@ resource "aws_secretsmanager_secret_version" "db" {
     username = "cascade"
     password = random_password.db.result
     url      = "postgresql+psycopg://cascade:${random_password.db.result}@${aws_rds_cluster.main.endpoint}:5432/cascade"
+    read_url = "postgresql+psycopg://cascade:${random_password.db.result}@${aws_rds_cluster.main.reader_endpoint}:5432/cascade"
   })
 }
 

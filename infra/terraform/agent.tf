@@ -102,8 +102,6 @@ resource "aws_ecs_task_definition" "agent" {
       { name = "CASCADE_SAGEMAKER_ROLE_ARN", value = aws_iam_role.sagemaker.arn },
       { name = "CASCADE_ML_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["ml-runtime"].repository_url}:latest" },
       { name = "CASCADE_DL_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["dl-runtime"].repository_url}:latest" },
-      { name = "CASCADE_ARTIFACT_SUBNET_IDS", value = join(",", aws_subnet.private[*].id) },
-      { name = "CASCADE_ARTIFACT_INTEGRATION_SG", value = aws_security_group.artifact_integration.id },
     ])
     secrets = local.backend_secrets
     logConfiguration = {

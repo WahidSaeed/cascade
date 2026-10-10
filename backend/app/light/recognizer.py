@@ -5,7 +5,9 @@ probability >= pattern_min_prob AND margin over the runner-up >= pattern_min_mar
 artifact's own input guard and confidence make the final call.
 
 `CentroidRecognizer` (v1): exact template match, then cosine to each approved pattern's
-centroid and nearest stored exemplars. Phase 4 adds the trained `ClassifierRecognizer`.
+centroid and nearest stored exemplars. Phase 4 adds the trained `ClassifierRecognizer`. Phase 7: on
+Postgres the centroid / exemplar similarities come from pgvector (`pattern_vectors`, light/pgindex.py), shared
+by every API task; the in-memory computation stays the SQLite / quick-start path.
 The `Recognizer` interface lets an external decision model be plugged in later.
 """
 from __future__ import annotations
@@ -20,6 +22,7 @@ import numpy as np
 from ..config import settings
 from ..schemas import Pattern
 from ..state import on_reset
+from . import pgindex
 from .normalize import Normalized
 from .vec import cosine
 
@@ -45,21 +48,36 @@ class Recognizer(ABC):
 
 
 class CentroidRecognizer(Recognizer):
-    def __init__(self) -> None:
+    def __init__(self, shared: bool | None = None) -> None:
         self._lock = threading.Lock()
         self._patterns: list[Pattern] = []
+        self._shared = shared
+
+    def _use_pg(self) -> bool:
+        if self._shared is None:
+            from .cache import LightCache
+
+            self._shared = LightCache.shared_index()
+        return self._shared
 
     def refresh(self, patterns: list[Pattern]) -> None:
         with self._lock:
             self._patterns = list(patterns)
+        if self._use_pg():
+            pgindex.sync_pattern_vectors(patterns)
 
     def scores(self, norm: Normalized, vector: list[float]) -> list[tuple[str, float, str]]:
         with self._lock:
             patterns = list(self._patterns)
+        shared = pgindex.pattern_scores(vector) if patterns and self._use_pg() else None
         out: list[tuple[str, float, str]] = []
         for p in patterns:
             if norm.template_key in p.template_keys:
                 out.append((p.id, TEMPLATE_MATCH_PROB, "template"))
+                continue
+            if shared is not None:
+                score, method = shared.get(p.id, (0.0, "centroid"))
+                out.append((p.id, score, method))
                 continue
             c = cosine(vector, p.centroid) if p.centroid else 0.0
             k = max((cosine(vector, e) for e in p.exemplars), default=0.0)
@@ -122,6 +140,8 @@ class ClassifierRecognizer(Recognizer):
 
 _lock = threading.Lock()
 _recognizer: Recognizer | None = None
+# Several API tasks share one database: each rebuilds its recognizer when the approved set changes elsewhere.
+_sync: dict[str, Any] = {"signature": None, "checked": 0.0, "rebuilding": False}
 
 
 def train_classifier(patterns: list[Pattern]) -> ClassifierRecognizer | None:
@@ -196,23 +216,83 @@ def build_recognizer() -> Recognizer:
     return r
 
 
+def approved_signature() -> tuple[float, str]:
+    """(version, fingerprint): `version` is the latest `updated_at` of any pattern — it only grows, so it orders
+    rebuilds; `fingerprint` identifies the approved set (ids + versions) — it changes on every approve / demote /
+    reject / edit of a serving pattern, which is what triggers a rebuild."""
+    import hashlib
+
+    from sqlalchemy import func, select
+
+    from .. import db
+    from ..models import PatternRow
+
+    with db.session() as s:
+        latest = s.scalar(select(func.max(PatternRow.updated_at))) or 0.0
+        approved = s.execute(select(PatternRow.id, PatternRow.updated_at).where(PatternRow.status == "approved")
+                             .order_by(PatternRow.id)).all()
+    digest = hashlib.sha256(repr([(i, round(float(u), 6)) for i, u in approved]).encode()).hexdigest()[:16]
+    return float(latest), digest
+
+
+def _build_and_set() -> Recognizer:
+    sig = approved_signature()
+    r = build_recognizer()
+    set_recognizer(r, sig)
+    return r
+
+
+def _rebuild_in_background() -> None:
+    try:
+        _build_and_set()
+    finally:
+        _sync["rebuilding"] = False
+
+
 def recognizer() -> Recognizer:
-    global _recognizer
+    import time
+
     with _lock:
-        if _recognizer is None:
-            _recognizer = build_recognizer()
-        return _recognizer
+        current = _recognizer
+    if current is None:
+        with _lock:                      # first use in this process: build synchronously (once)
+            if _recognizer is None:
+                sig = approved_signature()
+                r = build_recognizer()
+                _set(r, sig)
+            return _recognizer  # type: ignore[return-value]
+    now = time.monotonic()
+    every = settings.recognizer_refresh_s
+    if every > 0 and now - _sync["checked"] >= every and not _sync["rebuilding"]:
+        _sync["checked"] = now
+        sig, cur = approved_signature(), _sync["signature"]
+        if cur is None or sig[1] != cur[1]:
+            # another API task changed the approved set: retrain off the request path, keep serving the old
+            # recognizer meanwhile (the engine re-checks each pattern's status before it serves)
+            _sync["rebuilding"] = True
+            threading.Thread(target=_rebuild_in_background, name="recognizer-refresh", daemon=True).start()
+    return current
 
 
-def set_recognizer(r: Recognizer | None) -> None:
+def _set(r: Recognizer | None, sig: tuple[float, str] | None) -> None:
     global _recognizer
+    _recognizer = r
+    _sync["signature"] = sig
+    _sync["checked"] = __import__("time").monotonic()
+
+
+def set_recognizer(r: Recognizer | None, signature: tuple[float, str] | None = None) -> None:
     with _lock:
-        _recognizer = r
+        cur = _sync["signature"]
+        if r is not None and signature is not None and cur is not None and _recognizer is not None \
+                and signature[0] < cur[0]:
+            return                         # a slower rebuild from an older state never replaces a newer one
+        _set(r, signature)
 
 
 def refresh_recognizer() -> None:
-    """Approve / demote / retire: rebuild (and retrain) the recognizer, then hot-swap it in."""
-    set_recognizer(build_recognizer())
+    """Approve / demote / retire in this task: rebuild (and retrain) now, then hot-swap it in."""
+    _build_and_set()
 
 
 on_reset(lambda: set_recognizer(None))

@@ -6,8 +6,10 @@ from contextlib import asynccontextmanager
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from sqlalchemy.exc import DBAPIError
 
 from . import db, engine, reverify  # noqa: F401 - reverify registers the kb_event hook
 from . import patterns as pat
@@ -31,9 +33,13 @@ from .store import store
 
 
 def apply_config_overrides() -> None:
-    for k, v in store().config_overrides().items():
+    from . import tasksync
+
+    overrides = store().config_overrides()
+    for k, v in overrides.items():
         if k in EDITABLE:
             setattr(settings, k, v)
+    tasksync.mark_applied(overrides)
 
 
 @asynccontextmanager
@@ -62,6 +68,16 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(title="Cascade", version="0.4.0", lifespan=lifespan)
 # Production: CORS only from the CloudFront origin of the static web export (CASCADE_CORS_ORIGINS).
 _origins = [o.strip() for o in settings.cors_origins.split(",") if o.strip()]
+@app.middleware("http")
+async def _config_sync(request: Request, call_next: Any) -> Any:
+    """Pick up configuration edits made through another API task (Phase 7, app/tasksync.py)."""
+    from . import tasksync
+
+    if tasksync.due():
+        await run_in_threadpool(tasksync.maybe_sync)
+    return await call_next(request)
+
+
 app.add_middleware(CognitoMiddleware)            # CASCADE_AUTH=cognito: 401 without a valid JWT (not /api/health)
 app.add_middleware(CORSMiddleware, allow_origins=_origins, allow_methods=["*"],
                    allow_headers=["Authorization", "Content-Type", "X-User-Id"], allow_credentials="*" not in _origins)
@@ -82,6 +98,16 @@ if settings.demo:
 @app.exception_handler(pat.PatternError)
 async def _pattern_error(_req: Request, exc: pat.PatternError) -> JSONResponse:
     return JSONResponse(status_code=exc.status, content={"detail": str(exc)})
+
+
+@app.exception_handler(DBAPIError)
+async def _db_error(_req: Request, exc: DBAPIError) -> JSONResponse:
+    """A connection broken by a database failover: SQLAlchemy has already invalidated the pool and nothing
+    was committed, so the client may safely retry (the web client does, once)."""
+    if exc.connection_invalidated:
+        return JSONResponse(status_code=503, content={"detail": "database connection was reset; retry"},
+                            headers={"Retry-After": "1"})
+    raise exc
 
 
 # ------------------------------------------------------------------ health / users
@@ -126,9 +152,18 @@ def light_metrics_endpoint() -> dict[str, Any]:
 
 
 # ------------------------------------------------------------------ patterns
+def _with_hits(patterns: list[Pattern]) -> list[Pattern]:
+    """`hits` = artifact invocations, counted from the ledger rollups (never a per-request write to the
+    pattern row, which every API task would contend on)."""
+    counts = ledger().artifact_hits()
+    for p in patterns:
+        p.hits = counts.get(p.id, 0)
+    return patterns
+
+
 @app.get("/api/patterns", response_model=list[Pattern])
 def list_patterns(status: str | None = None) -> list[Pattern]:
-    return store().list_patterns(status)
+    return _with_hits(store().list_patterns(status))
 
 
 @app.get("/api/patterns/{pattern_id}", response_model=Pattern)
@@ -136,17 +171,17 @@ def get_pattern(pattern_id: str) -> Pattern:
     p = store().get_pattern(pattern_id)
     if p is None:
         raise HTTPException(404, "pattern not found")
-    return p
+    return _with_hits([p])[0]
 
 
 @app.post("/api/patterns/compile", response_model=Pattern)
 def compile_pattern(req: CompileRequest, ident: Identity = Depends(current_user)) -> Pattern:
-    return pat.compile_pattern(req, ident.user_id)
+    return _with_hits([pat.compile_pattern(req, ident.user_id)])[0]
 
 
 @app.put("/api/patterns/{pattern_id}", response_model=Pattern)
 def edit_pattern(pattern_id: str, change: PatternEdit, _ident: Identity = Depends(require_admin)) -> Pattern:
-    return pat.edit(pattern_id, change)
+    return _with_hits([pat.edit(pattern_id, change)])[0]
 
 
 @app.post("/api/patterns/{pattern_id}/verify", response_model=VerifyResult)
@@ -156,12 +191,12 @@ def verify_pattern(pattern_id: str, req: VerifyRequest) -> VerifyResult:
 
 @app.post("/api/patterns/{pattern_id}/approve", response_model=Pattern)
 def approve_pattern(pattern_id: str, ident: Identity = Depends(require_admin)) -> Pattern:
-    return pat.approve(pattern_id, ident.user_id)
+    return _with_hits([pat.approve(pattern_id, ident.user_id)])[0]
 
 
 @app.post("/api/patterns/{pattern_id}/reject", response_model=Pattern)
 def reject_pattern(pattern_id: str, _ident: Identity = Depends(require_admin)) -> Pattern:
-    return pat.reject(pattern_id)
+    return _with_hits([pat.reject(pattern_id)])[0]
 
 
 @app.post("/api/patterns/discover", response_model=list[Pattern])
@@ -265,6 +300,9 @@ def update_config(update: ConfigUpdate, _ident: Identity = Depends(require_admin
         except Exception as exc:  # pydantic validation
             raise HTTPException(422, f"{k}: {exc}") from exc
         store().set_config(k, getattr(settings, k))
+    from . import tasksync
+
+    tasksync.mark_applied(store().config_overrides())
     if "llm" in update.values:
         from .heavy import set_heavy_model
 

@@ -91,6 +91,8 @@ class Base(DeclarativeBase):
 _lock = threading.Lock()
 _engine: Engine | None = None
 _session_factory: sessionmaker[Session] | None = None
+_read_engine: Engine | None = None
+_read_factory: sessionmaker[Session] | None = None
 
 
 def make_engine(url: str) -> Engine:
@@ -108,8 +110,21 @@ def make_engine(url: str) -> Engine:
             cur.execute("PRAGMA foreign_keys=ON")
             cur.close()
         return eng
-    return create_engine(url, echo=settings.db_echo, pool_pre_ping=True, pool_size=10, max_overflow=20,
-                         json_serializer=json.dumps)
+    # No pre-ping: it costs a round trip on every checkout (~8 per request). Instead, the first disconnect error
+    # invalidates the whole pool (SQLAlchemy), the API answers that request 503 + Retry-After (main.py) and the
+    # web client retries it once; idle connections are recycled after 15 minutes.
+    eng = create_engine(url, echo=settings.db_echo, pool_pre_ping=False, pool_recycle=900, pool_size=10,
+                        max_overflow=20, json_serializer=json.dumps)
+
+    @event.listens_for(eng, "connect")
+    def _pgvector_session(dbapi_conn: Any, _rec: Any) -> None:
+        # once per pooled connection instead of per query: HNSW scans keep going past rows the WHERE clause
+        # filters out (pgvector 0.8 iterative scans), in exact distance order
+        cur = dbapi_conn.cursor()
+        cur.execute(f"SET hnsw.iterative_scan = strict_order; SET hnsw.ef_search = {int(settings.hnsw_ef_search)}")
+        cur.close()
+        dbapi_conn.commit()
+    return eng
 
 
 def engine() -> Engine:
@@ -122,13 +137,56 @@ def engine() -> Engine:
 
 
 def reset_engine() -> None:
-    """Drop the cached engine (tests and demo reset switch databases)."""
-    global _engine, _session_factory
+    """Drop the cached engines (tests and demo reset switch databases)."""
+    global _engine, _session_factory, _read_engine, _read_factory
     with _lock:
         if _engine is not None:
             _engine.dispose()
+        if _read_engine is not None:
+            _read_engine.dispose()
         _engine = None
         _session_factory = None
+        _read_engine = None
+        _read_factory = None
+
+
+@contextmanager
+def lookup() -> Iterator[Session]:
+    """Read-only lookups on the request path (exact cache, semantic cache, pattern kNN, pattern version): an
+    autocommit connection, so each query is one round trip (no BEGIN / COMMIT around it)."""
+    with engine().connect() as conn:
+        conn = conn.execution_options(isolation_level="AUTOCOMMIT")
+        with Session(bind=conn, expire_on_commit=False) as s:
+            yield s
+
+
+def read_engine() -> Engine:
+    """The read replica (Aurora reader endpoint) when CASCADE_DATABASE_READ_URL is set, else the primary.
+    Only dashboard aggregates read from it: they tolerate replica lag of a second or so."""
+    global _read_engine, _read_factory
+    if not settings.database_read_url:
+        return engine()
+    with _lock:
+        if _read_engine is None:
+            _read_engine = make_engine(settings.database_read_url)
+            _read_factory = sessionmaker(_read_engine, expire_on_commit=False)
+    return _read_engine
+
+
+@contextmanager
+def read_session() -> Iterator[Session]:
+    if not settings.database_read_url:
+        with session() as s:
+            yield s
+        return
+    read_engine()
+    assert _read_factory is not None
+    s = _read_factory()
+    try:
+        yield s
+        s.rollback()                     # read-only: never commit on the replica
+    finally:
+        s.close()
 
 
 @contextmanager

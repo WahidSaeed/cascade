@@ -66,6 +66,32 @@ def _upload_to_s3(pattern: Pattern, path: Path, s3: Any) -> str | None:
     return f"s3://{settings.artifact_bucket}/{prefix}"
 
 
+def vpc_config(pattern: Pattern) -> dict[str, Any]:
+    """Phase 7 (P7-03): every artifact Lambda runs in the private subnets, which have no NAT route — no outbound
+    network at all, only the S3 gateway endpoint for its model. Plain artifacts get the no-egress artifact
+    security group; artifacts with an approved integration get the integration group, whose only egress rules
+    are the declared targets (rule 11), reached inside the VPC (PrivateLink / peering), never via a NAT."""
+    if pattern.integration_ids:
+        if not (settings.artifact_subnet_ids and settings.artifact_integration_sg):
+            raise DeployError("artifacts with integrations need CASCADE_ARTIFACT_SUBNET_IDS and "
+                              "CASCADE_ARTIFACT_INTEGRATION_SG (egress-restricted)")
+        sg = settings.artifact_integration_sg
+    elif settings.artifact_subnet_ids:
+        if not settings.artifact_sg:      # fail closed: never deploy outside the VPC by omission
+            raise DeployError("CASCADE_ARTIFACT_SUBNET_IDS is set but CASCADE_ARTIFACT_SG is not")
+        sg = settings.artifact_sg
+    else:
+        return {}                         # local / moto: no VPC configured
+    return {"VpcConfig": {"SubnetIds": settings.artifact_subnet_ids.split(","), "SecurityGroupIds": [sg]}}
+
+
+def _wait(client: Any, waiter: str, name: str) -> None:
+    """Lambda rejects a second update while one is in progress, and a function with a VpcConfig stays Pending
+    while its network interfaces are created: wait until it is ready (up to ~5 minutes)."""
+    if hasattr(client, "get_waiter"):
+        client.get_waiter(waiter).wait(FunctionName=name, WaiterConfig={"Delay": 2, "MaxAttempts": 150})
+
+
 def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
     path = materialize(pattern)
     if settings.artifact_runtime != "lambda":
@@ -78,6 +104,7 @@ def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
         raise DeployError("CASCADE_ARTIFACT_ROLE_ARN is not set")
     name = function_name(pattern.id)
     kind = pattern.kind or ArtifactKind.rule
+    vpc = vpc_config(pattern)
     try:
         exists = True
         client.get_function(FunctionName=name)
@@ -87,32 +114,34 @@ def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
         if kind == ArtifactKind.rule:
             code = build_zip(path)
             if exists:
+                if vpc:                   # configuration first, so the published version carries it
+                    client.update_function_configuration(FunctionName=name, **vpc)
+                    _wait(client, "function_updated_v2", name)
                 client.update_function_code(FunctionName=name, ZipFile=code, Publish=True)
+                _wait(client, "function_updated_v2", name)
             else:
                 client.create_function(FunctionName=name, Runtime="python3.12", Role=settings.artifact_role_arn,
                                        Handler="lambda_function.lambda_handler", Code={"ZipFile": code},
                                        Timeout=LAMBDA_TIMEOUT_S, MemorySize=LAMBDA_MEMORY_MB, Publish=True,
-                                       Tags={"cascade:pattern": pattern.id, "cascade:version": str(pattern.version)})
+                                       Tags={"cascade:pattern": pattern.id, "cascade:version": str(pattern.version)},
+                                       **vpc)
+                _wait(client, "function_active_v2", name)
         else:
             image = settings.ml_runtime_image if kind == ArtifactKind.ml else settings.dl_runtime_image
             if not image:
                 raise DeployError(f"no runtime image configured for {kind.value} artifacts")
             env = {"Variables": {"MODEL_URI": f"s3://{settings.artifact_bucket}/artifacts/{pattern.id}/v{pattern.version}/"}}
-            vpc: dict[str, Any] = {}
-            if pattern.integration_ids:          # rule 11: egress only to the declared target
-                if not (settings.artifact_subnet_ids and settings.artifact_integration_sg):
-                    raise DeployError("artifacts with integrations need CASCADE_ARTIFACT_SUBNET_IDS and "
-                                      "CASCADE_ARTIFACT_INTEGRATION_SG (egress-restricted)")
-                vpc = {"VpcConfig": {"SubnetIds": settings.artifact_subnet_ids.split(","),
-                                     "SecurityGroupIds": [settings.artifact_integration_sg]}}
             if exists:
-                client.update_function_code(FunctionName=name, ImageUri=image, Publish=True)
                 client.update_function_configuration(FunctionName=name, Environment=env, **vpc)
+                _wait(client, "function_updated_v2", name)
+                client.update_function_code(FunctionName=name, ImageUri=image, Publish=True)
+                _wait(client, "function_updated_v2", name)
             else:
                 client.create_function(FunctionName=name, PackageType="Image", Code={"ImageUri": image},
                                        Role=settings.artifact_role_arn, Timeout=LAMBDA_TIMEOUT_S * 2,
                                        MemorySize=1024 if kind == ArtifactKind.dl else 512, Environment=env,
                                        Publish=True, Tags={"cascade:pattern": pattern.id}, **vpc)
+                _wait(client, "function_active_v2", name)
     except DeployError:
         raise
     except Exception as exc:  # noqa: BLE001

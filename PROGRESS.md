@@ -2,7 +2,7 @@
 
 Claude Code keeps this file current. Read it first when resuming.
 
-**Current step:** Phase 7 — Scale (in progress)
+**Current step:** Step D — Demo assembly (in progress)
 **Last `make verify`:** 2026-10-10 20:26 — PASS (Phases 5 + 6)
 
 | Step | Status | Acceptance IDs | Evidence (last lines of `make verify`) | Commit |
@@ -14,8 +14,8 @@ Claude Code keeps this file current. Read it first when resuming.
 | Phase 4 — Pattern intelligence | ☑ done | P4-01 … P4-03 | lint pass · test-unit 157 · test-int 63 · contract pass · test-web 10 · test-e2e 15 (incl. S8) · eval 6 · perf 1 · security 4 · acceptance: pass 25, aws-only 1 · **Overall: PASS** 2026-10-10 15:30 | feat(phase-4) |
 | Phase 5 — Model-building agent | ☑ done | P5-01 … P5-07 | lint pass · test-unit 194 · test-int 71 · contract pass · test-web 10 · test-e2e 18 (S1–S9) · eval 6 · perf 1 · security 4 · acceptance: pass 38, aws-only 1 · **Overall: PASS** 2026-10-10 20:26 | feat(phase-5) |
 | Phase 6 — Productionize | ☑ done | P6-01 … P6-06 | lint pass · test-unit 194 · test-int 71 · contract pass · test-web 10 · test-e2e 18 (S1–S9) · eval 6 · perf 1 · security 4 · acceptance: pass 38, aws-only 1 · **Overall: PASS** 2026-10-10 20:26 | feat(phase-6) |
-| Phase 7 — Scale | ◐ in progress | P7-01 … P7-05 | | |
-| Step D — Demo assembly | ☐ todo | S1 … S10 | | |
+| Phase 7 — Scale | ☑ done | P7-01 … P7-05 | lint pass · test-unit 218 · test-int 81 (pgvector) · contract pass · test-web 10 · test-e2e 18 (S1–S9) · eval 6 (recall@5 1.000 = Phase 3 baseline) · perf 8 (light p95 11.3 ms SQLite / 13.5 ms Postgres over 1,000 prompts; knowledge-scoped 10.9 / 19.9 ms; artifact route 18.3 / 29.2 ms; 60 s load 49.9 rps, 0 failures, p95 750 ms) · security 4 · acceptance: pass 42, aws-only 1 · **Overall: PASS** 2026-10-11 00:53 | feat(phase-7) |
+| Step D — Demo assembly | ◐ in progress | S1 … S10 | | |
 
 Status values: ☐ todo · ◐ in progress · ☑ done · ⚠ blocked
 
@@ -37,11 +37,13 @@ Status values: ☐ todo · ◐ in progress · ☑ done · ⚠ blocked
 (none)
 
 ## Notes for the next session
-- Phases 5 and 6 reviewed by the acceptance reviewer; all gaps fixed with regression tests
-  (tests/unit/test_phase5_review.py, test_phase6_acceptance.py review tests).
-- Phase 7 WIP (not committed): backend/app/light/pgindex.py (pgvector semantic cache + pattern kNN),
-  backend/app/rollups.py (hourly ledger/overhead rollups), backend/tests/perf/locustfile.py. Still to do: migration
-  0006 (HNSW on cache_entries, pattern_vectors, rollup tables), wire pgindex into light/cache.py + recognizer,
-  rollups into engine/ledger writes + reads, read replica (Terraform + CASCADE_DATABASE_READ_URL), private-subnet
-  no-NAT artifact Lambdas + S3 gateway endpoint, perf tests (1,000-prompt light p95, 60 s @ 50 rps, artifact p95),
-  recall baseline file for P7-05.
+- Phase 7 reviewed by the acceptance reviewer; all gaps fixed with tests (test_phase7_acceptance.py review-fix
+  section, test_phase7_pg.py): IAM Describe permissions for VPC Lambdas, Lambda update/create waiters, fail-closed
+  artifact security group, cross-task config sync (app/tasksync.py) and recognizer refresh, advisory-locked
+  pattern_vectors rewrite, slot filter in SQL, latency targets asserted on Postgres too, load-test p95 bound,
+  ElastiCache hot exact cache (app/light/hotcache.py + Terraform), pinned pgvector image, hits on mutation responses.
+- `make perf` is sensitive to other load on the build machine (two runs failed at load average 12–18 with Chrome
+  busy; the same code passes with margin on a quieter machine). Thresholds are unchanged.
+- Step D drafts (not yet in the repo): /demo page + lib/demoScript.ts, Demo tab, /api/demo/replay-traffic with
+  progress and reset-safe stop, S8 via the /demo buttons, demo-page e2e. demo/SCRIPT.md and the video naming in
+  scripts/collect_videos.py are done.

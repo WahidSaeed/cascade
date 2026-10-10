@@ -19,7 +19,7 @@ from typing import Any
 
 from sqlalchemy import update
 
-from . import db
+from . import db, rollups
 from . import demo_world as w
 from .config import settings
 from .models import OverheadRow
@@ -93,6 +93,7 @@ def _install_rule(name: str, task_type: str, examples: list[str], at: float) -> 
     pat.approve(p.id, "eli")
     with db.session() as s:   # the build happened at the start of the simulated week
         s.execute(update(OverheadRow).where(OverheadRow.pattern_id == p.id).values(ts=at, simulated=True))
+        rollups.rebuild(s)
     return p.id
 
 
@@ -119,6 +120,7 @@ def install_urgency_dl(week_start: float) -> str:
     pat.approve(p.id, "eli")
     with db.session() as s:
         s.execute(update(OverheadRow).where(OverheadRow.pattern_id == p.id).values(ts=week_start - 1800, simulated=True))
+        rollups.rebuild(s)
     return p.id
 
 
@@ -136,6 +138,7 @@ def install_artifacts(week_start: float, docs: dict[str, str] | None = None) -> 
         with db.session() as s:
             s.execute(update(OverheadRow).where(OverheadRow.pattern_id == ids["vacation"])
                       .values(ts=week_start - 2400, simulated=True))
+            rollups.rebuild(s)
     return ids
 
 

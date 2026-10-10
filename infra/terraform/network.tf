@@ -20,7 +20,8 @@ resource "aws_subnet" "public" {
   tags                    = merge(local.tags, { Name = "${local.name}-public-${count.index}" })
 }
 
-# Private subnets: Aurora. No route to the internet at all.
+# Private subnets: Aurora and every artifact Lambda. No route to the internet at all: no NAT gateway, and
+# the private route table has only the local route plus the S3 gateway endpoint (scale.tf).
 resource "aws_subnet" "private" {
   count             = 2
   vpc_id            = aws_vpc.main.id

@@ -10,7 +10,7 @@ import uuid
 from dataclasses import asdict, dataclass, field
 from typing import Any
 
-from . import db
+from . import db, rollups
 from .config import settings
 from .heavy import SYSTEM_PROMPT, ContextBlock, LLMRequest, LLMResult, count_tokens, heavy_model
 from .ledger import ESTIMATE_METHODS, LedgerEntry
@@ -23,7 +23,7 @@ from .models import LedgerRow, RequestLog, Turn
 from .pricing import cost, embed_cost, lambda_cost
 from .privacy import contains_pii, redact
 from .runtime import ArtifactResult, runtime
-from .schemas import ChatResponse, LightInfo, Pattern, Route, Source, TokenInfo
+from .schemas import ChatResponse, LightInfo, Pattern, PatternStatus, Route, Source, TokenInfo
 from .store import store
 
 MESSAGE_OVERHEAD_TOKENS = 4
@@ -105,8 +105,10 @@ def route(prompt: str, user_id: str = "anonymous", conversation_id: str | None =
         rec = recognizer().recognize(norm, ctx.vector)
         ctx.stages["recognizer"] = _ms(t)
         if rec.pattern_id:
-            pattern = store().get_pattern(rec.pattern_id)
-            if pattern is not None and _artifact_allowed(ctx, pattern):
+            pattern = store().serving_pattern(rec.pattern_id)
+            # read fresh from the database: a recognizer in another API task can lag an approval change by
+            # up to recognizer_refresh_s, but a rejected or demoted artifact never serves
+            if pattern is not None and pattern.status == PatternStatus.approved and _artifact_allowed(ctx, pattern):
                 t = time.perf_counter()
                 res = runtime().invoke(pattern, prompt)
                 ctx.stages["artifact"] = _ms(t)
@@ -217,7 +219,6 @@ def _serve_artifact(ctx: Ctx, pattern: Pattern, res: ArtifactResult, prob: float
                           f"{res.confidence:.2f}")
     tokens = TokenInfo(tokens_avoided=avoided_in + avoided_out, cost_avoided_usd=avoided_usd,
                        cost_actual_usd=entry.cost_actual_usd, estimate_method=method)
-    pattern_hit(pattern.id)
     from . import monitor
 
     if monitor.should_sample():
@@ -232,19 +233,6 @@ def _serve_artifact(ctx: Ctx, pattern: Pattern, res: ArtifactResult, prob: float
                           settings.heavy_model_id, now=ctx.now, pattern_id=pattern.id)
     return _finish(ctx, entry, Route.artifact, res.result or "", light, tokens, sources=sources,
                    confidence=res.confidence, pattern=pattern)
-
-
-def pattern_hit(pattern_id: str) -> None:
-    from sqlalchemy import update
-
-    from .models import PatternRow
-
-    with db.session() as s:
-        row = s.get(PatternRow, pattern_id)
-        if row is not None:
-            data = dict(row.data)
-            data["hits"] = int(data.get("hits", 0)) + 1
-            s.execute(update(PatternRow).where(PatternRow.id == pattern_id).values(data=data))
 
 
 # ----------------------------------------------------------------------------- heavy LLM
@@ -327,7 +315,9 @@ def _finish(ctx: Ctx, entry: LedgerEntry, route_: Route, answer: str, light: Lig
     expires = ctx.now + settings.log_retention_days * 86400
     # one transaction for everything the request writes: ledger entry, request log, both turns
     with db.session() as s:
-        s.add(LedgerRow(**asdict(entry)))
+        row = asdict(entry)
+        s.add(LedgerRow(**row))
+        rollups.add_ledger(s, row)
         s.add(RequestLog(request_id=ctx.request_id, user_id=ctx.user_id, conversation_id=ctx.conversation_id,
                          ts=ctx.now, prompt=ctx.prompt, redacted=redacted, template=normalize(redacted).template,
                          template_key=ctx.norm.template_key, embedding=ctx.vector, route=route_.value,

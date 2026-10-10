@@ -65,6 +65,12 @@ data "aws_iam_policy_document" "task" {
     resources = ["arn:aws:lambda:${var.region}:${local.account_id}:function:${local.name}-artifact-*"]
   }
   statement {
+    # Phase 7: every artifact Lambda has a VpcConfig; Lambda checks the caller can see its subnets / groups
+    sid       = "ArtifactLambdaVpc"
+    actions   = ["ec2:DescribeSecurityGroups", "ec2:DescribeSubnets", "ec2:DescribeVpcs"]
+    resources = ["*"]
+  }
+  statement {
     sid       = "PassArtifactRole"
     actions   = ["iam:PassRole"]
     resources = [aws_iam_role.artifact.arn]

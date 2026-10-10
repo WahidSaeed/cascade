@@ -106,9 +106,9 @@ eval: ## quality evaluations with thresholds (§14.4)
 	@mkdir -p $(REPORTS)/junit
 	$(UV) pytest tests/eval --junitxml=$(REPORTS)/junit/eval.xml $(NOTESTS_OK)
 
-perf: ## light-layer latency + short load test (§13 targets)
+perf: pg-up ## light-layer latency, artifact route, 60 s load test at 50 rps on Postgres (§13 targets)
 	@mkdir -p $(REPORTS)/junit
-	$(UV) pytest tests/perf --junitxml=$(REPORTS)/junit/perf.xml -s $(NOTESTS_OK)
+	$(UV) env CASCADE_TEST_DATABASE_URL=$(PG_URL) pytest tests/perf --junitxml=$(REPORTS)/junit/perf.xml -s $(NOTESTS_OK)
 
 security: ## pip-audit, bandit, npm audit, gitleaks (if installed), isolation tests
 	@mkdir -p $(REPORTS)/junit

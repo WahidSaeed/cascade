@@ -1,0 +1,6 @@
+{
+  "recall_at_5": 1.0,
+  "questions": 21,
+  "measured_at": "feat(phase-3) 78c2282, tests/eval/test_knowledge_quality.py on the quick-start store",
+  "note": "P7-05: retrieval recall@5 on the labelled set must never fall below this Phase 3 baseline"
+}

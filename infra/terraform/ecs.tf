@@ -27,6 +27,7 @@ locals {
     { name = "CASCADE_DEMO", value = "false" },
     { name = "CASCADE_LLM", value = "bedrock" },
     { name = "CASCADE_EMBED_BACKEND", value = "fastembed" },
+    { name = "CASCADE_EMBED_THREADS", value = "1" }, # the API task has 1 vCPU (cpu = 1024)
     { name = "CASCADE_ARTIFACT_RUNTIME", value = "lambda" },
     { name = "CASCADE_ARTIFACT_ROLE_ARN", value = aws_iam_role.artifact.arn },
     { name = "CASCADE_ARTIFACT_BUCKET", value = aws_s3_bucket.artifacts.bucket },
@@ -38,9 +39,12 @@ locals {
     { name = "CASCADE_BLOB_BUCKET", value = aws_s3_bucket.artifacts.bucket },
     { name = "CASCADE_ARTIFACT_SUBNET_IDS", value = join(",", aws_subnet.private[*].id) },
     { name = "CASCADE_ARTIFACT_INTEGRATION_SG", value = aws_security_group.artifact_integration.id },
+    { name = "CASCADE_ARTIFACT_SG", value = aws_security_group.artifact.id },
+    { name = "CASCADE_EXACT_CACHE_URL", value = "rediss://${aws_elasticache_serverless_cache.exact.endpoint[0].address}:${aws_elasticache_serverless_cache.exact.endpoint[0].port}" },
   ]
   backend_secrets = [
     { name = "CASCADE_DATABASE_URL", valueFrom = "${aws_secretsmanager_secret.db.arn}:url::" },
+    { name = "CASCADE_DATABASE_READ_URL", valueFrom = "${aws_secretsmanager_secret.db.arn}:read_url::" },
   ]
 }
 
