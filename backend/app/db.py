@@ -163,3 +163,85 @@ def migrate(url: str | None = None) -> None:
 
 def dialect_name() -> str:
     return engine().dialect.name
+
+
+def wipe() -> None:
+    """Drop everything and migrate from empty (demo build / tests)."""
+    from pathlib import Path
+
+    from sqlalchemy import text
+
+    url = settings.resolved_database_url()
+    reset_engine()
+    if url.startswith("sqlite"):
+        path = Path(url.removeprefix("sqlite:///"))
+        for suffix in ("", "-wal", "-shm"):
+            Path(str(path) + suffix).unlink(missing_ok=True)
+    else:
+        eng = make_engine(url)
+        with eng.begin() as c:
+            c.execute(text("DROP SCHEMA public CASCADE"))
+            c.execute(text("CREATE SCHEMA public"))
+        eng.dispose()
+    migrate(url)
+
+
+# ----------------------------------------------------------------------------- Postgres snapshots
+def _pg_parts() -> tuple[str, str]:
+    url = settings.resolved_database_url()
+    base, name = url.rsplit("/", 1)
+    return base, name.split("?")[0]
+
+
+def _pg_admin() -> Engine:
+    base, _ = _pg_parts()
+    return create_engine(base + "/postgres", isolation_level="AUTOCOMMIT")
+
+
+def _pg_kill(conn: Any, name: str) -> None:
+    from sqlalchemy import text
+
+    conn.execute(text("SELECT pg_terminate_backend(pid) FROM pg_stat_activity "
+                      "WHERE datname = :n AND pid <> pg_backend_pid()"), {"n": name})
+
+
+def pg_snapshot_save() -> None:
+    """Snapshot = a template copy of the database (CREATE DATABASE ... TEMPLATE)."""
+    from sqlalchemy import text
+
+    from .seed import SEED_VERSION
+
+    _, name = _pg_parts()
+    reset_engine()
+    admin = _pg_admin()
+    with admin.connect() as c:
+        _pg_kill(c, name)
+        c.execute(text(f'DROP DATABASE IF EXISTS "{name}_snapshot"'))
+        c.execute(text(f'CREATE DATABASE "{name}_snapshot" TEMPLATE "{name}"'))
+        c.execute(text(f"COMMENT ON DATABASE \"{name}_snapshot\" IS '{SEED_VERSION}'"))
+    admin.dispose()
+
+
+def pg_snapshot_exists(version: str) -> bool:
+    from sqlalchemy import text
+
+    _, name = _pg_parts()
+    admin = _pg_admin()
+    with admin.connect() as c:
+        got = c.execute(text("SELECT shobj_description(oid, 'pg_database') FROM pg_database WHERE datname = :n"),
+                        {"n": f"{name}_snapshot"}).scalar()
+    admin.dispose()
+    return got == version
+
+
+def pg_snapshot_restore() -> None:
+    from sqlalchemy import text
+
+    _, name = _pg_parts()
+    reset_engine()
+    admin = _pg_admin()
+    with admin.connect() as c:
+        _pg_kill(c, name)
+        c.execute(text(f'DROP DATABASE IF EXISTS "{name}"'))
+        c.execute(text(f'CREATE DATABASE "{name}" TEMPLATE "{name}_snapshot"'))
+    admin.dispose()

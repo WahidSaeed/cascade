@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import sys
 import uuid
 from collections.abc import Iterator
 from pathlib import Path
@@ -19,15 +20,22 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 REPORTS = ROOT / "reports" / "acceptance"
 
-os.environ.setdefault("CASCADE_LLM", "demo")
+# Tests never touch real AWS, even when pytest is run directly (not via make): credentials are
+# blanked unconditionally. Only `pytest -m aws` (make test-aws) keeps the caller's environment.
+_REAL_AWS = "-m" in sys.argv and any(a.strip() == "aws" for a in sys.argv)
 os.environ.setdefault("CASCADE_DEMO_LATENCY_MS", "0")
-os.environ.setdefault("CASCADE_ENV", "test")
+os.environ["CASCADE_DEMO_LATENCY_MS"] = "0"
 os.environ.setdefault("CASCADE_MODELS_DIR", str(ROOT / ".models"))
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
-for _k, _v in {"AWS_ACCESS_KEY_ID": "testing", "AWS_SECRET_ACCESS_KEY": "testing",
-               "AWS_DEFAULT_REGION": "us-east-1", "AWS_CONFIG_FILE": "/dev/null",
-               "AWS_SHARED_CREDENTIALS_FILE": "/dev/null"}.items():
-    os.environ.setdefault(_k, _v)
+os.environ["CASCADE_ENV"] = "test"
+if not _REAL_AWS:
+    os.environ["CASCADE_LLM"] = "demo"
+    os.environ.pop("AWS_PROFILE", None)
+    os.environ.pop("AWS_SESSION_TOKEN", None)
+    for _k, _v in {"AWS_ACCESS_KEY_ID": "testing", "AWS_SECRET_ACCESS_KEY": "testing",
+                   "AWS_DEFAULT_REGION": "us-east-1", "AWS_CONFIG_FILE": "/dev/null",
+                   "AWS_SHARED_CREDENTIALS_FILE": "/dev/null"}.items():
+        os.environ[_k] = _v
 
 _rows: dict[str, dict[str, Any]] = {}
 
@@ -38,10 +46,14 @@ def _ids(item: pytest.Item) -> list[str]:
 
 @pytest.hookimpl(tryfirst=True)
 def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
+    explicit_aws = "aws" in (config.getoption("-m") or "") and "not aws" not in (config.getoption("-m") or "")
     for item in items:
         ids = _ids(item)
-        if ids and item.get_closest_marker("aws"):
-            _rows[item.nodeid] = {"nodeid": item.nodeid, "ids": ids, "outcome": "aws"}
+        if item.get_closest_marker("aws"):
+            if ids:
+                _rows[item.nodeid] = {"nodeid": item.nodeid, "ids": ids, "outcome": "aws"}
+            if not explicit_aws:   # real AWS only through `make test-aws` (pytest -m aws)
+                item.add_marker(pytest.mark.skip(reason="real AWS: run with make test-aws"))
 
 
 def pytest_runtest_logreport(report: pytest.TestReport) -> None:
@@ -55,7 +67,7 @@ def pytest_runtest_logreport(report: pytest.TestReport) -> None:
         else:
             outcome = report.outcome
         prev = _rows.get(report.nodeid)
-        if prev and prev["outcome"] == "failed":
+        if prev and prev["outcome"] in ("failed", "aws") and outcome != "passed":
             return
         _rows[report.nodeid] = {"nodeid": report.nodeid, "ids": ids, "outcome": outcome}
 
@@ -107,14 +119,19 @@ def fresh_db(tmp_path_factory: pytest.TempPathFactory, monkeypatch: pytest.Monke
         target = root / f"db-{uuid.uuid4().hex[:8]}.db"
         shutil.copy(tmpl, target)
         url = f"sqlite:///{target}"
+    snapshot = settings.model_dump()
     monkeypatch.setattr(settings, "database_url", url)
+    monkeypatch.setattr(settings, "data_dir", str(tmp_path_factory.mktemp("data")))
     db.reset_engine()
     from app import state
 
     state.reset_runtime_state()
     yield url
-    db.reset_engine()
     state.reset_runtime_state()
+    db.reset_engine()
+    for k, v in snapshot.items():
+        if getattr(settings, k) != v:
+            object.__setattr__(settings, k, v)
 
 
 _integration = {"on": False}

@@ -18,10 +18,10 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 # override the whole table with CASCADE_MODEL_PRICES='{"model-id": {...}}'.
 DEFAULT_PRICES: dict[str, dict[str, float]] = {
     "demo-llm": {"input": 3.0, "output": 15.0, "cache_read": 0.30, "cache_write": 3.75},
-    "anthropic.claude-sonnet-4-5-20250929-v1:0": {"input": 3.0, "output": 15.0, "cache_read": 0.30,
-                                                   "cache_write": 3.75},
-    "anthropic.claude-haiku-4-5-20251001-v1:0": {"input": 1.0, "output": 5.0, "cache_read": 0.10,
-                                                  "cache_write": 1.25},
+    "us.anthropic.claude-sonnet-4-5-20250929-v1:0": {"input": 3.0, "output": 15.0, "cache_read": 0.30,
+                                                      "cache_write": 3.75},
+    "us.anthropic.claude-haiku-4-5-20251001-v1:0": {"input": 1.0, "output": 5.0, "cache_read": 0.10,
+                                                     "cache_write": 1.25},
     "demo-light-llm": {"input": 1.0, "output": 5.0, "cache_read": 0.10, "cache_write": 1.25},
     "amazon.titan-embed-text-v2:0": {"input": 0.02, "output": 0.0},
     "local-embedder": {"input": 0.0, "output": 0.0},
@@ -50,8 +50,9 @@ class Settings(BaseSettings):
     # --- heavy model (System 2) ---
     llm: str = "demo"                      # demo | bedrock
     bedrock_region: str = "us-east-1"
-    bedrock_model_id: str = "anthropic.claude-sonnet-4-5-20250929-v1:0"
-    light_llm_model_id: str = "anthropic.claude-haiku-4-5-20251001-v1:0"
+    # Current Claude models on Bedrock are invoked through cross-region inference profiles ("us." ...).
+    bedrock_model_id: str = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+    light_llm_model_id: str = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
     llm_max_tokens: int = 1024
     prompt_caching: bool = True            # mark the stable system block as a Bedrock cache point
     demo_latency_ms: int = 2500            # Demo LLM simulated latency centre (0 in tests)
@@ -61,6 +62,7 @@ class Settings(BaseSettings):
     embed_backend: str = "fastembed"       # fastembed | multilingual-e5-small | bedrock-titan | hashing
     embed_model: str = "BAAI/bge-small-en-v1.5"
     embed_dim: int = 384
+    embed_threads: int = 2                 # ONNX intra-op threads for the local embedder
     titan_embed_model_id: str = "amazon.titan-embed-text-v2:0"
     cache_threshold: float = 0.95
     pattern_threshold: float = 0.80
@@ -79,6 +81,8 @@ class Settings(BaseSettings):
     artifact_role_arn: str = ""
     artifact_bucket: str = ""
     lambda_prefix: str = "cascade-artifact-"
+    ml_runtime_image: str = ""             # ECR image URI of the ml-runtime Lambda image
+    dl_runtime_image: str = ""             # ECR image URI of the dl-runtime Lambda image
     ml_min_samples: int = 200
     dl_min_samples: int = 1000
 

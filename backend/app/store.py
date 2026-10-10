@@ -103,6 +103,25 @@ class SqlStore:
         return [f"user:{user_id}", *[f"group:{g}" for g in sorted(gs)], "org:*"]
 
     # ------------------------------------------------------------------ conversations
+    def open_conversation(self, conversation_id: str | None, user_id: str, collection_ids: list[str] | None,
+                          history_limit: int = 6) -> tuple[str, list[str], list[dict[str, Any]]]:
+        """Get or create the conversation and read its recent turns, in one transaction."""
+        with db.session() as s:
+            conv = s.get(Conversation, conversation_id) if conversation_id else None
+            if conv is None or conv.user_id != user_id:
+                conv = Conversation(user_id=user_id, collection_ids=list(collection_ids or []))
+                if conversation_id and s.get(Conversation, conversation_id) is None:
+                    conv.id = conversation_id
+                s.add(conv)
+                s.flush()
+                return conv.id, list(conv.collection_ids or []), []
+            if collection_ids is not None and list(collection_ids) != list(conv.collection_ids or []):
+                conv.collection_ids = list(collection_ids)
+            rows = s.scalars(select(Turn).where(Turn.conversation_id == conv.id)
+                             .order_by(Turn.id.desc()).limit(history_limit)).all()
+            return conv.id, list(conv.collection_ids or []), [{"role": r.role, "text": r.text, "ts": r.ts}
+                                                              for r in reversed(rows)]
+
     def get_or_create_conversation(self, conversation_id: str | None, user_id: str,
                                    collection_ids: list[str] | None = None) -> tuple[str, list[str]]:
         with db.session() as s:

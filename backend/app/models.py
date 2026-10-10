@@ -93,6 +93,7 @@ class CacheEntry(Base):
     created_at: Mapped[float] = mapped_column(Float, default=now)
     expires_at: Mapped[float] = mapped_column(Float)
     hits: Mapped[int] = mapped_column(Integer, default=0)
+    pattern_id: Mapped[str | None] = mapped_column(String(64), nullable=True, index=True)  # artifact answers
 
     __table_args__ = (Index("ix_cache_scope_user", "scope", "user_id"),)
 
@@ -143,6 +144,7 @@ class LedgerRow(Base):
     sources: Mapped[list[Any]] = mapped_column(JSON, default=list)
     uncited: Mapped[bool] = mapped_column(Boolean, default=False)
     embed_tokens: Mapped[int] = mapped_column(Integer, default=0)
+    embed_cost_usd: Mapped[float] = mapped_column(Float, default=0.0, server_default="0")
     cost_actual_usd: Mapped[float] = mapped_column(Float, default=0.0)
     tokens_avoided_in: Mapped[int] = mapped_column(Integer, default=0)
     tokens_avoided_out: Mapped[int] = mapped_column(Integer, default=0)

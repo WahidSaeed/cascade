@@ -25,6 +25,9 @@ x-backend: &backend
 services:
   postgres:
     image: pgvector/pgvector:pg16
+    # Local dev only: skip waiting for disk syncs on commit (Docker Desktop's VM makes them slow and
+    # CPU-heavy). Aurora in production keeps full durability.
+    command: ["postgres", "-c", "synchronous_commit=off"]
     environment:
       POSTGRES_USER: cascade
       POSTGRES_PASSWORD: cascade
