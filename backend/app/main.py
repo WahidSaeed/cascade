@@ -42,6 +42,13 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
     from .light.embedder import get_embedder
 
     get_embedder()            # load the light-layer model once, at startup
+    import threading
+
+    from .light.cache import light_cache
+    from .runtime import warm
+
+    light_cache().ensure_loaded()
+    threading.Thread(target=warm, args=(store().approved_patterns(),), daemon=True).start()
     yield
     from .runtime import _reset
 
@@ -51,6 +58,12 @@ async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(title="Cascade", version="0.3.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",")],
                    allow_methods=["*"], allow_headers=["*"])
+
+
+if settings.demo:
+    from .demo_api import router as demo_router
+
+    app.include_router(demo_router)
 
 
 @app.exception_handler(pat.PatternError)

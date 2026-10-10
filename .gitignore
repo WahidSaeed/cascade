@@ -19,3 +19,5 @@ web/lib/api-types.ts.new
 backend/data/
 *.db-journal
 .DS_Store
+web/tsconfig.tsbuildinfo
+.coverage

@@ -203,6 +203,19 @@ class LambdaRuntime(ArtifactRuntime):
         return ArtifactResult(str(payload.get("result")), float(payload.get("confidence", 0.0)), latency)
 
 
+def warm(patterns: list[Pattern]) -> None:
+    """Start the workers of approved artifacts ahead of traffic (the local stand-in for provisioned
+    concurrency), so the first matching request isn't a cold start."""
+    rt = runtime()
+    if not isinstance(rt, SubprocessRuntime):
+        return
+    for p in patterns:
+        try:
+            rt._worker(p)
+        except Exception:  # noqa: BLE001,S112 - a broken artifact is reported when it is invoked
+            continue
+
+
 _lock = threading.Lock()
 _runtimes: dict[str, ArtifactRuntime] = {}
 

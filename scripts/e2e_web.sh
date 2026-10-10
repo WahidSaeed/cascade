@@ -4,4 +4,4 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT/web"
 NEXT_PUBLIC_API_BASE=http://127.0.0.1:8181 npx next build >/dev/null
-exec npx serve -s out -l 3181 --no-clipboard
+exec npx serve out -l 3181 --no-clipboard

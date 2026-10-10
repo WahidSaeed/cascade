@@ -26,7 +26,7 @@ from .models import OverheadRow
 from .state import reset_runtime_state
 from .store import store
 
-SEED_VERSION = "phase1-v1"
+SEED_VERSION = "phase2-v1"
 DAY = 86400
 
 

@@ -23,3 +23,4 @@ date — decision — reason.
 - 2026-10-10 — Net savings subtract router embedding cost (`ledger.embed_cost_usd`) as well as overhead and artifact runtime; baseline stays "actual + avoided" as §4.2 defines it.
 - 2026-10-10 — Bedrock model ids default to cross-region inference profiles (`us.anthropic.…`); IAM grants the profiles and their underlying foundation models.
 - 2026-10-10 — The urgency `dl` artifact (and the triage artifact) arrive with Phase 5's compilers; until then S2's low-confidence fallback is exercised with a rule artifact that reports low confidence (tests/unit/test_review_regressions.py).
+- 2026-10-10 — S2's low-confidence fallback step joins the browser test with Phase 5, when the urgency `dl` artifact it uses exists; until then it is covered at API level (test_review_regressions.py).

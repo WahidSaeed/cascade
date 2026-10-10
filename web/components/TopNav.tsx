@@ -3,24 +3,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
+import type { Health } from "@/lib/types";
 import { useUser } from "@/lib/user";
 
 type Persona = { id: string; name: string; role: string };
 const TABS = [
   { href: "/", label: "Console" },
   { href: "/savings/", label: "Savings" },
+  { href: "/patterns/", label: "Patterns" },
+  { href: "/tools/", label: "Tools" },
 ];
 
 export function TopNav() {
   const path = usePathname();
   const { userId, setUserId } = useUser();
   const [personas, setPersonas] = useState<Persona[]>([]);
+  const [health, setHealth] = useState<Health | null>(null);
   const [healthy, setHealthy] = useState<boolean | null>(null);
 
   useEffect(() => {
     api<Persona[]>("/api/users").then(setPersonas).catch(() => setPersonas([]));
-    api<{ status: string }>("/api/health")
-      .then((h) => setHealthy(h.status === "ok"))
+    api<Health>("/api/health")
+      .then((h) => { setHealth(h); setHealthy(h.status === "ok"); })
       .catch(() => setHealthy(false));
   }, []);
 
@@ -41,6 +45,9 @@ export function TopNav() {
         })}
       </div>
       <div className="ml-auto flex items-center gap-3 font-mono text-[11px] tracking-[0.04em] text-[#aeaeb2]">
+        {health?.llm === "demo" && (
+          <span className="rounded-pill border border-white/25 px-2 py-0.5 text-white" data-testid="demo-llm-badge">Demo LLM</span>
+        )}
         <select aria-label="User" data-testid="user-switcher" value={userId}
           onChange={(e) => setUserId(e.target.value)}
           className="rounded-sm border border-white/20 bg-transparent px-2 py-1 text-white">

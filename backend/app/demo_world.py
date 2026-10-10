@@ -208,6 +208,16 @@ VACATION_Q = [
     "How many days of vacation do staff in {c} get per year?",
 ]
 
+# Prompts the live demo asks on stage (BUILD.md §17.2). They never appear in the seeded week, so the
+# scripted "first time" is really the first time (e.g. S1 step 2 goes to the LLM, S4 step 1 too).
+DEMO_SCRIPT_PROMPTS = {
+    "Draft a friendly reply to a customer whose tent pole broke",
+    "How many weeks of parental leave do we offer?",
+    "What's the bonus range for team leads?",
+    "Extract the order number, email and amount: 'Order NP-48213 for jane@example.com was charged €84.90 twice'",
+    "Classify this support ticket: 'The tent pole snapped on the first night'",
+}
+
 # ============================================================================ traffic phrase banks
 PRODUCTS = ["tent", "Ridgeline 2 tent", "sleeping bag", "down jacket", "hiking boots", "Summit boots",
             "backpack", "rain shell", "trekking poles", "headlamp", "camp stove", "fleece"]

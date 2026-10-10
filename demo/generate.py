@@ -56,7 +56,14 @@ def render_docx(spec: w.DocSpec, path: Path) -> None:
         d.add_heading(heading, 1)
         for p in paras:
             d.add_paragraph(p)
+    import datetime as dt
+
+    fixed = dt.datetime(2025, 10, 1, 9, 0, 0)        # deterministic files: no "now" timestamps
     d.core_properties.title = spec.title
+    d.core_properties.created = fixed
+    d.core_properties.modified = fixed
+    d.core_properties.last_modified_by = "Northpeak HR"
+    d.core_properties.author = "Northpeak HR"
     d.save(str(path))
 
 
@@ -157,11 +164,15 @@ def gen_traffic(rng: random.Random, n: int = 2400) -> list[dict]:
                 task = "vacation"
                 collections = ["handbook"]
             else:
-                readable = [q for q in w.KNOWLEDGE_QUESTIONS if user_can_read(user, q[1])]
+                readable = [q for q in w.KNOWLEDGE_QUESTIONS if user_can_read(user, q[1])
+                            and q[0] not in w.DEMO_SCRIPT_PROMPTS]
                 q, col, frag = rng.choice(readable)
                 prompt, truth = q, frag
                 collections = [c["key"] for c in w.COLLECTIONS if user_can_read(user, c["key"])]
         else:
+            prompt = w.make_open_ended(rng)
+            truth = None
+        while prompt in w.DEMO_SCRIPT_PROMPTS:    # keep the stage prompts fresh: never in the seeded week
             prompt = w.make_open_ended(rng)
             truth = None
         ts = int(i * WEEK_S / n + rng.randint(0, 120))

@@ -12,4 +12,4 @@ WORKDIR /web
 RUN npm i -g serve@14
 COPY --from=build /web/out ./out
 EXPOSE 3000
-CMD ["serve", "-s", "out", "-l", "3000"]
+CMD ["serve", "out", "-l", "3000"]
