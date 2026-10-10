@@ -10,6 +10,7 @@ type Persona = { id: string; name: string; role: string };
 const TABS = [
   { href: "/", label: "Console" },
   { href: "/savings/", label: "Savings" },
+  { href: "/knowledge/", label: "Knowledge" },
   { href: "/patterns/", label: "Patterns" },
   { href: "/tools/", label: "Tools" },
 ];

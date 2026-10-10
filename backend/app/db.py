@@ -9,7 +9,7 @@ from collections.abc import Iterator
 from contextlib import contextmanager
 from typing import Any
 
-from sqlalchemy import JSON, Engine, String, create_engine, event
+from sqlalchemy import JSON, Engine, String, Text, create_engine, event
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.orm import DeclarativeBase, Session, sessionmaker
 from sqlalchemy.pool import StaticPool
@@ -68,7 +68,7 @@ class StrList(TypeDecorator[list[str]]):
 
     def load_dialect_impl(self, dialect: Any) -> Any:
         if dialect.name == "postgresql":
-            return dialect.type_descriptor(postgresql.ARRAY(String()))
+            return dialect.type_descriptor(postgresql.ARRAY(Text()))
         return dialect.type_descriptor(JSON())
 
 

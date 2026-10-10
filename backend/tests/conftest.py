@@ -28,6 +28,7 @@ os.environ["CASCADE_DEMO_LATENCY_MS"] = "0"
 os.environ.setdefault("CASCADE_MODELS_DIR", str(ROOT / ".models"))
 os.environ.setdefault("HF_HUB_OFFLINE", "1")
 os.environ["CASCADE_ENV"] = "test"
+os.environ.setdefault("CASCADE_DRIFT_SAMPLE_RATE", "0")    # drift tests turn sampling on explicitly
 if not _REAL_AWS:
     os.environ["CASCADE_LLM"] = "demo"
     os.environ.pop("AWS_PROFILE", None)

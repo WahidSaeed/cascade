@@ -26,7 +26,7 @@ from .models import OverheadRow
 from .state import reset_runtime_state
 from .store import store
 
-SEED_VERSION = "phase2-v1"
+SEED_VERSION = "phase3-v1"
 DAY = 86400
 
 
@@ -39,6 +39,47 @@ def seed_users() -> None:
     persona_ids = {p["id"] for p in w.PERSONAS}
     for u in w.ALL_USERS:
         store().upsert_user(u["id"], u["name"], u["role"], u["is_admin"], u["id"] in persona_ids, u["groups"])
+
+
+COLLECTION_OWNERS = {"handbook": "chen", "products": "ben", "playbook": "ben", "compensation": "chen"}
+
+
+def collection_id(key: str) -> str:
+    return f"col_{key}"
+
+
+def seed_knowledge() -> dict[str, str]:
+    """The four collections (§17.1) with their v1 documents, ingested through the real pipeline."""
+    from .rag import ingest
+
+    docs_dir = Path(settings.demo_dir) / "docs"
+    ids: dict[str, str] = {}
+    for c in w.COLLECTIONS:
+        ingest.create_collection(c["name"], COLLECTION_OWNERS[c["key"]], c["access"], c["group_ids"],
+                                 collection_id=collection_id(c["key"]))
+    for d in w.DOCUMENTS:
+        out = ingest.register(collection_id(d.collection), d.title, d.filename, data=(docs_dir / d.filename).read_bytes(),
+                              created_by=COLLECTION_OWNERS[d.collection], sync=True)
+        ids[d.key] = out["id"]
+    return ids
+
+
+def upload_handbook_v2(user_id: str = "chen", sync: bool = True) -> dict[str, Any]:
+    """S5: Chen uploads Handbook v2 (same document, new version)."""
+    from .rag import ingest
+
+    spec = w.HANDBOOK_V2
+    data = (Path(settings.demo_dir) / "docs" / spec.filename).read_bytes()
+    return ingest.register(collection_id("handbook"), spec.title, spec.filename, data=data, created_by=user_id,
+                           sync=sync)
+
+
+def install_vacation_lookup(document_id: str, approver: str | None = "eli") -> str:
+    from .lookup import build_lookup
+
+    p = build_lookup("Vacation days by country", [document_id], approver=approver,
+                     extra_templates=w.VACATION_Q)
+    return p.id
 
 
 def _install_rule(name: str, task_type: str, examples: list[str], at: float) -> str:
@@ -55,14 +96,20 @@ def _install_rule(name: str, task_type: str, examples: list[str], at: float) -> 
     return p.id
 
 
-def install_artifacts(week_start: float) -> dict[str, str]:
+def install_artifacts(week_start: float, docs: dict[str, str] | None = None) -> dict[str, str]:
     rows = traffic()
     ex = [r["prompt"] for r in rows if r["task"] == "extraction"][:60]
     conv = [r["prompt"] for r in rows if r["task"] == "conversion"][:60]
-    return {
+    ids = {
         "extraction": _install_rule("Order details extraction", "extraction", ex, week_start - 3600),
         "conversion": _install_rule("Unit conversion", "transform", conv, week_start - 3000),
     }
+    if docs and "handbook_v1" in docs:
+        ids["vacation"] = install_vacation_lookup(docs["handbook_v1"])
+        with db.session() as s:
+            s.execute(update(OverheadRow).where(OverheadRow.pattern_id == ids["vacation"])
+                      .values(ts=week_start - 2400, simulated=True))
+    return ids
 
 
 def replay_week(week_start: float) -> int:
@@ -71,7 +118,8 @@ def replay_week(week_start: float) -> int:
 
     n = 0
     for r in traffic():
-        route(r["prompt"], r["user_id"], now=week_start + r["t"], simulated=True)
+        cols = [collection_id(k) for k in r.get("collections", [])] or None
+        route(r["prompt"], r["user_id"], collection_ids=cols, now=week_start + r["t"], simulated=True)
         n += 1
     return n
 
@@ -83,9 +131,10 @@ def build() -> dict[str, Any]:
     seed_users()
     week_start = time.time() - 7 * DAY
     random.seed(20251020)
-    ids = install_artifacts(week_start)
+    docs = seed_knowledge()
+    ids = install_artifacts(week_start, docs)
     n = replay_week(week_start)
-    info = {"seed_version": SEED_VERSION, "built_at": time.time(), "requests": n, "patterns": ids,
+    info = {"seed_version": SEED_VERSION, "built_at": time.time(), "requests": n, "patterns": ids, "documents": docs,
             "seconds": round(time.time() - t0, 1)}
     store().set_config("_seed", info)
     snapshot_save()

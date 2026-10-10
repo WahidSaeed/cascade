@@ -8,7 +8,7 @@ from typing import Any
 from sqlalchemy import JSON, Boolean, Float, ForeignKey, Index, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from .db import Base, StrList, TsVector, Vector
+from .db import Base, StrList, Vector
 
 
 def new_id(prefix: str) -> str:
@@ -199,6 +199,11 @@ class DocumentRow(Base):
     created_by: Mapped[str] = mapped_column(String(64), default="")
     updated_at: Mapped[float] = mapped_column(Float, default=now)
     deleted: Mapped[bool] = mapped_column(Boolean, default=False)
+    # A re-upload is ingested as a pending version while the current one keeps serving; the swap is atomic.
+    pending_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    pending_status: Mapped[str | None] = mapped_column(String(16), nullable=True)
+    pending_sha256: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    filename: Mapped[str] = mapped_column(String(512), default="", server_default="")
 
 
 class ChunkRow(Base):
@@ -214,8 +219,8 @@ class ChunkRow(Base):
     page: Mapped[int | None] = mapped_column(Integer, nullable=True)
     token_estimate: Mapped[int] = mapped_column(Integer, default=0)
     embedding: Mapped[list[float] | None] = mapped_column(Vector(384), nullable=True)
-    tsv: Mapped[str | None] = mapped_column(TsVector, nullable=True)
     acl: Mapped[list[str]] = mapped_column(StrList, default=list)
+    # On Postgres the table also has `tsv`, a generated tsvector (full-text search) owned by the database.
 
 
 class KbEvent(Base):

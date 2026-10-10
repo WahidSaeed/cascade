@@ -101,6 +101,8 @@ class Settings(BaseSettings):
     chunk_overlap: int = 60
     rag_candidates: int = 30
     rag_fingerprint_k: int = 8
+    rag_relevance_floor: float = 0.60      # cosine: below this a chunk is never "relevant"
+    rag_relevance_delta: float = 0.06      # relevant = within this of the best match (and above the floor)
     rag_top_k: int = 5
     rag_max_context_tokens: int = 3000
     rag_rerank_min: float = 0.0
@@ -109,6 +111,7 @@ class Settings(BaseSettings):
     history_max_tokens: int = 800
     bedrock_kb_id: str = ""
     ingest_queue_url: str = ""             # empty -> in-process background task
+    blob_bucket: str = ""                  # empty -> local filesystem under data_dir/blobs
 
     # --- discovery / drift ---
     discovery_min: int = 25

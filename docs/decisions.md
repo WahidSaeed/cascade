@@ -24,3 +24,9 @@ date — decision — reason.
 - 2026-10-10 — Bedrock model ids default to cross-region inference profiles (`us.anthropic.…`); IAM grants the profiles and their underlying foundation models.
 - 2026-10-10 — The urgency `dl` artifact (and the triage artifact) arrive with Phase 5's compilers; until then S2's low-confidence fallback is exercised with a rule artifact that reports low confidence (tests/unit/test_review_regressions.py).
 - 2026-10-10 — S2's low-confidence fallback step joins the browser test with Phase 5, when the urgency `dl` artifact it uses exists; until then it is covered at API level (test_review_regressions.py).
+- 2026-10-10 — A knowledge prompt's "relevant" chunks are those within 0.06 cosine of the best match and above 0.60; the context fingerprint AND the LLM context use only these — so two users share a cached answer exactly when they would retrieve the same relevant sources (S4), and a cached answer can never cite a chunk outside its fingerprint.
+- 2026-10-10 — A re-uploaded document is ingested as a pending version while the current version keeps serving; one transaction inserts the new chunks, flips the version and deletes the old chunks (§9.2 step 6).
+- 2026-10-10 — Documents are identified by (collection, title): uploading under an existing title is a new version; the Knowledge view offers "new version" per document.
+- 2026-10-10 — `chunks.tsv` is a Postgres generated column owned by the database (not in the ORM); `StrList` maps to `text[]` on Postgres so `acl && principals` uses the GIN index.
+- 2026-10-10 — The SQLite path (`InMemoryRetriever`) applies the ACL and collection filters in SQL (json_each) and scores only the permitted rows in memory — rule 13 holds on both backends.
+- 2026-10-10 — Every upload gets its own version number and the ingestion swap is a locked compare-and-set (newer upload or another worker wins; stale runs are discarded); the ACL is recomputed inside the swap — from the Phase 3 review.

@@ -17,6 +17,8 @@ from tests.unit.test_migrations import *  # noqa: F401,F403
 
 # The same test functions as the SQLite unit suite, collected again here against Postgres.
 from tests.unit.test_phase1_acceptance import *  # noqa: F401,F403
+from tests.unit.test_phase3_acceptance import *  # noqa: F401,F403
+from tests.unit.test_rag_components import *  # noqa: F401,F403
 from tests.unit.test_review_regressions import *  # noqa: F401,F403
 from tests.unit.test_store import *  # noqa: F401,F403
 
@@ -57,3 +59,24 @@ def test_migrations_run_from_empty_on_sqlite(tmp_path):
     db.migrate(f"sqlite:///{tmp_path / 'empty.db'}")
     eng = create_engine(f"sqlite:///{tmp_path / 'empty.db'}")
     assert "ledger" in inspect(eng).get_table_names()
+
+
+@pytest.mark.acceptance("P3-02")
+def test_pgvector_access_filter_is_in_sql(fresh_db):
+    """The ACL predicate is part of the SQL: a principal set with no grant gets zero rows from pgvector."""
+    from app import seed
+    from app.light.embedder import get_embedder
+    from app.rag.retriever import PgVectorRetriever
+
+    seed.seed_users()
+    seed.seed_knowledge()
+    cols = [seed.collection_id(k) for k in ("handbook", "products", "playbook", "compensation")]
+    vec, _ = get_embedder().embed("bonus range for team leads")
+    r = PgVectorRetriever()
+    assert r.candidates(vec, "bonus range", ["user:nobody"], cols, 30) == []
+    manager = r.candidates(vec, "bonus range", ["group:managers"], cols, 30)
+    assert manager and {c.collection_id for c in manager} == {seed.collection_id("compensation")}
+    with db.engine().connect() as c:
+        plan = "\n".join(x[0] for x in c.execute(text(
+            "EXPLAIN SELECT id FROM chunks WHERE acl && ARRAY['org:*']::text[] ORDER BY id")))
+    assert "acl" in plan

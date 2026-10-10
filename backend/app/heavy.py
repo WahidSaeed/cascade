@@ -148,6 +148,18 @@ def find_vacation_days(country: str, blocks: list[ContextBlock]) -> tuple[int, C
     return None
 
 
+_ROW = re.compile(r"^\s*([A-Z][A-Za-z .'-]+?)\s*\|\s*(\d+(?:\.\d+)?)\s*$", re.M)
+
+
+def extract_table_rows(blocks: list[ContextBlock]) -> dict[str, str]:
+    """Demo LLM: read "Key | value" rows from the provided passages (as a model would from a table)."""
+    out: dict[str, str] = {}
+    for b in blocks:
+        for m in _ROW.finditer(b.text):
+            out[m.group(1).strip()] = m.group(2)
+    return out
+
+
 class DemoLLM(HeavyModel):
     """Deterministic Bedrock stand-in. All token arithmetic runs on real request sizes."""
 
@@ -172,6 +184,8 @@ class DemoLLM(HeavyModel):
             slot = str(req.meta.get("slot", ""))
             found = find_vacation_days(slot, req.context)
             return json.dumps({"value": str(found[0]) if found else None})
+        if req.purpose == "extract_table":
+            return json.dumps(extract_table_rows(req.context), sort_keys=True)
         if req.purpose == "name_cluster":
             from .demo_rules import name_cluster
 
@@ -211,7 +225,9 @@ class DemoLLM(HeavyModel):
         qw = {_stem(w) for w in _words(question)}
         scored: list[tuple[float, int, str]] = []
         for b in blocks:
-            for sent in _SENT.split(b.text.replace("\n", " ")):
+            # headings and table rows are lines of their own; prose sentences span the rest
+            lines = [ln for ln in b.text.split("\n") if len(ln.split()) >= 4 or "|" in ln]
+            for sent in _SENT.split(" ".join(ln for ln in lines if "|" not in ln)):
                 sw = {_stem(w) for w in _words(sent)}
                 overlap = len(qw & sw)
                 if overlap:

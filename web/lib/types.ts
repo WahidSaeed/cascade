@@ -75,3 +75,43 @@ export type PatternRow = {
 export type Persona = { id: string; name: string; role: string; groups: string[]; is_admin: boolean };
 export type Health = { status: string; db: string; llm: string; auth: string; demo: boolean; artifact_runtime: string };
 export type ToolConfig = components["schemas"]["ToolConfig"];
+
+export type Source = components["schemas"]["Source"];
+
+export type Collection = {
+  id: string;
+  name: string;
+  owner_id: string;
+  access: "org" | "group" | "private";
+  group_ids: string[];
+  documents: number;
+  tokens: number;
+  usage?: { requests: number; cache_hits: number; context_tokens: number; context_tokens_avoided: number;
+    tokens_spent: number; gross_saved_usd: number; net_saved_usd: number } | null;
+};
+
+export type Doc = {
+  id: string;
+  collection_id: string;
+  title: string;
+  filename: string;
+  version: number;
+  status: string;
+  error: string;
+  pending_version: number | null;
+  pending_status: string | null;
+  updated_at: number;
+  chunks?: number;
+};
+
+export type ChunkPreview = { id: string; ord: number; version: number; heading_path: string; page: number | null;
+  token_estimate: number; text: string };
+
+export type RagMetrics = {
+  knowledge_requests: number;
+  retrieval_latency_ms: { p50: number; p95: number; n: number };
+  relevance_gate_rate: number;
+  avg_context_tokens: number;
+  knowledge_cache_hit_rate: number;
+  citation_rate: number;
+};

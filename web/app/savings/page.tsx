@@ -6,25 +6,26 @@ import { StatTile } from "@/components/StatTile";
 import { api } from "@/lib/api";
 import { fmtInt, fmtPct, fmtUsd } from "@/lib/format";
 import { useData } from "@/lib/useData";
-import type { Bucket, PatternRow, Summary, UserRow } from "@/lib/types";
+import type { Bucket, PatternRow, RagMetrics, Summary, UserRow } from "@/lib/types";
 
 const th = "py-2 pr-4 text-left font-mono text-[11px] uppercase tracking-[0.1em] text-muted-48 font-normal";
 const td = "py-2.5 pr-4 border-t border-divider";
 
 export default function SavingsPage() {
   const { data, error } = useData(async () => {
-    const [summary, series, users, patterns] = await Promise.all([
+    const [summary, series, users, patterns, rag] = await Promise.all([
       api<Summary>("/api/ledger/summary"),
       api<Bucket[]>("/api/ledger/timeseries?bucket=day"),
       api<UserRow[]>("/api/ledger/by-user"),
       api<PatternRow[]>("/api/ledger/by-pattern"),
+      api<RagMetrics>("/api/rag/metrics"),
     ]);
-    return { summary, series, users, patterns };
+    return { summary, series, users, patterns, rag };
   }, "savings", 15000);
 
   if (error) return <p className="text-bad">{error}</p>;
   if (!data) return <p className="text-muted-48">Loading the ledger…</p>;
-  const { summary: s, series, users, patterns } = data;
+  const { summary: s, series, users, patterns, rag } = data;
   const estimated = s.estimated_share > 0 || (s.estimate_methods.pattern_measured ?? 0) > 0;
   const mix = s.input_mix;
   const mixTotal = mix.prompt + mix.context + mix.history + mix.system || 1;
@@ -71,6 +72,15 @@ export default function SavingsPage() {
               <div className="flex justify-between text-muted-48">
                 <span>prompt-cache read / write</span><span>{fmtInt(mix.cache_read)} / {fmtInt(mix.cache_write)}</span>
               </div>
+            </div>
+          </div>
+          <div data-testid="knowledge-savings">
+            <p className="eyebrow mb-3">Knowledge</p>
+            <div className="font-mono text-[12px] leading-6 text-muted-80">
+              <div className="flex justify-between"><span>questions</span><span>{fmtInt(rag.knowledge_requests)}</span></div>
+              <div className="flex justify-between"><span>cache hit rate</span><span data-testid="knowledge-hit-rate">{fmtPct(rag.knowledge_cache_hit_rate)}</span></div>
+              <div className="flex justify-between"><span>context tokens avoided</span><span data-testid="context-avoided">{fmtInt(s.context_tokens_avoided)}</span></div>
+              <div className="flex justify-between"><span>citation rate</span><span>{fmtPct(rag.citation_rate)}</span></div>
             </div>
           </div>
         </div>

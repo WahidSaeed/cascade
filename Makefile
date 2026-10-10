@@ -23,7 +23,7 @@ export AWS_CONFIG_FILE := /dev/null
 export AWS_SHARED_CREDENTIALS_FILE := /dev/null
 unexport AWS_PROFILE
 SAFE_AWS :=
-TEST_ENV := $(SAFE_AWS) CASCADE_LLM=demo CASCADE_DEMO_LATENCY_MS=0 CASCADE_MODELS_DIR=$(ROOT)/.models \
+TEST_ENV := $(SAFE_AWS) CASCADE_LLM=demo CASCADE_DEMO_LATENCY_MS=0 CASCADE_DRIFT_SAMPLE_RATE=0 CASCADE_MODELS_DIR=$(ROOT)/.models \
 	HF_HUB_OFFLINE=$${HF_HUB_OFFLINE:-0} TOKENIZERS_PARALLELISM=false
 UV := cd $(BACKEND) && $(TEST_ENV) uv run
 # pytest exit code 5 = "no tests collected": a suite with no tests yet reports 0 tests, not a failure.

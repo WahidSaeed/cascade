@@ -9,7 +9,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from . import db, engine
+from . import db, engine, reverify  # noqa: F401 - reverify registers the kb_event hook
 from . import patterns as pat
 from .auth import Identity, current_user, require_admin
 from .config import EDITABLE, settings
@@ -59,6 +59,10 @@ app = FastAPI(title="Cascade", version="0.3.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=[o.strip() for o in settings.cors_origins.split(",")],
                    allow_methods=["*"], allow_headers=["*"])
 
+
+from .rag.api import router as knowledge_router  # noqa: E402
+
+app.include_router(knowledge_router)
 
 if settings.demo:
     from .demo_api import router as demo_router

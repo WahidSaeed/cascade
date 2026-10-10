@@ -2,15 +2,19 @@
 import { useEffect, useRef, useState } from "react";
 import { PageHeader } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
+import { CitationChips } from "@/components/CitationChips";
+import { CollectionPicker } from "@/components/CollectionPicker";
 import { RouteBadge } from "@/components/RouteBadge";
 import { TokenNote } from "@/components/TokenNote";
 import { api } from "@/lib/api";
 import { fmtMs } from "@/lib/format";
-import type { ChatResponse } from "@/lib/types";
+import type { ChatResponse, Collection } from "@/lib/types";
+import { useData } from "@/lib/useData";
 import { useUser } from "@/lib/user";
 
 type Msg = { role: "user"; text: string } | { role: "bot"; r: ChatResponse } | { role: "error"; text: string };
-type Thread = { conversationId: string | null; msgs: Msg[] };
+type Thread = { conversationId: string | null; msgs: Msg[]; collections: string[] };
+const EMPTY: Thread = { conversationId: null, msgs: [], collections: [] };
 
 const STAGE_LABEL: Record<string, string> = {
   exact_cache: "Exact cache",
@@ -58,6 +62,7 @@ function BotMessage({ r }: { r: ChatResponse }) {
           {open ? "hide why" : "why?"}
         </button>
       </div>
+      <CitationChips sources={r.sources ?? []} />
       {open && <Why r={r} />}
     </div>
   );
@@ -69,7 +74,8 @@ export default function ConsolePage() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const end = useRef<HTMLDivElement>(null);
-  const thread = threads[userId] ?? { conversationId: null, msgs: [] };
+  const thread = threads[userId] ?? EMPTY;
+  const cols = useData(() => api<Collection[]>("/api/collections"), `console-cols-${userId}`);
 
   useEffect(() => {
     // a block body: newer browsers return a Promise from scrollIntoView, which must not become the cleanup
@@ -77,7 +83,7 @@ export default function ConsolePage() {
   }, [thread.msgs.length]);
 
   const update = (uid: string, f: (t: Thread) => Thread) =>
-    setThreads((all) => ({ ...all, [uid]: f(all[uid] ?? { conversationId: null, msgs: [] }) }));
+    setThreads((all) => ({ ...all, [uid]: f(all[uid] ?? EMPTY) }));
 
   async function send() {
     const prompt = input.trim();
@@ -89,9 +95,10 @@ export default function ConsolePage() {
     try {
       const r = await api<ChatResponse>("/api/chat", {
         method: "POST",
-        json: { prompt, conversation_id: threads[uid]?.conversationId ?? null },
+        json: { prompt, conversation_id: threads[uid]?.conversationId ?? null,
+          collection_ids: threads[uid]?.collections ?? [] },
       });
-      update(uid, (t) => ({ conversationId: r.conversation_id, msgs: [...t.msgs, { role: "bot", r }] }));
+      update(uid, (t) => ({ ...t, conversationId: r.conversation_id, msgs: [...t.msgs, { role: "bot", r }] }));
     } catch (e) {
       update(uid, (t) => ({ ...t, msgs: [...t.msgs, { role: "error", text: String(e) }] }));
     } finally {
@@ -102,6 +109,12 @@ export default function ConsolePage() {
   return (
     <section className="flex min-h-[calc(100vh-160px)] flex-col">
       <PageHeader eyebrow="Console" title="Ask anything." sub="Every prompt is routed to the cheapest path that's still correct." />
+      {(cols.data?.length ?? 0) > 0 && (
+        <div className="mb-6">
+          <CollectionPicker collections={cols.data ?? []} selected={thread.collections}
+            onChange={(ids) => update(userId, (t) => ({ ...t, collections: ids }))} />
+        </div>
+      )}
       <div className="flex flex-1 flex-col gap-[18px] pb-5" data-testid="messages">
         {thread.msgs.length === 0 && (
           <p className="text-muted-48">

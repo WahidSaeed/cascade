@@ -30,6 +30,8 @@ locals {
     { name = "CASCADE_BEDROCK_MODEL_ID", value = var.bedrock_model_id },
     { name = "CASCADE_LIGHT_LLM_MODEL_ID", value = var.light_llm_model_id },
     { name = "CASCADE_PII_BACKEND", value = "comprehend" },
+    { name = "CASCADE_INGEST_QUEUE_URL", value = aws_sqs_queue.ingest.url },
+    { name = "CASCADE_BLOB_BUCKET", value = aws_s3_bucket.artifacts.bucket },
   ]
   backend_secrets = [
     { name = "CASCADE_DATABASE_URL", valueFrom = "${aws_secretsmanager_secret.db.arn}:url::" },
