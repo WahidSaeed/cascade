@@ -58,9 +58,11 @@ def train_ml(prompts: list[str], labels: list[str], out_dir: Path, params: MlPar
     from sklearn.pipeline import Pipeline
 
     t0 = time.time()
-    X = texts_for(prompts, input_mode)
+    # Lowercased here and by the runner (meta "prelowered"), never inside the ONNX graph: its StringNormalizer
+    # needs the en_US.UTF-8 locale, which slim and Lambda images don't have, and the artifact would fail to load.
+    X = [t.lower() for t in texts_for(prompts, input_mode)]
     vec = TfidfVectorizer(ngram_range=(1, params.ngram_max), min_df=params.min_df, sublinear_tf=params.sublinear_tf,
-                          lowercase=True, token_pattern=r"(?u)\b\w\w+\b")  # noqa: S106 - a regex, not a password
+                          lowercase=False, token_pattern=r"(?u)\b\w\w+\b")  # noqa: S106 - a regex, not a password
     clf: Any
     if params.model == "gboost":
         clf = GradientBoostingClassifier(random_state=7)
@@ -73,7 +75,7 @@ def train_ml(prompts: list[str], labels: list[str], out_dir: Path, params: MlPar
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "model.onnx").write_bytes(onx.SerializeToString())
     classes = [str(c) for c in pipe.classes_]
-    meta = {"kind": "ml", "classes": classes, "input": input_mode, "min_words": 2,
+    meta = {"kind": "ml", "classes": classes, "input": input_mode, "min_words": 2, "prelowered": True,
             "prefixes": [p.lower() for p in (prefixes or [""])], "features": f"tfidf 1-{params.ngram_max}gram",
             "model": params.model, "C": params.C, "class_weight": params.class_weight}
     (out_dir / "meta.json").write_text(json.dumps(meta))

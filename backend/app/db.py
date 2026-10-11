@@ -204,6 +204,9 @@ def session() -> Iterator[Session]:
         s.close()
 
 
+MIGRATION_LOCK = 7_201_338            # pg advisory lock id for Alembic upgrades
+
+
 def migrate(url: str | None = None) -> None:
     """Run Alembic migrations to head (idempotent)."""
     from pathlib import Path
@@ -213,10 +216,26 @@ def migrate(url: str | None = None) -> None:
     from alembic import command
 
     here = Path(__file__).resolve().parents[1]
+    target = url or settings.resolved_database_url()
     cfg = Config(str(here / "alembic.ini"))
     cfg.set_main_option("script_location", str(here / "alembic"))
-    cfg.set_main_option("sqlalchemy.url", (url or settings.resolved_database_url()).replace("%", "%%"))
-    command.upgrade(cfg, "head")
+    cfg.set_main_option("sqlalchemy.url", target.replace("%", "%%"))
+    if not target.startswith("postgresql"):
+        command.upgrade(cfg, "head")
+        return
+    # Every service (API tasks, agent worker, ingest worker) migrates on start, often at the same moment:
+    # serialize them with a session-level advisory lock; the later ones find the schema already at head.
+    from sqlalchemy import text
+
+    eng = make_engine(target)
+    with eng.connect() as lock_conn:
+        lock_conn.execute(text("SELECT pg_advisory_lock(:k)"), {"k": MIGRATION_LOCK})
+        try:
+            command.upgrade(cfg, "head")
+        finally:
+            lock_conn.execute(text("SELECT pg_advisory_unlock(:k)"), {"k": MIGRATION_LOCK})
+            lock_conn.commit()
+    eng.dispose()
 
 
 def dialect_name() -> str:

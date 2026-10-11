@@ -1,6 +1,6 @@
 import { expect, type APIRequestContext, type Page } from "@playwright/test";
 
-export const API = "http://127.0.0.1:8181";
+export const API = process.env.PW_STACK === "compose" ? "http://localhost:8080" : "http://127.0.0.1:8181";
 
 export async function resetDemo(request: APIRequestContext) {
   const r = await request.post(`${API}/api/demo/reset`, { timeout: 120_000 });

@@ -32,7 +32,7 @@ PG_URL := postgresql+psycopg://cascade:cascade@localhost:5433/cascade
 COMPOSE := docker compose -f $(ROOT)/docker-compose.yml
 
 .PHONY: help setup models dev lint test-unit test-int test-web test-e2e contract eval perf security \
-	verify test-aws pg-up pg-down demo-up demo-reset demo-e2e demo-record demo-measure demo-data \
+	verify test-aws pg-up pg-down demo-up demo-reset demo-e2e demo-e2e-stack demo-record demo-measure demo-data \
 	web-build api seed clean
 
 help: ## list targets
@@ -54,7 +54,7 @@ dev: ## local stack via docker compose (Demo LLM, local auth)
 	$(COMPOSE) up --build
 
 api: ## run the API on :8080 against SQLite (no Docker quick start)
-	$(UV) uvicorn app.main:app --port 8080 --reload
+	$(UV) env CASCADE_DEMO=true uvicorn app.main:app --port 8080 --reload
 
 pg-up: ## start the docker-compose Postgres (pgvector) and wait for it
 	$(COMPOSE) up -d postgres
@@ -124,18 +124,32 @@ verify: ## THE gate: every suite except AWS; writes reports/summary.md, coverage
 test-aws: ## real AWS sandbox tests (manual; never during the build)
 	cd $(BACKEND) && $(REAL_AWS) CASCADE_LLM=bedrock uv run pytest tests -m aws
 
+DEMO_API := http://localhost:8080
+
 demo-up: ## start the stack, migrate and seed
 	$(COMPOSE) up -d --build
-	$(COMPOSE) exec -T api python -m app.seed --reset
+	@echo "waiting for the API (it migrates the database on start)…"
+	@for i in $$(seq 1 120); do curl -fsS $(DEMO_API)/api/health >/dev/null 2>&1 && break; sleep 2; done; \
+		curl -fsS $(DEMO_API)/api/health >/dev/null || { echo "API did not come up"; exit 1; }
+	# the seed trains the urgency dl artifact once: run it where torch is installed (the agent-worker image), in a
+	# one-off container while the worker itself is stopped (Docker Desktop's VM has little memory to spare)
+	$(COMPOSE) stop agent-worker
+	$(COMPOSE) run --rm --no-deps agent-worker python -m app.seed --reset
+	$(COMPOSE) start agent-worker
+	# the running API restores the snapshot itself, so its artifact workers and caches start clean
+	curl -fsS -X POST $(DEMO_API)/api/demo/reset && echo
 
 demo-reset: ## return the demo to its starting state (< 30 s)
-	@if $(COMPOSE) ps --status running api 2>/dev/null | grep -q api; then \
-		$(COMPOSE) exec -T api python -m app.seed --reset; \
+	@if curl -fsS $(DEMO_API)/api/health >/dev/null 2>&1; then \
+		curl -fsS -X POST $(DEMO_API)/api/demo/reset && echo; \
 	else $(UV) python -m app.seed --reset; fi
 
 demo-e2e: ## every demo scenario, headless
 	@mkdir -p $(REPORTS)/junit
 	cd $(WEB) && $(TEST_ENV) PW_JUNIT=$(REPORTS)/junit/demo.xml npx playwright test --grep @demo
+
+demo-e2e-stack: ## every demo scenario against the running compose stack (make demo-up first) — the stage check
+	cd $(WEB) && PW_STACK=compose npx playwright test --grep @demo
 
 demo-record: ## record a video of each scenario into demo/backup/
 	cd $(WEB) && $(TEST_ENV) PW_RECORD=1 npx playwright test --grep @demo

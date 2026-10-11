@@ -1,12 +1,12 @@
 import path from "node:path";
 import { expect, test } from "@playwright/test";
-import { ask, asUser, resetDemo } from "../helpers";
+import { API, ask, asUser, resetDemo } from "../helpers";
 
 const CSV = path.resolve(__dirname, "..", "..", "..", "demo", "data", "labelled_tickets.csv");
 
 test.beforeAll(async ({ request }) => { await resetDemo(request); });
 
-test("S9 integration with an existing system @demo", async ({ page }) => {
+test("S9 integration with an existing system @demo", async ({ page, request }) => {
   test.setTimeout(240_000);
   await page.goto("/patterns/");
   await asUser(page, "ben");
@@ -19,7 +19,8 @@ test("S9 integration with an existing system @demo", async ({ page }) => {
   await page.getByTestId("upload-dataset").click();
   await expect(page.getByTestId("dataset-report")).toContainText("300 rows");
   await page.getByTestId("integration-name").fill("CRM tier lookup");
-  await page.getByTestId("integration-target").fill("http://127.0.0.1:8191/customers/tier");
+  const crm = (await (await request.get(`${API}/api/demo/state`)).json()).crm_tier_url;   // where crm-mock runs
+  await page.getByTestId("integration-target").fill(crm);
   await page.getByTestId("register-integration").click();
   await expect(page.getByTestId("integration-status")).toContainText("pending");
   await page.getByTestId("start-run").click();

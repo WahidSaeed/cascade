@@ -5,7 +5,10 @@ import json
 import sys
 from pathlib import Path
 
-from .main import app
+from .config import settings
+
+settings.demo = True          # the contract includes the demo endpoints the /demo page calls (mounted at import)
+from .main import app  # noqa: E402
 
 
 def main() -> None:

@@ -36,7 +36,7 @@ export function TopNav() {
         <span className="text-sky">◆</span> Cascade
       </span>
       <div className="flex gap-1">
-        {TABS.map((t) => {
+        {[...TABS, ...(health?.demo ? [{ href: "/demo/", label: "Demo" }] : [])].map((t) => {
           const active = t.href === "/" ? path === "/" : path?.startsWith(t.href.replace(/\/$/, ""));
           return (
             <Link key={t.href} href={t.href}

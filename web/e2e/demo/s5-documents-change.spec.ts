@@ -40,10 +40,12 @@ test("S5 documents change, answers stay correct @demo", async ({ page, request }
   await expect(card.getByTestId("pattern-status")).toHaveText("shadow");
   await expect(card.getByTestId("pattern-alert")).toContainText("re-verification");
 
-  // it stays demoted until rebuilt from v2: one click on the /demo page (here: its endpoint)
-  const rebuilt = await (await request.post(`${API}/api/demo/rebuild-lookup`)).json();
-  expect(rebuilt.rebuilt).toBeTruthy();
-  expect(rebuilt.dependencies[0]).toContain("v2");
+  // it stays demoted until rebuilt from v2: one click on the /demo page
+  await page.goto("/demo/");
+  const s5 = page.locator('[data-scenario="S5"]');
+  await s5.getByTestId("run-rebuild-lookup").click();
+  await expect(s5.getByTestId("result-rebuild-lookup")).toContainText("rebuilt: true", { timeout: 120_000 });
+  await expect(s5.getByTestId("result-rebuild-lookup")).toContainText("Employee Handbook v2");
   await page.goto("/");
   await asUser(page, "dana");
   await page.getByTestId("pick-all").click();

@@ -20,12 +20,24 @@ def poll_once() -> int:
     return n
 
 
+def serve(iterations: int | None = None, idle_s: float = 2.0) -> None:
+    """Poll forever. An error (e.g. connections dropped by a database failover or a demo reset) is logged and the
+    loop carries on: the run it was working on keeps its checkpoint and resumes once its lease expires."""
+    n = 0
+    while iterations is None or n < iterations:
+        n += 1
+        try:
+            if poll_once():
+                continue
+        except Exception:  # noqa: BLE001 - never let one bad poll stop the worker
+            log.exception("agent worker poll failed; retrying")
+        time.sleep(idle_s)
+
+
 def main() -> None:  # pragma: no cover - process entry point
     logging.basicConfig(level=logging.INFO)
     db.migrate()
-    while True:
-        if not poll_once():
-            time.sleep(2)
+    serve()
 
 
 if __name__ == "__main__":

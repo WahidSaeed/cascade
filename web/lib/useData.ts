@@ -1,9 +1,10 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-// Fetch on mount (and when `key` changes), optionally poll, and expose reload().
+// Fetch on mount (and when `key` changes), optionally poll, and expose reload(). Data fetched for an earlier key
+// (e.g. the previous persona's collections) is never returned for the new one while it loads.
 export function useData<T>(fetcher: () => Promise<T>, key: string, intervalMs?: number) {
-  const [data, setData] = useState<T | undefined>(undefined);
+  const [loaded, setData] = useState<{ key: string; value: T } | undefined>(undefined);
   const [error, setError] = useState<string | null>(null);
   const [nonce, setNonce] = useState(0);
   const fetchRef = useRef(fetcher);
@@ -13,7 +14,7 @@ export function useData<T>(fetcher: () => Promise<T>, key: string, intervalMs?: 
     let alive = true;
     const run = () =>
       fetchRef.current()
-        .then((d) => { if (alive) { setData(d); setError(null); } })
+        .then((d) => { if (alive) { setData({ key, value: d }); setError(null); } })
         .catch((e: unknown) => { if (alive) setError(e instanceof Error ? e.message : String(e)); });
     void run();
     const t = intervalMs ? setInterval(() => void run(), intervalMs) : undefined;
@@ -21,5 +22,6 @@ export function useData<T>(fetcher: () => Promise<T>, key: string, intervalMs?: 
   }, [key, nonce, intervalMs]);
 
   const reload = useCallback(() => setNonce((n) => n + 1), []);
+  const data = loaded && loaded.key === key ? loaded.value : undefined;
   return { data, error, reload };
 }

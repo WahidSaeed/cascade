@@ -11,12 +11,70 @@ from .store import store
 
 router = APIRouter(prefix="/api/demo", tags=["demo"])
 _lock = threading.Lock()
+# "Replay traffic" (§17.3): a slice of the generated week routed live, in the background, so the button returns
+# at once even with the Demo LLM's stage latency; progress shows in /api/demo/state.
+_replay: dict[str, Any] = {"running": False, "done": 0, "total": 0, "stop": threading.Event(), "thread": None}
 
 
 @router.get("/state")
 def state() -> dict[str, Any]:
     return {"demo": settings.demo, "seed": store().config_overrides().get("_seed"),
-            "latency_ms": settings.demo_latency_ms}
+            "latency_ms": settings.demo_latency_ms,
+            "crm_tier_url": settings.crm_url.rstrip("/") + "/customers/tier",     # S9's integration target
+            "replay": {k: _replay[k] for k in ("running", "done", "total")}}
+
+
+def _replay_run(rows: list[dict[str, Any]]) -> None:
+    from .engine import route
+    from .seed import collection_id
+
+    try:
+        for r in rows:
+            if _replay["stop"].is_set():
+                break
+            cols = [collection_id(k) for k in r.get("collections", [])] or None
+            route(r["prompt"], r["user_id"], collection_ids=cols, simulated=True)
+            _replay["done"] += 1
+    finally:
+        _replay["running"] = False
+
+
+@router.post("/replay-traffic")
+def replay_traffic(n: int = 40) -> dict[str, Any]:
+    """Route `n` prompts sampled from the generated week through the real router, now, as their original users
+    (labelled simulated, like the seeded week)."""
+    import random
+
+    from fastapi import HTTPException
+
+    from .seed import traffic
+
+    with _lock:                                     # one replay at a time, never during a reset
+        if _replay["running"]:
+            raise HTTPException(409, "a replay is already running")
+        _replay["runs"] = _replay.get("runs", 0) + 1
+        # deterministic (§14.2): the k-th replay since start always samples the same prompts
+        rows = random.Random(20251020 + _replay["runs"]).sample(traffic(), k=max(1, min(n, 500)))
+        _replay.update(running=True, done=0, total=len(rows))
+        _replay["stop"].clear()
+        t = threading.Thread(target=_replay_run, args=(rows,), name="demo-replay", daemon=True)
+        _replay["thread"] = t
+        t.start()
+    return {"started": len(rows)}
+
+
+def stop_replay() -> None:
+    """Reset waits for a running replay to stop, so it never writes into the restored database. Call with _lock
+    held. The replay stops between requests, so this waits for at most one routed request."""
+    t = _replay["thread"]
+    if t is not None and t.is_alive():
+        _replay["stop"].set()
+        t.join(timeout=120)
+        if t.is_alive():
+            from fastapi import HTTPException
+
+            raise HTTPException(503, "the traffic replay did not stop; reset not done — try again")
+    _replay.update(running=False, done=0, total=0, thread=None)
 
 
 @router.post("/reset")
@@ -27,6 +85,7 @@ def reset() -> dict[str, Any]:
     from .main import apply_config_overrides
 
     with _lock:
+        stop_replay()
         out = seed.reset()
         fresh = Settings()                       # Tools edits made during the demo are undone too
         for k in EDITABLE:

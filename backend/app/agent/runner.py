@@ -57,7 +57,7 @@ def load(run_id: str) -> dict[str, Any]:
                 "created_at": r.created_at, "updated_at": r.updated_at, **r.data}
 
 
-def save(run: dict[str, Any], status: str | None = None, owner: str | None = None) -> None:
+def save(run: dict[str, Any], status: str | None = None, owner: str | None = None, claim: str | None = None) -> None:
     keys = ("id", "pattern_id", "user_id", "status", "cost_so_far_usd", "lease_owner", "lease_until", "created_at",
             "updated_at")
     data = {k: v for k, v in run.items() if k not in keys}
@@ -73,6 +73,8 @@ def save(run: dict[str, Any], status: str | None = None, owner: str | None = Non
         r.updated_at = time.time()
         if owner is not None:
             r.lease_until = time.time() + LEASE_S
+        if claim is not None:                       # take the lease in the same write that makes it runnable
+            r.lease_owner, r.lease_until = claim, time.time() + LEASE_S
 
 
 def event(run: dict[str, Any], kind: str, text: str, **extra: Any) -> None:
@@ -161,15 +163,18 @@ def start_run(run_id: str, sync: bool = False) -> dict[str, Any]:
     run["iteration"] = 1 if run["status"] == "awaiting_intake" else int(run["iteration"]) + 1
     run["step"] = 0
     event(run, "start", f"Iteration {run['iteration']} started.")
-    save(run, "agent_running")
+    # A synchronous start (the seed, the demo's lookup rebuild) owns the run from the moment it becomes runnable,
+    # so an agent-worker polling for runs can never take it over in between.
+    owner = f"{WORKER_ID}-sync-{threading.get_ident()}" if sync else None
+    save(run, "agent_running", claim=owner)
     _set_pattern_status(run["pattern_id"], PatternStatus.agent_running)
-    dispatch(run_id, sync)
+    dispatch(run_id, sync, owner)
     return load(run_id)
 
 
-def dispatch(run_id: str, sync: bool = False) -> None:
+def dispatch(run_id: str, sync: bool = False, owner: str | None = None) -> None:
     if sync:
-        execute(run_id)
+        execute(run_id, owner=owner)
     elif settings.agent_executor == "inline":
         _pool.submit(_safe_execute, run_id)
     # executor == "worker": the agent-worker process picks it up (app/agent/worker.py)
@@ -208,9 +213,12 @@ def execute(run_id: str, owner: str | None = None, max_steps: int = 60) -> dict[
 
     def heartbeat() -> None:                    # long steps (dl training) keep the lease alive
         while not stop.wait(LEASE_S / 3):
-            with db.session() as s:
-                s.execute(update(AgentRunRow).where(AgentRunRow.id == run_id, AgentRunRow.lease_owner == owner)
-                          .values(lease_until=time.time() + LEASE_S))
+            try:
+                with db.session() as s:
+                    s.execute(update(AgentRunRow).where(AgentRunRow.id == run_id, AgentRunRow.lease_owner == owner)
+                              .values(lease_until=time.time() + LEASE_S))
+            except Exception:  # noqa: BLE001 - a dropped connection: retry on the next beat, keep the thread alive
+                log.warning("lease heartbeat for %s failed; retrying", run_id, exc_info=True)
 
     beat = threading.Thread(target=heartbeat, daemon=True)
     beat.start()
@@ -249,8 +257,10 @@ def _step(run: dict[str, Any], owner: str) -> bool:
         tb.check_budget()
         if run["iteration"] > run["budget"]["max_iterations"]:
             raise BudgetExceeded(f"iteration cap {run['budget']['max_iterations']} reached")
+        t0 = time.monotonic()
         action = _brain_action(run, tb)
         tool, args = action["tool"], dict(action.get("args", {}))
+        log.info("run %s step %s: agent chose %s in %.1fs", run["id"], run.get("step"), tool, time.monotonic() - t0)
         run["pending_tool_use"] = action.get("tool_use_id")     # Bedrock: answered with a toolResult next turn
         if tool == "report":
             text = scripted.report_text(run, args.get("recommendation", "accept"))
@@ -270,7 +280,9 @@ def _step(run: dict[str, Any], owner: str) -> bool:
             event(run, "question", run["pending_question"])
             save(run, "awaiting_feedback", owner)
             return False
+        t1 = time.monotonic()
         result = _call_tool(tb, tool, args, run)
+        log.info("run %s step %s: %s took %.1fs", run["id"], run.get("step"), tool, time.monotonic() - t1)
         run["step"] = int(run.get("step", 0)) + 1
         event(run, "tool", f"{tool} → {summarize(result)}", tool=tool, args=args, result=result,
               tool_use_id=run.get("pending_tool_use"))
@@ -480,8 +492,9 @@ def raise_budget(run_id: str, max_cost_usd: float | None = None, max_iterations:
                          f"{run['budget']['max_iterations']} iterations.")
     save(run)
     if capped and run["status"] == "awaiting_feedback":
-        save(run, "agent_running")
-        dispatch(run_id, sync)
+        owner = f"{WORKER_ID}-sync-{threading.get_ident()}" if sync else None
+        save(run, "agent_running", claim=owner)
+        dispatch(run_id, sync, owner)
     return load(run_id)
 
 

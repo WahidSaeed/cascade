@@ -7,8 +7,12 @@ test.beforeAll(async ({ request }) => {
   await resetDemo(request);
 });
 
-test("@P2-01 every view renders in the deck theme", async ({ page }) => {
-  for (const [route, eyebrow] of [["/", "Console"], ["/savings/", "Savings"], ["/patterns/", "Patterns"], ["/tools/", "Tools"]]) {
+test("@P2-01 every view renders in the deck theme", async ({ page, request }) => {
+  const triage = (await (await request.get(`${API}/api/patterns`)).json())
+    .find((p: { name: string }) => p.name === "Ticket triage");
+  for (const [route, eyebrow] of [["/", "Console"], ["/savings/", "Savings"], ["/knowledge/", "Knowledge"],
+    ["/patterns/", "Patterns"], [`/patterns/intake/?id=${triage.id}`, "Pattern recognized"], ["/tools/", "Tools"],
+    ["/tools/integrations/", "Tools · Integrations"], ["/demo/", "Demo"]]) {
     await page.goto(route);
     const eb = page.locator(".eyebrow").first();
     await expect(eb).toHaveText(eyebrow);

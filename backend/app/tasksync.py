@@ -3,12 +3,14 @@ demo reset) reach every other task within `config_refresh_s`: each request check
 the stored overrides changed and applies them — including resetting keys that were removed to their defaults."""
 from __future__ import annotations
 
+import logging
 import threading
 import time
 from typing import Any
 
 from .config import EDITABLE, Settings, settings
 
+log = logging.getLogger("cascade.tasksync")
 _lock = threading.Lock()
 _state: dict[str, Any] = {"checked": 0.0, "applied": None, "defaults": None}
 
@@ -48,7 +50,12 @@ def maybe_sync() -> None:
         _state["checked"] = now
         from .store import store
 
-        overrides = {k: v for k, v in store().config_overrides().items() if k in EDITABLE}
+        try:
+            overrides = {k: v for k, v in store().config_overrides().items() if k in EDITABLE}
+        except Exception as exc:  # noqa: BLE001 - e.g. a connection reset by a restore: retry next time
+            log.warning("config sync skipped: %s", exc)
+            _state["checked"] = 0.0
+            return
         if overrides != _state["applied"]:
             apply(overrides)
 

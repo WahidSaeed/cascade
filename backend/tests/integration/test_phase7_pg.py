@@ -127,3 +127,41 @@ def test_entries_for_other_values_never_crowd_out_the_match(fresh_db):
     vec, _ = emb.embed(probe)
     hit = light_cache().lookup_semantic(norm_(probe), vec, "ava", None)
     assert hit is not None and hit.answer == "answer 7"
+
+
+def test_services_starting_together_migrate_safely():
+    """API tasks and the workers all migrate on start; concurrent upgrades of an empty database must not collide."""
+    import os
+    import threading
+    import uuid
+
+    from sqlalchemy import create_engine, inspect, text
+
+    base = os.environ["CASCADE_TEST_DATABASE_URL"]
+    name = f"cascade_t_mig_{uuid.uuid4().hex[:8]}"
+    admin = create_engine(base.rsplit("/", 1)[0] + "/postgres", isolation_level="AUTOCOMMIT")
+    with admin.connect() as c:
+        c.execute(text(f'CREATE DATABASE "{name}"'))
+    url = base.rsplit("/", 1)[0] + f"/{name}"
+    errors: list[BaseException] = []
+
+    def run():
+        try:
+            db.migrate(url)
+        except BaseException as exc:  # noqa: BLE001
+            errors.append(exc)
+
+    threads = [threading.Thread(target=run) for _ in range(3)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    try:
+        assert not errors, errors
+        eng = create_engine(url)
+        assert "ledger_rollup" in inspect(eng).get_table_names()
+        eng.dispose()
+    finally:
+        with admin.connect() as c:
+            c.execute(text(f'DROP DATABASE IF EXISTS "{name}" WITH (FORCE)'))
+        admin.dispose()

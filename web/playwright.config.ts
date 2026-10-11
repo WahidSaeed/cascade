@@ -1,9 +1,12 @@
 import { defineConfig, type ReporterDescription } from "@playwright/test";
 
 // The full local stack for E2E: the API (Demo LLM, local auth, fresh demo-reset state) and the
-// static web export. Started by Playwright; see scripts/e2e_stack.sh.
-const API = "http://127.0.0.1:8181";
-const WEB = "http://127.0.0.1:3181";
+// static web export, started by Playwright (scripts/e2e_api.sh, scripts/e2e_web.sh).
+// PW_STACK=compose runs the same tests against the running docker compose stack instead (make demo-e2e-stack):
+// Postgres, the separate agent-worker, the live Demo LLM latency — the stack used on stage.
+const COMPOSE = process.env.PW_STACK === "compose";
+const API = COMPOSE ? "http://localhost:8080" : "http://127.0.0.1:8181";
+const WEB = COMPOSE ? "http://localhost:3000" : "http://127.0.0.1:3181";
 const reporters: ReporterDescription[] = [["list"]];
 if (process.env.PW_JUNIT) reporters.push(["junit", { outputFile: process.env.PW_JUNIT }]);
 
@@ -20,7 +23,7 @@ export default defineConfig({
     trace: "retain-on-failure",
     video: process.env.PW_RECORD ? "on" : "off",
   },
-  webServer: [
+  webServer: COMPOSE ? [] : [
     {
       command: "bash ../scripts/e2e_api.sh",
       url: `${API}/api/health`,

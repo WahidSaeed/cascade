@@ -85,12 +85,14 @@ class Toolbox:
                 "projected_tokens_per_day": p.projected_tokens_per_day}
 
     def _logged(self) -> list[tuple[str, str]]:
-        """Logged prompts of this pattern with the LLM's answers (distillation labels), PII-redacted inputs."""
+        """Logged prompts of this pattern with the LLM's answers (distillation labels), PII-redacted inputs. Answers
+        grounded in documents (knowledge-scoped) are explanations with citations, not task labels: excluded."""
         p = self.pattern
         keys = set(p.template_keys)
         with db.session() as s:
             rows = s.execute(select(RequestLog.redacted, RequestLog.answer, RequestLog.template_key)
-                             .where(RequestLog.route == "llm").order_by(RequestLog.ts)).all()
+                             .where(RequestLog.route == "llm", RequestLog.knowledge.is_(False))
+                             .order_by(RequestLog.ts)).all()
         out = [(r, a) for r, a, k in rows if k in keys and a]
         return list(dict.fromkeys(out))
 

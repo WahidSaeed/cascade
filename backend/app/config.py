@@ -45,7 +45,7 @@ class Settings(BaseSettings):
 
     # --- environment ---
     env: str = "dev"                       # dev | test | prod
-    demo: bool = True                      # enables /demo and the demo endpoints
+    demo: bool = False                     # /demo + demo endpoints (compose / e2e set true; never prod)
     auth: str = "local"                    # local (X-User-Id / persona switcher) | cognito
     cors_origins: str = "*"                # comma-separated; prod = the CloudFront origin only
     models_dir: str = str(REPO_ROOT / ".models")
@@ -72,6 +72,7 @@ class Settings(BaseSettings):
     llm_max_tokens: int = 1024
     prompt_caching: bool = True            # mark the stable system block as a Bedrock cache point
     demo_latency_ms: int = 2500            # Demo LLM simulated latency centre (0 in tests)
+    crm_url: str = "http://127.0.0.1:8090"     # crm-mock (S9 "CRM tier lookup"); compose: http://crm-mock:8090
     demo_reasoning_overhead_tokens: int = 40
 
     # --- light layer (System 1) ---

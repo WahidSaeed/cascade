@@ -107,6 +107,8 @@ class MlArtifact:
             return FALLBACK, 0.0
         if not prompt.lower().startswith(tuple(self.meta.get("prefixes", [""]))):
             return FALLBACK, 0.0
+        if self.meta.get("prelowered"):
+            text = text.lower()
         outs = self.sess.run(None, {self.input_name: np.array([[text]], dtype=object)})
         probs = np.asarray(outs[1], dtype=np.float32)[0]
         classes = self.meta["classes"]

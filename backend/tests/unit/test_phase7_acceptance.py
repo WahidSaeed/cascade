@@ -515,3 +515,20 @@ def test_an_older_rebuild_never_replaces_a_newer_recognizer(fresh_db):
     rec_mod.set_recognizer(newer, (200.0, "b"))
     rec_mod.set_recognizer(older, (100.0, "a"))
     assert rec_mod._recognizer is newer
+
+
+def test_config_sync_never_fails_a_request(fresh_db, monkeypatch):
+    """A broken connection (e.g. the database was just restored from a snapshot) skips the sync; the request
+    itself still succeeds and the next one retries."""
+    from app import tasksync
+    from app.store import SqlStore
+
+    def boom(self):
+        raise RuntimeError("terminating connection due to administrator command")
+
+    with TestClient(__import__("app.main", fromlist=["app"]).app) as c:   # started normally
+        monkeypatch.setattr(SqlStore, "config_overrides", boom)
+        monkeypatch.setattr(settings, "config_refresh_s", 0.01)
+        tasksync._state["checked"] = 0.0
+        assert c.get("/api/health").status_code == 200
+    assert tasksync._state["checked"] == 0.0               # retried on the next request

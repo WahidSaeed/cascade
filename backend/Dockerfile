@@ -1,12 +1,11 @@
 # One image for the API, the agent worker, the ingest worker and crm-mock.
 # Build from the repository root:  docker build -f backend/Dockerfile -t cascade .
-FROM python:3.12-slim
-
-ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
-    UV_PROJECT_ENVIRONMENT=/opt/venv PATH=/opt/venv/bin:$PATH \
-    CASCADE_MODELS_DIR=/models HF_HUB_OFFLINE=0
+# --- build stage: some dependencies (hnswlib) compile from source and need a C++ toolchain
+FROM python:3.12-slim AS build
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv UV_COMPILE_BYTECODE=1
 COPY --from=ghcr.io/astral-sh/uv:0.5.11 /uv /usr/local/bin/uv
-
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY backend/pyproject.toml backend/uv.lock ./
 # The dl group (torch) is only needed by the agent worker's local trainer (build with WITH_DL=1).
@@ -14,6 +13,12 @@ ARG WITH_DL=0
 RUN if [ "$WITH_DL" = "1" ]; then uv sync --frozen --no-dev --no-install-project; \
     else uv sync --frozen --no-dev --no-group dl --no-install-project; fi
 
+# --- runtime stage: the virtualenv only, no compiler
+FROM python:3.12-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \
+    PATH=/opt/venv/bin:$PATH CASCADE_MODELS_DIR=/models HF_HUB_OFFLINE=0
+COPY --from=build /opt/venv /opt/venv
+WORKDIR /app
 COPY backend/app ./app
 COPY backend/alembic ./alembic
 COPY backend/alembic.ini ./

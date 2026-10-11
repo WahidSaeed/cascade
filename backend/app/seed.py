@@ -155,6 +155,16 @@ def replay_week(week_start: float) -> int:
 
 
 def build() -> dict[str, Any]:
+    """Build the starting state. The simulated week never waits for the Demo LLM's on-stage latency."""
+    latency = settings.demo_latency_ms
+    settings.demo_latency_ms = 0
+    try:
+        return _build()
+    finally:
+        settings.demo_latency_ms = latency
+
+
+def _build() -> dict[str, Any]:
     t0 = time.time()
     db.wipe()
     reset_runtime_state()

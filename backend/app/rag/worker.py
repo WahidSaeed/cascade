@@ -49,7 +49,11 @@ def main() -> None:  # pragma: no cover - process entry point
 
     sqs = boto3.client("sqs", region_name=settings.bedrock_region)
     while True:
-        poll_once(sqs, settings.ingest_queue_url)
+        try:
+            poll_once(sqs, settings.ingest_queue_url)
+        except Exception:  # noqa: BLE001 - a dropped connection or SQS hiccup must not stop the worker
+            log.exception("ingest worker poll failed; retrying")
+            time.sleep(2)
 
 
 if __name__ == "__main__":

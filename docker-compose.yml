@@ -19,6 +19,7 @@ x-backend: &backend
     AWS_DEFAULT_REGION: us-east-1
   volumes:
     - cascade-data:/data
+  restart: unless-stopped
   depends_on:
     postgres:
       condition: service_healthy

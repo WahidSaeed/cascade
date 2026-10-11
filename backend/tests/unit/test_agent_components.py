@@ -193,3 +193,84 @@ def test_bedrock_agent_tool_use(triage):
     assert b["tool"] == "report" and tb.spent() > 0                     # agent tokens are overhead
     names = {t["toolSpec"]["name"] for t in bedrock_agent.tool_config()["tools"]}
     assert "approve" not in names and "deploy" not in names and "report" in names
+
+
+def test_a_synchronous_start_owns_its_run_before_any_worker_can_take_it(fresh_db, monkeypatch):
+    """Compose runs an agent-worker next to the API; the seed and the demo's lookup rebuild start runs with
+    sync=True. The run must be leased to the caller in the same write that makes it runnable."""
+    from app.agent import runner
+
+    seen = {}
+    real_execute = runner.execute
+
+    def spy(run_id, owner=None, max_steps=60):
+        seen["runnable_by_workers"] = run_id in runner.runnable()
+        seen["worker_acquires"] = runner.acquire(run_id, "agent-worker-1")
+        return real_execute(run_id, owner=owner, max_steps=max_steps)
+
+    monkeypatch.setattr(runner, "execute", spy)
+    from app.schemas import Pattern, PatternStatus, TaskType
+    from app.store import store
+
+    p = Pattern(name="t", description="t", task_type=TaskType.classification, status=PatternStatus.recognized,
+                owner_id="eli", examples=["Classify this: a", "Classify this: b"])
+    store().put_pattern(p)
+    run = runner.create_run(p.id, "eli", {"instructions": "x"})
+    runner.start_run(run["id"], sync=True)
+    assert seen == {"runnable_by_workers": False, "worker_acquires": False}
+
+
+def test_the_agent_worker_survives_a_failed_poll(monkeypatch):
+    from app.agent import worker
+
+    calls = []
+
+    def flaky():
+        calls.append(1)
+        if len(calls) == 1:
+            raise RuntimeError("terminating connection due to administrator command")
+        return 0
+
+    monkeypatch.setattr(worker, "poll_once", flaky)
+    worker.serve(iterations=3, idle_s=0)
+    assert len(calls) == 3
+
+
+def test_ml_artifacts_never_need_a_system_locale(tmp_path):
+    """onnxruntime's StringNormalizer needs en_US.UTF-8, which slim and Lambda images lack: the artifact would
+    fail to load in every container. Text is lowercased outside the graph instead."""
+    import onnx
+
+    from app.compilers.ml import MlParams, train_ml
+    from app.runtime import SubprocessRuntime  # noqa: F401  (the runner path is exercised elsewhere)
+
+    prompts = [f"Classify this: '{t}'" for t in ["Refund my MONEY please", "where is my parcel", "REFUND it all",
+                                                    "parcel late again", "money back now", "Where's the parcel?"]]
+    train_ml(prompts, ["refund", "shipping", "refund", "shipping", "refund", "shipping"], tmp_path,
+             MlParams(min_df=1))
+    ops = {n.op_type for n in onnx.load(str(tmp_path / "model.onnx")).graph.node}
+    assert "StringNormalizer" not in ops
+    import json
+
+    assert json.loads((tmp_path / "meta.json").read_text())["prelowered"] is True
+
+
+def test_knowledge_grounded_answers_are_never_distillation_labels(fresh_db):
+    """A routing prompt asked with the escalation guide attached gets a cited explanation back, not a queue
+    name; it must not become a class."""
+    from app import engine, seed
+    from app.agent.tools import Toolbox
+    from app.light.normalize import normalize
+    from app.schemas import Pattern, PatternStatus, TaskType
+    from app.store import store
+
+    seed.seed_users()
+    seed.seed_knowledge()
+    q = "Which queue should handle this ticket: 'my tent pole snapped and I leave tomorrow'"
+    p = Pattern(name="Priority routing", description="routing", task_type=TaskType.classification,
+                status=PatternStatus.recognized, owner_id="eli", template_keys=[normalize(q).template_key])
+    store().put_pattern(p)
+    engine.route(q, "ava")                                                        # plain LLM answer
+    engine.route(q, "ben", collection_ids=[seed.collection_id("playbook")])      # knowledge-grounded answer
+    labels = [lbl for _, lbl in Toolbox("run_x", p, {"intake": {}}, "eli")._logged()]
+    assert len(labels) == 1
