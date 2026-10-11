@@ -12,10 +12,10 @@ resource "aws_secretsmanager_secret" "db" {
 resource "aws_secretsmanager_secret_version" "db" {
   secret_id = aws_secretsmanager_secret.db.id
   secret_string = jsonencode({
-    username = "cascade"
+    username = "cascade_app"
     password = random_password.db.result
-    url      = "postgresql+psycopg://cascade:${random_password.db.result}@${aws_rds_cluster.main.endpoint}:5432/cascade"
-    read_url = "postgresql+psycopg://cascade:${random_password.db.result}@${aws_rds_cluster.main.reader_endpoint}:5432/cascade"
+    url      = "postgresql+psycopg://cascade_app:${random_password.db.result}@${aws_rds_cluster.main.endpoint}:5432/cascadedb"
+    read_url = "postgresql+psycopg://cascade_app:${random_password.db.result}@${aws_rds_cluster.main.reader_endpoint}:5432/cascadedb"
   })
 }
 
@@ -41,8 +41,8 @@ resource "aws_rds_cluster" "main" {
   engine                          = "aurora-postgresql"
   engine_mode                     = "provisioned"
   engine_version                  = var.aurora_engine_version
-  database_name                   = "cascade"
-  master_username                 = "cascade"
+  database_name                   = "cascadedb" # "cascade" is a reserved SQL word: Aurora refuses it
+  master_username                 = "cascade_app"
   master_password                 = random_password.db.result
   db_subnet_group_name            = aws_db_subnet_group.main.name
   vpc_security_group_ids          = [aws_security_group.db.id]
@@ -70,7 +70,7 @@ resource "aws_rds_cluster_instance" "writer" {
 # --------------------------------------------------------------------- S3 (artifacts, documents, datasets)
 resource "aws_s3_bucket" "artifacts" {
   bucket        = "${local.name}-artifacts-${local.account_id}"
-  force_destroy = false
+  force_destroy = var.teardown_ready
   tags          = local.tags
 }
 

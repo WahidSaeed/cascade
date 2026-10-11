@@ -22,3 +22,5 @@ backend/data/
 web/tsconfig.tsbuildinfo
 .coverage
 web/public/monaco/
+infra/terraform/terraform.tfvars
+infra/terraform/*.plan

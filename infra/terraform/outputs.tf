@@ -22,3 +22,15 @@ output "artifact_bucket" {
 output "artifact_role_arn" {
   value = aws_iam_role.artifact.arn
 }
+
+output "runtime_repository_urls" {
+  value = { for k, r in aws_ecr_repository.runtime : k => r.repository_url }
+}
+
+output "training_repository_url" {
+  value = aws_ecr_repository.training.repository_url
+}
+
+output "web_distribution_id" {
+  value = aws_cloudfront_distribution.web.id
+}

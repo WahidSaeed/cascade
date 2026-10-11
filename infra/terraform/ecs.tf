@@ -1,6 +1,7 @@
 resource "aws_ecr_repository" "api" {
   name                 = "${local.name}-api"
   image_tag_mutability = "MUTABLE"
+  force_delete         = var.teardown_ready
   image_scanning_configuration { scan_on_push = true }
   tags = local.tags
 }
@@ -95,6 +96,6 @@ resource "aws_ecs_service" "api" {
     container_port   = 8080
   }
 
-  depends_on = [aws_lb_listener.http]
+  depends_on = [aws_lb_listener.http, aws_lb_listener.http_forward]
   tags       = local.tags
 }

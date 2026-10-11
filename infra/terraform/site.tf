@@ -41,6 +41,7 @@ resource "aws_cognito_user_group" "groups" {
 # HTTPS on the ALB: :443 with the ACM certificate; :80 only redirects (bearer tokens never travel in clear,
 # and the HTTPS CloudFront page can call the API without mixed content).
 resource "aws_acm_certificate" "api" {
+  count             = var.api_via_cloudfront ? 0 : 1
   domain_name       = var.api_domain_name
   validation_method = "DNS"
   tags              = local.tags
@@ -50,11 +51,12 @@ resource "aws_acm_certificate" "api" {
 }
 
 resource "aws_lb_listener" "https" {
+  count             = var.api_via_cloudfront ? 0 : 1
   load_balancer_arn = aws_lb.api.arn
   port              = 443
   protocol          = "HTTPS"
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
-  certificate_arn   = aws_acm_certificate.api.arn
+  certificate_arn   = aws_acm_certificate.api[0].arn
   default_action {
     type             = "forward"
     target_group_arn = aws_lb_target_group.api.arn
@@ -62,6 +64,7 @@ resource "aws_lb_listener" "https" {
 }
 
 resource "aws_security_group_rule" "alb_https" {
+  count             = var.api_via_cloudfront ? 0 : 1
   type              = "ingress"
   from_port         = 443
   to_port           = 443
@@ -70,10 +73,32 @@ resource "aws_security_group_rule" "alb_https" {
   security_group_id = aws_security_group.alb.id
 }
 
+# :80 redirects for everyone (HTTPS mode), or forwards for CloudFront only (api_via_cloudfront)
+resource "aws_security_group_rule" "alb_http_redirect" {
+  count             = var.api_via_cloudfront ? 0 : 1
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.alb.id
+}
+
+resource "aws_security_group_rule" "alb_from_cloudfront" {
+  count             = var.api_via_cloudfront ? 1 : 0
+  type              = "ingress"
+  from_port         = 80
+  to_port           = 80
+  protocol          = "tcp"
+  prefix_list_ids   = [data.aws_ec2_managed_prefix_list.cloudfront.id]
+  security_group_id = aws_security_group.alb.id
+}
+
 # Web: the static export of web/ in a private bucket behind CloudFront (origin access control).
 resource "aws_s3_bucket" "web" {
-  bucket = "${local.name}-web-${local.account_id}"
-  tags   = local.tags
+  bucket        = "${local.name}-web-${local.account_id}"
+  force_destroy = var.teardown_ready
+  tags          = local.tags
 }
 
 resource "aws_s3_bucket_public_access_block" "web" {
@@ -91,6 +116,22 @@ resource "aws_cloudfront_origin_access_control" "web" {
   signing_protocol                  = "sigv4"
 }
 
+# The static export writes /patterns/index.html etc.; S3 (behind OAC) has no directory indexes, so map
+# "/patterns/" -> "/patterns/index.html" (and "/patterns" -> "/patterns/index.html") at the edge.
+resource "aws_cloudfront_function" "index" {
+  name    = "${local.name}-index"
+  runtime = "cloudfront-js-2.0"
+  publish = true
+  code    = <<-EOT
+    function handler(event) {
+      var req = event.request;
+      if (req.uri.endsWith("/")) { req.uri += "index.html"; }
+      else if (req.uri.split("/").pop().indexOf(".") === -1) { req.uri += "/index.html"; }
+      return req;
+    }
+  EOT
+}
+
 resource "aws_cloudfront_distribution" "web" {
   enabled             = true
   default_root_object = "index.html"
@@ -100,12 +141,44 @@ resource "aws_cloudfront_distribution" "web" {
     origin_id                = "web"
     origin_access_control_id = aws_cloudfront_origin_access_control.web.id
   }
+  dynamic "origin" {
+    for_each = var.api_via_cloudfront ? [1] : []
+    content {
+      domain_name = aws_lb.api.dns_name
+      origin_id   = "api"
+      custom_origin_config {
+        http_port                = 80
+        https_port               = 443
+        origin_protocol_policy   = "http-only"
+        origin_ssl_protocols     = ["TLSv1.2"]
+        origin_read_timeout      = 60
+        origin_keepalive_timeout = 60
+      }
+    }
+  }
+  dynamic "ordered_cache_behavior" {
+    for_each = var.api_via_cloudfront ? [1] : []
+    content {
+      path_pattern             = "/api/*"
+      target_origin_id         = "api"
+      viewer_protocol_policy   = "https-only"
+      allowed_methods          = ["GET", "HEAD", "OPTIONS", "PUT", "POST", "PATCH", "DELETE"]
+      cached_methods           = ["GET", "HEAD"]
+      compress                 = false                                  # keep SSE streams unbuffered
+      cache_policy_id          = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # Managed-CachingDisabled
+      origin_request_policy_id = "b689b0a8-53d0-40ab-baf2-68738e2966ac" # Managed-AllViewerExceptHostHeader
+    }
+  }
   default_cache_behavior {
     target_origin_id       = "web"
     viewer_protocol_policy = "redirect-to-https"
-    allowed_methods        = ["GET", "HEAD"]
-    cached_methods         = ["GET", "HEAD"]
-    compress               = true
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.index.arn
+    }
+    allowed_methods = ["GET", "HEAD"]
+    cached_methods  = ["GET", "HEAD"]
+    compress        = true
     forwarded_values {
       query_string = false
       cookies {
@@ -219,7 +292,7 @@ output "cognito_domain" {
 }
 
 output "api_url" {
-  value = "https://${var.api_domain_name}"
+  value = var.api_via_cloudfront ? "https://${aws_cloudfront_distribution.web.domain_name}" : "https://${var.api_domain_name}"
 }
 
 output "cognito_client_id" {

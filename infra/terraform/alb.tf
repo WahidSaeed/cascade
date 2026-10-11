@@ -21,6 +21,7 @@ resource "aws_lb_target_group" "api" {
 
 # :80 only redirects to HTTPS.
 resource "aws_lb_listener" "http" {
+  count             = var.api_via_cloudfront ? 0 : 1
   load_balancer_arn = aws_lb.api.arn
   port              = 80
   protocol          = "HTTP"
@@ -32,4 +33,20 @@ resource "aws_lb_listener" "http" {
       status_code = "HTTP_301"
     }
   }
+}
+
+# api_via_cloudfront: :80 forwards (reachable only from CloudFront, see aws_security_group_rule.alb_from_cloudfront).
+resource "aws_lb_listener" "http_forward" {
+  count             = var.api_via_cloudfront ? 1 : 0
+  load_balancer_arn = aws_lb.api.arn
+  port              = 80
+  protocol          = "HTTP"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.api.arn
+  }
+}
+
+data "aws_ec2_managed_prefix_list" "cloudfront" {
+  name = "com.amazonaws.global.cloudfront.origin-facing"
 }

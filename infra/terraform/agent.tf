@@ -3,6 +3,16 @@ resource "aws_ecr_repository" "runtime" {
   for_each             = toset(["ml-runtime", "dl-runtime"])
   name                 = "${local.name}-${each.key}"
   image_tag_mutability = "IMMUTABLE"
+  force_delete         = var.teardown_ready
+  image_scanning_configuration { scan_on_push = true }
+  tags = local.tags
+}
+
+# SageMaker training image (infra/runtime-images/training.Dockerfile): agent dl fine-tunes and edited ml / dl code
+resource "aws_ecr_repository" "training" {
+  name                 = "${local.name}-training"
+  image_tag_mutability = "MUTABLE"
+  force_delete         = var.teardown_ready
   image_scanning_configuration { scan_on_push = true }
   tags = local.tags
 }
@@ -108,6 +118,7 @@ resource "aws_ecs_task_definition" "agent" {
       { name = "CASCADE_SAGEMAKER_ROLE_ARN", value = aws_iam_role.sagemaker.arn },
       { name = "CASCADE_ML_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["ml-runtime"].repository_url}:latest" },
       { name = "CASCADE_DL_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["dl-runtime"].repository_url}:latest" },
+      { name = "CASCADE_DL_TRAINING_IMAGE", value = "${aws_ecr_repository.training.repository_url}:latest" },
     ])
     secrets = local.backend_secrets
     logConfiguration = {

@@ -166,6 +166,26 @@ make demo-measure MAX_USD=5     # replays a 200-prompt sample against real Bedro
 It prints a cost estimate first and stops at the hard cap (`--max-usd`, default 5). It writes
 `reports/measured.md` (measured token reduction and latency) for the deck.
 
+## Temporary deployment without a domain, and teardown
+
+For a short test with no domain, set `api_via_cloudfront = true` (and leave `api_domain_name` empty): the API is then
+served under the CloudFront address (`/api/*` → ALB on :80, which accepts only CloudFront's origin-facing ranges).
+Browser → CloudFront is HTTPS; CloudFront → ALB is HTTP inside AWS. Use `api_domain_name` for anything longer-lived.
+Example `terraform.tfvars` (eu-central-1 uses the `eu.` inference profiles):
+```hcl
+region              = "eu-central-1"
+api_via_cloudfront  = true
+bedrock_model_id    = "eu.anthropic.claude-sonnet-4-5-20250929-v1:0"
+light_llm_model_id  = "eu.anthropic.claude-haiku-4-5-20251001-v1:0"
+skip_final_snapshot = true
+```
+Then `terraform apply`, `scripts/aws_deploy.sh` (amd64 images, web build + upload; works on Apple silicon) and
+create a Cognito admin (section 6).
+
+Teardown: `AWS_REGION=<region> scripts/aws_teardown.sh` deletes what the app created at runtime (artifact Lambdas
+and their logs, integration secrets, running training jobs), sets `teardown_ready = true` so buckets and image
+repositories are deleted with their contents, and runs `terraform destroy`.
+
 ## Rollback
 
 `aws ecs update-service --cluster cascade --service cascade-api --task-definition <previous revision>`;

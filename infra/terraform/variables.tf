@@ -42,7 +42,7 @@ variable "desired_count" {
 
 variable "aurora_engine_version" {
   type    = string
-  default = "16.6"
+  default = "16.15"
 }
 
 variable "aurora_min_acu" {
@@ -61,12 +61,30 @@ variable "skip_final_snapshot" {
 }
 
 variable "api_domain_name" {
-  description = "Domain of the API (ACM certificate, HTTPS listener). Required: the API is only served over HTTPS."
+  description = "Domain of the API (ACM certificate, HTTPS listener). Required unless api_via_cloudfront = true."
   type        = string
+  default     = ""
   validation {
-    condition     = length(var.api_domain_name) > 3
-    error_message = "Set api_domain_name: Cascade's API is only served over HTTPS."
+    condition     = length(var.api_domain_name) > 3 || var.api_domain_name == ""
+    error_message = "Set api_domain_name (the API is only served over HTTPS), or set api_via_cloudfront = true."
   }
+}
+
+variable "teardown_ready" {
+  description = "Set true (and apply) before `terraform destroy`: buckets and image repositories are then deleted with their contents."
+  type        = bool
+  default     = false
+}
+
+variable "api_via_cloudfront" {
+  description = <<-EOT
+    TEMPORARY / no-domain deployments: serve the API under the web distribution's own HTTPS address
+    (CloudFront routes /api/* to the ALB). Browser-to-CloudFront is HTTPS; CloudFront-to-ALB is plain HTTP on :80,
+    which accepts only CloudFront's origin-facing ranges. No ACM certificate or domain is needed.
+    Use api_domain_name (HTTPS end to end) for anything beyond a short test.
+  EOT
+  type        = bool
+  default     = false
 }
 
 variable "dataset_retention_days" {
