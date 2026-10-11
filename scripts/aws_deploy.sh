@@ -26,8 +26,13 @@ if [[ "$WHAT" == images || "$WHAT" == all ]]; then
 fi
 
 if [[ "$WHAT" == web || "$WHAT" == all ]]; then
-  (cd web && NEXT_PUBLIC_API_BASE=$(out api_url) NEXT_PUBLIC_AUTH=cognito \
-    NEXT_PUBLIC_COGNITO_DOMAIN=$(out cognito_domain) NEXT_PUBLIC_COGNITO_CLIENT_ID=$(out cognito_client_id) npx next build)
+  # read the outputs here, at the repository root (inside web/ the -chdir path would not resolve)
+  API_URL=$(out api_url); COG_DOMAIN=$(out cognito_domain); COG_CLIENT=$(out cognito_client_id)
+  [[ -n "$API_URL" && -n "$COG_DOMAIN" && -n "$COG_CLIENT" ]] || { echo "terraform outputs missing"; exit 1; }
+  rm -rf web/out web/.next
+  (cd web && NEXT_PUBLIC_API_BASE="$API_URL" NEXT_PUBLIC_AUTH=cognito \
+    NEXT_PUBLIC_COGNITO_DOMAIN="$COG_DOMAIN" NEXT_PUBLIC_COGNITO_CLIENT_ID="$COG_CLIENT" npx next build)
+  grep -rqF "$API_URL" web/out/_next/static || { echo "build does not target $API_URL"; exit 1; }
   aws s3 sync web/out/ "s3://$(out web_bucket)/" --delete --region "$REGION"
   aws cloudfront create-invalidation --distribution-id "$(out web_distribution_id)" --paths "/*" >/dev/null
   echo "web: $(out web_url)"
