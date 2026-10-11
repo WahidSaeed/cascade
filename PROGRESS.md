@@ -53,3 +53,9 @@ the matrix counts every acceptance row it finds a passing test for). The final m
   Full `make verify` after the change: **Overall: PASS** — 2026-10-11 13:47:02 (unit 226, int 82, web 10,
   e2e 19, eval 6, perf 8, security 4; acceptance pass 42, aws-only 1).
 - Note: `make perf` is sensitive to other load on the build machine (thresholds unchanged).
+
+## Post-build: workspace UI and editable ml / dl code (2026-10-11, user request)
+- Readable Python for every ml / dl artifact (`Pattern.source_code`: exact `train()` recipe + serving `handle()`), proven equivalent to the served model.
+- Edited ml / dl code trains as a sandboxed job (local: separate process, clean env, nobody uid in containers, limits, kill on timeout; AWS: network-isolated SageMaker job via infra/runtime-images/training.Dockerfile), is scored inside the job, goes through the holdout gate and admin approval, then serves as written.
+- The web app is a workspace: activity bar, Patterns explorer, Monaco artifact editor (tabs, ⌘S, Test / Output / Problems, inspector), status bar.
+- Evidence: `make verify` **Overall: PASS** — 2026-10-11 16:35:57 (unit 239, int 82, web 10, e2e 22, eval 6, perf 8 — load 50.0 rps, 0 failures, p95 690 ms — security 4; acceptance pass 42, aws-only 1).

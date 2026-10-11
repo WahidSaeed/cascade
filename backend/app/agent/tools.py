@@ -234,6 +234,54 @@ class Toolbox:
         return {"candidate_id": cid, "job_id": job.job_id, "seconds": round(seconds, 1), "classes": meta["classes"],
                 "final_loss": meta.get("final_loss")}
 
+    def train_source(self, code: str, kind: str) -> dict[str, Any]:
+        """Train from user-edited ml / dl code (the workspace editor) in the sandboxed training job."""
+        ds = self.state.get("dataset")
+        if not ds or not ds["train"]:
+            raise ToolError("build_dataset first")
+        if kind not in ("ml", "dl"):
+            raise ToolError(f"edited training code is for ml or dl artifacts, not {kind!r}")
+        self.check_budget(0.01)
+        cid = f"c{len(self.state.setdefault('candidates', {})) + 1}"
+        out = self._cand_dir(cid)
+        out.mkdir(parents=True, exist_ok=True)
+        spec = self.state.get("integration_spec")
+        (out / "handler.py").write_text(code)
+        with (out / "train.jsonl").open("w") as fh:
+            for r in ds["train"]:
+                fh.write(json.dumps({"prompt": r["input"], "label": strip_prefix(r["label"], spec)}) + "\n")
+        job_spec = {"kind": kind, "integration": {k: v for k, v in spec.items() if k != "integration_id"} if spec else None}
+        (out / "job.json").write_text(json.dumps(job_spec))
+        eval_prompts = list(dict.fromkeys(r["input"] for part in ("holdout", "val", "user_eval") for r in ds.get(part, [])))
+        with (out / "eval.jsonl").open("w") as fh:
+            for q in eval_prompts:
+                fh.write(json.dumps({"prompt": q}) + "\n")
+        t = dlc.trainer()
+        job = t.start_source(out, out, kind)
+        try:
+            status = dlc.wait(t, job, timeout_s=settings.source_train_timeout_s + 30)
+            if status == "Completed":
+                t.fetch(job)
+            log = t.log_tail(job)
+        finally:
+            t.cleanup(job)                                              # the uploaded data, the job log
+            for f in ("train.jsonl", "eval.jsonl", "job.json"):         # the artifact ships code + model only
+                (out / f).unlink(missing_ok=True)
+        seconds = time.time() - job.started
+        self.charge(dlc.training_cost(seconds), "training", note=f"train_source {cid} ({job.trainer})")
+        preds_file = out / "predictions.jsonl"
+        predictions = {}
+        if preds_file.exists():
+            predictions = {(d := json.loads(x))["prompt"]: d for x in preds_file.read_text().splitlines() if x.strip()}
+            preds_file.unlink()
+        if status != "Completed":
+            raise ToolError(f"training job {job.job_id} {status}:\n{log[-1500:]}")
+        meta = json.loads((out / "meta.json").read_text())
+        cid = self._register(kind, {"source": True, "job": job.job_id}, out, code)
+        self.state["candidates"][cid]["predictions"] = predictions
+        return {"candidate_id": cid, "job_id": job.job_id, "seconds": round(seconds, 1), "classes": meta["classes"],
+                "log": log[-1500:]}
+
     def adopt_candidate(self, kind: str, path: str, params: dict[str, Any]) -> str:
         """Register an artifact trained elsewhere (e.g. a cached seed model) as a candidate."""
         return self._register(kind, params, Path(path))
@@ -269,6 +317,12 @@ class Toolbox:
         """Run the candidate OUT OF PROCESS (the same runtime that serves artifacts). With an integration, the
         offline evaluation scores the model's own part (logged prompts are PII-redacted, so the external
         lookup can't run on them); the live integration call is exercised separately."""
+        if (cand.get("params") or {}).get("source"):
+            # user-edited code: scored inside its sandboxed training job, never executed here
+            preds = cand.get("predictions") or {}
+            missing = (None, 0.0, 0.0, "not scored by the training job")
+            return [(d["result"], d["confidence"], d["latency_ms"], d["error"]) if (d := preds.get(q)) else missing
+                    for q in prompts]
         uri = cand["uri"]
         if self.state.get("integration_spec") and (Path(uri) / "meta.json").exists():
             eval_dir = Path(uri + "-eval")

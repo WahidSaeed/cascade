@@ -78,14 +78,14 @@ test("@P2-04 @P6-03 the static export works", async ({ page }) => {
   await expect(page.getByTestId("pattern-card").first()).toBeVisible();
 });
 
-test("patterns: review drawer shows code, verification and approve state", async ({ page }) => {
+test("patterns: the artifact editor shows code, verification and approve state", async ({ page }) => {
   await page.goto("/patterns/");
   await page.getByTestId("pattern-card").filter({ hasText: "Order details extraction" }).click();
-  const drawer = page.getByTestId("pattern-drawer");
-  await expect(drawer).toBeVisible();
-  await expect(drawer.getByTestId("code-view")).toContainText("def handle");
-  await expect(drawer.getByTestId("verification")).toContainText("passed");
-  await expect(drawer.getByTestId("approve")).toHaveCount(0);          // already approved
+  const editor = page.getByTestId("artifact-editor");
+  await expect(editor).toBeVisible();
+  await expect(editor.getByTestId("code-view")).toContainText("def handle");
+  await expect(editor.getByTestId("verification")).toContainText("passed");
+  await expect(editor.getByTestId("approve")).toHaveCount(0);          // already approved
 });
 
 test("tools: a threshold change is saved and persisted", async ({ page, request }) => {

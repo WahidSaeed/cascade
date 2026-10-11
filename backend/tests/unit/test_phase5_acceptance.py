@@ -182,6 +182,20 @@ def test_dl_run_through_the_training_job_interface(fresh_db, monkeypatch):
     assert r.route.value == "artifact" and r.artifact_kind == "dl" and r.answer in ("4", "5")
     assert engine.route("Rate the urgency 1-5: 'hmm'", "ava").route.value == "llm"   # input guard -> LLM
 
+    # the pattern carries readable Python that matches the served model (BUILD.md §4.3 review)
+    from app import artifact_runner
+
+    p = store().get_pattern(p.id)
+    assert "BertForSequenceClassification" in p.source_code and "def handle(prompt" in p.source_code
+    ns: dict = {"__name__": "artifact_source", "__file__": f"{p.model_uri}/handler.py"}
+    exec(compile(p.source_code, "source.py", "exec"), ns)  # noqa: S102 - the test process, never the API
+    served = artifact_runner.DlArtifact(p.model_uri)
+    for q in ["Rate the urgency 1-5: 'My trek starts tomorrow and my boots haven't arrived'",
+              "Rate the urgency 1-5: 'hmm'", "Rate the urgency 1-5: 'no rush, just wondering about care tips'"]:
+        got, conf = ns["handle"](q)
+        want, want_conf = served.run(q)
+        assert got == want and abs(conf - want_conf) < 1e-4, q
+
 
 def test_sagemaker_trainer_job_api():
     from botocore.stub import ANY, Stubber

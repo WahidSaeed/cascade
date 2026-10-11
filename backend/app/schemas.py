@@ -157,6 +157,7 @@ class Pattern(BaseModel):
     kind: ArtifactKind | None = None
     handler_code: str = ""                        # rule artifacts: Python with handle(prompt)
     model_uri: str = ""                           # ml/dl artifacts: directory or s3:// prefix
+    source_code: str = ""                         # ml/dl artifacts: generated, read-only training + inference Python
     model_card: dict[str, Any] = Field(default_factory=dict)
     templates: list[str] = Field(default_factory=list)        # normalized templates (redacted)
     template_keys: list[str] = Field(default_factory=list)

@@ -1,14 +1,17 @@
 """FastAPI application: chat routing, light layer, patterns, token ledger, configuration."""
 from __future__ import annotations
 
+import json
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
 from sqlalchemy.exc import DBAPIError
 
 from . import db, engine, reverify  # noqa: F401 - reverify registers the kb_event hook
@@ -25,6 +28,7 @@ from .schemas import (
     ConfigUpdate,
     Pattern,
     PatternEdit,
+    PatternStatus,
     ToolConfig,
     VerifyRequest,
     VerifyResult,
@@ -158,7 +162,28 @@ def _with_hits(patterns: list[Pattern]) -> list[Pattern]:
     counts = ledger().artifact_hits()
     for p in patterns:
         p.hits = counts.get(p.id, 0)
+        if not p.source_code and p.kind is not None and p.kind.value in ("ml", "dl"):
+            p.source_code = _generated_source(p)
     return patterns
+
+
+_sources: dict[tuple[str, int], str] = {}
+
+
+def _generated_source(p: Pattern) -> str:
+    """ml / dl artifacts installed before their Python was recorded: render it from the model's meta.json."""
+    from .compilers.source import artifact_source
+
+    key = (p.id, p.version)
+    if key not in _sources:
+        meta_file = Path(p.model_uri) / "meta.json"
+        if p.model_uri.startswith("s3://") or not meta_file.exists():
+            return ""
+        meta = json.loads(meta_file.read_text())
+        card = p.model_card or {}
+        _sources[key] = artifact_source(p.kind.value if p.kind else "", meta, card.get("params") or {}, p.name,
+                                        p.version, int(card.get("training_size") or 0))
+    return _sources[key]
 
 
 @app.get("/api/patterns", response_model=list[Pattern])
@@ -187,6 +212,26 @@ def edit_pattern(pattern_id: str, change: PatternEdit, _ident: Identity = Depend
 @app.post("/api/patterns/{pattern_id}/verify", response_model=VerifyResult)
 def verify_pattern(pattern_id: str, req: VerifyRequest) -> VerifyResult:
     return pat.verify_pattern(pattern_id, req.samples or None)
+
+
+class TryRequest(BaseModel):
+    prompt: str = Field(min_length=1, max_length=20_000)
+
+
+@app.post("/api/patterns/{pattern_id}/try")
+def try_pattern(pattern_id: str, req: TryRequest, ident: Identity = Depends(current_user)) -> dict[str, Any]:
+    """The workspace editor's Test panel: run the saved artifact on one prompt, out of process (never here).
+    A version no admin has approved yet runs only for admins (it may be someone's unreviewed code)."""
+    from .runtime import runtime
+
+    p = get_pattern(pattern_id)
+    if p.status != PatternStatus.approved and not ident.is_admin:
+        raise HTTPException(403, "only admins can run an artifact that is not approved yet")
+    if p.kind is None or (p.kind.value == "rule" and not p.handler_code) or (p.kind.value != "rule" and not p.model_uri):
+        raise HTTPException(409, "this pattern has no compiled artifact yet")
+    r = runtime().invoke(p, req.prompt)
+    return {"result": r.result, "confidence": r.confidence, "latency_ms": round(r.latency_ms, 2), "error": r.error,
+            "fallback": not r.usable, "min_confidence": settings.artifact_min_confidence}
 
 
 @app.post("/api/patterns/{pattern_id}/approve", response_model=Pattern)

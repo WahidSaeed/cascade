@@ -31,6 +31,10 @@ class RunIn(BaseModel):
     start: bool = False
 
 
+class TrainSourceIn(BaseModel):
+    code: str = Field(min_length=1, max_length=200_000)
+
+
 class RespondIn(BaseModel):
     action: str
     feedback: str = ""
@@ -107,6 +111,44 @@ def create_run(body: RunIn, ident: Identity = Depends(current_user)) -> dict[str
         if body.start or settings.agent_autostart:
             run = runner.start_run(run["id"])
         return _public(run)
+    except (runner.RunError, integrations.IntegrationError) as exc:
+        raise _err(exc) from exc
+
+
+@router.post("/patterns/{pattern_id}/train-source")
+def train_source(pattern_id: str, body: TrainSourceIn, ident: Identity = Depends(current_user)) -> dict[str, Any]:
+    """The workspace editor's Train: run the user's edited ml / dl code as a sandboxed training job, through an
+    agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate and ledger."""
+    from sqlalchemy import select
+
+    from .. import db
+    from ..models import AgentRunRow
+    from ..store import store
+
+    p = store().get_pattern(pattern_id)
+    if p is None:
+        raise HTTPException(404, "pattern not found")
+    if p.kind is None or p.kind.value not in ("ml", "dl"):
+        raise HTTPException(409, "edited training code is for ml or dl artifacts; edit a rule's code directly")
+    with db.session() as s:                      # the data the current version was trained on
+        if s.scalars(select(AgentRunRow.id).where(AgentRunRow.pattern_id == pattern_id,
+                                                  AgentRunRow.status.in_(("agent_running", "verifying")))).first():
+            raise HTTPException(409, "a run on this pattern is still training or verifying; wait for it to finish")
+        last = s.scalars(select(AgentRunRow.id).where(AgentRunRow.pattern_id == pattern_id)
+                         .order_by(AgentRunRow.created_at.desc()).limit(1)).first()
+    prev = runner.load(last)["intake"] if last else {}
+    dataset_ids = []
+    for d in prev.get("dataset_ids", []):
+        try:
+            if ident.is_admin or datasets.get(d)["owner"] == ident.user_id:
+                dataset_ids.append(d)
+        except datasets.DatasetError:
+            continue                              # deleted since: train on the rest
+    try:
+        run = runner.create_run(pattern_id, ident.user_id, {
+            "instructions": "Train from the edited code in the workspace editor.", "dataset_ids": dataset_ids,
+            "integration_ids": prev.get("integration_ids", []), "source_code": body.code, "source_kind": p.kind.value})
+        return _public(runner.start_run(run["id"]))
     except (runner.RunError, integrations.IntegrationError) as exc:
         raise _err(exc) from exc
 

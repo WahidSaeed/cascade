@@ -69,8 +69,11 @@ docker build -f backend/Dockerfile -t $REG/cascade-api:latest . && docker push $
 # artifact runtimes (ml / dl Lambda container images)
 docker build -f infra/runtime-images/ml-runtime.Dockerfile -t $REG/cascade-ml-runtime:latest . && docker push $REG/cascade-ml-runtime:latest
 docker build -f infra/runtime-images/dl-runtime.Dockerfile -t $REG/cascade-dl-runtime:latest . && docker push $REG/cascade-dl-runtime:latest
-# the SageMaker training image runs backend/app/compilers/dl_train_script.py; set CASCADE_DL_TRAINING_IMAGE
+# the SageMaker training image (set CASCADE_DL_TRAINING_IMAGE to it): agent dl fine-tunes and code edited in the
+# workspace editor (those jobs run with network isolation); its `train` command is app/compilers/sagemaker_entry.py
 docker build -f backend/Dockerfile --build-arg WITH_DL=1 -t $REG/cascade-api:dl . && docker push $REG/cascade-api:dl
+docker build -f infra/runtime-images/training.Dockerfile --build-arg BASE=$REG/cascade-api:dl -t $REG/cascade-training:latest . \
+  && docker push $REG/cascade-training:latest
 aws ecs update-service --cluster cascade --service cascade-api --force-new-deployment
 aws ecs update-service --cluster cascade --service cascade-agent --force-new-deployment
 ```

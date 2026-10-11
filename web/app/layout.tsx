@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { TopNav } from "@/components/TopNav";
+import { Workbench } from "@/components/Workbench";
 import { UserProvider } from "@/lib/user";
 
 // Self-hosted (no network at build or on stage): Inter 300/400/600/700, JetBrains Mono 400/500/700 — the deck's faces.
@@ -35,8 +35,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${mono.variable}`}>
       <body>
         <UserProvider>
-          <TopNav />
-          <main className="mx-auto max-w-[1180px] px-6 pb-20 pt-9">{children}</main>
+          <Workbench>{children}</Workbench>
         </UserProvider>
       </body>
     </html>

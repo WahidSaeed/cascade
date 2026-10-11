@@ -10,6 +10,7 @@ imports), so the same file runs:
 Artifact directory layout:
   manifest.json   {"kind": "rule"|"ml"|"dl", ...}
   handler.py      rule: defines handle(prompt) -> str | (str, confidence)
+                  ml / dl trained from edited code: train() + handle(prompt) -> (str, confidence), served as written
   model.onnx      ml / dl
   meta.json       ml / dl: classes, input mode, guards
   tokenizer.json  dl
@@ -159,12 +160,38 @@ class DlArtifact:
         return str(self.meta["classes"][i]), float(probs[i])
 
 
+class SourceArtifact:
+    """An ml / dl artifact trained from user-edited code: its own handle() serves, next to its model files."""
+
+    def __init__(self, path: str) -> None:
+        with open(os.path.join(path, "meta.json")) as fh:
+            self.meta = json.load(fh)
+        file = os.path.join(path, "handler.py")
+        with open(file) as fh:
+            code = fh.read()
+        ns: dict[str, Any] = {"__name__": "artifact", "__file__": file}
+        exec(compile(code, file, "exec"), ns)  # noqa: S102 - isolated process, never the API
+        if "handle" not in ns:
+            raise RuntimeError("handler defines no handle(prompt)")
+        self._handle = ns["handle"]
+
+    def run(self, prompt: str) -> tuple[str, float]:
+        out = self._handle(prompt)
+        label, conf = (str(out[0]), float(out[1])) if isinstance(out, tuple) else (str(out), 1.0)
+        if label == FALLBACK:
+            return FALLBACK, 0.0
+        result = post_integration(self.meta, prompt, label)
+        return result, (conf if result != FALLBACK else 0.0)
+
+
 def load(path: str) -> Any:
     with open(os.path.join(path, "manifest.json")) as fh:
         manifest = json.load(fh)
     kind = manifest["kind"]
     if kind == "rule":
         return RuleArtifact(path)
+    if kind in ("ml", "dl") and os.path.exists(os.path.join(path, "handler.py")):
+        return SourceArtifact(path)
     if kind == "ml":
         return MlArtifact(path)
     if kind == "dl":

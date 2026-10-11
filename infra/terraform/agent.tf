@@ -27,6 +27,12 @@ data "aws_iam_policy_document" "agent" {
     resources = [aws_s3_bucket.artifacts.arn, "${aws_s3_bucket.artifacts.arn}/datasets/*", "${aws_s3_bucket.artifacts.arn}/models/*", "${aws_s3_bucket.artifacts.arn}/modules/*"]
   }
   statement {
+    # a training job's uploaded inputs (user-edited code, training and evaluation rows) are deleted when it ends
+    sid       = "TrainingInputCleanup"
+    actions   = ["s3:DeleteObject"]
+    resources = ["${aws_s3_bucket.artifacts.arn}/datasets/cascade-dl-*"]
+  }
+  statement {
     sid       = "Training"
     actions   = ["sagemaker:CreateTrainingJob", "sagemaker:DescribeTrainingJob", "sagemaker:StopTrainingJob"]
     resources = ["arn:aws:sagemaker:${var.region}:${local.account_id}:training-job/cascade-dl-*"]

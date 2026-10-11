@@ -21,6 +21,7 @@ from typing import Any
 from ..config import settings
 
 SCRIPT = Path(__file__).with_name("dl_train_script.py")
+SOURCE_SCRIPT = Path(__file__).with_name("source_train.py")
 
 
 @dataclass
@@ -56,6 +57,43 @@ class Trainer(ABC):
     def fetch(self, job: DlJob) -> None:  # noqa: B027 - local jobs already wrote their output
         """Bring the trained model (model.onnx, tokenizer.json, meta.json) into job.out_dir."""
 
+    @abstractmethod
+    def start_source(self, src: Path, out_dir: Path, kind: str) -> DlJob:
+        """Train from user-edited code (handler.py, train.jsonl, job.json in `src`) with source_train.py."""
+
+    def cancel(self, job: DlJob) -> None:  # noqa: B027 - optional
+        """Stop a job that ran past its time limit."""
+
+    def cleanup(self, job: DlJob) -> None:  # noqa: B027 - optional
+        """Delete what the job left behind outside its output (uploaded training data, logs)."""
+
+    def log_tail(self, job: DlJob) -> str:
+        return ""
+
+
+SANDBOX_UID = 65534        # nobody: in containers (root) the job runs as this user, so it can't read the worker's
+                           # /proc/<pid>/environ or files, and RLIMIT_NPROC bounds its processes
+
+
+def _limits() -> None:  # pragma: no cover - runs in the child between fork and exec
+    """Resource limits for user-edited training code: CPU time, memory, file size, open files, processes."""
+    import os
+    import resource
+
+    os.setsid()
+    t = settings.source_train_timeout_s
+    limits = [(resource.RLIMIT_CPU, (t, t + 5)),
+              (resource.RLIMIT_FSIZE, (settings.source_train_max_file_mb * 2**20,) * 2),
+              (resource.RLIMIT_NOFILE, (256, 256)),
+              (resource.RLIMIT_AS, (settings.source_train_max_memory_mb * 2**20,) * 2)]   # enforced on Linux
+    if os.geteuid() == 0:
+        limits.append((resource.RLIMIT_NPROC, (64, 64)))       # per-uid: counts only the sandbox user's processes
+    for lim, val in limits:
+        try:
+            resource.setrlimit(lim, val)
+        except (ValueError, OSError):
+            pass
+
 
 class LocalTrainer(Trainer):
     def start(self, data: Path, out_dir: Path, params: dict[str, Any]) -> DlJob:
@@ -78,7 +116,42 @@ class LocalTrainer(Trainer):
         return "Completed" if rc == 0 and (job.out_dir / "model.onnx").exists() else "Failed"
 
     def log_tail(self, job: DlJob) -> str:
-        return Path(job.handle[1]).read_text()[-2000:]
+        f = Path(job.handle[1])
+        return f.read_text()[-4000:] if f.exists() else ""
+
+    def cleanup(self, job: DlJob) -> None:
+        Path(job.handle[1]).unlink(missing_ok=True)
+
+    def start_source(self, src: Path, out_dir: Path, kind: str) -> DlJob:
+        import os
+
+        args = [sys.executable, "-I", str(SOURCE_SCRIPT), "--src", str(src), "--out", str(out_dir),
+                "--base", base_model_dir() if kind == "dl" else ""]
+        log = tempfile.NamedTemporaryFile("w", suffix=".log", delete=False)  # noqa: SIM115 - kept for the job
+        drop: dict[str, Any] = {}
+        if os.geteuid() == 0:                          # containers: run as nobody, owning only its job directory
+            for d in {src, out_dir}:
+                for f in [d, *d.rglob("*")]:
+                    os.chown(f, SANDBOX_UID, SANDBOX_UID)
+            drop = {"user": SANDBOX_UID, "group": SANDBOX_UID, "extra_groups": []}
+        # a clean environment (no credentials, database URL or API settings) and its own working directory
+        proc = subprocess.Popen(args, stdout=log, stderr=subprocess.STDOUT, cwd=str(out_dir), preexec_fn=_limits,  # noqa: PLW1509
+                                env={"PATH": "/usr/bin:/bin", "HOME": str(out_dir), "HF_HUB_OFFLINE": "1",
+                                     "TOKENIZERS_PARALLELISM": "false", "OMP_NUM_THREADS": "2"}, **drop)
+        return DlJob(job_id=f"local-src-{proc.pid}", out_dir=out_dir, started=time.time(), trainer="local",
+                     handle=(proc, log.name))
+
+    def cancel(self, job: DlJob) -> None:
+        import os
+        import signal
+
+        proc = job.handle[0]
+        if proc.poll() is None:
+            try:
+                os.killpg(proc.pid, signal.SIGKILL)
+            except OSError:
+                proc.kill()
+            proc.wait()
 
 
 class SageMakerTrainer(Trainer):
@@ -108,6 +181,40 @@ class SageMakerTrainer(Trainer):
         )
         return DlJob(job_id=name, out_dir=out_dir, started=time.time(), trainer="sagemaker")
 
+    def start_source(self, src: Path, out_dir: Path, kind: str) -> DlJob:
+        """The same harness in the training image (hyperparameter mode=source), with no network access."""
+        import uuid
+
+        bucket = settings.artifact_bucket
+        name = f"cascade-dl-src-{uuid.uuid4().hex[:20]}"      # unique per job; matches the agent role's cascade-dl-* ARN
+        for f in ("handler.py", "train.jsonl", "job.json", "eval.jsonl"):
+            if (src / f).exists():
+                self._s3.put_object(Bucket=bucket, Key=f"datasets/{name}/{f}", Body=(src / f).read_bytes())
+        self._sm.create_training_job(
+            TrainingJobName=name,
+            RoleArn=settings.sagemaker_role_arn,
+            AlgorithmSpecification={"TrainingImage": settings.dl_training_image, "TrainingInputMode": "File"},
+            HyperParameters={"mode": "source", "kind": kind, "base": settings.dl_base_model},
+            InputDataConfig=[{"ChannelName": "train", "DataSource": {"S3DataSource": {
+                "S3DataType": "S3Prefix", "S3Uri": f"s3://{bucket}/datasets/{name}/", "S3DataDistributionType": "FullyReplicated"}}}],
+            OutputDataConfig={"S3OutputPath": f"s3://{bucket}/models/"},
+            ResourceConfig={"InstanceType": settings.dl_instance_type, "InstanceCount": 1, "VolumeSizeInGB": 10},
+            StoppingCondition={"MaxRuntimeInSeconds": settings.source_train_timeout_s},
+            EnableNetworkIsolation=True,
+        )
+        return DlJob(job_id=name, out_dir=out_dir, started=time.time(), trainer="sagemaker")
+
+    def cancel(self, job: DlJob) -> None:
+        self._sm.stop_training_job(TrainingJobName=job.job_id)
+
+    def cleanup(self, job: DlJob) -> None:
+        """The job's uploaded inputs (user code, training and evaluation data) leave S3 once the job is done."""
+        prefix = f"datasets/{job.job_id}/"
+        listed = self._s3.list_objects_v2(Bucket=settings.artifact_bucket, Prefix=prefix)
+        keys = [{"Key": o["Key"]} for o in listed.get("Contents", [])]
+        if keys:
+            self._s3.delete_objects(Bucket=settings.artifact_bucket, Delete={"Objects": keys})
+
     def status(self, job: DlJob) -> str:
         st = str(self._sm.describe_training_job(TrainingJobName=job.job_id)["TrainingJobStatus"])
         return "Failed" if st == "Stopped" else st
@@ -124,7 +231,8 @@ class SageMakerTrainer(Trainer):
         with tarfile.open(fileobj=io.BytesIO(body), mode="r:gz") as tar:
             for m in tar.getmembers():
                 name = Path(m.name).name
-                if m.isfile() and name in ("model.onnx", "tokenizer.json", "meta.json", "manifest.json"):
+                if m.isfile() and name in ("model.onnx", "tokenizer.json", "meta.json", "manifest.json", "handler.py",
+                                               "predictions.jsonl"):
                     f = tar.extractfile(m)
                     if f is not None:
                         (job.out_dir / name).write_bytes(f.read())
@@ -141,6 +249,7 @@ def wait(t: Trainer, job: DlJob, timeout_s: float = 1800, poll_s: float = 1.0) -
         if st != "InProgress":
             return st
         time.sleep(poll_s)
+    t.cancel(job)
     return "Failed"
 
 

@@ -152,6 +152,9 @@ class Settings(BaseSettings):
     dl_training_image: str = ""            # ECR image with the training script (SageMaker)
     dl_instance_type: str = "ml.m5.large"
     sagemaker_role_arn: str = ""
+    source_train_timeout_s: int = 900      # user-edited ml/dl training code: wall and CPU limit per job
+    source_train_max_file_mb: int = 512    # ... and the largest file it may write
+    source_train_max_memory_mb: int = 8192 # ... and its address space (Linux; torch maps a lot of virtual memory)
 
     # --- privacy ---
     pii_backend: str = "regex"             # regex | comprehend

@@ -862,6 +862,48 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/patterns/{pattern_id}/train-source": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Train Source
+         * @description The workspace editor's Train: run the user's edited ml / dl code as a sandboxed training job, through an
+         *     agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate and ledger.
+         */
+        post: operations["train_source_api_patterns__pattern_id__train_source_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/patterns/{pattern_id}/try": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Try Pattern
+         * @description The workspace editor's Test panel: run the saved artifact on one prompt, out of process (never here).
+         *     A version no admin has approved yet runs only for admins (it may be someone's unreviewed code).
+         */
+        post: operations["try_pattern_api_patterns__pattern_id__try_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/patterns/{pattern_id}/verify": {
         parameters: {
             query?: never;
@@ -1292,6 +1334,11 @@ export interface components {
              * @default 0
              */
             samples_measured: number;
+            /**
+             * Source Code
+             * @default
+             */
+            source_code: string;
             /** @default draft */
             status: components["schemas"]["PatternStatus"];
             task_type?: components["schemas"]["TaskType"] | null;
@@ -1489,6 +1536,16 @@ export interface components {
             values: {
                 [key: string]: unknown;
             };
+        };
+        /** TrainSourceIn */
+        TrainSourceIn: {
+            /** Code */
+            code: string;
+        };
+        /** TryRequest */
+        TryRequest: {
+            /** Prompt */
+            prompt: string;
         };
         /** UploadIn */
         UploadIn: {
@@ -3299,6 +3356,80 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Pattern"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    train_source_api_patterns__pattern_id__train_source_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TrainSourceIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    try_pattern_api_patterns__pattern_id__try_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["TryRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

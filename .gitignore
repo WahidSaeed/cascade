@@ -21,3 +21,4 @@ backend/data/
 .DS_Store
 web/tsconfig.tsbuildinfo
 .coverage
+web/public/monaco/

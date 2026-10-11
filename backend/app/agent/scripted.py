@@ -32,6 +32,9 @@ def _plan(state: dict[str, Any]) -> list[dict[str, Any]]:
     rebuild: list[dict[str, Any]] = [{"tool": "build_dataset", "args": {}}] if it > 1 else []   # new data / feedback
     eval_last: list[dict[str, Any]] = [{"tool": "evaluate", "args": {"candidate_id": "$last"}},
                                        {"tool": "inspect_errors", "args": {"candidate_id": "$last", "k": 8}}]
+    if state.get("intake", {}).get("source_code"):            # the workspace editor's "Train" on edited code
+        return [{"tool": "build_dataset", "args": {}}, {"tool": "train_source", "args": {}}, *eval_last,
+                {"tool": "report", "args": {"recommendation": "accept"}}]
     if task == "lookup":
         return [{"tool": "get_pattern_summary", "args": {}},
                 {"tool": "extract_table", "args": {"document_ids": state.get("intake", {}).get("document_ids", []),

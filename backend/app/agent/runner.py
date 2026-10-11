@@ -23,6 +23,7 @@ from typing import Any
 from sqlalchemy import or_, select, update
 
 from .. import db
+from ..compilers.source import artifact_source
 from ..config import settings
 from ..heavy import LLMRequest, heavy_model
 from ..models import AgentRunRow, Notification, new_id
@@ -82,7 +83,9 @@ def event(run: dict[str, Any], kind: str, text: str, **extra: Any) -> None:
                                          **extra})
 
 
-def _set_pattern_status(pattern_id: str, status: PatternStatus) -> None:
+def _set_pattern_status(pattern_id: str, status: PatternStatus, run: dict[str, Any] | None = None) -> None:
+    if run is not None and run.get("intake", {}).get("source_code"):
+        return                      # training edited code never changes the pattern's lifecycle until Accept installs it
     p = store().get_pattern(pattern_id)
     if p is not None and p.status != PatternStatus.approved:     # an approved artifact keeps serving
         p.status = status
@@ -129,13 +132,14 @@ def create_run(pattern_id: str, user_id: str, intake: dict[str, Any], start: boo
         integrations.get(iid)                                       # must exist
     run_id = new_id("run")
     state = {"intake": {k: intake.get(k) or [] if k.endswith("_ids") else intake.get(k) or ""
-                        for k in ("instructions", "dataset_ids", "integration_ids", "collection_ids", "document_ids")},
+                        for k in ("instructions", "dataset_ids", "integration_ids", "collection_ids", "document_ids",
+                                  "source_code", "source_kind")},
              "budget": budget, "iteration": 0, "step": 0, "iterations": [], "events": [], "candidates": {},
              "feedback": [], "task_type": p.task_type.value if p.task_type else None, "cost_so_far_usd": 0.0}
     with db.session() as s:
         s.add(AgentRunRow(id=run_id, pattern_id=pattern_id, user_id=user_id, status="awaiting_intake", data=state,
                           cost_so_far_usd=0.0, created_at=time.time(), updated_at=time.time()))
-    _set_pattern_status(pattern_id, PatternStatus.awaiting_intake)
+    _set_pattern_status(pattern_id, PatternStatus.awaiting_intake, {"intake": state["intake"]})
     run = load(run_id)
     event(run, "intake", "Intake answers saved. Nothing runs until Start.")
     save(run)
@@ -167,7 +171,7 @@ def start_run(run_id: str, sync: bool = False) -> dict[str, Any]:
     # so an agent-worker polling for runs can never take it over in between.
     owner = f"{WORKER_ID}-sync-{threading.get_ident()}" if sync else None
     save(run, "agent_running", claim=owner)
-    _set_pattern_status(run["pattern_id"], PatternStatus.agent_running)
+    _set_pattern_status(run["pattern_id"], PatternStatus.agent_running, run)
     dispatch(run_id, sync, owner)
     return load(run_id)
 
@@ -238,6 +242,8 @@ def execute(run_id: str, owner: str | None = None, max_steps: int = 60) -> dict[
 def _brain_action(run: dict[str, Any], tb: Toolbox) -> dict[str, Any]:
     """Ask the agent LLM for the next tool call; its tokens are agent overhead."""
     view = {k: run.get(k) for k in ("task_type", "iteration", "step", "intake", "feedback", "last_candidate")}
+    if run["intake"].get("source_code"):            # the user's edited code: a fixed plan, no agent decisions
+        return scripted.next_action(run)
     if settings.llm == "bedrock" and settings.agent_llm == "bedrock":
         from .bedrock_agent import next_action
 
@@ -272,7 +278,7 @@ def _step(run: dict[str, Any], owner: str) -> bool:
                                       "user_response": None})
             event(run, "report", f"Iteration {run['iteration']} report ready.", report=text)
             save(run, "awaiting_feedback", owner)
-            _set_pattern_status(run["pattern_id"], PatternStatus.awaiting_feedback)
+            _set_pattern_status(run["pattern_id"], PatternStatus.awaiting_feedback, run)
             _notify(run, f"Agent is waiting for your feedback: {p.name}")
             return False
         if tool == "ask_user":
@@ -292,7 +298,7 @@ def _step(run: dict[str, Any], owner: str) -> bool:
         run["cap_reached"] = str(exc)
         event(run, "budget", f"Paused: {exc}. Raise the budget or stop.")
         save(run, "awaiting_feedback", owner)
-        _set_pattern_status(run["pattern_id"], PatternStatus.awaiting_feedback)
+        _set_pattern_status(run["pattern_id"], PatternStatus.awaiting_feedback, run)
         _notify(run, f"Agent paused at its budget cap: {p.name}")
         return False
     except ToolError as exc:
@@ -337,6 +343,12 @@ def _call_tool(tb: Toolbox, tool: str, args: dict[str, Any], run: dict[str, Any]
         out = tb.train_dl(args.get("base_model"), args.get("task", "sequence_classification"), args.get("params"))
         run["last_candidate"] = out["candidate_id"]
         return out
+    if tool == "train_source":
+        if not run["intake"].get("source_code"):
+            raise ToolError("train_source runs only the user's edited code")
+        out = tb.train_source(run["intake"]["source_code"], run["intake"].get("source_kind") or "ml")
+        run["last_candidate"] = out["candidate_id"]
+        return out
     if tool == "evaluate":
         return tb.evaluate(args["candidate_id"])
     if tool == "inspect_errors":
@@ -377,7 +389,7 @@ def respond(run_id: str, action: str, feedback: str = "", user_id: str = "", syn
     if action == "stop":
         event(run, "stop", "Stopped by the user. The pattern stays on the LLM.")
         save(run, "stopped")
-        _set_pattern_status(run["pattern_id"], PatternStatus.recognized)
+        _set_pattern_status(run["pattern_id"], PatternStatus.recognized, run)
         return load(run_id)
     if action == "improve":
         run["feedback"].append(feedback)
@@ -445,7 +457,8 @@ def _install_candidate(run: dict[str, Any], p: Pattern, cand: dict[str, Any], me
         shutil.rmtree(final)
     shutil.copytree(cand["uri"], final)
     p.model_uri = str(final)
-    p.handler_code = cand.get("code") or ""
+    is_model = cand["kind"] in ("ml", "dl")
+    p.handler_code = "" if is_model else cand.get("code") or ""
     if run.get("lookup"):
         from ..schemas import KbDependency
 
@@ -457,6 +470,11 @@ def _install_candidate(run: dict[str, Any], p: Pattern, cand: dict[str, Any], me
     meta = {}
     if (final / "meta.json").exists():
         meta = json.loads((final / "meta.json").read_text())
+    if is_model and (cand.get("params") or {}).get("source"):
+        p.source_code = cand.get("code") or ""                      # the user's edited code, served as written
+    else:
+        p.source_code = artifact_source(cand["kind"], meta, cand.get("params"), p.name, p.version,
+                                        len(run.get("dataset", {}).get("train", [])))
     p.model_card.update({"kind": cand["kind"], "params": cand.get("params"), "metrics": metrics,
                          "training_size": len(run.get("dataset", {}).get("train", [])),
                          "features": meta.get("features"), "classes": meta.get("classes"),
