@@ -48,5 +48,6 @@ the matrix counts every acceptance row it finds a passing test for). The final m
   sync-run lease, resilient workers/heartbeat/config sync, locale-free ML artifacts, knowledge answers excluded
   from distillation labels, CRM URL, stale persona data, replay/reset races, demo off by default, /demo buttons
   covered by browser tests, theme test over every static view.
-- Optional, not blocking: the agent-worker image is 6.5 GB (torch for the one-off local dl training);
-  `make perf` is sensitive to other load on the build machine (thresholds unchanged).
+- Post-build: the agent-worker image now uses the CPU-only torch wheel on Linux, 6.52 GB -> 1.81 GB
+  (`make demo-up` exit 0 with the dl artifact trained in the image; `make demo-e2e-stack` 10 passed).
+- Note: `make perf` is sensitive to other load on the build machine (thresholds unchanged).

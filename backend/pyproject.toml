@@ -54,6 +54,16 @@ dl = [
 [tool.uv]
 default-groups = ["dev", "dl"]
 
+# Linux (the agent-worker image) takes the CPU-only torch wheel: the default PyPI build pulls ~4 GB of CUDA
+# libraries the one-off local trainer never uses. macOS wheels are CPU-only already.
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform == 'linux'" }]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["."]
