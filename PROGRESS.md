@@ -50,4 +50,6 @@ the matrix counts every acceptance row it finds a passing test for). The final m
   covered by browser tests, theme test over every static view.
 - Post-build: the agent-worker image now uses the CPU-only torch wheel on Linux, 6.52 GB -> 1.81 GB
   (`make demo-up` exit 0 with the dl artifact trained in the image; `make demo-e2e-stack` 10 passed).
+  Full `make verify` after the change: **Overall: PASS** — 2026-10-11 13:47:02 (unit 226, int 82, web 10,
+  e2e 19, eval 6, perf 8, security 4; acceptance pass 42, aws-only 1).
 - Note: `make perf` is sensitive to other load on the build machine (thresholds unchanged).
