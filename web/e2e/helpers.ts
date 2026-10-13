@@ -29,3 +29,13 @@ export function num(text: string): number {
   const v = Number(text.replace(/[^0-9.]/g, ""));
   return neg ? -v : v;
 }
+
+/** Replace the open Monaco model's text (the same path as typing: it fires the editor's change event). */
+export async function setCode(page: Page, edit: (code: string) => string) {
+  await expect.poll(() => page.evaluate(() => !!(window as unknown as { monaco?: unknown }).monaco)).toBe(true);
+  await page.evaluate((src) => {
+    const m = (window as unknown as { monaco: { editor: { getEditors(): { getModel(): { getValue(): string; setValue(v: string): void } }[] } } }).monaco;
+    const model = m.editor.getEditors()[0].getModel();
+    model.setValue(new Function("code", `return (${src})(code)`)(model.getValue()) as string);
+  }, edit.toString());
+}

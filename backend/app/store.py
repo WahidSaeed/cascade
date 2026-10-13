@@ -11,8 +11,11 @@ from typing import Any
 from sqlalchemy import delete, select
 
 from . import db
-from .models import ConfigRow, Conversation, PatternRow, Turn, User, UserGroup
+from .models import ConfigRow, Conversation, PatternRow, PatternVersionRow, Turn, User, UserGroup
 from .schemas import Pattern, PatternStatus
+
+# per-request or bulky fields a version snapshot does not need
+VOLATILE = ("centroid", "exemplars", "hits")
 
 
 class SqlStore:
@@ -68,7 +71,28 @@ class SqlStore:
             row.kind = pattern.kind.value if pattern.kind else None
             row.data = data
             row.updated_at = pattern.updated_at
+            if pattern.kind is not None:                    # an artifact version: keep it for history / rollback
+                snap = {k: v for k, v in data.items() if k not in VOLATILE}
+                ver = s.get(PatternVersionRow, (pattern.id, pattern.version))
+                if ver is None:
+                    ver = PatternVersionRow(pattern_id=pattern.id, version=pattern.version, created_at=time.time())
+                    s.add(ver)
+                ver.kind, ver.status, ver.data, ver.updated_at = row.kind, row.status, snap, time.time()
         return pattern
+
+    def pattern_versions(self, pattern_id: str) -> list[PatternVersionRow]:
+        with db.session() as s:
+            rows = s.scalars(select(PatternVersionRow).where(PatternVersionRow.pattern_id == pattern_id)
+                             .order_by(PatternVersionRow.version.desc())).all()
+            s.expunge_all()
+            return list(rows)
+
+    def pattern_version(self, pattern_id: str, version: int) -> PatternVersionRow | None:
+        with db.session() as s:
+            row = s.get(PatternVersionRow, (pattern_id, version))
+            if row is not None:
+                s.expunge(row)
+            return row
 
     def approved_patterns(self) -> list[Pattern]:
         return self.list_patterns(PatternStatus.approved.value)

@@ -1,9 +1,10 @@
 "use client";
-import Editor, { loader, type BeforeMount, type OnMount } from "@monaco-editor/react";
+import Editor, { DiffEditor, loader, type BeforeMount, type OnMount } from "@monaco-editor/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/Button";
+import { HistoryPanel, RetrainCard, UsagePanel, type VersionDetail } from "@/components/ControlPanels";
 import { filesFor } from "@/components/PatternExplorer";
 import { api } from "@/lib/api";
 import { emitPatternsChanged } from "@/lib/bus";
@@ -24,6 +25,11 @@ type Run = { id: string; status: string; events: RunEvent[];
 
 // The training run each pattern's Output panel follows; survives the editor remounting on a new version.
 const RUNS = new Map<string, string>();
+// the open bottom panel per pattern: a new version (approve, rollback, training) remounts the editor
+const PANEL_OF = new Map<string, Panel>();
+
+type Panel = "test" | "output" | "problems" | "history" | "usage";
+const PANELS: Panel[] = ["test", "output", "problems", "history", "usage"];
 
 const label = "font-mono text-[11px] uppercase tracking-[0.12em] text-muted-48";
 const READ_ONLY = new Set(["model_card.json", "examples.txt"]);
@@ -57,7 +63,9 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
   const text = (f: string) => edits[f] ?? original(p, f);
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
-  const [panel, setPanel] = useState<"test" | "output" | "problems">(RUNS.has(pid) ? "output" : "test");
+  const [panel, setPanelState] = useState<Panel>(PANEL_OF.get(pid) ?? (RUNS.has(pid) ? "output" : "test"));
+  const setPanel = (k: Panel) => { PANEL_OF.set(pid, k); setPanelState(k); };
+  const [diff, setDiff] = useState<VersionDetail | null>(null);
   const [runId, setRunId] = useState<string | null>(RUNS.get(pid) ?? null);
   const [run, setRun] = useState<Run | null>(null);
   const [tryText, setTryText] = useState(p.examples?.[0] ?? "");
@@ -69,6 +77,9 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
   const isModel = p.kind === "ml" || p.kind === "dl";
 
   const changed = () => { onChange(); emitPatternsChanged(); };
+  const follow = (id: string) => { RUNS.set(pid, id); setRunId(id); setRun(null); setPanel("output"); };
+  const diffOriginal = (d: VersionDetail, f: string) => f === "handler.py" ? d.handler_code : f === "model.py" ? d.source_code
+    : f === "model_card.json" ? JSON.stringify(d.model_card ?? {}, null, 2) : original(p, f);
 
   async function act(name: string, path: string, init: RequestInit & { json?: unknown } = { method: "POST" }) {
     setBusy(name); setMsg(null);
@@ -150,8 +161,20 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
         </div>
 
         {/* the code */}
+        {diff && (
+          <div className="flex shrink-0 items-center gap-3 border-b border-hairline bg-pearl px-3 py-1.5 font-mono text-[11px]" data-testid="diff-bar">
+            <span>v{diff.version} <span className="text-muted-48">({diff.change_note || diff.status})</span> ↔ current v{p.version} · {active}</span>
+            <button className="ml-auto text-primary" onClick={() => setDiff(null)} data-testid="diff-close">close diff</button>
+          </div>
+        )}
         <div className="min-h-0 flex-1 bg-tile1" data-testid="code-view" data-file={active}>
-          {active === "model.py" && !text("model.py") ? (
+          {diff ? (
+            <DiffEditor theme="cascade" beforeMount={defineTheme} language={LANG[active] ?? "plaintext"}
+              original={diffOriginal(diff, active)} modified={text(active)}
+              originalModelPath={`${p.id}/v${diff.version}/${active}`} modifiedModelPath={`${p.id}/diff-current/${active}`}
+              options={{ readOnly: true, renderSideBySide: true, fontFamily: "var(--font-mono), Menlo, monospace",
+                fontSize: 13, automaticLayout: true, scrollBeyondLastLine: false }} />
+          ) : active === "model.py" && !text("model.py") ? (
             <p className="p-6 font-mono text-[13px] text-body-muted">No trained model yet: the agent writes this file when it trains one.</p>
           ) : (
             <Editor theme="cascade" beforeMount={defineTheme} onMount={onMount} path={`${p.id}/${active}`}
@@ -166,7 +189,7 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
         {/* bottom panel */}
         <div className="flex h-[240px] shrink-0 flex-col border-t border-hairline bg-canvas" data-testid="bottom-panel">
           <div className="flex gap-5 border-b border-divider px-4">
-            {(["test", "output", "problems"] as const).map((k) => (
+            {PANELS.map((k) => (
               <button key={k} onClick={() => setPanel(k)} data-testid={`panel-${k}`}
                 className={`py-2 font-mono text-[11px] uppercase tracking-[0.12em] ${panel === k ? "border-b border-primary text-ink" : "text-muted-48"}`}>
                 {k}{k === "problems" && problems.length > 0 && <span className="ml-1 rounded-pill bg-divider px-1.5">{problems.length}</span>}
@@ -214,6 +237,11 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
                 )}
               </div>
             )}
+            {panel === "history" && (
+              <HistoryPanel p={p} onChanged={changed} locked={!!busy}
+                onDiff={(d) => { setDiff(d); if (d.kind === "rule" && files.includes("handler.py")) router.push(`/patterns/?id=${p.id}&file=handler.py`); }} />
+            )}
+            {panel === "usage" && <UsagePanel p={p} />}
             {panel === "problems" && (
               <div className="text-[12px]" data-testid="problems">
                 {problems.length === 0 && <p className="text-muted-48">No problems.</p>}
@@ -252,6 +280,7 @@ export function ArtifactEditor({ p, file, onChange }: { p: Pattern; file: string
           )}
         </div>
         {msg && <p className="mb-3 text-[13px] text-bad" data-testid="drawer-error">{msg}</p>}
+        {p.kind && <RetrainCard p={p} code={text("model.py")} onStarted={follow} />}
 
         <div className="mb-5 grid grid-cols-2 gap-3 text-[13px]">
           <div><p className={label}>Tokens / request</p><p className="font-mono">{fmtInt(Math.round(p.avg_input_tokens))} in · {fmtInt(Math.round(p.avg_output_tokens))} out</p></div>

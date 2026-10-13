@@ -36,10 +36,13 @@ services:
       POSTGRES_DB: cascade
     ports:
       - "5433:5432"
+    # pg_isready gets its own connect timeout and Docker a longer one: on a loaded machine Docker would otherwise
+    # kill pg_isready mid-handshake, the starting backend dies of SIGPIPE, and Postgres restarts every connection
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U cascade"]
-      interval: 2s
-      timeout: 3s
+      test: ["CMD-SHELL", "pg_isready -U cascade -t 20"]
+      interval: 10s
+      timeout: 30s
+      start_period: 20s
       retries: 30
     volumes:
       - pg-data:/var/lib/postgresql/data

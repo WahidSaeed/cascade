@@ -123,7 +123,8 @@ def compile_pattern(req: CompileRequest, user_id: str = "system", meta: dict[str
         record_llm_overhead(res, "compile", pattern_id_hint, run_id, note=req.name)
     p = Pattern(name=req.name, description=req.description, task_type=task_type, kind=ArtifactKind.rule,
                 handler_code=code, status=PatternStatus.draft, owner_id=user_id,
-                kb_dependencies=list(req.kb_dependencies))
+                kb_dependencies=list(req.kb_dependencies),
+                change_note="rule supplied by a reviewer" if req.handler_code else "rule written by the LLM")
     if meta and meta.get("pattern_id"):
         p.id = str(meta["pattern_id"])
     shape_from_examples(p, req.examples)
@@ -182,7 +183,7 @@ def approve(pattern_id: str, approver: str) -> Pattern:
     return p
 
 
-def edit(pattern_id: str, change: PatternEdit) -> Pattern:
+def edit(pattern_id: str, change: PatternEdit, by: str | None = None) -> Pattern:
     p = _get(pattern_id)
     data = change.model_dump(exclude_none=True)
     was_approved = p.status == PatternStatus.approved
@@ -190,6 +191,7 @@ def edit(pattern_id: str, change: PatternEdit) -> Pattern:
         setattr(p, k, v)
     if "handler_code" in data or "task_type" in data:
         p.version += 1
+        p.change_note = "code edited" + (f" by {by}" if by else "")
         p.verification = None
         p.verification_score = None
         p.status = PatternStatus.draft
@@ -281,3 +283,42 @@ def deps_current(p: Pattern) -> bool:
 
 __all__ = ["VerifyResult", "PatternError", "compile_pattern", "verify_pattern", "approve", "edit", "reject", "demote",
            "install_artifact", "deps_readable", "deps_current", "KbDependency", "settings"]
+
+
+# fields that make up an artifact version (everything rollback restores; name, examples, traffic stats stay current)
+ARTIFACT_FIELDS = ("kind", "handler_code", "source_code", "model_uri", "model_card", "kb_dependencies",
+                   "integration_ids", "not_fully_deterministic", "verification", "verification_score", "leak_warnings")
+
+
+def rollback(pattern_id: str, version: int, by: str) -> tuple[Pattern, str | None]:
+    """Restore an earlier artifact version as a NEW version (history is never rewritten) and redeploy it.
+    Returns the pattern and, if it could not be approved straight away (e.g. it never passed verification),
+    why — it then waits as a draft for Verify / Approve."""
+    p = _get(pattern_id)
+    if version == p.version:
+        raise PatternError(409, f"v{version} is already the current version")
+    snap = store().pattern_version(pattern_id, version)
+    if snap is None:
+        raise PatternError(404, f"v{version} not found")
+    old = Pattern.model_validate({**p.model_dump(mode="json"),
+                                  **{k: snap.data[k] for k in ARTIFACT_FIELDS if k in snap.data}})
+    was_approved = p.status == PatternStatus.approved
+    for k in ARTIFACT_FIELDS:
+        setattr(p, k, getattr(old, k))
+    p.version += 1
+    p.change_note = f"rollback to v{version} by {by}"
+    p.status = PatternStatus.draft
+    p.alert = None
+    if was_approved:
+        teardown(p.id)
+        p.deployed_function = None
+    store().put_pattern(p)
+    from .light.cache import light_cache
+
+    light_cache().invalidate_pattern(p.id)          # the old version's cached answers go now (rule 3)
+    try:
+        return approve(p.id, by), None              # approval rebuilds the recognizer once
+    except PatternError as exc:
+        refresh_recognizer()                        # not approvable: rebuild without it (it is a draft now)
+        _on_lifecycle_change(p.id)
+        return _get(pattern_id), str(exc)

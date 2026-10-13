@@ -73,6 +73,21 @@ class PatternRow(Base):
     updated_at: Mapped[float] = mapped_column(Float, default=now)
 
 
+class PatternVersionRow(Base):
+    """One row per pattern version: the artifact as that version is (code, model URI, card, verification, status),
+    for the admin's history, diffs and rollback. Upserted by SqlStore.put_pattern, so it holds each version's
+    latest state (e.g. once approved). Model files stay at their versioned URI, so rollback needs no copy."""
+
+    __tablename__ = "pattern_versions"
+    pattern_id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    version: Mapped[int] = mapped_column(Integer, primary_key=True)
+    kind: Mapped[str | None] = mapped_column(String(16), nullable=True)
+    status: Mapped[str] = mapped_column(String(32))
+    data: Mapped[dict[str, Any]] = mapped_column(JSON)
+    created_at: Mapped[float] = mapped_column(Float, default=now)
+    updated_at: Mapped[float] = mapped_column(Float, default=now)
+
+
 # ----------------------------------------------------------------------------- caches
 class CacheEntry(Base):
     __tablename__ = "cache_entries"

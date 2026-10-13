@@ -33,6 +33,8 @@ class RunIn(BaseModel):
 
 class TrainSourceIn(BaseModel):
     code: str = Field(min_length=1, max_length=200_000)
+    dataset_ids: list[str] = Field(default_factory=list)       # retrain with more data (on top of the last run's)
+    integration_ids: list[str] = Field(default_factory=list)   # attach an approved integration (feature source)
 
 
 class RespondIn(BaseModel):
@@ -117,8 +119,11 @@ def create_run(body: RunIn, ident: Identity = Depends(current_user)) -> dict[str
 
 @router.post("/patterns/{pattern_id}/train-source")
 def train_source(pattern_id: str, body: TrainSourceIn, ident: Identity = Depends(current_user)) -> dict[str, Any]:
-    """The workspace editor's Train: run the user's edited ml / dl code as a sandboxed training job, through an
-    agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate and ledger."""
+    """The workspace editor's Train (and the control centre's Retrain): run the ml / dl code as a sandboxed training
+    job, through an agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate
+    and ledger. Trains on the last run's data plus any `dataset_ids`; `integration_ids` attach approved
+    integrations (feature sources)."""
+    _own_datasets(body.dataset_ids, ident)
     from sqlalchemy import select
 
     from .. import db
@@ -146,8 +151,11 @@ def train_source(pattern_id: str, body: TrainSourceIn, ident: Identity = Depends
             continue                              # deleted since: train on the rest
     try:
         run = runner.create_run(pattern_id, ident.user_id, {
-            "instructions": "Train from the edited code in the workspace editor.", "dataset_ids": dataset_ids,
-            "integration_ids": prev.get("integration_ids", []), "source_code": body.code, "source_kind": p.kind.value})
+            "instructions": "Retrain with additional data / integrations." if body.dataset_ids or body.integration_ids
+            else "Train from the edited code in the workspace editor.",
+            "dataset_ids": list(dict.fromkeys([*dataset_ids, *body.dataset_ids])),
+            "integration_ids": list(dict.fromkeys([*prev.get("integration_ids", []), *body.integration_ids])),
+            "source_code": body.code, "source_kind": p.kind.value})
         return _public(runner.start_run(run["id"]))
     except (runner.RunError, integrations.IntegrationError) as exc:
         raise _err(exc) from exc

@@ -862,6 +862,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/patterns/{pattern_id}/rollback": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Rollback
+         * @description Restore an earlier version as a new version and redeploy it (admin only).
+         */
+        post: operations["rollback_api_patterns__pattern_id__rollback_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/patterns/{pattern_id}/train-source": {
         parameters: {
             query?: never;
@@ -873,8 +893,10 @@ export interface paths {
         put?: never;
         /**
          * Train Source
-         * @description The workspace editor's Train: run the user's edited ml / dl code as a sandboxed training job, through an
-         *     agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate and ledger.
+         * @description The workspace editor's Train (and the control centre's Retrain): run the ml / dl code as a sandboxed training
+         *     job, through an agent run with a fixed plan (dataset -> train -> evaluate -> report), so it gets the same gate
+         *     and ledger. Trains on the last run's data plus any `dataset_ids`; `integration_ids` attach approved
+         *     integrations (feature sources).
          */
         post: operations["train_source_api_patterns__pattern_id__train_source_post"];
         delete?: never;
@@ -904,6 +926,27 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/patterns/{pattern_id}/usage": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Usage
+         * @description Who this pattern serves: every user whose requests matched it, answered by the artifact or (before it
+         *     was approved, or when it deferred) by the LLM. Read from the hourly ledger rollups.
+         */
+        get: operations["usage_api_patterns__pattern_id__usage_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/patterns/{pattern_id}/verify": {
         parameters: {
             query?: never;
@@ -915,6 +958,43 @@ export interface paths {
         put?: never;
         /** Verify Pattern */
         post: operations["verify_pattern_api_patterns__pattern_id__verify_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/patterns/{pattern_id}/versions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Versions
+         * @description Every artifact version, newest first: what produced it, its verification and whether it was approved.
+         */
+        get: operations["versions_api_patterns__pattern_id__versions_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/patterns/{pattern_id}/versions/{version}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Version */
+        get: operations["version_api_patterns__pattern_id__versions__version__get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1264,6 +1344,11 @@ export interface components {
             avg_output_tokens: number;
             /** Centroid */
             centroid?: number[];
+            /**
+             * Change Note
+             * @default
+             */
+            change_note: string;
             /** Created At */
             created_at?: number;
             /** Deployed Function */
@@ -1390,6 +1475,11 @@ export interface components {
             instructions: string;
             /** Integration Ids */
             integration_ids?: string[];
+        };
+        /** RollbackIn */
+        RollbackIn: {
+            /** Version */
+            version: number;
         };
         /**
          * Route
@@ -1541,6 +1631,10 @@ export interface components {
         TrainSourceIn: {
             /** Code */
             code: string;
+            /** Dataset Ids */
+            dataset_ids?: string[];
+            /** Integration Ids */
+            integration_ids?: string[];
         };
         /** TryRequest */
         TryRequest: {
@@ -3369,6 +3463,43 @@ export interface operations {
             };
         };
     };
+    rollback_api_patterns__pattern_id__rollback_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RollbackIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     train_source_api_patterns__pattern_id__train_source_post: {
         parameters: {
             query?: never;
@@ -3443,6 +3574,39 @@ export interface operations {
             };
         };
     };
+    usage_api_patterns__pattern_id__usage_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     verify_pattern_api_patterns__pattern_id__verify_post: {
         parameters: {
             query?: never;
@@ -3465,6 +3629,73 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["VerifyResult"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    versions_api_patterns__pattern_id__versions_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    }[];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    version_api_patterns__pattern_id__versions__version__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                pattern_id: string;
+                version: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        [key: string]: unknown;
+                    };
                 };
             };
             /** @description Validation Error */

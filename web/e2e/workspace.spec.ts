@@ -1,18 +1,8 @@
 import { expect, test, type Page } from "@playwright/test";
-import { API, ask, asUser, resetDemo } from "./helpers";
+import { API, ask, asUser, resetDemo, setCode } from "./helpers";
 
 test.beforeAll(async ({ request }) => { await resetDemo(request); });
 test.afterAll(async ({ request }) => { await resetDemo(request); });
-
-/** Replace the open Monaco model's text (the same path as typing: it fires the editor's change event). */
-async function setCode(page: Page, edit: (code: string) => string) {
-  await expect.poll(() => page.evaluate(() => !!(window as unknown as { monaco?: unknown }).monaco)).toBe(true);
-  await page.evaluate((src) => {
-    const m = (window as unknown as { monaco: { editor: { getEditors(): { getModel(): { getValue(): string; setValue(v: string): void } }[] } } }).monaco;
-    const model = m.editor.getEditors()[0].getModel();
-    model.setValue(new Function("code", `return (${src})(code)`)(model.getValue()) as string);
-  }, edit.toString());
-}
 
 async function openPattern(page: Page, name: string) {
   await page.goto("/patterns/");

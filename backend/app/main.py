@@ -88,10 +88,12 @@ app.add_middleware(CORSMiddleware, allow_origins=_origins, allow_methods=["*"],
 
 
 from .agent.api import router as agent_router  # noqa: E402
+from .control import router as control_router  # noqa: E402
 from .rag.api import router as knowledge_router  # noqa: E402
 
 app.include_router(knowledge_router)
 app.include_router(agent_router)
+app.include_router(control_router)
 
 if settings.demo:
     from .demo_api import router as demo_router
@@ -205,8 +207,8 @@ def compile_pattern(req: CompileRequest, ident: Identity = Depends(current_user)
 
 
 @app.put("/api/patterns/{pattern_id}", response_model=Pattern)
-def edit_pattern(pattern_id: str, change: PatternEdit, _ident: Identity = Depends(require_admin)) -> Pattern:
-    return _with_hits([pat.edit(pattern_id, change)])[0]
+def edit_pattern(pattern_id: str, change: PatternEdit, ident: Identity = Depends(require_admin)) -> Pattern:
+    return _with_hits([pat.edit(pattern_id, change, by=ident.user_id)])[0]
 
 
 @app.post("/api/patterns/{pattern_id}/verify", response_model=VerifyResult)

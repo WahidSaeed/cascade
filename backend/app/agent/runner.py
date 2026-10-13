@@ -470,8 +470,12 @@ def _install_candidate(run: dict[str, Any], p: Pattern, cand: dict[str, Any], me
     meta = {}
     if (final / "meta.json").exists():
         meta = json.loads((final / "meta.json").read_text())
+    p.change_note = f"agent run {run['id']}, iteration {run['iteration']} ({cand['kind']})"
     if is_model and (cand.get("params") or {}).get("source"):
         p.source_code = cand.get("code") or ""                      # the user's edited code, served as written
+        retrain = str(run["intake"].get("instructions", "")).startswith("Retrain")
+        p.change_note = (f"retrained with more data (run {run['id']})" if retrain
+                         else f"trained from edited code (run {run['id']})")
     else:
         p.source_code = artifact_source(cand["kind"], meta, cand.get("params"), p.name, p.version,
                                         len(run.get("dataset", {}).get("train", [])))

@@ -59,3 +59,15 @@ the matrix counts every acceptance row it finds a passing test for). The final m
 - Edited ml / dl code trains as a sandboxed job (local: separate process, clean env, nobody uid in containers, limits, kill on timeout; AWS: network-isolated SageMaker job via infra/runtime-images/training.Dockerfile), is scored inside the job, goes through the holdout gate and admin approval, then serves as written.
 - The web app is a workspace: activity bar, Patterns explorer, Monaco artifact editor (tabs, ⌘S, Test / Output / Problems, inspector), status bar.
 - Evidence: `make verify` **Overall: PASS** — 2026-10-11 16:35:57 (unit 239, int 82, web 10, e2e 22, eval 6, perf 8 — load 50.0 rps, 0 failures, p95 690 ms — security 4; acceptance pass 42, aws-only 1).
+
+## Post-build: admin control centre (2026-10-13, user request)
+- Per artifact: version history (what produced each version, status, verification) with diffs and one-click rollback,
+  usage across users (served by the artifact vs still on the LLM, tokens and cost avoided, per user), and retrain with
+  more data / an approved integration (ml / dl) or rebuild with the agent (rules).
+- Evidence: `make verify` 2026-10-13 06:33:32 on an overloaded machine (load average up to 38): lint, unit 246,
+  int 82, contract, web 10, **e2e 25/25** (incl. control-centre history/diff/rollback, usage, retrain and the editor
+  specs), eval 6, security 4 pass; **perf 7/8** — sqlite light-layer p95 29.0 ms vs the 25 ms target (Postgres 19.4 ms;
+  load test 48.4 rps, 0 failures). A perf-only re-run was uniformly ~2x the 2026-10-11 baseline on paths this work does
+  not touch, i.e. machine contention; re-run `make perf` on a quiet machine to confirm.
+- Local Postgres healthcheck relaxed (pg_isready -t 20, interval 10s, timeout 30s): under load Docker killed
+  pg_isready mid-handshake and the starting backend died of SIGPIPE, which restarted every Postgres connection.
