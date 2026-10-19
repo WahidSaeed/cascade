@@ -110,7 +110,9 @@ export async function api<T>(path: string, init: RequestInit & { json?: unknown 
     } catch {
       /* not json */
     }
-    throw new ApiError(res.status, detail);
+    // HTTP/2 responses carry no status text: never surface an empty message
+    const fallback = res.status === 504 ? "the request timed out — try again" : `request failed (HTTP ${res.status})`;
+    throw new ApiError(res.status, detail || fallback);
   }
   return (await res.json()) as T;
 }

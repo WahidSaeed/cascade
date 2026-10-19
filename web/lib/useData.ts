@@ -17,7 +17,8 @@ export function useData<T>(fetcher: () => Promise<T>, key: string, intervalMs?: 
         .then((d) => { if (alive) { setData({ key, value: d }); setError(null); } })
         .catch((e: unknown) => { if (alive) setError(e instanceof Error ? e.message : String(e)); });
     void run();
-    const t = intervalMs ? setInterval(() => void run(), intervalMs) : undefined;
+    // polls only while the tab is visible: a background tab never loads the API
+    const t = intervalMs ? setInterval(() => { if (!document.hidden) void run(); }, intervalMs) : undefined;
     return () => { alive = false; if (t) clearInterval(t); };
   }, [key, nonce, intervalMs]);
 

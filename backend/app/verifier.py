@@ -12,7 +12,6 @@ becomes the pattern's `pattern_measured` estimate. Per task type:
 """
 from __future__ import annotations
 
-import json
 import re
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -75,8 +74,8 @@ def agree_numeric(a: str, b: str) -> float:
 def lookup_value(answer: str) -> str | None:
     """The fact an answer states: a JSON {"value": ...} or the first number in prose."""
     try:
-        j = json.loads(answer)
-        if isinstance(j, dict):
+        j = parse_json_reply(answer)
+        if isinstance(j, dict) and "value" in j:
             v = j.get("value")
             return None if v is None else _norm(str(v))
     except (ValueError, TypeError):
@@ -181,16 +180,27 @@ def verify(pattern: Pattern, samples: list[str], reference: ReferenceFn | None =
     in_tok: list[int] = []
     out_tok: list[int] = []
     disagreements: list[Disagreement] = []
-    for s in samples:
+
+    def one(s: str) -> tuple[ArtifactResult, Reference | None]:
         art = run(pattern, s)
+        if art.error is not None or (art.result or "").strip() == FALLBACK:
+            return art, None
+        return art, ref(s)
+
+    # Samples are independent: run them concurrently (each is an artifact call plus an LLM call), so verifying
+    # 40 samples takes a few seconds instead of a minute. Results are scored in sample order.
+    from concurrent.futures import ThreadPoolExecutor
+
+    with ThreadPoolExecutor(max_workers=max(1, settings.verify_concurrency)) as pool:
+        results = list(pool.map(one, samples))
+    for s, (art, r) in zip(samples, results, strict=True):
         if art.error is not None:
             scored += 1
             disagreements.append(Disagreement(prompt=s, artifact=f"ERROR: {art.error}", llm=None))
             continue
-        if (art.result or "").strip() == FALLBACK:
+        if r is None:
             fallbacks += 1
             continue
-        r = ref(s)
         if r.result is not None:
             in_tok.append(r.result.input_tokens)
             out_tok.append(r.result.output_tokens)

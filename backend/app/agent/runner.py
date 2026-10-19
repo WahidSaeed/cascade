@@ -27,6 +27,7 @@ from ..compilers.source import artifact_source
 from ..config import settings
 from ..heavy import LLMRequest, heavy_model
 from ..models import AgentRunRow, Notification, new_id
+from ..modelstore import ensure_local, publish
 from ..pricing import cost
 from ..schemas import ArtifactKind, Pattern, PatternStatus, TaskType, VerifyResult
 from ..store import store
@@ -457,7 +458,8 @@ def _install_candidate(run: dict[str, Any], p: Pattern, cand: dict[str, Any], me
     final = Path(settings.data_dir) / "models" / p.id / f"v{p.version}"
     if final.exists():
         shutil.rmtree(final)
-    shutil.copytree(cand["uri"], final)
+    shutil.copytree(ensure_local(Path(cand["uri"])), final)
+    publish(final)
     p.model_uri = str(final)
     is_model = cand["kind"] in ("ml", "dl")
     p.handler_code = "" if is_model else cand.get("code") or ""

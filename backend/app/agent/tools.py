@@ -23,12 +23,13 @@ from ..config import settings
 from ..heavy import LLMRequest, heavy_model
 from ..ledger import OverheadEntry, ledger
 from ..models import RequestLog
+from ..modelstore import ensure_local, publish
 from ..patterns import leak_warnings
 from ..pricing import cost, lambda_cost
 from ..runtime import SubprocessRuntime
 from ..schemas import ArtifactKind, Pattern
 from ..store import store
-from ..verifier import comparator, record_llm_overhead
+from ..verifier import comparator, output_format, record_llm_overhead, reference_system
 from . import datasets, integrations
 
 FALLBACK = "__FALLBACK__"
@@ -96,11 +97,46 @@ class Toolbox:
         out = [(r, a) for r, a, k in rows if k in keys and a]
         return list(dict.fromkeys(out))
 
+    def _is_label(self, answer: str) -> bool:
+        """Whether a logged answer already is a label in this task's output format (verifier.OUTPUT_FORMATS)."""
+        a = answer.strip()
+        task = self.pattern.task_type.value if self.pattern.task_type else ""
+        if task in ("classification", "routing"):
+            return "\n" not in a and len(a.split()) <= 4 and not a.endswith((".", "?"))
+        if task == "scoring":
+            return bool(re.fullmatch(r"-?\d+(?:\.\d+)?", a))
+        if task == "extraction":
+            try:
+                return isinstance(json.loads(a), dict)
+            except ValueError:
+                return False
+        if task == "transform":
+            return "\n" not in a and len(a) <= 120
+        return True
+
+    def _conform(self, rows: list[dict[str, str]]) -> list[dict[str, str]]:
+        """Logged answers are what the LLM told users — often prose ("This sounds like a Product Support issue
+        because…"), not labels. Re-label those in the task's output format, the same one verification asks the
+        reference for, so the artifact learns and is judged against like with like (overhead, budget-checked)."""
+        if output_format(self.pattern.task_type.value if self.pattern.task_type else None) is None:
+            return rows
+        out = []
+        for r in rows:
+            if not self._is_label(r["label"]):
+                self.check_budget(0.001)
+                res = heavy_model().complete(LLMRequest(question=r["input"], system=reference_system(self.pattern),
+                                                        purpose="label"))
+                record_llm_overhead(res, "label", self.pattern.id, self.run_id)
+                self.spent()
+                r = {**r, "label": res.text.strip()}
+            out.append(r)
+        return out
+
     def build_dataset(self, sources: list[str] | None = None, split: tuple[float, float, float] = (0.7, 0.1, 0.2)
                       ) -> dict[str, Any]:
         """Merge LLM-labelled logs and the user's datasets into train / val / holdout (user labels win)."""
         rng = random.Random(f"{self.pattern.id}-dataset")          # reproducible across runs (§14.4)
-        logged = [{"input": i, "label": lbl, "source": "llm"} for i, lbl in self._logged()]
+        logged = self._conform([{"input": i, "label": lbl, "source": "llm"} for i, lbl in self._logged()])
         rng.shuffle(logged)
         n = len(logged)
         n_train, n_val = int(n * split[0]), int(n * split[1])
@@ -151,7 +187,7 @@ class Toolbox:
         added = 0
         for q in prompts:
             self.check_budget(0.001)
-            res = heavy_model().complete(LLMRequest(question=q, purpose="label"))
+            res = heavy_model().complete(LLMRequest(question=q, system=reference_system(p), purpose="label"))
             record_llm_overhead(res, "label", p.id, self.run_id)
             self.spent()
             self.state.setdefault("dataset", {}).setdefault("train", []).append(
@@ -167,6 +203,7 @@ class Toolbox:
         cid = f"c{len(self.state.setdefault('candidates', {})) + 1}"
         self.state["candidates"][cid] = {"id": cid, "kind": kind, "uri": str(path), "params": params, "code": code,
                                          "metrics": None, "created_at": time.time()}
+        publish(path)                      # another task may evaluate, accept or deploy it
         return cid
 
     def write_rule(self, code: str) -> dict[str, Any]:
@@ -323,7 +360,7 @@ class Toolbox:
             missing = (None, 0.0, 0.0, "not scored by the training job")
             return [(d["result"], d["confidence"], d["latency_ms"], d["error"]) if (d := preds.get(q)) else missing
                     for q in prompts]
-        uri = cand["uri"]
+        uri = str(ensure_local(Path(cand["uri"])))
         if self.state.get("integration_spec") and (Path(uri) / "meta.json").exists():
             eval_dir = Path(uri + "-eval")
             if eval_dir.exists():
@@ -384,7 +421,7 @@ class Toolbox:
             judged = [(r, o) for r, (o, c, _, e) in zip(user, ures, strict=True)
                       if not e and o not in (None, FALLBACK) and c >= settings.artifact_min_confidence]
             user_acc = round(sum(agree(o or "", r["label"]) for r, o in judged) / len(judged), 4) if judged else 0.0
-        size = sum(f.stat().st_size for f in Path(cand["uri"]).iterdir() if f.is_file()) / 1e6
+        size = sum(f.stat().st_size for f in ensure_local(Path(cand["uri"])).iterdir() if f.is_file()) / 1e6
         p = self.pattern
         llm_cost = cost(settings.heavy_model_id, int(p.avg_input_tokens), int(p.avg_output_tokens))
         lat_sorted = sorted(lat)

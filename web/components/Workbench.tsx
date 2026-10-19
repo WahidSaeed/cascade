@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useState, useSyncExternalStore } from "react";
 import { AUTH_MODE, api, idToken, signIn } from "@/lib/api";
 import { NotificationBell } from "@/components/NotificationBell";
 import { PatternExplorer } from "@/components/PatternExplorer";
@@ -28,6 +28,8 @@ function active(path: string | null, href: string): boolean {
   return href === "/" ? path === "/" : !!path?.startsWith(href.replace(/\/$/, ""));
 }
 
+const noSubscribe = () => () => {};
+
 // The workspace shell: title bar, activity bar, side panel (per section), editor area and status bar.
 export function Workbench({ children }: { children: React.ReactNode }) {
   const path = usePathname();
@@ -36,8 +38,15 @@ export function Workbench({ children }: { children: React.ReactNode }) {
   const [health, setHealth] = useState<Health | null>(null);
   const [healthy, setHealthy] = useState<boolean | null>(null);
   const [sideOpen, setSideOpen] = useState(true);
+  // who is signed in (Cognito) — and whether we are past hydration: the static HTML is rendered without a session,
+  // so session-dependent text (sign-in link, user) renders only on the client, after mount
+  const [me, setMe] = useState<{ user_id: string; is_admin: boolean } | null>(null);
+  const mounted = useSyncExternalStore(noSubscribe, () => true, () => false);
 
   useEffect(() => {
+    if (AUTH_MODE === "cognito" && idToken()) {
+      api<{ user_id: string; is_admin: boolean }>("/api/me").then(setMe).catch(() => setMe(null));
+    }
     api<Persona[]>("/api/users").then(setPersonas).catch(() => setPersonas([]));
     api<Health>("/api/health")
       .then((h) => { setHealth(h); setHealthy(h.status === "ok"); })
@@ -62,7 +71,7 @@ export function Workbench({ children }: { children: React.ReactNode }) {
             <span className="rounded-pill border border-white/25 px-2 py-0.5 text-white" data-testid="demo-llm-badge">Demo LLM</span>
           )}
           <NotificationBell />
-          {AUTH_MODE === "cognito" && !idToken() && (
+          {mounted && AUTH_MODE === "cognito" && !idToken() && (
             <button onClick={() => void signIn()} className="text-white underline" data-testid="sign-in">Sign in</button>
           )}
           {AUTH_MODE !== "cognito" && <select aria-label="User" data-testid="user-switcher" value={userId}
@@ -104,7 +113,9 @@ export function Workbench({ children }: { children: React.ReactNode }) {
         <span>◆ {health?.db ?? "…"}</span>
         <span>llm: {health?.llm ?? "…"}</span>
         <span>artifacts: {health?.artifact_runtime ?? "…"}</span>
-        <span className="ml-auto">{persona ? `${persona.name} · ${persona.role}` : userId}</span>
+        <span className="ml-auto" data-testid="status-user">{!mounted ? "" : AUTH_MODE === "cognito"
+          ? (me ? `${me.user_id}${me.is_admin ? " · admin" : ""}` : "signed out")
+          : persona ? `${persona.name} · ${persona.role}` : userId}</span>
         <span>{healthy === false ? "API offline" : "API ok"}</span>
       </footer>
     </div>

@@ -65,6 +65,13 @@ def extract_table(document_ids: list[str], schema: str, pattern_id: str | None =
     return table, list(deps.values())
 
 
+# The reference answer for a lookup is the fact itself, as structured output, so the comparator never has to pick a
+# number out of prose (a section number or a citation can come first).
+LOOKUP_EXTRACT_SYSTEM = ("Answer only from the numbered context. Reply with one JSON object and nothing else: "
+                         '{"value": "<the fact the question asks for, exactly as the context states it>"}, '
+                         'or {"value": null} if the context does not state it.')
+
+
 def lookup_reference(pattern: Pattern, category: str = "verify") -> ReferenceFn:
     slots: dict[str, str] = dict(pattern.model_card.get("lookup", {}).get("slots", {}))
     collection_ids = sorted({d.collection_id for d in pattern.kb_dependencies})
@@ -80,7 +87,8 @@ def lookup_reference(pattern: Pattern, category: str = "verify") -> ReferenceFn:
                   for i, (c, _) in enumerate(chosen)]
         slot = slots.get(prompt) or _slot_from(prompt, slots)
         res = heavy_model().complete(LLMRequest(question=prompt, context=blocks, knowledge=True,
-                                                purpose="lookup_extract", meta={"slot": slot}))
+                                                system=LOOKUP_EXTRACT_SYSTEM, purpose="lookup_extract",
+                                                meta={"slot": slot}))
         record_llm_overhead(res, category, pattern.id, collection_id=collection_ids[0] if collection_ids else None)
         return Reference(res.text, res)
     return ref

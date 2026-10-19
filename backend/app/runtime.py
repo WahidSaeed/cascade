@@ -58,7 +58,9 @@ def materialize(pattern: Pattern) -> Path:
     if kind == "rule":
         (d / "handler.py").write_text(pattern.handler_code)
     else:
-        src = Path(pattern.model_uri)
+        from .modelstore import ensure_local
+
+        src = ensure_local(Path(pattern.model_uri))
         if not src.exists():
             raise FileNotFoundError(f"model files missing: {pattern.model_uri}")
         if src.resolve() != d.resolve():
@@ -67,6 +69,18 @@ def materialize(pattern: Pattern) -> Path:
                     shutil.copy2(f, d / f.name)
     (d / "manifest.json").write_text(json.dumps({"kind": kind, "pattern_id": pattern.id, "version": pattern.version}))
     return d
+
+
+def readable(result: str) -> str:
+    """Artifact code often answers with json.dumps(...), which escapes non-ASCII ("€" -> "\\u20ac"). Re-serialise a
+    JSON answer with the characters themselves, same keys, order and values."""
+    s = result.strip()
+    if not s.startswith(("{", "[")) or "\\u" not in s:
+        return result
+    try:
+        return json.dumps(json.loads(s), ensure_ascii=False)
+    except ValueError:
+        return result
 
 
 class ArtifactRuntime(ABC):
@@ -165,7 +179,7 @@ class SubprocessRuntime(ArtifactRuntime):
         latency = (time.perf_counter() - t0) * 1000
         if "error" in out:
             return ArtifactResult(None, 0.0, latency, str(out["error"]))
-        return ArtifactResult(str(out.get("result")), float(out.get("confidence", 0.0)), latency)
+        return ArtifactResult(readable(str(out.get("result"))), float(out.get("confidence", 0.0)), latency)
 
     def stop(self, pattern_id: str) -> None:
         with self._lock:
@@ -202,7 +216,7 @@ class LambdaRuntime(ArtifactRuntime):
         latency = (time.perf_counter() - t0) * 1000
         if resp.get("FunctionError") or "error" in payload:
             return ArtifactResult(None, 0.0, latency, str(payload.get("error", payload))[:300])
-        return ArtifactResult(str(payload.get("result")), float(payload.get("confidence", 0.0)), latency)
+        return ArtifactResult(readable(str(payload.get("result"))), float(payload.get("confidence", 0.0)), latency)
 
 
 def warm(patterns: list[Pattern]) -> None:

@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/Eyebrow";
 import { Button } from "@/components/Button";
 import { CitationChips } from "@/components/CitationChips";
 import { CollectionPicker } from "@/components/CollectionPicker";
+import { Markdown } from "@/components/Markdown";
 import { RouteBadge } from "@/components/RouteBadge";
 import { TokenNote } from "@/components/TokenNote";
 import { api } from "@/lib/api";
@@ -51,7 +52,7 @@ function BotMessage({ r }: { r: ChatResponse }) {
   return (
     <div className="max-w-[74%] self-start" data-testid="bot-message">
       <div className="whitespace-pre-wrap rounded-lg rounded-bl-sm border border-hairline bg-canvas px-[18px] py-[13px] text-base"
-        data-testid="answer">{r.answer}</div>
+        data-testid="answer"><Markdown text={r.answer} /></div>
       <div className="mt-[7px] flex flex-wrap items-center gap-2.5 font-mono text-[11px] tracking-[0.03em] text-muted-48">
         <RouteBadge route={r.route} />
         <span data-testid="latency">{fmtMs(r.latency_ms)}</span>

@@ -64,8 +64,9 @@ resource "aws_ecs_task_definition" "api" {
     image        = local.image
     essential    = true
     portMappings = [{ containerPort = 8080, protocol = "tcp" }]
-    environment  = local.backend_env
-    secrets      = local.backend_secrets
+    # agent runs are executed by the cascade-agent worker (Bedrock tool use, its own role), never inside the API
+    environment = concat(local.backend_env, [{ name = "CASCADE_AGENT_EXECUTOR", value = "worker" }])
+    secrets     = local.backend_secrets
     logConfiguration = {
       logDriver = "awslogs"
       options = {

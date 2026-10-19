@@ -147,13 +147,17 @@ def verify_pattern(pattern_id: str, samples: list[str] | None = None, reference:
     samples = samples or p.examples
     if not samples:
         raise PatternError(422, "no samples to verify against")
+    if reference is None and p.task_type == TaskType.lookup:
+        from .lookup import lookup_reference  # a lookup's facts are checked against its documents, never bare
+
+        reference = lookup_reference(p, category)
     if p.status == PatternStatus.approved and p.deployed_function:
         result = verify(p, samples, reference=reference, expected=expected, category=category)   # the serving code
     else:
         try:
             with candidate(p) as invoke:   # a draft is not deployed yet: verify it in its own sandboxed function
                 result = verify(p, samples, reference=reference, expected=expected, category=category, invoke=invoke)
-        except DeployError as exc:
+        except (DeployError, FileNotFoundError) as exc:
             raise PatternError(502, f"could not deploy the draft for verification: {exc}") from exc
     p = _get(pattern_id)   # re-read: verification can take a while
     p.verification = result

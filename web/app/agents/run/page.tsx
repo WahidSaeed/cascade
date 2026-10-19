@@ -1,5 +1,5 @@
 "use client";
-import { Suspense, useCallback, useState } from "react";
+import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/Button";
 import { PageHeader } from "@/components/Eyebrow";
@@ -18,16 +18,23 @@ function RunView() {
   const [feedback, setFeedback] = useState("");
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<string | null>(null);
+  const [notice, setNotice] = useState<string | null>(null);     // the verification gate's verdict after Accept
+  const [acting, setActing] = useState<string | null>(null);
   const reload = run.reload;
-  const onStatus = useCallback(() => reload(), [reload]);
   const r = run.data;
   if (!r) return <p className="text-muted-48">{run.error ?? "Loading…"}</p>;
   const waiting = r.status === "awaiting_feedback";
 
   async function respond(action: string) {
-    setBusy(true); setMsg(null);
-    try { await api(`/api/agent/runs/${id}/respond`, { method: "POST", json: { action, feedback } }); setFeedback(""); reload(); }
-    catch (e) { setMsg(String(e instanceof Error ? e.message : e)); } finally { setBusy(false); }
+    setBusy(true); setActing(action); setMsg(null); setNotice(null);
+    try {
+      const out = await api<AgentRun>(`/api/agent/runs/${id}/respond`, { method: "POST", json: { action, feedback } });
+      setFeedback("");
+      const last = out.events?.[out.events.length - 1];
+      if (action === "accept" && last?.kind === "gate" && out.status !== "accepted") setNotice(last.text);
+      reload();
+    }
+    catch (e) { setMsg(String(e instanceof Error ? e.message : e)); } finally { setBusy(false); setActing(null); }
   }
   async function start() {
     setBusy(true); setMsg(null);
@@ -64,10 +71,12 @@ function RunView() {
           )}
           {waiting && !r.cap_reached && (
             <div className="card" data-testid="response-bar">
+              {notice && <p className="mb-3 rounded-md bg-divider p-3 text-[13px] text-warn" data-testid="gate-notice">⚠ {notice}</p>}
               <textarea rows={2} value={feedback} onChange={(e) => setFeedback(e.target.value)} data-testid="feedback"
                 placeholder="Feedback for the next iteration" className="mb-3 w-full rounded-sm border border-hairline px-3 py-2 text-[14px]" />
               <div className="flex flex-wrap gap-3">
-                <Button disabled={busy} onClick={() => void respond("accept")} data-testid="accept">Accept</Button>
+                <Button disabled={busy} onClick={() => void respond("accept")} data-testid="accept">
+                  {acting === "accept" ? "Verifying…" : "Accept"}</Button>
                 <Button variant="ghost" disabled={busy} onClick={() => void respond("improve")} data-testid="improve">Keep improving</Button>
                 <Button variant="danger" disabled={busy} onClick={() => void respond("stop")} data-testid="stop">Stop</Button>
               </div>
@@ -76,7 +85,7 @@ function RunView() {
           {r.status === "accepted" && <p className="card text-ok" data-testid="accepted">Verification passed. An admin can now approve and deploy it from Patterns.</p>}
           {msg && <p className="text-bad">{msg}</p>}
         </div>
-        <div className="card"><p className="eyebrow mb-3">Timeline</p><RunTimeline runId={id} initial={r.events} onStatus={onStatus} /></div>
+        <div className="card"><p className="eyebrow mb-3">Timeline</p><RunTimeline runId={id} initial={r.events} /></div>
       </div>
     </section>
   );

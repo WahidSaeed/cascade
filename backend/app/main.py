@@ -231,7 +231,16 @@ def try_pattern(pattern_id: str, req: TryRequest, ident: Identity = Depends(curr
         raise HTTPException(403, "only admins can run an artifact that is not approved yet")
     if p.kind is None or (p.kind.value == "rule" and not p.handler_code) or (p.kind.value != "rule" and not p.model_uri):
         raise HTTPException(409, "this pattern has no compiled artifact yet")
-    r = runtime().invoke(p, req.prompt)
+    if p.status == PatternStatus.approved and p.deployed_function:
+        r = runtime().invoke(p, req.prompt)
+    else:                                # not deployed: run the saved version in its own sandboxed function
+        from .deploy import DeployError, candidate
+
+        try:
+            with candidate(p) as invoke:
+                r = invoke(p, req.prompt)
+        except (DeployError, FileNotFoundError) as exc:
+            raise HTTPException(502, f"could not start the artifact: {exc}") from exc
     return {"result": r.result, "confidence": r.confidence, "latency_ms": round(r.latency_ms, 2), "error": r.error,
             "fallback": not r.usable, "min_confidence": settings.artifact_min_confidence}
 

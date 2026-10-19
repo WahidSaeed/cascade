@@ -109,6 +109,7 @@ class Settings(BaseSettings):
 
     # --- verification / approval ---
     verify_min_score: float = 0.9
+    verify_concurrency: int = 8           # samples verified at once (artifact call + LLM call each)
     verify_sample_size: int = 40
     scoring_tolerance: float = 1.0
 
