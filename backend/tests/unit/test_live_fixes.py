@@ -232,3 +232,13 @@ def test_every_backend_task_can_deploy_ml_and_dl_artifacts():
     shared = ecs[ecs.index("backend_env = ["):]
     shared = shared[:shared.index("\n  ]")]
     assert "CASCADE_ML_RUNTIME_IMAGE" in shared and "CASCADE_DL_RUNTIME_IMAGE" in shared
+
+
+def test_agent_fine_tunes_dl_in_its_own_task():
+    """The agent sent dl training to SageMaker, where a new account's training quota is 0: every dl run and every
+    dl Retrain from the UI failed with ResourceLimitExceeded. It trains locally, on the image that has torch."""
+    agent = (ROOT / "infra" / "terraform" / "agent.tf").read_text()
+    task = agent[agent.index('resource "aws_ecs_task_definition" "agent"'):]
+    task = task[:task.index("logConfiguration")]
+    assert 'CASCADE_DL_TRAINER", value = "local"' in task
+    assert "aws_ecr_repository.training.repository_url" in task      # the API image has no torch

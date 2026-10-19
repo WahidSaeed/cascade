@@ -137,14 +137,17 @@ resource "aws_ecs_task_definition" "agent" {
   execution_role_arn       = aws_iam_role.execution.arn
   task_role_arn            = aws_iam_role.agent.arn
   container_definitions = jsonencode([{
-    name      = "agent"
-    image     = local.image
+    name = "agent"
+    # the training image: the backend plus torch and the base model, so dl artifacts fine-tune inside this task
+    image     = "${aws_ecr_repository.training.repository_url}:latest"
     essential = true
     command   = ["python", "-m", "app.agent.worker"]
     environment = concat(local.backend_env, [
       { name = "CASCADE_AGENT_EXECUTOR", value = "worker" },
       { name = "CASCADE_AGENT_LLM", value = "bedrock" },
-      { name = "CASCADE_DL_TRAINER", value = "sagemaker" },
+      # local, not sagemaker: new accounts have a SageMaker training-instance quota of 0 (ResourceLimitExceeded);
+      # bert-tiny fine-tunes in minutes on this task's 2 vCPU / 4 GB. Set "sagemaker" once the quota is granted.
+      { name = "CASCADE_DL_TRAINER", value = "local" },
       { name = "CASCADE_SAGEMAKER_ROLE_ARN", value = aws_iam_role.sagemaker.arn },
       { name = "CASCADE_DL_TRAINING_IMAGE", value = "${aws_ecr_repository.training.repository_url}:latest" },
     ])
