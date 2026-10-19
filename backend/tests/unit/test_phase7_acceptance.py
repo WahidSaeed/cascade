@@ -307,7 +307,8 @@ def test_parsed_pattern_cache_follows_updates(fresh_db):
 
 # ----------------------------------------------------------------------------- review fixes
 class _FakeRedis:
-    """Enough of the redis client for the hot cache (mget / set ex / delete / scan_iter)."""
+    """Enough of the redis client for the hot cache, behaving like ElastiCache Serverless in cluster mode: a command
+    naming more than one key fails (CROSSSLOT), so batches must be single-key commands in a pipeline."""
 
     def __init__(self):
         self.data: dict[str, tuple[str, float]] = {}
@@ -318,10 +319,14 @@ class _FakeRedis:
             raise ConnectionError("cache unreachable")
 
     def mget(self, keys):
+        raise RuntimeError("CROSSSLOT Keys in request don't hash to the same slot")
+
+    def get(self, key):
         self._check()
         import time as _t
 
-        return [v for v, exp in (self.data.get(k, (None, 0.0)) for k in keys) for v in [v if exp > _t.time() else None]]
+        v, exp = self.data.get(key, (None, 0.0))
+        return v if exp > _t.time() else None
 
     def set(self, key, value, ex):
         self._check()
@@ -331,12 +336,30 @@ class _FakeRedis:
 
     def delete(self, *keys):
         self._check()
+        if len(keys) > 1:
+            raise RuntimeError("CROSSSLOT Keys in request don't hash to the same slot")
         for k in keys:
             self.data.pop(k, None)
 
     def scan_iter(self, match, count):
         self._check()
         return [k for k in list(self.data) if k.startswith(match.rstrip("*"))]
+
+    def pipeline(self, transaction=True):
+        assert transaction is False, "a transaction (MULTI) would need every key in one slot"
+        fake, calls = self, []
+
+        class Pipe:
+            def get(self, key):
+                calls.append((fake.get, key))
+
+            def delete(self, key):
+                calls.append((fake.delete, key))
+
+            def execute(self):
+                return [fn(key) for fn, key in calls]
+
+        return Pipe()
 
 
 @pytest.fixture

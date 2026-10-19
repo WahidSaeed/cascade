@@ -3,6 +3,8 @@
 The database stays the source of truth. A hit in the database is copied here with a short TTL (never past the
 entry's own expiry); invalidations (artifact edit / reject / demote, demo reset, retention) delete the copies.
 Every operation fails open: if the cache is unreachable, lookups go to the database as before.
+ElastiCache Serverless runs in cluster mode, where a command naming several keys in different hash slots fails
+(CROSSSLOT), so every command names one key; batches go through a non-transactional pipeline (one round trip).
 """
 from __future__ import annotations
 
@@ -28,7 +30,10 @@ class HotExactCache:
 
     def get_many(self, exact_keys: list[str]) -> list[dict[str, Any] | None]:
         try:
-            raw = self._client.mget([self._key(k) for k in exact_keys])
+            pipe = self._client.pipeline(transaction=False)
+            for k in exact_keys:
+                pipe.get(self._key(k))
+            raw = pipe.execute()
         except Exception as exc:  # noqa: BLE001 - fail open to the database
             log.warning("hot cache get failed: %s", exc)
             return [None] * len(exact_keys)
@@ -49,20 +54,25 @@ class HotExactCache:
         except Exception as exc:  # noqa: BLE001
             log.warning("hot cache put failed: %s", exc)
 
+    def _delete_keys(self, keys: list[str]) -> None:
+        for i in range(0, len(keys), 500):
+            pipe = self._client.pipeline(transaction=False)
+            for k in keys[i:i + 500]:
+                pipe.delete(k)
+            pipe.execute()
+
     def delete(self, exact_keys: list[str]) -> None:
         if not exact_keys:
             return
         try:
-            self._client.delete(*[self._key(k) for k in exact_keys])
+            self._delete_keys([self._key(k) for k in exact_keys])
         except Exception as exc:  # noqa: BLE001
             log.warning("hot cache delete failed: %s", exc)
 
     def flush(self) -> None:
         """Drop every Cascade key (demo reset, retention): the database is the truth again."""
         try:
-            keys = list(self._client.scan_iter(match=PREFIX + "*", count=500))
-            for i in range(0, len(keys), 500):
-                self._client.delete(*keys[i:i + 500])
+            self._delete_keys(list(self._client.scan_iter(match=PREFIX + "*", count=500)))
         except Exception as exc:  # noqa: BLE001
             log.warning("hot cache flush failed: %s", exc)
 
