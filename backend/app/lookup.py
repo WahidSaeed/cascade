@@ -9,14 +9,13 @@ lookup_reference() verification reference: retrieve the context for the prompt a
 """
 from __future__ import annotations
 
-import json
 from typing import Any
 
 from sqlalchemy import select
 
 from . import db
 from . import patterns as pat
-from .heavy import ContextBlock, LLMRequest, heavy_model
+from .heavy import ContextBlock, LLMRequest, heavy_model, parse_json_reply
 from .light.embedder import get_embedder
 from .models import ChunkRow, CollectionRow, DocumentRow
 from .rag.access import collection_acl
@@ -58,7 +57,7 @@ def extract_table(document_ids: list[str], schema: str, pattern_id: str | None =
         context=blocks, purpose="extract_table", meta={"schema": schema}))
     record_llm_overhead(res, "compile", pattern_id, run_id, note=f"extract_table {schema}")
     try:
-        table = {str(k): str(v) for k, v in json.loads(res.text).items()}
+        table = {str(k): str(v) for k, v in parse_json_reply(res.text).items()}
     except (ValueError, AttributeError) as exc:
         raise pat.PatternError(422, f"could not extract a table: {exc}") from exc
     deps = {(b.document_id): KbDependency(document_id=b.document_id, collection_id=b.collection_id,

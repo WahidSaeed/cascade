@@ -26,7 +26,7 @@ from .runtime import runtime
 from .schemas import Pattern, PatternStatus
 from .state import on_reset
 from .store import store
-from .verifier import comparator, record_llm_overhead
+from .verifier import comparator, record_llm_overhead, reference_system
 
 log = logging.getLogger("cascade.drift")
 MIN_SAMPLES = 10
@@ -64,7 +64,7 @@ def _compare(pattern: Pattern, prompt: str, artifact_answer: str, source: str) -
 
         llm_text = lookup_reference(pattern, "drift")(prompt).answer
     else:
-        res = heavy_model().complete(LLMRequest(question=prompt, purpose="verify"))
+        res = heavy_model().complete(LLMRequest(question=prompt, system=reference_system(pattern), purpose="verify"))
         record_llm_overhead(res, "drift", pattern.id, note=source)
         llm_text = res.text
     _, agree = comparator(pattern.task_type.value if pattern.task_type else None)

@@ -212,7 +212,7 @@ class Ledger:
     @staticmethod
     def _summary_dict(r: tuple[Any, ...], routes: dict[Any, Any], methods: dict[Any, Any], o: tuple[Any, ...],
                       ocat_rows: Any) -> dict[str, Any]:
-        ocat = {k: {"cost_usd": float(c), "tokens": int(t)} for k, c, t in ocat_rows}
+        ocat = {k: {"cost_usd": round(float(c), 8), "tokens": int(t)} for k, c, t in ocat_rows}
         (n, tin, tout, emb, ain, aout, actx, cact, cav, crun, cemb, qp, qc, qh, qs, crd, cwr, heur, uncited, sim) = r
         overhead_tokens = int(o[1]) + int(o[2])
         spent_requests = int(tin) + int(tout) + int(emb)

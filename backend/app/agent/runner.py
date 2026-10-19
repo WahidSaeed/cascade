@@ -248,6 +248,8 @@ def _brain_action(run: dict[str, Any], tb: Toolbox) -> dict[str, Any]:
         from .bedrock_agent import next_action
 
         return next_action(run, tb)
+    if settings.llm == "bedrock":                   # scripted agent: only the Demo LLM can "play" the script
+        return scripted.next_action(view)
     res = heavy_model().complete(LLMRequest(question=f"Next tool call for run {run['id']}", system=AGENT_SYSTEM,
                                             purpose="agent", meta={"state": view}))
     usd = cost(res.model_id, res.input_tokens, res.output_tokens)

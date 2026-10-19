@@ -279,6 +279,33 @@ class DemoLLM(HeavyModel):
 
 
 # ============================================================================ Bedrock
+_FENCE = re.compile(r"```[\w-]*\s*(.*?)\s*```", re.DOTALL)
+
+
+def parse_json_reply(text: str) -> Any:
+    """JSON from a model reply. A real LLM often wraps it in a ```json fence or adds a sentence or a citation
+    around it; the first JSON value in the reply is taken. Raises ValueError when there is none."""
+    s = (text or "").strip()
+    fence = _FENCE.search(s)
+    if fence:
+        s = fence.group(1)
+    try:
+        return json.loads(s)
+    except ValueError:
+        starts = [i for i in (s.find("{"), s.find("[")) if i >= 0]
+        if not starts:
+            raise
+        return json.JSONDecoder().raw_decode(s[min(starts):])[0]
+
+
+_CACHE_MODELS = ("anthropic.claude", "amazon.nova")   # Bedrock models that accept a cachePoint
+
+
+def supports_prompt_cache(model_id: str) -> bool:
+    """Other models reject any request that carries a cachePoint."""
+    return any(m in model_id for m in _CACHE_MODELS)
+
+
 class BedrockHeavyModel(HeavyModel):
     """Amazon Bedrock via the Converse API (model-agnostic, returns token usage)."""
 
@@ -292,7 +319,7 @@ class BedrockHeavyModel(HeavyModel):
 
     def build_request(self, req: LLMRequest) -> dict[str, Any]:
         system: list[dict[str, Any]] = [{"text": req.system_text()}]
-        if settings.prompt_caching:
+        if settings.prompt_caching and supports_prompt_cache(req.model_id or self.model_id):
             system.append({"cachePoint": {"type": "default"}})
         if req.context:
             system.append({"text": "Context passages:\n\n" + req.context_text()})

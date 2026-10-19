@@ -70,6 +70,7 @@ class Settings(BaseSettings):
     bedrock_model_id: str = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
     light_llm_model_id: str = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
     llm_max_tokens: int = 1024
+    compile_max_tokens: int = 4096         # a generated rule with its tables does not fit in llm_max_tokens
     prompt_caching: bool = True            # mark the stable system block as a Bedrock cache point
     demo_latency_ms: int = 2500            # Demo LLM simulated latency centre (0 in tests)
     crm_url: str = "http://127.0.0.1:8090"     # crm-mock (S9 "CRM tier lookup"); compose: http://crm-mock:8090

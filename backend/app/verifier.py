@@ -19,7 +19,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from .config import settings
-from .heavy import LLMRequest, LLMResult, heavy_model
+from .heavy import SYSTEM_PROMPT, LLMRequest, LLMResult, heavy_model, parse_json_reply
 from .ledger import OverheadEntry, ledger
 from .pricing import cost
 from .runtime import ArtifactResult, runtime
@@ -36,9 +36,19 @@ def agree_exact(a: str, b: str) -> float:
     return 1.0 if _norm(a) == _norm(b) else 0.0
 
 
+_NUM = re.compile(r"-?\d+(?:\.\d+)?")
+
+
+def agree_transform(a: str, b: str) -> float:
+    """Normalized string equality where numbers compare by value ("0.3 m" == "0.30 m")."""
+    def canon(s: str) -> str:
+        return _NUM.sub(lambda m: f"{float(m.group(0)):g}", s or "")
+    return agree_exact(canon(a), canon(b))
+
+
 def agree_json(a: str, b: str) -> float:
     try:
-        ja, jb = json.loads(a), json.loads(b)
+        ja, jb = parse_json_reply(a), parse_json_reply(b)
     except (ValueError, TypeError):
         return agree_exact(a, b)
     if not isinstance(ja, dict) or not isinstance(jb, dict):
@@ -84,7 +94,7 @@ COMPARATORS: dict[str, tuple[str, Callable[[str, str], float]]] = {
     TaskType.classification.value: ("exact", agree_exact),
     TaskType.routing.value: ("exact", agree_exact),
     TaskType.extraction.value: ("json_fields", agree_json),
-    TaskType.transform.value: ("normalized_string", agree_exact),
+    TaskType.transform.value: ("normalized_string", agree_transform),
     TaskType.scoring.value: ("numeric_tolerance", agree_numeric),
     TaskType.lookup.value: ("lookup_value", agree_lookup),
 }
@@ -92,6 +102,31 @@ COMPARATORS: dict[str, tuple[str, Callable[[str, str], float]]] = {
 
 def comparator(task_type: str | None) -> tuple[str, Callable[[str, str], float]]:
     return COMPARATORS.get(task_type or "", ("exact", agree_exact))
+
+
+# The answer format per task type. The rule is compiled to it and the reference LLM is asked for it, so the
+# comparator sees like with like (a real LLM otherwise answers the same request in a different shape each time).
+OUTPUT_FORMATS: dict[str, str] = {
+    TaskType.classification.value: "Reply with only the label, in lowercase, with no explanation.",
+    TaskType.routing.value: "Reply with only the queue name, in lowercase, with no explanation.",
+    TaskType.extraction.value: (
+        "Reply with one JSON object and nothing else. Use snake_case keys named after the fields the request "
+        "asks for, in the order asked (for example 'order number' -> \"order_number\"). Copy each value exactly "
+        "as it appears in the text, including any currency symbol; use null for a field that is missing."),
+    TaskType.transform.value: ("Reply with only the result on one line, with no explanation: numbers with exactly "
+                               "2 decimals (e.g. 0.30), followed by the target unit or form as written in the "
+                               "request."),
+    TaskType.scoring.value: "Reply with only the number.",
+}
+
+
+def output_format(task_type: str | None) -> str | None:
+    return OUTPUT_FORMATS.get(task_type or "")
+
+
+def reference_system(pattern: Pattern) -> str:
+    fmt = output_format(pattern.task_type.value if pattern.task_type else None)
+    return SYSTEM_PROMPT + (f"\n\nOutput format: {fmt}" if fmt else "")
 
 
 def threshold_for(pattern: Pattern) -> float:
@@ -110,9 +145,9 @@ ReferenceFn = Callable[[str], Reference]
 
 
 def llm_reference(pattern: Pattern, category: str, run_id: str | None = None) -> ReferenceFn:
-    """Default reference: the heavy LLM answers the prompt exactly as on the request path."""
+    """Default reference: the heavy LLM answers the prompt as on the request path, in the task's output format."""
     def ref(prompt: str) -> Reference:
-        res = heavy_model().complete(LLMRequest(question=prompt, purpose="verify"))
+        res = heavy_model().complete(LLMRequest(question=prompt, system=reference_system(pattern), purpose="verify"))
         record_llm_overhead(res, category, pattern.id, run_id)
         return Reference(res.text, res)
     return ref

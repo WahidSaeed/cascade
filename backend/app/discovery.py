@@ -11,7 +11,6 @@
 """
 from __future__ import annotations
 
-import json
 import time
 from dataclasses import dataclass, field
 from typing import Any
@@ -21,7 +20,7 @@ from sqlalchemy import select
 
 from . import db
 from .config import settings
-from .heavy import LLMRequest, light_llm
+from .heavy import LLMRequest, light_llm, parse_json_reply
 from .light.normalize import normalize
 from .light.vec import centroid, cosine
 from .models import LedgerRow, Notification, RequestLog
@@ -133,7 +132,7 @@ def discover(window_days: float = 7.0, now: float | None = None, notify: bool = 
             if settings.llm == "bedrock" else None))
         record_llm_overhead(res, "discovery", None, note=f"cluster of {len(members)}")
         try:
-            label = json.loads(res.text)
+            label = parse_json_reply(res.text)
         except ValueError:
             continue
         ttype = str(label.get("task_type", ""))

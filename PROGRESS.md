@@ -71,3 +71,19 @@ the matrix counts every acceptance row it finds a passing test for). The final m
   not touch, i.e. machine contention; re-run `make perf` on a quiet machine to confirm.
 - Local Postgres healthcheck relaxed (pg_isready -t 20, interval 10s, timeout 30s): under load Docker killed
   pg_isready mid-handshake and the starting backend died of SIGPIPE, which restarted every Postgres connection.
+
+## Post-build: real-Bedrock checks P1-10 and S10 (2026-10-19, user request)
+- Run by hand with the user's credentials in eu-central-1 (`eu.` Claude Sonnet 4.5 heavy / Haiku 4.5 light, prices for
+  the `eu.` ids passed via `CASCADE_MODEL_PRICES`). **P1-10** `make test-aws`: 1 passed. **S10** `make demo-measure`
+  (cap $5): measured, 200 prompts replayed, routes artifact 59 / cache 27 / llm 114, token reduction 28.3 %, actual
+  spend $0.13, net saved $-0.015 (one-off build overhead exceeds the savings on a 200-prompt sample) — `reports/measured.md`.
+- The first real-LLM run of compile/verify exposed bugs the Demo LLM hid, all fixed with tests
+  (`tests/unit/test_real_llm_compile.py`): redacted examples now keep identifier shapes (`<ID:AA-99999>`) and the
+  compile prompt explains placeholders; one output format per task type is sent to both the compile and the reference
+  (verify / drift) calls; compile gets its own token limit (`compile_max_tokens`); unclosed code fences; JSON replies
+  read through fences and surrounding text (`parse_json_reply`: verifier, lookup table, discovery); transform answers
+  compare numbers by value; the scripted agent no longer sends its turn to a real LLM; cachePoint only for models
+  that accept it; per-category overhead rounded like the other ledger totals.
+- Evidence: `make lint` pass; `make test-unit` 254 passed; `make test-int` 82 passed (2026-10-19 18:10);
+  `make test-e2e` 25 passed. `make perf` 8 passed (2026-10-19 18:40; light p95 14.0 ms SQLite / 17.8 ms Postgres,
+  artifact route 13.8 / 25.9 ms, load 48.3 rps, 0 failures, p95 800 ms).

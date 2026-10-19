@@ -25,7 +25,7 @@ from .light.normalize import normalize
 from .light.recognizer import refresh_recognizer
 from .light.vec import centroid
 from .models import Notification, RequestLog
-from .privacy import contains_pii, redact
+from .privacy import contains_pii, redact, redact_shapes
 from .schemas import (
     COMPILABLE_TASK_TYPES,
     ArtifactKind,
@@ -38,13 +38,18 @@ from .schemas import (
     VerifyResult,
 )
 from .store import store
-from .verifier import ReferenceFn, record_llm_overhead, threshold_for, verify
+from .verifier import ReferenceFn, output_format, record_llm_overhead, threshold_for, verify
 
 COMPILE_SYSTEM = (
     "You write small, dependency-free, deterministic Python handlers that reproduce a narrow task an LLM "
     "was doing. Output ONLY Python source defining `def handle(prompt: str) -> str`. Standard library "
     "only; no network, file or OS access; never embed names, emails, IDs or text copied from the "
-    "examples. If the input does not fit the task, return the literal string '__FALLBACK__'."
+    "examples. If the input does not fit the task, return the literal string '__FALLBACK__'.\n\n"
+    "The example prompts are redacted: each personal or identifying value was replaced by a placeholder "
+    "such as <EMAIL>, <NAME> or <ID:AA-99999>. After the colon is the value's shape (A = uppercase letter, "
+    "a = lowercase letter, 9 = digit, other characters literal), so <ID:AA-99999> stands for a value like "
+    "XY-12345. At run time the handler receives the original, unredacted text: match the real values "
+    "(an email address, an identifier of that shape), never the placeholder text."
 )
 MAX_EXEMPLARS = 24
 
@@ -56,7 +61,7 @@ class PatternError(ValueError):
 
 
 def _extract_code(text: str) -> str:
-    fence = re.search(r"```(?:python)?\s*(.*?)```", text, re.DOTALL)
+    fence = re.search(r"```(?:python)?\s*(.*?)(?:```|\Z)", text, re.DOTALL)   # an unclosed fence runs to the end
     return (fence.group(1) if fence else text).strip() + "\n"
 
 
@@ -114,10 +119,13 @@ def compile_pattern(req: CompileRequest, user_id: str = "system", meta: dict[str
         code = req.handler_code
     else:
         llm_meta = {"examples": req.examples[:20], "task_type": req.task_type, **(meta or {})}
-        prompt = (f"Task: {req.description}\nTask type: {req.task_type}\n\nExample prompts this handler must cover:\n"
-                  + "\n".join(f"- {redact(e)}" for e in req.examples[:20]) + "\n\nWrite the handler now.")
+        fmt = output_format(req.task_type)
+        prompt = (f"Task: {req.description}\nTask type: {req.task_type}\n"
+                  + (f"Output format the handler must return: {fmt}\n" if fmt else "")
+                  + "\nExample prompts this handler must cover:\n"
+                  + "\n".join(f"- {redact_shapes(e)}" for e in req.examples[:20]) + "\n\nWrite the handler now.")
         res = heavy_model().complete(LLMRequest(question=prompt, system=COMPILE_SYSTEM, purpose="compile",
-                                                meta=llm_meta))
+                                                meta=llm_meta, max_tokens=settings.compile_max_tokens))
         code = _extract_code(res.text)
         pattern_id_hint = (meta or {}).get("pattern_id")
         record_llm_overhead(res, "compile", pattern_id_hint, run_id, note=req.name)

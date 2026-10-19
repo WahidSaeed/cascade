@@ -59,6 +59,23 @@ def redact(text: str) -> str:
     return out
 
 
+_SHAPED = {"ID", "CARD", "IBAN", "PHONE", "SSN"}
+
+
+def shape(value: str) -> str:
+    """The format of a value without its content: uppercase -> A, lowercase -> a, digit -> 9."""
+    return re.sub(r"\d", "9", re.sub(r"[a-z]", "a", re.sub(r"[A-Z]", "A", value)))
+
+
+def redact_shapes(text: str) -> str:
+    """Like `redact`, but structured identifiers keep their shape (`NP-54522` -> `<ID:AA-99999>`), so a rule
+    written from redacted examples can still match the real values."""
+    out = text
+    for kind, val in sorted(find_pii(text), key=lambda kv: -len(kv[1])):
+        out = out.replace(val, f"<{kind}:{shape(val)}>" if kind in _SHAPED else f"<{kind}>")
+    return out
+
+
 _client: Any = None
 
 
