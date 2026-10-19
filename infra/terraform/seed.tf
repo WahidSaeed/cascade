@@ -1,6 +1,8 @@
 # One-off task that loads the demo starting state into this deployment (`python -m app.seed --build`): it ingests
-# documents and deploys artifact Lambdas like the API, and trains the dl artifact on SageMaker like the agent, so its
-# role carries both policies. Nothing runs it on a schedule; start it by hand with `aws ecs run-task` (DEPLOY.md).
+# documents and deploys artifact Lambdas like the API, and trains the dl artifact like the agent, so its role carries
+# both policies. It runs the training image (the backend with torch), so the dl artifact can also train inside the
+# task (CASCADE_DL_TRAINER=local) on accounts without SageMaker training quota. Nothing runs it on a schedule; start
+# it by hand with `aws ecs run-task` (DEPLOY.md).
 resource "aws_iam_role" "seed" {
   name               = "${local.name}-seed"
   assume_role_policy = data.aws_iam_policy_document.ecs_assume.json
@@ -29,6 +31,7 @@ resource "aws_ecs_task_definition" "seed" {
   task_role_arn            = aws_iam_role.seed.arn
   container_definitions = jsonencode([merge(jsondecode(aws_ecs_task_definition.agent.container_definitions)[0], {
     name    = "seed"
+    image   = "${aws_ecr_repository.training.repository_url}:latest"
     command = ["python", "-m", "app.seed", "--build"]
     logConfiguration = {
       logDriver = "awslogs"

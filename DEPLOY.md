@@ -116,7 +116,8 @@ Bedrock, and runs discovery. Expect a few dollars of Bedrock spend and up to an 
 aws ecs update-service --cluster cascade --service cascade-agent --desired-count 0
 NET=$(aws ecs describe-services --cluster cascade --services cascade-agent --query "services[0].networkConfiguration")
 aws ecs run-task --cluster cascade --launch-type FARGATE --task-definition cascade-seed --network-configuration "$NET" \
-  --overrides '{"containerOverrides":[{"name":"seed","environment":[{"name":"CASCADE_AGENT_LLM","value":"scripted"}]}]}'
+  --overrides '{"containerOverrides":[{"name":"seed","environment":[{"name":"CASCADE_AGENT_LLM","value":"scripted"},{"name":"CASCADE_DL_TRAINER","value":"local"}]}]}'
+# CASCADE_DL_TRAINER=local trains the dl artifact inside the task (no SageMaker training quota needed)
 # when it has stopped (logs: /ecs/cascade, stream prefix seed/):
 aws ecs update-service --cluster cascade --service cascade-agent --desired-count 1
 aws ecs update-service --cluster cascade --service cascade-api --force-new-deployment
