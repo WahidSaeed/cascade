@@ -87,3 +87,17 @@ the matrix counts every acceptance row it finds a passing test for). The final m
 - Evidence: `make lint` pass; `make test-unit` 254 passed; `make test-int` 82 passed (2026-10-19 18:10);
   `make test-e2e` 25 passed. `make perf` 8 passed (2026-10-19 18:40; light p95 14.0 ms SQLite / 17.8 ms Postgres,
   artifact route 13.8 / 25.9 ms, load 48.3 rps, 0 failures, p95 800 ms).
+
+## Post-build: AWS deployment for public testing (2026-10-19, user request)
+- Pushed to https://github.com/WahidSaeed/cascade (public). Deployed to eu-central-1 (no-domain mode):
+  https://d1xzxi7wla3zp5.cloudfront.net, Cognito admin created. `model_prices` Terraform variable carries the `eu.` prices.
+- Seeded with the one-off `cascade-seed` task (DEPLOY.md §6a): 2,400 requests replayed on real Bedrock, 4 artifacts
+  installed, 2 patterns recognized. Afterwards: extraction and conversion approved and serving; the urgency dl
+  artifact was demoted by the hourly drift job (78 % agreement with real Sonnet); the vacation lookup stayed a draft
+  (verification 0.6 against real Sonnet, lookups need 1.0) — not yet investigated.
+- Real-AWS bugs found and fixed with tests: drafts could never verify with the lambda runtime (now a temporary
+  `-verify` Lambda); Lambda could not pull the ml / dl runtime images (repository policy + ECR read); the hot cache
+  used multi-key commands that ElastiCache Serverless (cluster mode) rejects (now single-key pipelines).
+- Account limit: SageMaker training quota is 0 (ml.m5.large); the seed trains the dl artifact in-task.
+- Evidence: `make lint` pass; `make test-unit` 255 passed (one load-sensitive flake in test_source_training passed
+  3/3 on re-run); `make test-int` 82 passed.
