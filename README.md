@@ -13,6 +13,10 @@ control over it (edit the code, retrain with more data, roll back, wire in an ex
 Every token spent, avoided and saved is written to an auditable ledger, **net** of what it cost to build and
 check the artifacts. The hard rule: **answer quality never drops below the LLM's.**
 
+**Live deployment:** https://d1xzxi7wla3zp5.cloudfront.net (AWS eu-central-1, sign-in required). It is serving
+ten artifacts, three rules, three ML models and four deep-learning models, all built by the agent and verified
+against Claude ([Artifacts in production](#artifacts-in-production)).
+
 ---
 
 ## Why this project exists
@@ -208,13 +212,60 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the request path in detail and where 
 
 ---
 
+## Artifacts in production
+
+The AWS deployment serves ten artifacts. Each one came from an agent run, passed the verification gate against
+Claude Sonnet 4.5 on Bedrock, and then an admin approved it, which deployed it as its own Lambda.
+
+| Artifact | Kind | Input → output | Model | Verified vs Claude |
+|---|---|---|---|---|
+| Review sentiment | ML | product review → `positive` / `negative` | TF-IDF + logistic regression | 100 % · 120 samples |
+| Catalog category | ML | product listing → `tents`, `sleeping`, `footwear`, `apparel`, `cooking`, `climbing`, `packs` | TF-IDF + logistic regression | 100 % · 120 samples |
+| Message language | ML | customer message → `en`, `de`, `fr`, `es`, `it`, `nl` | TF-IDF + logistic regression | 100 % · 120 samples |
+| Return reason | DL | return note → `too_small`, `too_large`, `defective`, `not_as_described`, `changed_mind` | fine-tuned bert-tiny | 100 % · 375 samples |
+| Review star rating | DL | review → 1–5 stars | fine-tuned bert-tiny | 100 % · 375 samples |
+| Community post moderation | DL | forum post → `allow` / `flag` (spam, abuse) | fine-tuned bert-tiny | 100 % · 375 samples |
+| Urgency scoring | DL | customer message → urgency 1–5 | fine-tuned bert-tiny | 100 % · 33 samples |
+| Order details extraction | rule | message → `{order_number, email, amount, currency}` | Python written by the LLM | 100 % · 40 samples |
+| Unit conversion | rule | "convert 12 km to miles" → `12 km = 7.46 miles` | Python written by the LLM | 95 % · 40 samples |
+| Vacation days by country | rule (lookup) | "how many vacation days in France?" → 25, from the handbook | table extracted from the document | 100 % · 10 samples |
+
+ML and DL models are exported to ONNX and served from generic runtime images, one container Lambda each. A
+deep-learning artifact generalizes beyond its training phrases. Given the unseen wording *"the hood seam ripped
+open"*, Return reason answered `defective` with confidence 0.99 in 44 ms, using no tokens.
+
+**How the scenarios are made.** `backend/app/demo_scenarios.py` defines the six ML / DL scenarios. Each has a
+generator, an oracle and prompt wording whose labels real Claude reproduces; before anything was seeded, a probe
+of 15–25 samples per scenario on Bedrock agreed 93–100 %. `demo/generate.py` writes a balanced, de-duplicated
+labelled set per scenario to `demo/data/scenarios/`: 480 rows for ML, 1,500 for DL, so that DL's 1,000-sample
+minimum holds after the hold-out. `python -m app.seed --extend` installs them on a running deployment without
+wiping it. It runs a real agent per scenario, the scripted agent told "straight to ml" or "fine-tune a small
+transformer", then the gate and approval. It then replays a second week of 1,640 prompts once: the scenario
+traffic plus token-saving tests, namely 320 exact repeats, 160 rewordings, and more extraction and conversion
+traffic.
+
+**Drift in practice.** Urgency scoring's first version learned from labels made by a scoring rule. On live traffic
+Claude agreed with it only 78 % of the time (within ±1), so the drift job moved its traffic back to the LLM. It
+was retrained on its 1,400 examples relabelled by Claude, with the verifier's own prompt, and passed the gate
+again, at 100 % on 33 held-out samples.
+
+---
+
 ## Results
 
-Measured on real Bedrock (eu-central-1, Claude Sonnet 4.5 heavy / Haiku 4.5 light), replaying 200 prompts of
-the demo traffic (`make demo-measure`, 2026-10-19): routes **artifact 59 / cache 27 / LLM 114**, **28.3 % token
-reduction**, total spend $0.13. On a sample that small the one-off cost of building the artifacts still exceeds
-the savings (net −$0.015). Build overhead is paid once, while savings grow with every request, which is why the
-dashboard shows per-pattern payback.
+Live on the AWS deployment (eu-central-1, Claude Sonnet 4.5 on Bedrock as the heavy model), after two
+simulated weeks of traffic (4,058 requests across the ten artifacts):
+
+| | |
+|---|---|
+| Routes | **artifact 1,598 · cache 1,272 · LLM 1,188** |
+| Token reduction | **56.0 %** (453,531 tokens spent, including build and verification overhead; ~576,075 avoided) |
+| Money | **$3.20 net saved**: $4.78 gross minus $1.58 to build and check the artifacts |
+
+Build overhead is paid once, while savings grow with every request, which is why the dashboard shows per-pattern
+payback. The first measurement (`make demo-measure`, 2026-10-19) replayed only 200 prompts, before the ML / DL
+artifacts existed. It gave a 28.3 % reduction (artifact 59, cache 27, LLM 114), and at that size the build cost
+still exceeded the savings (net −$0.015).
 
 Performance (`make perf`): light-layer p95 ≈ 14 ms (SQLite) / 18 ms (Postgres) over 1,000 prompts, artifact route
 p95 ≈ 14–26 ms, and a 60 s load test at ~48 requests/s with zero failures.
@@ -231,7 +282,8 @@ make api          # API on :8080 against SQLite, Demo LLM, local auth
 cd web && NEXT_PUBLIC_API_BASE=http://localhost:8080 npm run dev     # UI on :3000
 ```
 `python -m app.seed --reset` (from `backend/`) loads the demo starting state: a week of traffic from the fictional
-Northpeak Outfitters, four knowledge collections, and approved artifacts.
+Northpeak Outfitters, four knowledge collections, and approved artifacts. `python -m app.seed --extend` then adds
+the six ML / DL scenarios and the second, token-saving week of traffic (never wipes, runs once).
 
 ### Full local stack
 
@@ -268,7 +320,8 @@ backend/app/        FastAPI app: router (engine.py), light layer (light/), heavy
 backend/alembic/    migrations (SQLite and PostgreSQL)
 backend/tests/      unit, integration, contract, eval, perf, security, aws
 web/                Next.js workspace: patterns explorer, artifact editor, agents, knowledge, savings, tools
-demo/               the fictional demo world, documents, labelled evaluation sets, run-of-show, backup videos
+demo/               the fictional demo world, documents, labelled evaluation sets, ML / DL scenario training sets
+                    (data/scenarios/), the token-saving traffic week (data/traffic_extra.jsonl), run-of-show
 infra/terraform/    AWS: VPC, Aurora + pgvector, ECS Fargate, ALB, CloudFront, Cognito, SQS, S3, Lambda, schedules
 infra/runtime-images/  ml / dl Lambda runtimes and the SageMaker training image
 scripts/            verify, deploy, teardown, acceptance matrix
