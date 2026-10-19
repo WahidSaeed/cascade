@@ -51,6 +51,14 @@ export async function signIn(): Promise<void> {
   window.location.href = `${COGNITO_DOMAIN}/oauth2/authorize?${q}`;
 }
 
+/** End the session here and at Cognito (its hosted-UI cookie would otherwise sign the user straight back in). */
+export function signOut(): void {
+  sessionStorage.removeItem(TOKEN_KEY);
+  const q = new URLSearchParams({ client_id: COGNITO_CLIENT_ID, logout_uri: `${window.location.origin}/` });
+  // eslint-disable-next-line @next/next/no-location-assign-relative-destination -- external Cognito hosted UI
+  window.location.href = `${COGNITO_DOMAIN}/logout?${q}`;
+}
+
 /** /auth/callback/: exchange the authorization code for tokens (PKCE). */
 export async function completeSignIn(code: string): Promise<void> {
   const body = new URLSearchParams({ grant_type: "authorization_code", client_id: COGNITO_CLIENT_ID, code,

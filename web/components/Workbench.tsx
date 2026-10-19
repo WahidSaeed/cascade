@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect, useState, useSyncExternalStore } from "react";
-import { AUTH_MODE, api, idToken, signIn, signedInEmail } from "@/lib/api";
+import { AUTH_MODE, api, idToken, signIn, signOut, signedInEmail } from "@/lib/api";
 import { NotificationBell } from "@/components/NotificationBell";
 import { PatternExplorer } from "@/components/PatternExplorer";
 import type { Health } from "@/lib/types";
@@ -73,6 +73,9 @@ export function Workbench({ children }: { children: React.ReactNode }) {
           <NotificationBell />
           {mounted && AUTH_MODE === "cognito" && !idToken() && (
             <button onClick={() => void signIn()} className="text-white underline" data-testid="sign-in">Sign in</button>
+          )}
+          {mounted && AUTH_MODE === "cognito" && idToken() && (
+            <button onClick={signOut} className="text-white underline" data-testid="sign-out">Sign out</button>
           )}
           {AUTH_MODE !== "cognito" && <select aria-label="User" data-testid="user-switcher" value={userId}
             onChange={(e) => setUserId(e.target.value)}

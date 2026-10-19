@@ -63,7 +63,7 @@ test("@P2-03 the Savings view reconciles with /api/ledger/summary", async ({ pag
   }
   const byUser = await (await request.get(`${API}/api/ledger/by-user`)).json();
   expect(byUser.reduce((a: number, u: { requests: number }) => a + u.requests, 0)).toBe(s.requests);
-  await expect(page.getByTestId("simulated-label")).toBeVisible();
+  await expect(page.getByTestId("simulated-label")).toHaveCount(0);   // no demo label (decision 2026-10-20)
 });
 
 test("@P2-04 @P6-03 the static export works", async ({ page }) => {

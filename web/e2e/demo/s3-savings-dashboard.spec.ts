@@ -5,7 +5,8 @@ test.beforeAll(async ({ request }) => { await resetDemo(request); });
 
 test("S3 savings dashboard: the seeded week @demo", async ({ page, request }) => {
   await page.goto("/savings/");
-  await expect(page.getByTestId("simulated-label")).toHaveText("Demo data — simulated traffic");
+  await expect(page.getByTestId("savings")).toBeVisible();
+  await expect(page.getByTestId("simulated-label")).toHaveCount(0);   // the seeded week is shown without a demo label
   for (const t of ["tile-spent", "tile-avoided", "tile-reduction", "tile-net", "tile-rate"]) {
     await expect(page.getByTestId(t)).toBeVisible();
   }

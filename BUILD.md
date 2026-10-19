@@ -1234,8 +1234,8 @@ scenario is also a Playwright test (`web/e2e/demo/sN-*.spec.ts`, tagged `@demo`)
 ### 17.1 Demo world and data (all fictional)
 
 **Company:** *Northpeak Outfitters*, a fictional outdoor-gear retailer. All people,
-documents, policies and numbers are invented. Every screen that shows seeded figures carries
-a "Demo data — simulated traffic" label.
+documents, policies and numbers are invented. (Seeded figures were labelled "Demo data — simulated
+traffic"; the label was removed on 2026-10-20, see docs/decisions.md. Ledger rows stay marked `simulated`.)
 
 **Personas** (switch in the top bar; `CASCADE_AUTH=local`), plus 20 background users who
 only generate traffic:

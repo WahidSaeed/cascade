@@ -34,10 +34,6 @@ export default function SavingsPage() {
     <section data-testid="savings">
       <PageHeader eyebrow="Savings" title="Every token, accounted for."
         sub="Tokens spent, tokens avoided and money saved — net of the cost of building and checking the artifacts." />
-      {s.simulated_requests > 0 && (
-        <p className="mb-6 inline-block rounded-pill bg-divider px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted-80"
-          data-testid="simulated-label">Demo data — simulated traffic</p>
-      )}
       <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
         <StatTile testId="tile-spent" label="Tokens spent" value={fmtInt(s.tokens_spent)}
           note={`incl. ${fmtInt(s.overhead_tokens)} overhead`} />
