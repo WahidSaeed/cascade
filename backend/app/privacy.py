@@ -5,10 +5,13 @@ before they are used for clustering, examples or training data.
 """
 from __future__ import annotations
 
+import logging
 import re
 from typing import Any
 
 from .config import settings
+
+log = logging.getLogger("cascade.privacy")
 
 _PATTERNS: list[tuple[str, re.Pattern[str]]] = [
     ("EMAIL", re.compile(r"\b[\w.+-]+@[\w-]+(?:\.[\w-]+)+\b")),
@@ -37,7 +40,10 @@ def _luhn_ok(digits: str) -> bool:
 
 def find_pii(text: str) -> list[tuple[str, str]]:
     if settings.pii_backend == "comprehend":
-        return _comprehend(text)
+        try:
+            return _comprehend(text)
+        except Exception:  # noqa: BLE001 - Comprehend denied or unreachable: screen locally rather than fail the caller
+            log.warning("Comprehend PII screening failed; using the regex screen", exc_info=True)
     found: list[tuple[str, str]] = []
     for kind, rx in _PATTERNS:
         for m in rx.finditer(text):

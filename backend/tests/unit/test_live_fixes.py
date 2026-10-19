@@ -179,3 +179,39 @@ def test_verification_runs_samples_concurrently(fresh_db, monkeypatch):
 
     res = verify(p, p.examples[:16], reference=slow_ref)
     assert res.passed and active["max"] > 1
+
+
+# ----------------------------------------------------------------------------- agent worker robustness
+def test_pii_screen_falls_back_to_regex_when_comprehend_is_denied(monkeypatch):
+    """The agent role had no comprehend permission: write_rule raised AccessDenied on every attempt."""
+    from botocore.exceptions import ClientError
+
+    from app import privacy
+
+    def denied(_text):
+        raise ClientError({"Error": {"Code": "AccessDeniedException", "Message": "no"}}, "DetectPiiEntities")
+
+    monkeypatch.setattr(settings, "pii_backend", "comprehend")
+    monkeypatch.setattr(privacy, "_comprehend", denied)
+    assert privacy.contains_pii("mail me at ann@example.com") and not privacy.contains_pii("Convert 12 km")
+
+
+def test_a_failing_tool_is_a_tool_error_not_an_endless_retry(fresh_db, monkeypatch):
+    """An exception escaping a tool left the run at the same step; the worker re-asked the agent and crashed again,
+    forever. It is now recorded as a tool error and the run moves on."""
+    from app.agent import runner
+
+    seed.seed_users()
+    p = install("conversion")
+    run = runner.create_run(p.id, "eli", {"max_cost_usd": 1.0})
+    monkeypatch.setattr(runner, "_brain_action", lambda r, tb: {"tool": "build_dataset", "args": {}})
+
+    def boom(*_a, **_k):
+        raise RuntimeError("AccessDenied")
+
+    monkeypatch.setattr(runner, "_call_tool", boom)
+    loaded = runner.load(run["id"])
+    step = int(loaded.get("step", 0))
+    assert runner._step(loaded, "w1") is True
+    after = runner.load(loaded["id"])
+    assert int(after["step"]) == step + 1 and after["events"][-1]["kind"] == "error"

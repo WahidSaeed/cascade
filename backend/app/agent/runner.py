@@ -290,7 +290,13 @@ def _step(run: dict[str, Any], owner: str) -> bool:
             save(run, "awaiting_feedback", owner)
             return False
         t1 = time.monotonic()
-        result = _call_tool(tb, tool, args, run)
+        try:
+            result = _call_tool(tb, tool, args, run)
+        except (ToolError, BudgetExceeded):
+            raise
+        except Exception as exc:  # noqa: BLE001 - the tool's own failure: retrying the step would repeat it forever
+            log.exception("run %s step %s: %s failed", run["id"], run.get("step"), tool)
+            raise ToolError(f"{tool} failed: {type(exc).__name__}: {exc}"[:500]) from exc
         log.info("run %s step %s: %s took %.1fs", run["id"], run.get("step"), tool, time.monotonic() - t1)
         run["step"] = int(run.get("step", 0)) + 1
         event(run, "tool", f"{tool} → {summarize(result)}", tool=tool, args=args, result=result,

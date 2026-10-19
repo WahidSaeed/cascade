@@ -77,6 +77,12 @@ data "aws_iam_policy_document" "agent" {
     resources = [aws_iam_role.sagemaker.arn]
   }
   statement {
+    # write_rule screens the agent's code for training data it copied (PII backend: Comprehend)
+    sid       = "PiiScreening"
+    actions   = ["comprehend:DetectPiiEntities"]
+    resources = ["*"]
+  }
+  statement {
     sid       = "IntegrationSecrets"
     actions   = ["secretsmanager:GetSecretValue", "secretsmanager:CreateSecret"]
     resources = ["arn:aws:secretsmanager:${var.region}:${local.account_id}:secret:cascade/integrations/*"]
