@@ -24,6 +24,12 @@ variable "light_llm_model_id" {
   default     = "us.anthropic.claude-haiku-4-5-20251001-v1:0"
 }
 
+variable "model_prices" {
+  description = "Prices merged into the app's table (CASCADE_MODEL_PRICES), e.g. for the eu. inference profiles. USD per 1M tokens."
+  type        = map(map(number))
+  default     = {}
+}
+
 variable "bedrock_embed_model_id" {
   type    = string
   default = "amazon.titan-embed-text-v2:0"
