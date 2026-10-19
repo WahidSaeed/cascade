@@ -7,6 +7,9 @@
                          ml/dl  -> container image (onnxruntime runtime image) loading its model files
                        and writes the artifact to the versioned S3 bucket.
   teardown(pattern_id) deletes the function (ignores NotFound) and stops local workers.
+  candidate(pattern)   for verification before approval: with the lambda runtime the draft runs in its own
+                       short-lived `cascade-artifact-<pattern_id>-verify` function (never the serving one),
+                       deleted afterwards.
 
 A pattern is marked `approved` only if deploy succeeds (callers enforce this).
 """
@@ -14,11 +17,13 @@ from __future__ import annotations
 
 import io
 import zipfile
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
 
 from .config import settings
-from .runtime import RUNNER, materialize, runtime
+from .runtime import RUNNER, ArtifactResult, LambdaRuntime, materialize, runtime
 from .schemas import ArtifactKind, Pattern
 
 LAMBDA_TIMEOUT_S = 5
@@ -92,7 +97,7 @@ def _wait(client: Any, waiter: str, name: str) -> None:
         client.get_waiter(waiter).wait(FunctionName=name, WaiterConfig={"Delay": 2, "MaxAttempts": 150})
 
 
-def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
+def deploy(pattern: Pattern, client: Any = None, s3: Any = None, name: str | None = None) -> str:
     path = materialize(pattern)
     if settings.artifact_runtime != "lambda":
         runtime().stop(pattern.id)       # next call starts a worker on the new version
@@ -102,7 +107,7 @@ def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
         _upload_to_s3(pattern, path, s3 or _s3_client())
     if not settings.artifact_role_arn:
         raise DeployError("CASCADE_ARTIFACT_ROLE_ARN is not set")
-    name = function_name(pattern.id)
+    name = name or function_name(pattern.id)
     kind = pattern.kind or ArtifactKind.rule
     vpc = vpc_config(pattern)
     try:
@@ -149,12 +154,33 @@ def deploy(pattern: Pattern, client: Any = None, s3: Any = None) -> str:
     return name
 
 
+def _delete(client: Any, name: str) -> None:
+    try:
+        client.delete_function(FunctionName=name)
+    except client.exceptions.ResourceNotFoundException:
+        pass
+
+
 def teardown(pattern_id: str, client: Any = None) -> None:
     runtime().stop(pattern_id)
     if settings.artifact_runtime != "lambda":
         return
+    _delete(client or _lambda_client(), function_name(pattern_id))
+
+
+@contextmanager
+def candidate(pattern: Pattern, client: Any = None) -> Iterator[Callable[[Pattern, str], ArtifactResult]]:
+    """An invoke function for verifying `pattern` before it is approved. Locally the runtime runs the draft as it
+    is; with the lambda runtime the draft is deployed to its own verification function, so the serving function
+    (if any) keeps serving, and that function is deleted when verification ends."""
+    rt = runtime()
+    if settings.artifact_runtime != "lambda" or not isinstance(rt, LambdaRuntime):
+        yield rt.invoke
+        return
     client = client or _lambda_client()
+    name = function_name(pattern.id) + "-verify"
     try:
-        client.delete_function(FunctionName=function_name(pattern_id))
-    except client.exceptions.ResourceNotFoundException:
-        pass
+        deploy(pattern, client=client, name=name)
+        yield lambda _p, prompt: rt.invoke_function(name, prompt)
+    finally:
+        _delete(client, name)

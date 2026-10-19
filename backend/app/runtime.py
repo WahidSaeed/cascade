@@ -189,8 +189,10 @@ class LambdaRuntime(ArtifactRuntime):
         self._client = client
 
     def invoke(self, pattern: Pattern, prompt: str) -> ArtifactResult:
+        return self.invoke_function(pattern.deployed_function or f"{settings.lambda_prefix}{pattern.id}", prompt)
+
+    def invoke_function(self, fn: str, prompt: str) -> ArtifactResult:
         t0 = time.perf_counter()
-        fn = pattern.deployed_function or f"{settings.lambda_prefix}{pattern.id}"
         try:
             resp = self._client.invoke(FunctionName=fn, InvocationType="RequestResponse",
                                        Payload=json.dumps({"prompt": prompt}).encode())

@@ -18,7 +18,7 @@ from sqlalchemy import select
 
 from . import db
 from .config import settings
-from .deploy import DeployError, deploy, teardown
+from .deploy import DeployError, candidate, deploy, teardown
 from .heavy import LLMRequest, heavy_model
 from .light.embedder import get_embedder
 from .light.normalize import normalize
@@ -147,7 +147,14 @@ def verify_pattern(pattern_id: str, samples: list[str] | None = None, reference:
     samples = samples or p.examples
     if not samples:
         raise PatternError(422, "no samples to verify against")
-    result = verify(p, samples, reference=reference, expected=expected, category=category)
+    if p.status == PatternStatus.approved and p.deployed_function:
+        result = verify(p, samples, reference=reference, expected=expected, category=category)   # the serving code
+    else:
+        try:
+            with candidate(p) as invoke:   # a draft is not deployed yet: verify it in its own sandboxed function
+                result = verify(p, samples, reference=reference, expected=expected, category=category, invoke=invoke)
+        except DeployError as exc:
+            raise PatternError(502, f"could not deploy the draft for verification: {exc}") from exc
     p = _get(pattern_id)   # re-read: verification can take a while
     p.verification = result
     p.verification_score = result.score

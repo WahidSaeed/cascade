@@ -38,6 +38,43 @@ def _functions(client):
     return {f["FunctionName"] for f in client.list_functions()["Functions"]}
 
 
+class _LocalLambda(LambdaRuntime):
+    """LambdaRuntime whose invocations run the draft locally (moto cannot run Lambda code without Docker), recording
+    which function each call was addressed to."""
+    def __init__(self, client, functions):
+        super().__init__(client)
+        self.called: list[str] = []
+        self._functions = functions
+
+    def invoke_function(self, fn, prompt):
+        from app.runtime import SubprocessRuntime
+
+        assert fn in _functions(self._functions), f"{fn} is not deployed"
+        self.called.append(fn)
+        return SubprocessRuntime().invoke(store().get_pattern(fn.removeprefix("cascade-artifact-")
+                                                              .removesuffix("-verify")), prompt)
+
+
+def test_draft_verifies_in_its_own_lambda_before_approval(aws_lambda, monkeypatch):
+    """With the lambda runtime a draft has no function until it is approved, so verification deploys it to a
+    separate `-verify` function, sends every sample there, and deletes it afterwards (the serving one is untouched)."""
+    client, _ = aws_lambda
+    p = install("extraction")
+    monkeypatch.setattr(settings, "artifact_runtime", "lambda")
+    p = pat.approve(p.id, "eli")
+    serving = f"cascade-artifact-{p.id}"
+    p = pat.edit(p.id, pat.PatternEdit(handler_code=p.handler_code + "\n# reviewed\n"))
+    assert p.status.value == "draft" and serving not in _functions(client)
+    rt = _LocalLambda(client, client)
+    set_runtime("lambda", rt)
+    res = pat.verify_pattern(p.id)
+    assert res.passed and rt.called and set(rt.called) == {serving + "-verify"}
+    assert serving + "-verify" not in _functions(client) and serving not in _functions(client)
+    p = pat.approve(p.id, "eli")
+    assert p.status.value == "approved" and _functions(client) == {serving}
+    set_runtime("lambda", None)
+
+
 @pytest.mark.acceptance("P1-09")
 def test_approve_deploys_lambda_and_edit_reject_tear_down(aws_lambda, monkeypatch):
     client, s3 = aws_lambda
@@ -46,9 +83,8 @@ def test_approve_deploys_lambda_and_edit_reject_tear_down(aws_lambda, monkeypatc
     # approving (again, after an edit) goes through the Lambda API
     p = pat.edit(p.id, pat.PatternEdit(handler_code=p.handler_code + "\n# reviewed\n"))
     assert p.status.value == "draft" and p.version == 2
-    monkeypatch.setattr(settings, "artifact_runtime", "subprocess")
+    set_runtime("lambda", _LocalLambda(client, client))
     assert pat.verify_pattern(p.id).passed
-    monkeypatch.setattr(settings, "artifact_runtime", "lambda")
     p = pat.approve(p.id, "eli")
     name = f"cascade-artifact-{p.id}"
     assert p.status.value == "approved" and p.deployed_function == name
@@ -75,9 +111,8 @@ def test_approve_deploys_lambda_and_edit_reject_tear_down(aws_lambda, monkeypatc
     assert p.status.value == "draft" and name not in _functions(client)
 
     # rejecting an approved pattern tears it down too
-    monkeypatch.setattr(settings, "artifact_runtime", "subprocess")
+    set_runtime("lambda", _LocalLambda(client, client))
     assert pat.verify_pattern(p.id).passed
-    monkeypatch.setattr(settings, "artifact_runtime", "lambda")
     pat.approve(p.id, "eli")
     assert name in _functions(client)
     pat.reject(p.id)
