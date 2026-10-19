@@ -80,7 +80,9 @@ def lookup_value(answer: str) -> str | None:
             return None if v is None else _norm(str(v))
     except (ValueError, TypeError):
         pass
-    nums = re.findall(r"\d+(?:\.\d+)?", answer or "")
+    # a grounded answer cites its sources ("According to the Handbook [1], ... 21 days"): a citation is not the fact
+    prose = re.sub(r"\[\d+(?:\s*[,\u2013-]\s*\d+)*\]", "", answer or "")
+    nums = re.findall(r"\d+(?:\.\d+)?", prose)
     return nums[0] if nums else None
 
 

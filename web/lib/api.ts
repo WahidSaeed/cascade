@@ -23,6 +23,18 @@ export function idToken(): string | null {
   }
 }
 
+/** The signed-in user's email, from the ID token (display only: the API trusts the verified token, not this). */
+export function signedInEmail(): string | null {
+  const t = idToken();
+  if (!t) return null;
+  try {
+    const claims = JSON.parse(atob(t.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))) as { email?: string };
+    return claims.email ?? null;
+  } catch {
+    return null;
+  }
+}
+
 function b64url(bytes: ArrayBuffer | Uint8Array): string {
   return btoa(String.fromCharCode(...new Uint8Array(bytes))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Suspense, useEffect, useState, useSyncExternalStore } from "react";
-import { AUTH_MODE, api, idToken, signIn } from "@/lib/api";
+import { AUTH_MODE, api, idToken, signIn, signedInEmail } from "@/lib/api";
 import { NotificationBell } from "@/components/NotificationBell";
 import { PatternExplorer } from "@/components/PatternExplorer";
 import type { Health } from "@/lib/types";
@@ -114,7 +114,7 @@ export function Workbench({ children }: { children: React.ReactNode }) {
         <span>llm: {health?.llm ?? "…"}</span>
         <span>artifacts: {health?.artifact_runtime ?? "…"}</span>
         <span className="ml-auto" data-testid="status-user">{!mounted ? "" : AUTH_MODE === "cognito"
-          ? (me ? `${me.user_id}${me.is_admin ? " · admin" : ""}` : "signed out")
+          ? (me ? `${signedInEmail() ?? me.user_id}${me.is_admin ? " · admin" : ""}` : "signed out")
           : persona ? `${persona.name} · ${persona.role}` : userId}</span>
         <span>{healthy === false ? "API offline" : "API ok"}</span>
       </footer>

@@ -78,6 +78,11 @@ def test_lookup_value_reads_fenced_json():
     assert lookup_value('```json\n{"value": "21"}\n```') == "21"
     assert lookup_value('{"value": null}') is None
     assert agree_lookup("Employees in Ireland get 21 vacation days per year.", '{"value": "21"}') == 1.0
+    # what real Bedrock answered on AWS: the citation came before the fact
+    cited = "According to the Employee Handbook [1], employees in Ireland receive 21 paid vacation days per year."
+    assert lookup_value(cited) == "21"
+    assert agree_lookup("Employees in Ireland get 21 vacation days per year.", cited) == 1.0
+    assert lookup_value("Based on the context provided:\n\n[1] Employees in France receive 25 paid days.") == "25"
 
 
 # ----------------------------------------------------------------------------- the Test panel on drafts
