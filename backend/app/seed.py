@@ -2,6 +2,8 @@
 
   python -m app.seed --reset     restore the demo starting state (from the snapshot; builds it if missing)
   python -m app.seed --build     rebuild the starting state from scratch and snapshot it
+  python -m app.seed --extend    add the ml / dl scenarios and the second traffic week to a running deployment
+                                 (never wipes; installs only what is missing; replays the extra week once)
 
 Building replays the generated week of traffic (demo/data/traffic.jsonl) through the real
 router, so every ledger entry, cache entry and log row is produced by the same code that serves
@@ -122,6 +124,82 @@ def install_urgency_dl(week_start: float) -> str:
         s.execute(update(OverheadRow).where(OverheadRow.pattern_id == p.id).values(ts=week_start - 1800, simulated=True))
         rollups.rebuild(s)
     return p.id
+
+
+def install_scenario(key: str, at: float) -> str:
+    """An ml / dl scenario (app/demo_scenarios.py): a real agent run on its labelled set (the scripted agent, told
+    "straight to ml" or "fine-tune a small transformer"), then the verification gate and an admin approval."""
+    from . import demo_scenarios as sc
+    from . import patterns as pat
+    from .agent import datasets, runner
+    from .schemas import Pattern, PatternStatus, TaskType
+
+    s = sc.BY_KEY[key]
+    rng = random.Random(f"scenario-{key}")
+    p = Pattern(name=s.name, description=s.description, task_type=TaskType(s.task_type),
+                status=PatternStatus.recognized, owner_id="eli")
+    pat.shape_from_examples(p, [s.make(rng)[0] for _ in range(80)])
+    store().put_pattern(p)
+    data = (Path(settings.demo_dir) / "data" / "scenarios" / f"{key}_train.jsonl").read_bytes()
+    ds = datasets.register("eli", f"{key}_train.jsonl", {"input": "prompt", "label": "label"}, "both", data=data)
+    run = runner.create_run(p.id, "eli", {"dataset_ids": [ds["id"]], "instructions": s.instructions})
+    run = runner.start_run(run["id"], sync=True)
+    run = runner.respond(run["id"], "accept", "", "eli")
+    if run["status"] != "accepted":
+        raise RuntimeError(f"{s.name} failed its gate: {run['events'][-1]['text']}")
+    pat.approve(p.id, "eli")
+    with db.session() as sess:
+        sess.execute(update(OverheadRow).where(OverheadRow.pattern_id == p.id).values(ts=at, simulated=True))
+        rollups.rebuild(sess)
+    return p.id
+
+
+def replay_extra(week_start: float) -> int:
+    """The second week (demo/data/traffic_extra.jsonl): scenario traffic and token-saving tests."""
+    from .engine import route
+
+    path = Path(settings.demo_dir) / "data" / "traffic_extra.jsonl"
+    n = 0
+    for line in path.read_text().splitlines():
+        if line.strip():
+            r = json.loads(line)
+            route(r["prompt"], r["user_id"], now=week_start + r["t"], simulated=True)
+            n += 1
+    return n
+
+
+EXTEND_VERSION = "scenarios-v1"
+
+
+def extend() -> dict[str, Any]:
+    """Add the scenarios to a deployment that already has data, without wiping it. Idempotent: a scenario whose
+    pattern exists is left alone, and the extra week is replayed once per EXTEND_VERSION."""
+    from . import demo_scenarios as sc
+
+    latency = settings.demo_latency_ms
+    settings.demo_latency_ms = 0
+    try:
+        t0 = time.time()
+        seed_users()
+        week_start = time.time() - 7 * DAY
+        names = {p.name: p for p in store().list_patterns()}
+        installed, kept = {}, {}
+        for k, s in enumerate(sc.SCENARIOS):
+            if s.name in names:
+                kept[s.key] = names[s.name].status.value
+                continue
+            installed[s.key] = install_scenario(s.key, week_start - 3600 + 300 * k)
+        done = store().config_overrides().get("_seed_extend") or {}
+        replayed = 0
+        if done.get("version") != EXTEND_VERSION:
+            replayed = replay_extra(week_start)
+        info = {"version": EXTEND_VERSION, "installed": installed, "kept": kept,
+                "requests": replayed or done.get("requests", 0), "at": time.time(),
+                "seconds": round(time.time() - t0, 1)}
+        store().set_config("_seed_extend", info)
+        return info
+    finally:
+        settings.demo_latency_ms = latency
 
 
 def install_artifacts(week_start: float, docs: dict[str, str] | None = None) -> dict[str, str]:
@@ -249,8 +327,9 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--reset", action="store_true", help="restore the demo starting state")
     ap.add_argument("--build", action="store_true", help="rebuild the starting state and snapshot it")
+    ap.add_argument("--extend", action="store_true", help="add the ml / dl scenarios and the extra week (no wipe)")
     args = ap.parse_args()
-    out = build() if args.build else reset()
+    out = extend() if args.extend else build() if args.build else reset()
     from .runtime import _reset
 
     _reset()

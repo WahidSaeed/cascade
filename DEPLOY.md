@@ -123,6 +123,20 @@ aws ecs update-service --cluster cascade --service cascade-agent --desired-count
 aws ecs update-service --cluster cascade --service cascade-api --force-new-deployment
 ```
 
+### 6b. Optional: add the ml / dl scenarios to a running deployment (`--extend`)
+
+`python -m app.seed --extend` never wipes. It installs whichever of the six scenarios in
+`backend/app/demo_scenarios.py` are missing: review sentiment, catalog category and message language as `ml`
+artifacts, and return reason, review star rating and community post moderation as `dl` artifacts. Each one goes
+through a real agent run on its labelled set in `demo/data/scenarios/`, the verification gate on Bedrock, and
+approval, which deploys its Lambda. It then replays `demo/data/traffic_extra.jsonl` once: 1,640 prompts of scenario
+traffic plus token-saving tests (exact repeats and paraphrases). Expect a few dollars of Bedrock spend and about
+15 minutes.
+```bash
+aws ecs run-task --cluster cascade --launch-type FARGATE --task-definition cascade-seed --network-configuration "$NET" \
+  --overrides '{"containerOverrides":[{"name":"seed","command":["python","-m","app.seed","--extend"],"environment":[{"name":"CASCADE_AGENT_LLM","value":"scripted"},{"name":"CASCADE_DL_TRAINER","value":"local"}]}]}'
+```
+
 ## 7. Integrations (rule 11)
 
 Artifacts with an approved integration run in the private subnets (no NAT gateway) with the

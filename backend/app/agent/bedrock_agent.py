@@ -55,9 +55,9 @@ def tool_config() -> dict[str, Any]:
 
 def next_action(run: dict[str, Any], tb: Toolbox, client: Any = None) -> dict[str, Any]:
     if client is None:
-        import boto3
+        from ..heavy import bedrock_client
 
-        client = boto3.client("bedrock-runtime", region_name=settings.bedrock_region)
+        client = bedrock_client()
     convo: list[dict[str, Any]] = run.setdefault("conversation", [])
     if not convo:
         convo.append({"role": "user", "content": [{"text": json.dumps({

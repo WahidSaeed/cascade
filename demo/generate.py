@@ -6,6 +6,8 @@ Writes:
   demo/data/labelled_tickets.csv   300 labelled tickets for the live intake (S6)
   demo/data/urgency_train.jsonl    labelled urgency texts for the seeded `dl` artifact
   demo/data/eval/             labelled evaluation sets (router, cache pairs, retrieval)
+  demo/data/scenarios/        labelled training sets for the ml / dl scenarios (app/demo_scenarios.py)
+  demo/data/traffic_extra.jsonl   a second week: scenario traffic and token-saving tests (repeats, paraphrases)
 
 Run: make demo-data   (python demo/generate.py)
 """
@@ -21,6 +23,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent / "backend"))
 
+from app import demo_scenarios as sc  # noqa: E402
 from app import demo_world as w  # noqa: E402
 
 SEED = 20251020
@@ -274,6 +277,82 @@ def gen_eval(rng: random.Random) -> dict[str, list[dict]]:
             "retrieval_qa": retrieval, "followups": followups}
 
 
+# ----------------------------------------------------------------------------- ml / dl scenarios
+SCENARIO_TRAIN = {"ml": 480, "dl": 1500}       # dl: a quarter is held out, the rest must reach dl_min_samples (1000)
+EXTRA_PER_SCENARIO = 160
+# token-saving tests: the same request asked again (exact cache) and asked differently (semantic cache)
+REPEATED = ["Write a two-line welcome message for new Northpeak Club members",
+            "Write a product description for the Ridgeline 2 tent",
+            "Draft a friendly reply to a customer whose tent pole broke",
+            "Write a short Instagram caption for our new down jacket",
+            "Brainstorm three names for a lightweight sleeping bag",
+            "Draft an apology email for a delayed order of hiking boots",
+            "Write a product description for the Summit boots",
+            "Write a short Instagram caption for our new rain shell"]
+PARAPHRASES = [
+    ["Write a product description for the {p}", "Write a short product description for the {p}",
+     "Please write a product description for our {p}", "Can you write a product description for the {p}?"],
+    ["Draft an apology email for a delayed order of {p}", "Write an apology email for a delayed {p} order",
+     "Draft an email apologising for a delayed order of {p}", "Please draft an apology email for a late {p} order"],
+    ["Write a short Instagram caption for our new {p}", "Write an Instagram caption for our new {p}",
+     "Give me a short Instagram caption for the new {p}", "Short Instagram caption for our new {p}, please"],
+    ["Brainstorm three names for a lightweight {p}", "Suggest three names for a lightweight {p}",
+     "Brainstorm 3 names for a lightweight {p}", "Give me three name ideas for a lightweight {p}"],
+]
+PARAPHRASE_PRODUCTS = ["tent", "down jacket", "sleeping bag", "hiking boots"]
+
+
+def gen_scenario_train(rng: random.Random, s: sc.Scenario) -> list[dict]:
+    n = SCENARIO_TRAIN[s.kind]
+    seen: set[str] = set()
+    out: list[dict] = []
+    i = 0
+    while len(out) < n:                      # balanced, distinct texts (datasets are de-duplicated on the payload)
+        prompt, label = s.make(rng, s.labels[i % len(s.labels)])
+        t = w.quoted(prompt).lower()
+        if t in seen:
+            continue
+        seen.add(t)
+        assert sc.oracle(prompt) == label, prompt
+        out.append({"prompt": prompt, "label": label})
+        i += 1
+    rng.shuffle(out)
+    return out
+
+
+def gen_traffic_extra(rng: random.Random) -> list[dict]:
+    users = w.ALL_USERS
+    weights = [3.0 if u in w.PERSONAS else 1.0 for u in users]
+    rows: list[dict] = []
+
+    def add(prompt: str, task: str, task_type: str | None, truth: str | None, test: str) -> None:
+        rows.append({"user_id": rng.choices(users, weights)[0]["id"], "prompt": prompt, "task": task,
+                     "task_type": task_type, "truth": truth, "collections": [], "test": test})
+
+    for s in sc.SCENARIOS:
+        for _ in range(EXTRA_PER_SCENARIO):
+            prompt, label = s.make(rng)
+            add(prompt, s.key, s.task_type, label, "artifact")
+    for _ in range(320):
+        add(rng.choice(REPEATED), "open", None, None, "exact_repeat")
+    for group in PARAPHRASES:
+        for p in PARAPHRASE_PRODUCTS:
+            for _ in range(10):
+                add(rng.choice(group).format(p=p), "open", None, None, "paraphrase")
+    for _ in range(120):
+        prompt = w.make_extraction(rng)
+        add(prompt, "extraction", "extraction", w.extract_order(w.quoted(prompt)), "artifact")
+    for _ in range(80):
+        prompt = w.make_conversion(rng)
+        add(prompt, "conversion", "transform", w.convert_units(prompt), "artifact")
+    rng.shuffle(rows)
+    n = len(rows)
+    for i, r in enumerate(rows):
+        r["i"] = i
+        r["t"] = int(i * WEEK_S / n + rng.randint(0, 120))
+    return rows
+
+
 def write_jsonl(path: Path, rows: list[dict]) -> None:
     path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
 
@@ -296,6 +375,13 @@ def main() -> None:
     write_jsonl(DATA / "urgency_train.jsonl", gen_urgency_train(random.Random(SEED + 2)))
     for name, rows in gen_eval(random.Random(SEED + 3)).items():
         write_jsonl(EVAL / f"{name}.jsonl", rows)
+
+    (DATA / "scenarios").mkdir(exist_ok=True)
+    for k, s in enumerate(sc.SCENARIOS):
+        write_jsonl(DATA / "scenarios" / f"{s.key}_train.jsonl", gen_scenario_train(random.Random(SEED + 10 + k), s))
+    extra = gen_traffic_extra(random.Random(SEED + 20))
+    write_jsonl(DATA / "traffic_extra.jsonl", extra)
+    print(f"traffic_extra: {len(extra)} prompts; tests {dict(Counter(r['test'] for r in extra))}")
 
     triage = [r for r in traffic if r["task"] == "triage"]
     kw = sum(w.keyword_rule(w.quoted(r["prompt"])) == r["truth"] for r in triage) / max(1, len(triage))

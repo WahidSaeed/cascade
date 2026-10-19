@@ -101,10 +101,10 @@ class TitanEmbedder(Embedder):
     paid = True
 
     def __init__(self) -> None:
-        import boto3
+        from ..heavy import bedrock_client
 
         self.model_id = settings.titan_embed_model_id
-        self._client: Any = boto3.client("bedrock-runtime", region_name=settings.bedrock_region)
+        self._client: Any = bedrock_client()
         self.dim = settings.embed_dim
 
     def embed(self, text: str) -> tuple[list[float], int]:

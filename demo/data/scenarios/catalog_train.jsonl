@@ -1,0 +1,480 @@
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline ultralight trekking pole tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead freestanding solo tent – member price'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp 4-season mountain tent (graphite)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro waterproof dry bag 30 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak collapsible silicone bowl set (green)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead travel duffel bag 70 L'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp fleece mid layer (graphite)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit approach shoes with sticky rubber, 2026 model'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit spork and cutlery set (graphite)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit hooded down jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro collapsible silicone bowl set, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit waterproof leather hiking boots (graphite)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead ultralight trekking pole tent (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline compact canister camp stove'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp tunnel tent with vestibule (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord fleece mid layer – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline waterproof leather hiking boots (blue)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord running vest pack 12 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 4-season mountain tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead running vest pack 12 L, 2026 model'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro sport climbing harness (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp 2-person backpacking tent, 2026 model'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro travel duffel bag 70 L (blue)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro mummy sleeping bag (blue)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp locking carabiner set – new season'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead lightweight trail running shoes – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 800-fill down sleeping bag (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit insulated winter boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead waterproof dry bag 30 L'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline travel duffel bag 70 L, 2026 model'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline running vest pack 12 L'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline fleece mid layer (blue)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline two-burner camping stove, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit stainless steel camping kettle'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead 4-season mountain tent (graphite)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline collapsible silicone bowl set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro softshell trekking trousers'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline windproof running jacket (green)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead leather walking shoes'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline camp sandals'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline tunnel tent with vestibule (green)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord freeze-dried meal pack (blue)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline set of climbing nuts (blue)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline stainless steel camping kettle (green)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit belay device with guide mode (graphite)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead windproof running jacket – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline insulated hiking gloves'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro climbing helmet (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline insulated air sleeping pad, 2026 model'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit camp sandals (graphite)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak 65 L expedition rucksack, 2026 model'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro fleece mid layer (blue)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro insulated air sleeping pad – member price'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit self-inflating sleeping mat, 2026 model'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline gore-tex mid hiking boots (green)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord freeze-dried meal pack – new season'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline travel duffel bag 70 L'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro insulated winter boots – member price'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak insulated hiking gloves'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit mummy sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline inflatable camping pillow – member price'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak dynamic climbing rope 9.8 mm – new season'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak locking carabiner set – new season'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp softshell trekking trousers – member price'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline merino base layer top, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp insulated air sleeping pad'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit windproof running jacket – member price'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline climbing helmet (blue)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline 45 L trekking backpack (blue)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro family dome tent with porch, 2026 model'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak 20 L daypack with hydration sleeve'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord approach shoes with sticky rubber'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro leather walking shoes – member price'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak hooded down jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak 45 L trekking backpack (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro travel duffel bag 70 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro ultralight trekking pole tent, 2026 model'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord hip pack for day hikes, 2026 model'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline compact canister camp stove (blue)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 45 L trekking backpack (green)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp stainless steel camping kettle (green)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline family dome tent with porch (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak approach shoes with sticky rubber'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit spork and cutlery set, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord waterproof 3-layer rain jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp waterproof leather hiking boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak waterproof leather hiking boots'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline merino base layer top'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro 2-person backpacking tent (blue)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord travel duffel bag 70 L, 2026 model'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak ultralight trekking pole tent (green)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro stainless steel camping kettle, 2026 model'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead belay device with guide mode (blue)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit freeze-dried meal pack'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak titanium cook pot 900 ml (blue)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead waterproof leather hiking boots (green)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro 65 L expedition rucksack – member price'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead titanium cook pot 900 ml'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord insulated air sleeping pad (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord freeze-dried meal pack'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp silk sleeping bag liner – new season'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline mummy sleeping bag (graphite)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp 45 L trekking backpack (graphite)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord softshell trekking trousers (green)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead windproof running jacket – new season'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord climbing helmet (graphite)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak merino base layer top – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline mummy sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead 4-season mountain tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp gore-tex mid hiking boots, 2026 model'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord synthetic sleeping bag rated to -5°C (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline locking carabiner set'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro lightweight trail running shoes – member price'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline spork and cutlery set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit synthetic sleeping bag rated to -5°C, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro gore-tex mid hiking boots (green)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline collapsible silicone bowl set, 2026 model'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord dynamic climbing rope 9.8 mm'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead mummy sleeping bag'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 800-fill down sleeping bag, 2026 model'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline mummy sleeping bag, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline collapsible silicone bowl set – member price'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit waterproof leather hiking boots (green)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord fleece mid layer (graphite)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak inflatable camping pillow (blue)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead fleece mid layer – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak camp sandals – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead climbing helmet – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit windproof running jacket – new season'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp insulated hiking gloves, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit synthetic sleeping bag rated to -5°C (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp camp sandals – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 800-fill down sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead freeze-dried meal pack – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline 4-season mountain tent – member price'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord stainless steel camping kettle (graphite)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline sport climbing harness (blue)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro waterproof 3-layer rain jacket'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro freeze-dried meal pack – new season'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead two-burner camping stove – new season'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord climbing helmet, 2026 model'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord 800-fill down sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp 4-season mountain tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline gore-tex mid hiking boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp freeze-dried meal pack – member price'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro merino base layer top (green)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead waterproof leather hiking boots (blue)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord mummy sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp mummy sleeping bag (green)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead running vest pack 12 L'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit insulated air sleeping pad – new season'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro locking carabiner set'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp belay device with guide mode (blue)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak bivvy shelter tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead inflatable camping pillow (green)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline approach shoes with sticky rubber'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp 800-fill down sleeping bag, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord lightweight trail running shoes (graphite)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit silk sleeping bag liner, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro insulated hiking gloves (graphite)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro tunnel tent with vestibule'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead collapsible silicone bowl set, 2026 model'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline fleece mid layer (graphite)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak silk sleeping bag liner (graphite)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit belay device with guide mode'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit freeze-dried meal pack (blue)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak waterproof leather hiking boots – new season'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit inflatable camping pillow (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro windproof running jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord inflatable camping pillow – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord running vest pack 12 L, 2026 model'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead titanium cook pot 900 ml – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp spork and cutlery set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro ultralight trekking pole tent (green)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord insulated air sleeping pad (blue)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit synthetic sleeping bag rated to -5°C – new season'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak softshell trekking trousers (green)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit hooded down jacket (blue)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro 800-fill down sleeping bag (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 4-season mountain tent, 2026 model'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline ultralight trekking pole tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro 800-fill down sleeping bag (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord dynamic climbing rope 9.8 mm (green)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp belay device with guide mode, 2026 model'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak freeze-dried meal pack (blue)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead running vest pack 12 L – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak set of climbing nuts'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit merino base layer top'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead lightweight trail running shoes (green)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak locking carabiner set'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak 65 L expedition rucksack'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline mummy sleeping bag – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead compact canister camp stove, 2026 model'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp dynamic climbing rope 9.8 mm (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit titanium cook pot 900 ml (green)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit 65 L expedition rucksack – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline family dome tent with porch (graphite)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline waterproof dry bag 30 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord freestanding solo tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro waterproof 3-layer rain jacket – new season'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro windproof running jacket (blue)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit 45 L trekking backpack'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline belay device with guide mode (green)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro ultralight trekking pole tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord 45 L trekking backpack – new season'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead merino base layer top, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline collapsible silicone bowl set (green)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead spork and cutlery set'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline belay device with guide mode – new season'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit titanium cook pot 900 ml'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 65 L expedition rucksack (graphite)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord 2-person backpacking tent – member price'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline mummy sleeping bag'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak silk sleeping bag liner (green)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord running vest pack 12 L – new season'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline spork and cutlery set (graphite)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline bivvy shelter tent – member price'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro synthetic sleeping bag rated to -5°C'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak insulated air sleeping pad'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak 2-person backpacking tent – member price'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp 2-person backpacking tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead travel duffel bag 70 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp bouldering crash pad'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak collapsible silicone bowl set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord bouldering crash pad – member price'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline 65 L expedition rucksack – member price'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord leather walking shoes (graphite)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline merino base layer top (graphite)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit stainless steel camping kettle, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 4-season mountain tent – member price'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro bivvy shelter tent (graphite)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline 45 L trekking backpack – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro compact canister camp stove, 2026 model'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead waterproof 3-layer rain jacket – new season'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit bivvy shelter tent (graphite)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit camp sandals'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp fleece mid layer, 2026 model'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro 65 L expedition rucksack (green)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord insulated hiking gloves, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp sport climbing harness (graphite)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 65 L expedition rucksack – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead insulated air sleeping pad, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline insulated winter boots (blue)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline gore-tex mid hiking boots (blue)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline inflatable camping pillow, 2026 model'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead 65 L expedition rucksack (blue)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord 20 L daypack with hydration sleeve – member price'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord climbing helmet (green)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp titanium cook pot 900 ml, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord hip pack for day hikes (blue)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp camp sandals, 2026 model'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit running vest pack 12 L'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline bouldering crash pad, 2026 model'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit locking carabiner set – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline waterproof 3-layer rain jacket'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline merino base layer top – new season'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro running vest pack 12 L, 2026 model'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak collapsible silicone bowl set, 2026 model'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit camp sandals (blue)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro tunnel tent with vestibule (green)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit lightweight trail running shoes (blue)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead self-inflating sleeping mat, 2026 model'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead gore-tex mid hiking boots (green)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord hooded down jacket (blue)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline insulated air sleeping pad'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak running vest pack 12 L, 2026 model'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak synthetic sleeping bag rated to -5°C (green)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp fleece mid layer – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord windproof running jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit tunnel tent with vestibule – member price'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline freeze-dried meal pack'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit running vest pack 12 L – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro family dome tent with porch'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro titanium cook pot 900 ml (graphite)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline bivvy shelter tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro waterproof dry bag 30 L (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak 2-person backpacking tent (graphite)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline insulated winter boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline 4-season mountain tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak dynamic climbing rope 9.8 mm'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit insulated winter boots (graphite)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro insulated air sleeping pad (graphite)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead fleece mid layer (green)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp synthetic sleeping bag rated to -5°C (blue)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord bivvy shelter tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline lightweight trail running shoes'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead tunnel tent with vestibule (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead insulated air sleeping pad (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline spork and cutlery set – member price'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak lightweight trail running shoes – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord windproof running jacket (blue)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp lightweight trail running shoes'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak spork and cutlery set'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro gore-tex mid hiking boots (blue)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp ultralight trekking pole tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro 2-person backpacking tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp camp sandals – member price'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp hip pack for day hikes'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline freeze-dried meal pack (green)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp 4-season mountain tent, 2026 model'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord waterproof leather hiking boots (green)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline bouldering crash pad (graphite)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline 4-season mountain tent (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline hooded down jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline tunnel tent with vestibule – new season'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline waterproof 3-layer rain jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord softshell trekking trousers – new season'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak running vest pack 12 L – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline 20 L daypack with hydration sleeve (blue)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 20 L daypack with hydration sleeve (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro collapsible silicone bowl set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord collapsible silicone bowl set – new season'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp 65 L expedition rucksack'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak hooded down jacket (green)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline bouldering crash pad (graphite)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak mummy sleeping bag – new season'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak titanium cook pot 900 ml – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline hip pack for day hikes – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead windproof running jacket'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead insulated winter boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak 4-season mountain tent (blue)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline tunnel tent with vestibule, 2026 model'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline waterproof 3-layer rain jacket, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp hooded down jacket'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit bivvy shelter tent (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro hooded down jacket – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead bouldering crash pad – new season'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp waterproof 3-layer rain jacket – new season'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord softshell trekking trousers (graphite)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord waterproof 3-layer rain jacket – member price'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp hip pack for day hikes (blue)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline mummy sleeping bag (blue)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak freestanding solo tent (green)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp 2-person backpacking tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak camp sandals'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp 800-fill down sleeping bag (blue)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord hip pack for day hikes (green)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak leather walking shoes, 2026 model'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline lightweight trail running shoes (graphite)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp dynamic climbing rope 9.8 mm'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead gore-tex mid hiking boots, 2026 model'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline hooded down jacket (blue)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak waterproof dry bag 30 L (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord gore-tex mid hiking boots'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit waterproof dry bag 30 L (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak sport climbing harness, 2026 model'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp freestanding solo tent'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead dynamic climbing rope 9.8 mm (blue)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline sport climbing harness – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline waterproof leather hiking boots – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead waterproof 3-layer rain jacket (blue)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro stainless steel camping kettle – new season'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak merino base layer top (green)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord bivvy shelter tent (blue)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp bivvy shelter tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro freestanding solo tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 20 L daypack with hydration sleeve – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord locking carabiner set (green)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline hooded down jacket – new season'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp insulated hiking gloves'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline bivvy shelter tent – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro bouldering crash pad'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord spork and cutlery set (graphite)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline 65 L expedition rucksack'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro inflatable camping pillow'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak bivvy shelter tent (green)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord synthetic sleeping bag rated to -5°C (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline synthetic sleeping bag rated to -5°C (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead camp sandals – member price'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak bouldering crash pad'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit travel duffel bag 70 L'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline lightweight trail running shoes (green)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak stainless steel camping kettle – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord 20 L daypack with hydration sleeve (graphite)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline insulated winter boots'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline stainless steel camping kettle (graphite)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak freeze-dried meal pack – new season'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp mummy sleeping bag (blue)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead dynamic climbing rope 9.8 mm (green)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro 20 L daypack with hydration sleeve, 2026 model'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline spork and cutlery set – new season'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord silk sleeping bag liner (blue)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord bouldering crash pad'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline windproof running jacket (blue)'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline dynamic climbing rope 9.8 mm – new season'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead self-inflating sleeping mat – new season'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead silk sleeping bag liner, 2026 model'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead waterproof 3-layer rain jacket – member price'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead 2-person backpacking tent, 2026 model'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp set of climbing nuts (graphite)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak waterproof dry bag 30 L (graphite)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline approach shoes with sticky rubber – member price'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead set of climbing nuts (graphite)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak 4-season mountain tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp inflatable camping pillow'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline fleece mid layer, 2026 model'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline freeze-dried meal pack (graphite)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp travel duffel bag 70 L (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 4-season mountain tent – new season'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead family dome tent with porch – new season'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro lightweight trail running shoes'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit locking carabiner set (graphite)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit climbing helmet (graphite)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit tunnel tent with vestibule'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline set of climbing nuts (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline self-inflating sleeping mat – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak belay device with guide mode'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit sport climbing harness (blue)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro self-inflating sleeping mat (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline leather walking shoes – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro 65 L expedition rucksack – new season'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit silk sleeping bag liner'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline 4-season mountain tent (green)'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro approach shoes with sticky rubber – member price'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead fleece mid layer, 2026 model'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak self-inflating sleeping mat (green)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord silk sleeping bag liner – member price'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak dynamic climbing rope 9.8 mm (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit bivvy shelter tent – member price'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro belay device with guide mode (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead compact canister camp stove'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit 2-person backpacking tent – new season'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit 800-fill down sleeping bag (graphite)'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp compact canister camp stove – new season'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline lightweight trail running shoes – member price'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak running vest pack 12 L – member price'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp windproof running jacket'", "label": "apparel"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead hip pack for day hikes (green)'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp dynamic climbing rope 9.8 mm (blue)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp self-inflating sleeping mat'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord sport climbing harness'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro camp sandals (graphite)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead 45 L trekking backpack'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp travel duffel bag 70 L'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp waterproof leather hiking boots (graphite)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro waterproof leather hiking boots'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline family dome tent with porch, 2026 model'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Northpeak collapsible silicone bowl set (graphite)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit dynamic climbing rope 9.8 mm'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit leather walking shoes, 2026 model'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Alpine Pro insulated winter boots (green)'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord waterproof leather hiking boots – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline 2-person backpacking tent (graphite)'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline tunnel tent with vestibule'", "label": "tents"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak locking carabiner set – member price'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline approach shoes with sticky rubber'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead collapsible silicone bowl set'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro travel duffel bag 70 L (graphite)'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord waterproof 3-layer rain jacket – new season'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Ridgeline locking carabiner set – member price'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline dynamic climbing rope 9.8 mm (blue)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead stainless steel camping kettle'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Trailhead silk sleeping bag liner (graphite)'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp belay device with guide mode'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro insulated air sleeping pad'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit waterproof 3-layer rain jacket (blue)'", "label": "apparel"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord titanium cook pot 900 ml (green)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Summit titanium cook pot 900 ml – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline 20 L daypack with hydration sleeve – new season'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp family dome tent with porch – new season'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline travel duffel bag 70 L – member price'", "label": "packs"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Basecamp two-burner camping stove (blue)'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Alpine Pro two-burner camping stove – member price'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Fjord set of climbing nuts (green)'", "label": "climbing"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp waterproof dry bag 30 L – member price'", "label": "packs"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline lightweight trail running shoes – new season'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Trailhead stainless steel camping kettle – new season'", "label": "cooking"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Basecamp synthetic sleeping bag rated to -5°C'", "label": "sleeping"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Highline sport climbing harness (blue)'", "label": "climbing"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Northpeak lightweight trail running shoes (green)'", "label": "footwear"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Fjord ultralight trekking pole tent'", "label": "tents"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Highline insulated air sleeping pad'", "label": "sleeping"}
+{"prompt": "Which catalog category fits this product - tents, sleeping, footwear, apparel, cooking, climbing or packs? 'Ridgeline waterproof leather hiking boots'", "label": "footwear"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit collapsible silicone bowl set (graphite)'", "label": "cooking"}
+{"prompt": "Categorise this product listing as tents, sleeping, footwear, apparel, cooking, climbing or packs: 'Summit softshell trekking trousers – new season'", "label": "apparel"}

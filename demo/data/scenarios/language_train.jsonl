@@ -1,0 +1,480 @@
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, per favore annullate il mio ordine. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, annuleer alstublieft mijn bestelling. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, las botas me quedan pequeñas. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn jas retourneren, hoe stel ik mijn wachtwoord opnieuw in. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, la varilla de la tienda está rota, pueden enviarme una nueva factura. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, ik wil mijn bezorgadres wijzigen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Good morning, I want to change my delivery address, when will my parcel be delivered. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, hoe stel ik mijn wachtwoord opnieuw in. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, the tent pole is broken. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, wie setze ich mein Passwort zurück, der Schlafsack ist nicht warm genug. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, cómo restablezco mi contraseña. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il sacco a pelo non è abbastanza caldo, gli scarponi sono troppo piccoli per me. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, how do I reset my password, when will my parcel be delivered. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, pouvez-vous m'envoyer une nouvelle facture, le sac de couchage n'est pas assez chaud. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, ma commande n'est pas encore arrivée, je voudrais retourner ma veste. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, quiero devolver mi chaqueta, quiero cambiar mi dirección de entrega. Gracias de antemano'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, mi pedido todavía no ha llegado, las botas me quedan pequeñas. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, ma commande n'est pas encore arrivée. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, der Schlafsack ist nicht warm genug, bitte stornieren Sie meine Bestellung. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, ik wil mijn bezorgadres wijzigen, annuleer alstublieft mijn bestelling. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, wann wird mein Paket geliefert. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, my order has not arrived yet. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, per favore annullate il mio ordine, il palo della tenda è rotto. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, voglio cambiare il mio indirizzo di consegna, quando verrà consegnato il mio pacco. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, die Schuhe sind mir zu klein. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, der Schlafsack ist nicht warm genug. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, ich möchte meine Jacke zurückgeben, wann wird mein Paket geliefert. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, potete inviarmi una nuova fattura. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, gli scarponi sono troppo piccoli per me. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, quando verrà consegnato il mio pacco. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, le sac de couchage n'est pas assez chaud. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, der Schlafsack ist nicht warm genug, können Sie mir eine neue Rechnung schicken. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, il sacco a pelo non è abbastanza caldo. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, comment réinitialiser mon mot de passe. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, I want to change my delivery address, the tent pole is broken. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, please cancel my order, the tent pole is broken. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, wann wird mein Paket geliefert. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, merci d'annuler ma commande, ma commande n'est pas encore arrivée. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, la varilla de la tienda está rota. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, wann wird mein Paket geliefert. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, bitte stornieren Sie meine Bestellung, können Sie mir eine neue Rechnung schicken. Danke schön'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, per favore annullate il mio ordine, il palo della tenda è rotto. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, pouvez-vous m'envoyer une nouvelle facture, les chaussures sont trop petites pour moi. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, the boots are too small for me, my order has not arrived yet. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, wie setze ich mein Passwort zurück, ich möchte meine Jacke zurückgeben. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, können Sie mir eine neue Rechnung schicken. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, por favor cancelen mi pedido, mi pedido todavía no ha llegado. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, annuleer alstublieft mijn bestelling, kunt u mij een nieuwe factuur sturen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, pueden enviarme una nueva factura, quiero cambiar mi dirección de entrega. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, my order has not arrived yet. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, les chaussures sont trop petites pour moi, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, I want to change my delivery address, the sleeping bag is not warm enough. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, de schoenen zijn te klein voor mij. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, meine Bestellung ist noch nicht angekommen. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, pouvez-vous m'envoyer une nouvelle facture. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il palo della tenda è rotto, il mio ordine non è ancora arrivato. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, les chaussures sont trop petites pour moi. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, je voudrais retourner ma veste, l'arceau de la tente est cassé. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, merci d'annuler ma commande. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, las botas me quedan pequeñas, la varilla de la tienda está rota. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, können Sie mir eine neue Rechnung schicken. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, por favor cancelen mi pedido. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, merci d'annuler ma commande, comment réinitialiser mon mot de passe. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, my order has not arrived yet, I want to change my delivery address. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, el saco de dormir no abriga lo suficiente. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, ik wil mijn bezorgadres wijzigen, wanneer wordt mijn pakket bezorgd. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, quand mon colis sera-t-il livré. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, hoe stel ik mijn wachtwoord opnieuw in. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, my order has not arrived yet. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, las botas me quedan pequeñas, la varilla de la tienda está rota. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, bitte stornieren Sie meine Bestellung, die Zeltstange ist gebrochen. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, je voudrais retourner ma veste, comment réinitialiser mon mot de passe. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, quiero devolver mi chaqueta, quiero cambiar mi dirección de entrega. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, comment réinitialiser mon mot de passe, merci d'annuler ma commande. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, the boots are too small for me. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, potete inviarmi una nuova fattura, come reimposto la mia password. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, the tent pole is broken. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de slaapzak is niet warm genoeg. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, por favor cancelen mi pedido, la varilla de la tienda está rota. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, quando verrà consegnato il mio pacco. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, ich möchte meine Jacke zurückgeben. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il mio ordine non è ancora arrivato. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, il palo della tenda è rotto. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, de tentstok is gebroken. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, wie setze ich mein Passwort zurück. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, quiero cambiar mi dirección de entrega, quiero devolver mi chaqueta. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, cómo restablezco mi contraseña. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, mijn bestelling is nog niet aangekomen. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, merci d'annuler ma commande, comment réinitialiser mon mot de passe. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, potete inviarmi una nuova fattura. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, las botas me quedan pequeñas, quiero devolver mi chaqueta. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, quando verrà consegnato il mio pacco, voglio cambiare il mio indirizzo di consegna. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, quand mon colis sera-t-il livré, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, quiero devolver mi chaqueta. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, can you send me a new invoice. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, der Schlafsack ist nicht warm genug, die Zeltstange ist gebrochen. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the boots are too small for me. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, die Zeltstange ist gebrochen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, les chaussures sont trop petites pour moi. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, quiero devolver mi chaqueta, cómo restablezco mi contraseña. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, meine Bestellung ist noch nicht angekommen. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, merci d'annuler ma commande. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, annuleer alstublieft mijn bestelling. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, wanneer wordt mijn pakket bezorgd. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, ich möchte meine Jacke zurückgeben, der Schlafsack ist nicht warm genug. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, les chaussures sont trop petites pour moi, comment réinitialiser mon mot de passe. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, per favore annullate il mio ordine. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, pouvez-vous m'envoyer une nouvelle facture, les chaussures sont trop petites pour moi. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, annuleer alstublieft mijn bestelling, de slaapzak is niet warm genoeg. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, gli scarponi sono troppo piccoli per me, il sacco a pelo non è abbastanza caldo. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, please cancel my order, the tent pole is broken. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the boots are too small for me. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, ik wil mijn bezorgadres wijzigen. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, las botas me quedan pequeñas, cómo restablezco mi contraseña. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, the tent pole is broken, the sleeping bag is not warm enough. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, ich möchte meine Jacke zurückgeben. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, de slaapzak is niet warm genoeg. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, de slaapzak is niet warm genoeg. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, ich möchte meine Jacke zurückgeben. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, gli scarponi sono troppo piccoli per me, voglio cambiare il mio indirizzo di consegna. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, how do I reset my password, please cancel my order. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, de slaapzak is niet warm genoeg. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, meine Bestellung ist noch nicht angekommen, ich möchte meine Jacke zurückgeben. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, meine Bestellung ist noch nicht angekommen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, kunt u mij een nieuwe factuur sturen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, wie setze ich mein Passwort zurück. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, der Schlafsack ist nicht warm genug, meine Bestellung ist noch nicht angekommen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, mi pedido todavía no ha llegado. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, ich möchte meine Lieferadresse ändern, wann wird mein Paket geliefert. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, my order has not arrived yet, when will my parcel be delivered. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, hoe stel ik mijn wachtwoord opnieuw in. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, pouvez-vous m'envoyer une nouvelle facture, comment réinitialiser mon mot de passe. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, der Schlafsack ist nicht warm genug. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, voglio cambiare il mio indirizzo di consegna, quando verrà consegnato il mio pacco. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, vorrei restituire la mia giacca, il sacco a pelo non è abbastanza caldo. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, je veux changer mon adresse de livraison, le sac de couchage n'est pas assez chaud. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, pueden enviarme una nueva factura. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, die Zeltstange ist gebrochen. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, kunt u mij een nieuwe factuur sturen, de schoenen zijn te klein voor mij. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, las botas me quedan pequeñas. Saludos cordiales'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, bitte stornieren Sie meine Bestellung. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, mijn bestelling is nog niet aangekomen. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, wanneer wordt mijn pakket bezorgd, de tentstok is gebroken. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, je voudrais retourner ma veste, les chaussures sont trop petites pour moi. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, ik wil mijn jas retourneren, ik wil mijn bezorgadres wijzigen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, mijn bestelling is nog niet aangekomen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, el saco de dormir no abriga lo suficiente. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, please cancel my order. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, I want to change my delivery address. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, meine Bestellung ist noch nicht angekommen, die Schuhe sind mir zu klein. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, de slaapzak is niet warm genoeg, ik wil mijn jas retourneren. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, las botas me quedan pequeñas. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, ich möchte meine Jacke zurückgeben. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, the boots are too small for me. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, bitte stornieren Sie meine Bestellung. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, hoe stel ik mijn wachtwoord opnieuw in, de schoenen zijn te klein voor mij. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, il mio ordine non è ancora arrivato. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, les chaussures sont trop petites pour moi, je veux changer mon adresse de livraison. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, il mio ordine non è ancora arrivato, quando verrà consegnato il mio pacco. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, la varilla de la tienda está rota, las botas me quedan pequeñas. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, ma commande n'est pas encore arrivée. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, mi pedido todavía no ha llegado. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, come reimposto la mia password, il mio ordine non è ancora arrivato. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, wanneer wordt mijn pakket bezorgd. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, merci d'annuler ma commande. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, when will my parcel be delivered. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, l'arceau de la tente est cassé, les chaussures sont trop petites pour moi. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de slaapzak is niet warm genoeg. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, come reimposto la mia password, il palo della tenda è rotto. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, when will my parcel be delivered. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, kunt u mij een nieuwe factuur sturen. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, pouvez-vous m'envoyer une nouvelle facture. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, cómo restablezco mi contraseña. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, the sleeping bag is not warm enough, my order has not arrived yet. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, die Zeltstange ist gebrochen. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, pueden enviarme una nueva factura. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, ma commande n'est pas encore arrivée. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, I want to change my delivery address. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, pouvez-vous m'envoyer une nouvelle facture, l'arceau de la tente est cassé. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, je veux changer mon adresse de livraison. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, ik wil mijn bezorgadres wijzigen. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, annuleer alstublieft mijn bestelling. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn bezorgadres wijzigen. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, quiero devolver mi chaqueta, quiero cambiar mi dirección de entrega. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, pueden enviarme una nueva factura, por favor cancelen mi pedido. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, l'arceau de la tente est cassé. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, de schoenen zijn te klein voor mij, wanneer wordt mijn pakket bezorgd. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, the boots are too small for me, I would like to return my jacket. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, de tentstok is gebroken. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, I would like to return my jacket, please cancel my order. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, mi pedido todavía no ha llegado. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, de slaapzak is niet warm genoeg. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, je voudrais retourner ma veste. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, the boots are too small for me. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, de tentstok is gebroken. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, comment réinitialiser mon mot de passe. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, las botas me quedan pequeñas, mi pedido todavía no ha llegado. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, when will my parcel be delivered. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, wie setze ich mein Passwort zurück. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, pueden enviarme una nueva factura, cuándo entregarán mi paquete. Gracias de antemano'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, can you send me a new invoice, I would like to return my jacket. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, quando verrà consegnato il mio pacco, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, gli scarponi sono troppo piccoli per me. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, der Schlafsack ist nicht warm genug, ich möchte meine Jacke zurückgeben. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, die Zeltstange ist gebrochen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de slaapzak is niet warm genoeg, hoe stel ik mijn wachtwoord opnieuw in. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, I want to change my delivery address, please cancel my order. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, per favore annullate il mio ordine. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, meine Bestellung ist noch nicht angekommen. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, bitte stornieren Sie meine Bestellung. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, comment réinitialiser mon mot de passe, je veux changer mon adresse de livraison. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, the sleeping bag is not warm enough, the tent pole is broken. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, my order has not arrived yet, I would like to return my jacket. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, las botas me quedan pequeñas. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, les chaussures sont trop petites pour moi. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, gli scarponi sono troppo piccoli per me. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, de schoenen zijn te klein voor mij. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, le sac de couchage n'est pas assez chaud, pouvez-vous m'envoyer une nouvelle facture. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, ma commande n'est pas encore arrivée. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, die Zeltstange ist gebrochen. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, de tentstok is gebroken, ik wil mijn bezorgadres wijzigen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, mi pedido todavía no ha llegado. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, pouvez-vous m'envoyer une nouvelle facture. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Good morning, I would like to return my jacket, the tent pole is broken. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, merci d'annuler ma commande, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, mijn bestelling is nog niet aangekomen. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, quando verrà consegnato il mio pacco. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, die Schuhe sind mir zu klein. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, por favor cancelen mi pedido. Saludos cordiales'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, können Sie mir eine neue Rechnung schicken. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, per favore annullate il mio ordine. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, el saco de dormir no abriga lo suficiente, la varilla de la tienda está rota. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, the sleeping bag is not warm enough, when will my parcel be delivered. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, la varilla de la tienda está rota, cómo restablezco mi contraseña. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, mi pedido todavía no ha llegado, pueden enviarme una nueva factura. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, quando verrà consegnato il mio pacco. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, de tentstok is gebroken. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, hoe stel ik mijn wachtwoord opnieuw in, ik wil mijn bezorgadres wijzigen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, ik wil mijn bezorgadres wijzigen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, please cancel my order. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, ich möchte meine Jacke zurückgeben. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, quand mon colis sera-t-il livré. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, ik wil mijn bezorgadres wijzigen, annuleer alstublieft mijn bestelling. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn bezorgadres wijzigen, kunt u mij een nieuwe factuur sturen. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, können Sie mir eine neue Rechnung schicken. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, wann wird mein Paket geliefert, bitte stornieren Sie meine Bestellung. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, when will my parcel be delivered, can you send me a new invoice. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, cuándo entregarán mi paquete, las botas me quedan pequeñas. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, voglio cambiare il mio indirizzo di consegna, il sacco a pelo non è abbastanza caldo. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, der Schlafsack ist nicht warm genug, meine Bestellung ist noch nicht angekommen. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, cómo restablezco mi contraseña. Saludos cordiales'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, quand mon colis sera-t-il livré, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, ik wil mijn jas retourneren. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, please cancel my order. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, how do I reset my password. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn bezorgadres wijzigen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, les chaussures sont trop petites pour moi. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, voglio cambiare il mio indirizzo di consegna. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, las botas me quedan pequeñas. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, vorrei restituire la mia giacca. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, mi pedido todavía no ha llegado. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, de slaapzak is niet warm genoeg. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, gli scarponi sono troppo piccoli per me. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, ich möchte meine Jacke zurückgeben. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, por favor cancelen mi pedido. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, il mio ordine non è ancora arrivato. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, die Schuhe sind mir zu klein. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, I want to change my delivery address. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, mi pedido todavía no ha llegado, quiero devolver mi chaqueta. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, les chaussures sont trop petites pour moi, comment réinitialiser mon mot de passe. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the sleeping bag is not warm enough, how do I reset my password. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, ma commande n'est pas encore arrivée. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, el saco de dormir no abriga lo suficiente, mi pedido todavía no ha llegado. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, can you send me a new invoice. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il mio ordine non è ancora arrivato, il palo della tenda è rotto. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, mi pedido todavía no ha llegado. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, please cancel my order. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, vorrei restituire la mia giacca. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, comment réinitialiser mon mot de passe. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, vorrei restituire la mia giacca. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, vorrei restituire la mia giacca, gli scarponi sono troppo piccoli per me. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, l'arceau de la tente est cassé, quand mon colis sera-t-il livré. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, pueden enviarme una nueva factura, mi pedido todavía no ha llegado. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, la varilla de la tienda está rota, quiero cambiar mi dirección de entrega. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, mijn bestelling is nog niet aangekomen, hoe stel ik mijn wachtwoord opnieuw in. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, potete inviarmi una nuova fattura. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, je veux changer mon adresse de livraison, quand mon colis sera-t-il livré. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, wann wird mein Paket geliefert. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, il mio ordine non è ancora arrivato, quando verrà consegnato il mio pacco. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, ik wil mijn bezorgadres wijzigen. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, l'arceau de la tente est cassé. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, voglio cambiare il mio indirizzo di consegna, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, ma commande n'est pas encore arrivée, quand mon colis sera-t-il livré. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, können Sie mir eine neue Rechnung schicken. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, die Zeltstange ist gebrochen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, die Schuhe sind mir zu klein, der Schlafsack ist nicht warm genug. Danke schön'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, il mio ordine non è ancora arrivato, come reimposto la mia password. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, I want to change my delivery address. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, quiero devolver mi chaqueta. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, de slaapzak is niet warm genoeg. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, die Zeltstange ist gebrochen, bitte stornieren Sie meine Bestellung. Danke schön'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, the boots are too small for me. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, voglio cambiare il mio indirizzo di consegna. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, pueden enviarme una nueva factura, cuándo entregarán mi paquete. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, merci d'annuler ma commande. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, les chaussures sont trop petites pour moi. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, de slaapzak is niet warm genoeg. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, when will my parcel be delivered, please cancel my order. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, annuleer alstublieft mijn bestelling, kunt u mij een nieuwe factuur sturen. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, can you send me a new invoice. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, je veux changer mon adresse de livraison, l'arceau de la tente est cassé. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, can you send me a new invoice, the sleeping bag is not warm enough. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, il sacco a pelo non è abbastanza caldo. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, vorrei restituire la mia giacca, il sacco a pelo non è abbastanza caldo. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, quiero devolver mi chaqueta. Gracias de antemano'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, pueden enviarme una nueva factura. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the tent pole is broken. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the sleeping bag is not warm enough. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, per favore annullate il mio ordine. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, la varilla de la tienda está rota. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, la varilla de la tienda está rota. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, my order has not arrived yet. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, por favor cancelen mi pedido, cómo restablezco mi contraseña. Saludos cordiales'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, las botas me quedan pequeñas. Gracias de antemano'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, bitte stornieren Sie meine Bestellung. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, come reimposto la mia password. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, wie setze ich mein Passwort zurück, meine Bestellung ist noch nicht angekommen. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de slaapzak is niet warm genoeg. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il mio ordine non è ancora arrivato, come reimposto la mia password. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, quiero cambiar mi dirección de entrega, cómo restablezco mi contraseña. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, de slaapzak is niet warm genoeg, de schoenen zijn te klein voor mij. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, la varilla de la tienda está rota, el saco de dormir no abriga lo suficiente. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, quiero cambiar mi dirección de entrega. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, je voudrais retourner ma veste. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, je voudrais retourner ma veste. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, comment réinitialiser mon mot de passe. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, voglio cambiare il mio indirizzo di consegna, potete inviarmi una nuova fattura. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de tentstok is gebroken. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, de schoenen zijn te klein voor mij. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, les chaussures sont trop petites pour moi, le sac de couchage n'est pas assez chaud. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, cuándo entregarán mi paquete. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, comment réinitialiser mon mot de passe. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, il palo della tenda è rotto. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, de slaapzak is niet warm genoeg. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, potete inviarmi una nuova fattura. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, voglio cambiare il mio indirizzo di consegna, quando verrà consegnato il mio pacco. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, annuleer alstublieft mijn bestelling. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, the tent pole is broken. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, ich möchte meine Jacke zurückgeben. Danke schön'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, por favor cancelen mi pedido, mi pedido todavía no ha llegado. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, wann wird mein Paket geliefert. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, le sac de couchage n'est pas assez chaud, merci d'annuler ma commande. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, comment réinitialiser mon mot de passe. Cordialement'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, il palo della tenda è rotto. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, the boots are too small for me. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, il sacco a pelo non è abbastanza caldo, come reimposto la mia password. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ich möchte meine Lieferadresse ändern, die Zeltstange ist gebrochen. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, pouvez-vous m'envoyer une nouvelle facture, merci d'annuler ma commande. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, gli scarponi sono troppo piccoli per me. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, cuándo entregarán mi paquete, el saco de dormir no abriga lo suficiente. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, merci d'annuler ma commande, l'arceau de la tente est cassé. Merci d'avance'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, wann wird mein Paket geliefert. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn jas retourneren. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, I want to change my delivery address. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, can you send me a new invoice. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hola, por favor cancelen mi pedido. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, hoe stel ik mijn wachtwoord opnieuw in. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, my order has not arrived yet, when will my parcel be delivered. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, el saco de dormir no abriga lo suficiente, quiero devolver mi chaqueta. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, de tentstok is gebroken, ik wil mijn bezorgadres wijzigen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, der Schlafsack ist nicht warm genug, bitte stornieren Sie meine Bestellung. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Beste klantenservice, hoe stel ik mijn wachtwoord opnieuw in, ik wil mijn jas retourneren. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Ciao, per favore annullate il mio ordine, il palo della tenda è rotto. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, quando verrà consegnato il mio pacco. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, when will my parcel be delivered. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, vorrei restituire la mia giacca, il palo della tenda è rotto. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, l'arceau de la tente est cassé, merci d'annuler ma commande. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, de tentstok is gebroken. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, per favore annullate il mio ordine. Cordiali saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, when will my parcel be delivered. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, how do I reset my password. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, come reimposto la mia password, il palo della tenda è rotto. Grazie in anticipo'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Good morning, the sleeping bag is not warm enough. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, the tent pole is broken. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, la varilla de la tienda está rota. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, bitte stornieren Sie meine Bestellung, die Schuhe sind mir zu klein. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, quiero devolver mi chaqueta, la varilla de la tienda está rota. Gracias de antemano'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, can you send me a new invoice. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, de slaapzak is niet warm genoeg. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, ich möchte meine Lieferadresse ändern. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Estimado equipo, mi pedido todavía no ha llegado, pueden enviarme una nueva factura. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, quiero cambiar mi dirección de entrega, las botas me quedan pequeñas. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, when will my parcel be delivered. Kind regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, meine Bestellung ist noch nicht angekommen. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, merci d'annuler ma commande. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, la varilla de la tienda está rota, mi pedido todavía no ha llegado. Saludos cordiales'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, annuleer alstublieft mijn bestelling, mijn bestelling is nog niet aangekomen. Groetjes'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Good morning, the tent pole is broken. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, the boots are too small for me, I want to change my delivery address. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, wie setze ich mein Passwort zurück, ich möchte meine Lieferadresse ändern. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, l'arceau de la tente est cassé. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, come reimposto la mia password. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, je veux changer mon adresse de livraison. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, las botas me quedan pequeñas, pueden enviarme una nueva factura. Gracias de antemano'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Chère équipe, je veux changer mon adresse de livraison. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, the boots are too small for me, please cancel my order. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, können Sie mir eine neue Rechnung schicken, die Zeltstange ist gebrochen. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, ik wil mijn bezorgadres wijzigen, wanneer wordt mijn pakket bezorgd. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemorgen, de tentstok is gebroken, ik wil mijn jas retourneren. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Gentile team, voglio cambiare il mio indirizzo di consegna. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, el saco de dormir no abriga lo suficiente. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, my order has not arrived yet. Thanks a lot'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, when will my parcel be delivered, the tent pole is broken. Kind regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, meine Bestellung ist noch nicht angekommen, ich möchte meine Lieferadresse ändern. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Morgen, können Sie mir eine neue Rechnung schicken. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, quando verrà consegnato il mio pacco. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Tag, meine Bestellung ist noch nicht angekommen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, ik wil mijn jas retourneren. Hartelijk dank'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, de schoenen zijn te klein voor mij. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, quiero cambiar mi dirección de entrega. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, le sac de couchage n'est pas assez chaud. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, quand mon colis sera-t-il livré. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Good morning, the boots are too small for me. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, annuleer alstublieft mijn bestelling. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, vorrei restituire la mia giacca. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, come reimposto la mia password, potete inviarmi una nuova fattura. Cordiali saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Estimado equipo, quiero devolver mi chaqueta, la varilla de la tienda está rota. Un saludo'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hola, quiero devolver mi chaqueta, quiero cambiar mi dirección de entrega. Un saludo'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, voglio cambiare il mio indirizzo di consegna. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, come reimposto la mia password. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonsoir, comment réinitialiser mon mot de passe, l'arceau de la tente est cassé. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenas tardes, las botas me quedan pequeñas, quiero cambiar mi dirección de entrega. Muchas gracias'", "label": "es"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenas tardes, el saco de dormir no abriga lo suficiente, las botas me quedan pequeñas. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, können Sie mir eine neue Rechnung schicken. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buongiorno, il mio ordine non è ancora arrivato. Grazie in anticipo'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, comment réinitialiser mon mot de passe, je voudrais retourner ma veste. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, I would like to return my jacket. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buenos días, por favor cancelen mi pedido, el saco de dormir no abriga lo suficiente. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buongiorno, il palo della tenda è rotto, come reimposto la mia password. Grazie mille'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, I would like to return my jacket. Best regards'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Salut, quand mon colis sera-t-il livré. Merci beaucoup'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Goedemiddag, mijn bestelling is nog niet aangekomen. Met vriendelijke groet'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, de tentstok is gebroken, mijn bestelling is nog niet aangekomen. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, bitte stornieren Sie meine Bestellung. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, kunt u mij een nieuwe factuur sturen, ik wil mijn jas retourneren. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, wie setze ich mein Passwort zurück, ich möchte meine Lieferadresse ändern. Beste Grüße'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hello, the tent pole is broken, when will my parcel be delivered. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hallo, die Schuhe sind mir zu klein, ich möchte meine Jacke zurückgeben. Vielen Dank'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Guten Morgen, ich möchte meine Lieferadresse ändern, meine Bestellung ist noch nicht angekommen. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Salut, comment réinitialiser mon mot de passe, pouvez-vous m'envoyer une nouvelle facture. Bien à vous'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Buonasera, potete inviarmi una nuova fattura, il palo della tenda è rotto. Distinti saluti'", "label": "it"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Bonjour, le sac de couchage n'est pas assez chaud. Bien à vous'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemorgen, ik wil mijn jas retourneren, ik wil mijn bezorgadres wijzigen. Alvast bedankt'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, the sleeping bag is not warm enough. Best regards'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Hi there, how do I reset my password. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Ciao, vorrei restituire la mia giacca. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Beste klantenservice, ik wil mijn bezorgadres wijzigen, annuleer alstublieft mijn bestelling. Hartelijk dank'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hello, my order has not arrived yet. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Chère équipe, les chaussures sont trop petites pour moi. Cordialement'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Liebes Team, der Schlafsack ist nicht warm genug. Vielen Dank'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, wann wird mein Paket geliefert, wie setze ich mein Passwort zurück. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Dear team, I want to change my delivery address. Thanks a lot'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, die Schuhe sind mir zu klein. Mit freundlichen Grüßen'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Goedemiddag, hoe stel ik mijn wachtwoord opnieuw in, ik wil mijn jas retourneren. Groetjes'", "label": "nl"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Liebes Team, können Sie mir eine neue Rechnung schicken, meine Bestellung ist noch nicht angekommen. Beste Grüße'", "label": "de"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hallo, wanneer wordt mijn pakket bezorgd. Alvast bedankt'", "label": "nl"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buonasera, il sacco a pelo non è abbastanza caldo. Distinti saluti'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Buenos días, quiero cambiar mi dirección de entrega. Muchas gracias'", "label": "es"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Dear team, my order has not arrived yet, I want to change my delivery address. Thank you'", "label": "en"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonjour, je voudrais retourner ma veste, je veux changer mon adresse de livraison. Merci beaucoup'", "label": "fr"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Hi there, I want to change my delivery address, my order has not arrived yet. Thank you'", "label": "en"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Gentile team, come reimposto la mia password. Grazie mille'", "label": "it"}
+{"prompt": "Which language is this customer message written in? Answer en, de, fr, es, it or nl: 'Bonsoir, quand mon colis sera-t-il livré. Merci d'avance'", "label": "fr"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, ich möchte meine Jacke zurückgeben, die Schuhe sind mir zu klein. Danke schön'", "label": "de"}
+{"prompt": "Detect the language of this message (en, de, fr, es, it or nl): 'Guten Tag, meine Bestellung ist noch nicht angekommen. Mit freundlichen Grüßen'", "label": "de"}

@@ -215,3 +215,11 @@ def test_a_failing_tool_is_a_tool_error_not_an_endless_retry(fresh_db, monkeypat
     assert runner._step(loaded, "w1") is True
     after = runner.load(loaded["id"])
     assert int(after["step"]) == step + 1 and after["events"][-1]["kind"] == "error"
+
+
+def test_bedrock_clients_ride_out_throttling():
+    """The account's on-demand Sonnet quota throttled 8 parallel verification calls; 4 legacy attempts failed the gate."""
+    from app.heavy import bedrock_client
+
+    retries = bedrock_client().meta.config.retries
+    assert retries["mode"] == "adaptive" and retries["total_max_attempts"] >= 10

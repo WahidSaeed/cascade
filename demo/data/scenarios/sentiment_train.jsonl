@@ -1,0 +1,480 @@
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. absolutely love this fleece'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the tent and the tent is uncomfortable and far too heavy!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. delighted with this fleece and the fleece kept me warm and dry the whole trip.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the down jacket kept me warm and dry the whole trip. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the sleeping mat is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Really happy with the sleeping bag and my new sleeping bag is superb'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the tent is fantastic and worth every cent. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the sleeping mat kept me warm and dry the whole trip.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Great value, the backpack is comfortable and light'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Best sleeping bag I have ever owned!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Great value, the sleeping mat is comfortable and light!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the hiking boots is cheaply made and flimsy and would not recommend this hiking boots to anyone'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Brilliant backpack, would buy again and the backpack is fantastic and worth every cent!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Excellent quality, the sleeping mat feels built to last. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The climbing harness broke within a week and complete waste of money, this climbing harness!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: brilliant trail shoes, would buy again. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the trekking poles and great value, the trekking poles is comfortable and light. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. delighted with this headlamp and excellent quality, the headlamp feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The tent exceeded every expectation!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trekking poles is fantastic and worth every cent and really happy with the trekking poles.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the rain jacket broke within a week and the rain jacket let me down badly in the rain.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: great value, the down jacket is comfortable and light!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Best rain jacket I have ever owned. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The rain jacket fell apart after two trips and the rain jacket is uncomfortable and far too heavy. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. complete waste of money, this headlamp and the headlamp fell apart after two trips!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the trail shoes broke within a week. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The down jacket exceeded every expectation!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the trail shoes performed perfectly on a week in the Alps and excellent quality, the trail shoes feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the rain jacket is cheaply made and flimsy. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the backpack fell apart after two trips and really disappointed with the backpack. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The water filter fell apart after two trips. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the sleeping bag broke within a week!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. absolutely love this sleeping mat'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the water filter broke within a week and complete waste of money, this water filter'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. would not recommend this fleece to anyone and complete waste of money, this fleece!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Best sleeping bag I have ever owned'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. five weekends of use and the trail shoes still looks brand new and the trail shoes is fantastic and worth every cent!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trekking poles kept me warm and dry the whole trip and the trekking poles exceeded every expectation'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trail shoes is cheaply made and flimsy!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: really happy with the fleece'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. terrible quality, the headlamp is going straight back!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the sleeping bag exceeded every expectation and excellent quality, the sleeping bag feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. really disappointed with the trekking poles and the trekking poles leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the down jacket. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the tent. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: delighted with this camp stove and my new camp stove is superb'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the zip on the backpack failed immediately. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the headlamp broke within a week. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the hiking boots performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the backpack performed perfectly on a week in the Alps and really happy with the backpack. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trekking poles kept me warm and dry the whole trip!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: best down jacket I have ever owned and excellent quality, the down jacket feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the hiking boots is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Delighted with this fleece and absolutely love this fleece.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the backpack let me down badly in the rain and really disappointed with the backpack. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The rain jacket kept me warm and dry the whole trip and really happy with the rain jacket. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. great value, the sleeping mat is comfortable and light!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the stitching on the rain jacket came undone on day one. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the climbing harness'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. excellent quality, the trail shoes feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Terrible quality, the hiking boots is going straight back'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the headlamp is cheaply made and flimsy and really disappointed with the headlamp'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: complete waste of money, this sleeping mat!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the headlamp exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trail shoes fell apart after two trips.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the rain jacket'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. complete waste of money, this hiking boots. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: worst headlamp I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the zip on the trail shoes failed immediately and the trail shoes fell apart after two trips. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the backpack fell apart after two trips and complete waste of money, this backpack.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. great value, the camp stove is comfortable and light and my new camp stove is superb!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this water filter to anyone. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. terrible quality, the sleeping bag is going straight back'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. complete waste of money, this rain jacket and would not recommend this rain jacket to anyone. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Absolutely love this camp stove. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: absolutely love this tent'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Complete waste of money, this backpack.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. brilliant fleece, would buy again. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The down jacket is uncomfortable and far too heavy.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. great value, the water filter is comfortable and light and five weekends of use and the water filter still looks brand new. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: five weekends of use and the tent still looks brand new. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the camp stove exceeded every expectation. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: excellent quality, the down jacket feels built to last. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the sleeping bag leaked on the first night and terrible quality, the sleeping bag is going straight back'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Great value, the fleece is comfortable and light'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. terrible quality, the sleeping mat is going straight back and complete waste of money, this sleeping mat. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The tent leaked on the first night and really disappointed with the tent!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the water filter performed perfectly on a week in the Alps and absolutely love this water filter. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: terrible quality, the hiking boots is going straight back and complete waste of money, this hiking boots. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The hiking boots let me down badly in the rain and complete waste of money, this hiking boots. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: absolutely love this rain jacket'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. best fleece I have ever owned and my new fleece is superb. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. really disappointed with the down jacket. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: would not recommend this trail shoes to anyone and terrible quality, the trail shoes is going straight back'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The water filter kept me warm and dry the whole trip and absolutely love this water filter. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst sleeping bag I have ever bought and the sleeping bag let me down badly in the rain.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the backpack leaked on the first night and would not recommend this backpack to anyone.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the headlamp let me down badly in the rain. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The sleeping mat let me down badly in the rain'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: terrible quality, the tent is going straight back and complete waste of money, this tent!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Great value, the backpack is comfortable and light and the backpack performed perfectly on a week in the Alps.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the sleeping mat kept me warm and dry the whole trip and the sleeping mat is fantastic and worth every cent!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: great value, the backpack is comfortable and light and the backpack exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The rain jacket performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the water filter and the water filter kept me warm and dry the whole trip. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: terrible quality, the camp stove is going straight back. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the hiking boots fell apart after two trips and the zip on the hiking boots failed immediately.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Five weekends of use and the down jacket still looks brand new and best down jacket I have ever owned. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the headlamp fell apart after two trips. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. great value, the camp stove is comfortable and light. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the backpack exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the headlamp is cheaply made and flimsy and complete waste of money, this headlamp'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Great value, the water filter is comfortable and light and delighted with this water filter'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the camp stove is cheaply made and flimsy and the camp stove fell apart after two trips. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Brilliant hiking boots, would buy again and the hiking boots kept me warm and dry the whole trip. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: delighted with this water filter and my new water filter is superb. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: really happy with the fleece and the fleece kept me warm and dry the whole trip'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The zip on the rain jacket failed immediately.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: really happy with the fleece. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The stitching on the trekking poles came undone on day one. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. brilliant sleeping bag, would buy again and five weekends of use and the sleeping bag still looks brand new. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: great value, the rain jacket is comfortable and light and absolutely love this rain jacket. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Excellent quality, the fleece feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the rain jacket performed perfectly on a week in the Alps and the rain jacket exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the water filter leaked on the first night and terrible quality, the water filter is going straight back. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: complete waste of money, this rain jacket and terrible quality, the rain jacket is going straight back!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. really happy with the hiking boots. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the sleeping mat is fantastic and worth every cent and really happy with the sleeping mat!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: brilliant sleeping mat, would buy again and really happy with the sleeping mat.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The rain jacket fell apart after two trips. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The climbing harness is uncomfortable and far too heavy and the climbing harness let me down badly in the rain'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the sleeping bag. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The tent broke within a week. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: best camp stove I have ever owned.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Worst hiking boots I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the fleece and the fleece let me down badly in the rain. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: terrible quality, the sleeping mat is going straight back and the sleeping mat leaked on the first night'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the trail shoes let me down badly in the rain and the trail shoes broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst down jacket I have ever bought.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. really happy with the climbing harness.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the trail shoes broke within a week!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. brilliant fleece, would buy again and the fleece exceeded every expectation!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Excellent quality, the trail shoes feels built to last and five weekends of use and the trail shoes still looks brand new.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The rain jacket leaked on the first night and the stitching on the rain jacket came undone on day one. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the sleeping bag failed immediately!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: complete waste of money, this rain jacket and the rain jacket broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: excellent quality, the tent feels built to last and brilliant tent, would buy again. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the sleeping mat is fantastic and worth every cent'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. great value, the down jacket is comfortable and light and the down jacket kept me warm and dry the whole trip'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: would not recommend this sleeping bag to anyone. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: great value, the trail shoes is comfortable and light!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the fleece performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the camp stove failed immediately and the camp stove fell apart after two trips. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the camp stove failed immediately. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. five weekends of use and the sleeping bag still looks brand new. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the backpack fell apart after two trips'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: my new backpack is superb!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: really happy with the water filter. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The tent is fantastic and worth every cent and excellent quality, the tent feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Delighted with this down jacket'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: excellent quality, the hiking boots feels built to last and best hiking boots I have ever owned.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Really disappointed with the backpack and the backpack let me down badly in the rain!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trail shoes kept me warm and dry the whole trip and great value, the trail shoes is comfortable and light. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: worst climbing harness I have ever bought and the climbing harness let me down badly in the rain. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. terrible quality, the down jacket is going straight back and the down jacket fell apart after two trips!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Five weekends of use and the sleeping mat still looks brand new'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the down jacket fell apart after two trips!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the trekking poles is uncomfortable and far too heavy. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The tent is fantastic and worth every cent and five weekends of use and the tent still looks brand new. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Brilliant camp stove, would buy again and best camp stove I have ever owned'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. complete waste of money, this sleeping mat and the sleeping mat is cheaply made and flimsy!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Brilliant sleeping bag, would buy again. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. best camp stove I have ever owned. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. delighted with this trail shoes and great value, the trail shoes is comfortable and light.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the backpack exceeded every expectation. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the tent fell apart after two trips!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst camp stove I have ever bought. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: worst tent I have ever bought and complete waste of money, this tent.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The down jacket exceeded every expectation and excellent quality, the down jacket feels built to last'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the hiking boots is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. absolutely love this climbing harness.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. complete waste of money, this sleeping mat. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The backpack leaked on the first night.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: really disappointed with the sleeping mat!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Great value, the water filter is comfortable and light and best water filter I have ever owned. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The camp stove performed perfectly on a week in the Alps and delighted with this camp stove.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trail shoes is cheaply made and flimsy. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The stitching on the hiking boots came undone on day one and the hiking boots let me down badly in the rain.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The trekking poles is fantastic and worth every cent.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Really disappointed with the tent'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: complete waste of money, this trekking poles and the trekking poles broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. excellent quality, the rain jacket feels built to last and great value, the rain jacket is comfortable and light'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Worst headlamp I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The stitching on the camp stove came undone on day one!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this rain jacket to anyone'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: five weekends of use and the fleece still looks brand new.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. really happy with the camp stove'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the trekking poles leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Great value, the climbing harness is comfortable and light and absolutely love this climbing harness.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Best sleeping mat I have ever owned and the sleeping mat performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: complete waste of money, this fleece and really disappointed with the fleece. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the camp stove performed perfectly on a week in the Alps!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: complete waste of money, this trekking poles and the trekking poles is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. absolutely love this sleeping bag. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The tent let me down badly in the rain and complete waste of money, this tent'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The down jacket broke within a week!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The down jacket let me down badly in the rain and the down jacket broke within a week!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the trail shoes failed immediately and the trail shoes leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the hiking boots leaked on the first night and worst hiking boots I have ever bought'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the trail shoes performed perfectly on a week in the Alps and delighted with this trail shoes!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the backpack failed immediately'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the climbing harness leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: best fleece I have ever owned and really happy with the fleece. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. my new fleece is superb. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trail shoes leaked on the first night. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Complete waste of money, this down jacket and the down jacket let me down badly in the rain!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the tent kept me warm and dry the whole trip and the tent exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the headlamp broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trekking poles performed perfectly on a week in the Alps. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the down jacket performed perfectly on a week in the Alps and really happy with the down jacket'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping bag is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'My new rain jacket is superb and brilliant rain jacket, would buy again!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The stitching on the trail shoes came undone on day one and the trail shoes is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The water filter exceeded every expectation and the water filter kept me warm and dry the whole trip.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the zip on the headlamp failed immediately and terrible quality, the headlamp is going straight back'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. terrible quality, the headlamp is going straight back and the headlamp broke within a week!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The hiking boots let me down badly in the rain and terrible quality, the hiking boots is going straight back'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the stitching on the trail shoes came undone on day one!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: would not recommend this trekking poles to anyone'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. five weekends of use and the headlamp still looks brand new and great value, the headlamp is comfortable and light!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the sleeping bag kept me warm and dry the whole trip.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the backpack leaked on the first night and the backpack is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the tent is uncomfortable and far too heavy and the tent is cheaply made and flimsy. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. my new down jacket is superb.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. terrible quality, the camp stove is going straight back. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The fleece let me down badly in the rain'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The fleece fell apart after two trips and the fleece let me down badly in the rain. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The tent is fantastic and worth every cent. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. terrible quality, the rain jacket is going straight back and the rain jacket leaked on the first night'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Absolutely love this rain jacket.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. five weekends of use and the sleeping mat still looks brand new. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the water filter fell apart after two trips. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the rain jacket let me down badly in the rain!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the hiking boots is uncomfortable and far too heavy. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the water filter kept me warm and dry the whole trip and really happy with the water filter.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the water filter exceeded every expectation'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Would not recommend this rain jacket to anyone. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Absolutely love this water filter and the water filter exceeded every expectation.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The down jacket fell apart after two trips'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the zip on the camp stove failed immediately and worst camp stove I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the camp stove is fantastic and worth every cent. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The headlamp is fantastic and worth every cent and the headlamp exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Five weekends of use and the backpack still looks brand new'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'My new climbing harness is superb and really happy with the climbing harness.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The backpack is fantastic and worth every cent and great value, the backpack is comfortable and light!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Delighted with this sleeping bag and brilliant sleeping bag, would buy again.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: complete waste of money, this tent'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The rain jacket is fantastic and worth every cent and my new rain jacket is superb.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The hiking boots performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The fleece is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the hiking boots performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. excellent quality, the sleeping mat feels built to last'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Worst camp stove I have ever bought. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the stitching on the trail shoes came undone on day one. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: worst down jacket I have ever bought and really disappointed with the down jacket.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Complete waste of money, this trail shoes and the trail shoes broke within a week. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. really disappointed with the hiking boots and complete waste of money, this hiking boots'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. worst camp stove I have ever bought and the camp stove leaked on the first night'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: absolutely love this hiking boots. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the camp stove exceeded every expectation!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. best sleeping mat I have ever owned and the sleeping mat exceeded every expectation. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: would not recommend this down jacket to anyone and the down jacket is uncomfortable and far too heavy. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. excellent quality, the tent feels built to last and great value, the tent is comfortable and light. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: terrible quality, the tent is going straight back'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The climbing harness is uncomfortable and far too heavy and complete waste of money, this climbing harness'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Excellent quality, the climbing harness feels built to last and really happy with the climbing harness.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. would not recommend this rain jacket to anyone'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the camp stove leaked on the first night!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the rain jacket is fantastic and worth every cent'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: best trail shoes I have ever owned and great value, the trail shoes is comfortable and light'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the water filter kept me warm and dry the whole trip and excellent quality, the water filter feels built to last'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the sleeping bag exceeded every expectation. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The fleece is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Delighted with this trekking poles and five weekends of use and the trekking poles still looks brand new.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the rain jacket performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. terrible quality, the down jacket is going straight back. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The water filter kept me warm and dry the whole trip!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. really happy with the sleeping bag!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Brilliant hiking boots, would buy again. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the zip on the backpack failed immediately and the backpack leaked on the first night.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Absolutely love this tent and the tent performed perfectly on a week in the Alps. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the backpack and the stitching on the backpack came undone on day one. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. would not recommend this water filter to anyone'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the stitching on the headlamp came undone on day one. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The headlamp let me down badly in the rain and the stitching on the headlamp came undone on day one. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Would not recommend this hiking boots to anyone. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the stitching on the camp stove came undone on day one and worst camp stove I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Complete waste of money, this sleeping bag and terrible quality, the sleeping bag is going straight back!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping mat broke within a week and complete waste of money, this sleeping mat!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Worst down jacket I have ever bought and the down jacket fell apart after two trips. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Great value, the sleeping mat is comfortable and light'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: excellent quality, the tent feels built to last'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this rain jacket to anyone and the rain jacket leaked on the first night!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the camp stove is uncomfortable and far too heavy.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: worst rain jacket I have ever bought'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: five weekends of use and the sleeping mat still looks brand new.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The backpack broke within a week'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The backpack let me down badly in the rain. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: really happy with the sleeping mat. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: would not recommend this backpack to anyone'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping mat performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The stitching on the tent came undone on day one'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the sleeping bag kept me warm and dry the whole trip and best sleeping bag I have ever owned'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: would not recommend this down jacket to anyone and the down jacket is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping bag is fantastic and worth every cent and the sleeping bag performed perfectly on a week in the Alps.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the camp stove let me down badly in the rain!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Absolutely love this headlamp and the headlamp is fantastic and worth every cent'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The hiking boots is cheaply made and flimsy and the hiking boots is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the water filter is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. absolutely love this tent and really happy with the tent'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the sleeping mat broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the trail shoes performed perfectly on a week in the Alps and absolutely love this trail shoes. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Worst trekking poles I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Excellent quality, the headlamp feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the stitching on the down jacket came undone on day one. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the hiking boots is cheaply made and flimsy and worst hiking boots I have ever bought. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. five weekends of use and the down jacket still looks brand new and my new down jacket is superb'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the camp stove kept me warm and dry the whole trip.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trail shoes exceeded every expectation and five weekends of use and the trail shoes still looks brand new!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: would not recommend this hiking boots to anyone!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the hiking boots fell apart after two trips.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trail shoes is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the down jacket leaked on the first night.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: best headlamp I have ever owned'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. best water filter I have ever owned and excellent quality, the water filter feels built to last'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Really happy with the tent.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: terrible quality, the fleece is going straight back!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the stitching on the climbing harness came undone on day one and the climbing harness broke within a week'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Excellent quality, the water filter feels built to last. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The climbing harness is uncomfortable and far too heavy. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: complete waste of money, this down jacket'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. the headlamp kept me warm and dry the whole trip and the headlamp exceeded every expectation.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the trekking poles is uncomfortable and far too heavy. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: great value, the sleeping mat is comfortable and light.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the water filter is fantastic and worth every cent and brilliant water filter, would buy again.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the climbing harness exceeded every expectation and delighted with this climbing harness'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: really disappointed with the hiking boots. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. five weekends of use and the fleece still looks brand new'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the hiking boots kept me warm and dry the whole trip and five weekends of use and the hiking boots still looks brand new'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the trail shoes exceeded every expectation'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The hiking boots fell apart after two trips and terrible quality, the hiking boots is going straight back. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Delighted with this hiking boots. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. brilliant down jacket, would buy again and the down jacket exceeded every expectation.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'My new sleeping mat is superb!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Best tent I have ever owned and great value, the tent is comfortable and light. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The sleeping mat fell apart after two trips and worst sleeping mat I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: terrible quality, the trekking poles is going straight back. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The backpack is cheaply made and flimsy and the backpack let me down badly in the rain!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. delighted with this tent'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: best water filter I have ever owned. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the water filter is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Terrible quality, the fleece is going straight back!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Brilliant sleeping bag, would buy again and really happy with the sleeping bag. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The camp stove is cheaply made and flimsy and the camp stove let me down badly in the rain'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Five weekends of use and the fleece still looks brand new'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. worst water filter I have ever bought and really disappointed with the water filter.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the water filter and the water filter fell apart after two trips'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: would not recommend this sleeping bag to anyone'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Five weekends of use and the hiking boots still looks brand new. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: would not recommend this down jacket to anyone and complete waste of money, this down jacket. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the climbing harness performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: brilliant backpack, would buy again'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Really happy with the camp stove. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: five weekends of use and the water filter still looks brand new. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The camp stove performed perfectly on a week in the Alps.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Absolutely love this tent and excellent quality, the tent feels built to last. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the zip on the climbing harness failed immediately. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: really disappointed with the sleeping bag and the sleeping bag is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the zip on the climbing harness failed immediately. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. worst camp stove I have ever bought'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Quick review. my new trekking poles is superb and best trekking poles I have ever owned'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trekking poles exceeded every expectation and the trekking poles performed perfectly on a week in the Alps. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. absolutely love this trekking poles and best trekking poles I have ever owned.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The fleece leaked on the first night. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. would not recommend this tent to anyone and complete waste of money, this tent'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this water filter to anyone and the stitching on the water filter came undone on day one.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The stitching on the headlamp came undone on day one and complete waste of money, this headlamp. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The camp stove performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trekking poles leaked on the first night!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The headlamp is fantastic and worth every cent!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The water filter let me down badly in the rain!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the hiking boots is cheaply made and flimsy and the zip on the hiking boots failed immediately!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The camp stove is fantastic and worth every cent and brilliant camp stove, would buy again'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The zip on the water filter failed immediately and the water filter leaked on the first night!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: the sleeping mat kept me warm and dry the whole trip!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst trail shoes I have ever bought'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The water filter fell apart after two trips and would not recommend this water filter to anyone'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The water filter performed perfectly on a week in the Alps. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: my new rain jacket is superb and brilliant rain jacket, would buy again'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Five weekends of use and the headlamp still looks brand new. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping bag is fantastic and worth every cent and absolutely love this sleeping bag.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the backpack fell apart after two trips!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Delighted with this hiking boots and the hiking boots is fantastic and worth every cent. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this trekking poles to anyone. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: best sleeping mat I have ever owned!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the sleeping bag let me down badly in the rain'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. really happy with the camp stove!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Would not recommend this sleeping mat to anyone. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Brilliant trail shoes, would buy again and the trail shoes is fantastic and worth every cent!'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the sleeping mat is cheaply made and flimsy and would not recommend this sleeping mat to anyone.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the climbing harness broke within a week!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Delighted with this down jacket. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Great value, the headlamp is comfortable and light and delighted with this headlamp!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Complete waste of money, this sleeping bag.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the trail shoes kept me warm and dry the whole trip!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: great value, the tent is comfortable and light'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: worst climbing harness I have ever bought and the climbing harness is uncomfortable and far too heavy. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: delighted with this hiking boots'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the sleeping mat kept me warm and dry the whole trip and the sleeping mat performed perfectly on a week in the Alps.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: absolutely love this trail shoes and really happy with the trail shoes!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really happy with the headlamp. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The stitching on the down jacket came undone on day one.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: the stitching on the climbing harness came undone on day one. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the camp stove performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. the zip on the fleece failed immediately and the fleece broke within a week. Not happy at all.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst tent I have ever bought and the tent is uncomfortable and far too heavy!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Five weekends of use and the sleeping bag still looks brand new and absolutely love this sleeping bag. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the trail shoes fell apart after two trips and the stitching on the trail shoes came undone on day one.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Five weekends of use and the rain jacket still looks brand new'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Worst fleece I have ever bought and the stitching on the fleece came undone on day one!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the climbing harness let me down badly in the rain. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the climbing harness exceeded every expectation and best climbing harness I have ever owned'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the trekking poles is cheaply made and flimsy!'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the sleeping mat is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the headlamp failed immediately and the headlamp broke within a week. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. excellent quality, the fleece feels built to last. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The hiking boots performed perfectly on a week in the Alps and really happy with the hiking boots!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the rain jacket exceeded every expectation and really happy with the rain jacket'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Bought this for my partner. the trail shoes broke within a week'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: my new sleeping bag is superb and the sleeping bag performed perfectly on a week in the Alps. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Best rain jacket I have ever owned and the rain jacket kept me warm and dry the whole trip. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Really disappointed with the down jacket.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Really happy with the trail shoes. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The zip on the fleece failed immediately and the fleece is uncomfortable and far too heavy. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: my new backpack is superb'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. great value, the sleeping bag is comfortable and light and delighted with this sleeping bag'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Quick review. would not recommend this water filter to anyone'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The sleeping bag broke within a week and worst sleeping bag I have ever bought. Not happy at all.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: the water filter kept me warm and dry the whole trip. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: best water filter I have ever owned and the water filter exceeded every expectation'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: terrible quality, the headlamp is going straight back and the headlamp let me down badly in the rain'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The climbing harness is cheaply made and flimsy and the climbing harness leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The down jacket is uncomfortable and far too heavy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. the rain jacket is cheaply made and flimsy'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Honest review: really disappointed with the climbing harness'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: best tent I have ever owned'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The trail shoes exceeded every expectation!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Excellent quality, the headlamp feels built to last'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. best trail shoes I have ever owned. Five stars from me.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: would not recommend this trail shoes to anyone.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. excellent quality, the hiking boots feels built to last. Very pleased.'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. really disappointed with the climbing harness and the climbing harness leaked on the first night!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. the trail shoes performed perfectly on a week in the Alps'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The water filter is uncomfortable and far too heavy!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: the fleece is uncomfortable and far too heavy and the fleece leaked on the first night. Avoid.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'The trekking poles kept me warm and dry the whole trip and really happy with the trekking poles'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the down jacket broke within a week and would not recommend this down jacket to anyone.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Honest review: delighted with this hiking boots and great value, the hiking boots is comfortable and light. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Update after a month: absolutely love this climbing harness and best climbing harness I have ever owned'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: worst camp stove I have ever bought'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Update after a month: best camp stove I have ever owned'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the down jacket is cheaply made and flimsy and the down jacket let me down badly in the rain.'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'Bought this for my partner. worst fleece I have ever bought'", "label": "negative"}
+{"prompt": "Is this review positive or negative? 'The backpack let me down badly in the rain and the zip on the backpack failed immediately.'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'My new trekking poles is superb. Five stars from me.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'Honest review: the rain jacket leaked on the first night and would not recommend this rain jacket to anyone!'", "label": "negative"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Best climbing harness I have ever owned and great value, the climbing harness is comfortable and light'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Quick review. great value, the trail shoes is comfortable and light. Very pleased.'", "label": "positive"}
+{"prompt": "Is this review positive or negative? 'The headlamp exceeded every expectation!'", "label": "positive"}
+{"prompt": "What is the sentiment of this product review? Answer positive or negative: 'Update after a month: complete waste of money, this trekking poles'", "label": "negative"}

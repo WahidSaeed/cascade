@@ -306,15 +306,21 @@ def supports_prompt_cache(model_id: str) -> bool:
     return any(m in model_id for m in _CACHE_MODELS)
 
 
+def bedrock_client() -> Any:
+    """bedrock-runtime with adaptive retries: verification runs samples in parallel and a low on-demand quota
+    throttles; botocore's default (4 legacy attempts) turned a throttle into a failed gate."""
+    import boto3
+    from botocore.config import Config
+
+    return boto3.client("bedrock-runtime", region_name=settings.bedrock_region,
+                        config=Config(retries={"max_attempts": 10, "mode": "adaptive"}))
+
+
 class BedrockHeavyModel(HeavyModel):
     """Amazon Bedrock via the Converse API (model-agnostic, returns token usage)."""
 
     def __init__(self, client: Any = None, model_id: str | None = None) -> None:
-        if client is None:
-            import boto3
-
-            client = boto3.client("bedrock-runtime", region_name=settings.bedrock_region)
-        self._client = client
+        self._client = client if client is not None else bedrock_client()
         self.model_id = model_id or settings.bedrock_model_id
 
     def build_request(self, req: LLMRequest) -> dict[str, Any]:

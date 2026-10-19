@@ -523,7 +523,9 @@ def oracle(prompt: str) -> str | None:
         return route_queue(prompt)
     if task == "conversion":
         return convert_units(prompt)
-    return None
+    from .demo_scenarios import oracle as scenario_oracle  # the ml / dl scenarios (review sentiment, ...)
+
+    return scenario_oracle(prompt)
 
 
 def vacation_answer(country: str, days: int) -> str:
