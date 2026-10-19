@@ -42,6 +42,9 @@ locals {
     { name = "CASCADE_ARTIFACT_SUBNET_IDS", value = join(",", aws_subnet.private[*].id) },
     { name = "CASCADE_ARTIFACT_INTEGRATION_SG", value = aws_security_group.artifact_integration.id },
     { name = "CASCADE_ARTIFACT_SG", value = aws_security_group.artifact.id },
+    # ml / dl artifacts deploy as container-image Lambdas wherever an approval runs (API, agent, jobs, seed)
+    { name = "CASCADE_ML_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["ml-runtime"].repository_url}:latest" },
+    { name = "CASCADE_DL_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["dl-runtime"].repository_url}:latest" },
     { name = "CASCADE_EXACT_CACHE_URL", value = "rediss://${aws_elasticache_serverless_cache.exact.endpoint[0].address}:${aws_elasticache_serverless_cache.exact.endpoint[0].port}" },
   ]
   backend_secrets = [

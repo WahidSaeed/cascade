@@ -223,3 +223,12 @@ def test_bedrock_clients_ride_out_throttling():
 
     retries = bedrock_client().meta.config.retries
     assert retries["mode"] == "adaptive" and retries["total_max_attempts"] >= 10
+
+
+def test_every_backend_task_can_deploy_ml_and_dl_artifacts():
+    """Approve in the UI (the API task) failed on AWS: "no runtime image configured for dl artifacts". Only the agent
+    task had the runtime image URIs; they belong to every task that may approve or redeploy an artifact."""
+    ecs = (ROOT / "infra" / "terraform" / "ecs.tf").read_text()
+    shared = ecs[ecs.index("backend_env = ["):]
+    shared = shared[:shared.index("\n  ]")]
+    assert "CASCADE_ML_RUNTIME_IMAGE" in shared and "CASCADE_DL_RUNTIME_IMAGE" in shared

@@ -146,8 +146,6 @@ resource "aws_ecs_task_definition" "agent" {
       { name = "CASCADE_AGENT_LLM", value = "bedrock" },
       { name = "CASCADE_DL_TRAINER", value = "sagemaker" },
       { name = "CASCADE_SAGEMAKER_ROLE_ARN", value = aws_iam_role.sagemaker.arn },
-      { name = "CASCADE_ML_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["ml-runtime"].repository_url}:latest" },
-      { name = "CASCADE_DL_RUNTIME_IMAGE", value = "${aws_ecr_repository.runtime["dl-runtime"].repository_url}:latest" },
       { name = "CASCADE_DL_TRAINING_IMAGE", value = "${aws_ecr_repository.training.repository_url}:latest" },
     ])
     secrets = local.backend_secrets
