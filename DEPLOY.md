@@ -105,6 +105,23 @@ Groups (`admins`, `support`, `managers`, `hr`) become knowledge principals (`gro
 approve artifacts, approve integrations, run discovery and drift checks, and change configuration. Requests without a valid JWT get 401
 (except `/api/health`).
 
+## 6a. Optional: load the demo data (`cascade-seed`)
+
+To show the deployment with data, run the one-off `cascade-seed` task. It **wipes the database**, ingests the
+demo knowledge collections, installs the demo artifacts through compile → verify → approve (real Lambdas; the dl
+artifact trains on SageMaker), replays the generated week of traffic (2,400 prompts) through the real router on
+Bedrock, and runs discovery. Expect a few dollars of Bedrock spend and up to an hour. Ledger rows are marked
+`simulated`. Pause the agent worker while it runs:
+```bash
+aws ecs update-service --cluster cascade --service cascade-agent --desired-count 0
+NET=$(aws ecs describe-services --cluster cascade --services cascade-agent --query "services[0].networkConfiguration")
+aws ecs run-task --cluster cascade --launch-type FARGATE --task-definition cascade-seed --network-configuration "$NET" \
+  --overrides '{"containerOverrides":[{"name":"seed","environment":[{"name":"CASCADE_AGENT_LLM","value":"scripted"}]}]}'
+# when it has stopped (logs: /ecs/cascade, stream prefix seed/):
+aws ecs update-service --cluster cascade --service cascade-agent --desired-count 1
+aws ecs update-service --cluster cascade --service cascade-api --force-new-deployment
+```
+
 ## 7. Integrations (rule 11)
 
 Artifacts with an approved integration run in the private subnets (no NAT gateway) with the
