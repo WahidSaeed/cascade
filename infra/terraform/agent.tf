@@ -8,6 +8,30 @@ resource "aws_ecr_repository" "runtime" {
   tags = local.tags
 }
 
+# Lambda pulls the runtime image when an ml / dl artifact function is created or updated; only artifact functions
+# of this account may.
+data "aws_iam_policy_document" "runtime_pull" {
+  statement {
+    sid     = "ArtifactLambdaPull"
+    actions = ["ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer"]
+    principals {
+      type        = "Service"
+      identifiers = ["lambda.amazonaws.com"]
+    }
+    condition {
+      test     = "StringLike"
+      variable = "aws:sourceArn"
+      values   = ["arn:aws:lambda:${var.region}:${local.account_id}:function:${local.name}-artifact-*"]
+    }
+  }
+}
+
+resource "aws_ecr_repository_policy" "runtime" {
+  for_each   = aws_ecr_repository.runtime
+  repository = each.value.name
+  policy     = data.aws_iam_policy_document.runtime_pull.json
+}
+
 # SageMaker training image (infra/runtime-images/training.Dockerfile): agent dl fine-tunes and edited ml / dl code
 resource "aws_ecr_repository" "training" {
   name                 = "${local.name}-training"

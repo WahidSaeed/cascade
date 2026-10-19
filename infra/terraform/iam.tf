@@ -71,6 +71,12 @@ data "aws_iam_policy_document" "task" {
     resources = ["*"]
   }
   statement {
+    # ml / dl artifacts are container-image Lambdas: creating one needs read access to the runtime image
+    sid       = "ArtifactRuntimeImages"
+    actions   = ["ecr:BatchGetImage", "ecr:GetDownloadUrlForLayer"]
+    resources = [for r in aws_ecr_repository.runtime : r.arn]
+  }
+  statement {
     sid       = "PassArtifactRole"
     actions   = ["iam:PassRole"]
     resources = [aws_iam_role.artifact.arn]
