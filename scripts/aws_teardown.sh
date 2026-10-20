@@ -15,6 +15,10 @@ for fn in $(aws lambda list-functions --region "$REGION" --query "Functions[?sta
   echo "  lambda $fn"; aws lambda delete-function --region "$REGION" --function-name "$fn"
   aws logs delete-log-group --region "$REGION" --log-group-name "/aws/lambda/$fn" 2>/dev/null || true
 done
+# log groups of artifact Lambdas deleted earlier (rollbacks, temporary -verify functions) outlive their functions
+for lg in $(aws logs describe-log-groups --region "$REGION" --log-group-name-prefix /aws/lambda/cascade-artifact- --query "logGroups[].logGroupName" --output text); do
+  echo "  log group $lg"; aws logs delete-log-group --region "$REGION" --log-group-name "$lg"
+done
 for s in $(aws secretsmanager list-secrets --region "$REGION" --filters Key=name,Values=cascade/integrations/ --query "SecretList[].ARN" --output text); do
   echo "  secret $s"; aws secretsmanager delete-secret --region "$REGION" --secret-id "$s" --force-delete-without-recovery >/dev/null
 done
