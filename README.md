@@ -13,9 +13,11 @@ control over it (edit the code, retrain with more data, roll back, wire in an ex
 Every token spent, avoided and saved is written to an auditable ledger, **net** of what it cost to build and
 check the artifacts. The hard rule: **answer quality never drops below the LLM's.**
 
-**Live deployment:** https://d1xzxi7wla3zp5.cloudfront.net (AWS eu-central-1, sign-in required). It is serving
-ten artifacts, three rules, three ML models and four deep-learning models, all built by the agent and verified
-against Claude ([Artifacts in production](#artifacts-in-production)).
+**Live deployment: offline.** The public AWS deployment (eu-central-1) ran until 20 October 2026, then was torn
+down. It served ten artifacts: three rules, three ML models and four deep-learning models, all built by the agent
+and verified against Claude ([Artifacts in production](#artifacts-in-production)). To run it again, see
+[DEPLOY.md](DEPLOY.md). A redeploy gets a new address and starts with empty data; the seed and `seed --extend`
+rebuild the demo state.
 
 ---
 
@@ -214,7 +216,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the request path in detail and where 
 
 ## Artifacts in production
 
-The AWS deployment serves ten artifacts. Each one came from an agent run, passed the verification gate against
+Until it was torn down on 20 October 2026, the AWS deployment served ten artifacts. Each one came from an agent run, passed the verification gate against
 Claude Sonnet 4.5 on Bedrock, and then an admin approved it, which deployed it as its own Lambda.
 
 | Artifact | Kind | Input → output | Model | Verified vs Claude |
@@ -253,7 +255,7 @@ again, at 100 % on 33 held-out samples.
 
 ## Results
 
-Live on the AWS deployment (eu-central-1, Claude Sonnet 4.5 on Bedrock as the heavy model), after two
+Measured on the AWS deployment before teardown (eu-central-1, 20 October 2026, Claude Sonnet 4.5 on Bedrock as the heavy model), after two
 simulated weeks of traffic (4,058 requests across the ten artifacts):
 
 | | |

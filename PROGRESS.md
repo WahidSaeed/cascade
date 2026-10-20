@@ -102,6 +102,9 @@ the matrix counts every acceptance row it finds a passing test for). The final m
 - Evidence: `make lint` pass; `make test-unit` 255 passed (one load-sensitive flake in test_source_training passed
   3/3 on re-run); `make test-int` 82 passed.
 
+### 2026-10-20: teardown
+- `scripts/aws_teardown.sh` ran at the user's request: 10 artifact Lambdas deleted, then `Destroy complete! Resources: 99 destroyed`, and the Terraform state is empty. A sweep afterwards found nothing tagged `Project=cascade` still running. 9 orphaned Lambda log groups were deleted, and the script now removes those too (`c04fb8b`). The `cascade/db` secret is pending scheduled deletion. https://d1xzxi7wla3zp5.cloudfront.net no longer exists; README and the deck are marked offline.
+
 ### 2026-10-20: ML / DL scenarios on prod (`seed --extend`)
 - Six new artifacts were installed by real agent runs, passed the Bedrock gate, were approved and deployed as Lambdas (task `03b336f6…`, 969 s, exit 0). ML: Review sentiment, Catalog category, Message language. DL (bert-tiny fine-tunes): Return reason, Review star rating, Community post moderation. Return reason: 100.0% agreement on 375 samples; a new phrasing ("hood seam ripped open") came back `defective`, confidence 0.99, 44 ms.
 - The extra week replayed 1,640 prompts (scenario traffic, 320 exact repeats, 160 paraphrases). The Savings page now shows 4,058 requests (cache 31.3% · artifact 39.4% · LLM 29.3%), a 57.3% token reduction, and $3.31 net saved after $1.47 of overhead.
